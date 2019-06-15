@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:paddingLeft="@dimen/dimen_16dp" android:paddingTop="@dimen/dp30" android:paddingRight="@dimen/dp16" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/dimen_20sp" android:textColor="?first_line_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dp10" android:text="@string/delete_data_haeder" android:lineSpacingExtra="6.0sp" />
+    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="?second_line_color" android:id="@id/message_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:lineSpacingExtra="9.0sp" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp20">
+        <CheckBox android:theme="?my_check_box" android:id="@id/agreeTnC" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" />
+        <TextView android:textColor="?second_line_color" android:id="@id/tnc_text_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="@string/tnc_part_1" android:includeFontPadding="false" />
+    </LinearLayout>
+    <Button android:textSize="16.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="center_horizontal" android:id="@id/button_agree" android:background="@drawable/bottom_button_background" android:layout_width="220.0dip" android:layout_height="40.0dip" android:layout_marginTop="40.0dip" android:text="@string/continue_button" />
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="horizontal" android:background="?bg_no_downloaded_songs" android:layout_width="fill_parent" android:layout_height="@dimen/dp140" android:layout_marginLeft="@dimen/dp20" android:layout_marginRight="@dimen/dp20">
+        <ImageView android:layout_width="@dimen/dp50" android:layout_height="@dimen/dp50" android:layout_marginLeft="@dimen/dp30" android:layout_marginTop="@dimen/dp20" android:layout_marginRight="@dimen/dp30" app:srcCompat="@drawable/vec_download_songs" />
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="@dimen/dp20" android:layout_marginBottom="@dimen/dp10">
+            <TextView android:textSize="17.0sp" android:textColor="?first_line_color" android:id="@id/txt_download" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dp5" android:text="@string/download_songs" />
+            <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dp10" android:text="@string/help_download_first_song_new" android:lineSpacingExtra="@dimen/dp1" />
+            <Button android:textColor="?txt_color_download_now" android:id="@id/cta_download" android:background="?button_download_now" android:paddingLeft="25.0dip" android:paddingTop="8.0dip" android:paddingRight="25.0dip" android:paddingBottom="8.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/curated_dialog_cta" android:textAllCaps="false" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

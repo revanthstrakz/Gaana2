@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/ll_grid_item" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_marginTop="@dimen/bw_section_vert_padding_half" android:layout_marginRight="8.0dip" android:layout_marginBottom="@dimen/bw_section_vert_padding_half"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.gaana.view.item.RoundedSquareImageView android:id="@id/img_artwork" android:layout_width="fill_parent" android:layout_height="wrap_content" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <TextView android:textSize="14.0sp" android:id="@id/txt_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
+</LinearLayout>

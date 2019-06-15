@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?selector_btn_global_bg_white" android:layout_width="fill_parent" android:layout_height="@dimen/list_row_item_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/view1" android:background="?gaana_listview_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <CheckBox android:theme="?my_check_box" android:layout_gravity="center" android:id="@id/radioSong" android:clickable="false" android:layout_width="35.0dip" android:layout_height="@dimen/list_row_item_height" android:layout_marginLeft="10.0dip" android:checked="true" android:layout_below="@id/view1" />
+    <com.library.controls.CrossFadeImageView android:layout_gravity="center_vertical" android:id="@id/imgProductIcon" android:paddingTop="1.0dip" android:layout_width="@dimen/list_row_item_height" android:layout_height="@dimen/list_row_item_height" android:src="?placeholder_album_artwork_large" android:layout_toRightOf="@id/radioSong" android:layout_below="@id/view1" />
+    <View android:id="@id/view2" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_toRightOf="@id/imgProductIcon" android:layout_centerVertical="true" />
+    <TextView android:ellipsize="end" android:gravity="bottom|center|left" android:id="@id/tvSongName" android:paddingLeft="5.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/list_row_item_height_half" android:singleLine="true" android:layout_toRightOf="@id/imgProductIcon" android:layout_above="@id/view2" android:layout_centerVertical="true" style="@style/featured_playlist_item_text" />
+    <TextView android:ellipsize="end" android:gravity="center|left|top" android:id="@id/tvAlbumName" android:paddingLeft="5.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/list_row_item_height_half" android:singleLine="true" android:layout_toRightOf="@id/imgProductIcon" android:layout_below="@id/view2" style="@style/item_text_second_line" />
+</RelativeLayout>

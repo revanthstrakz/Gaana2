@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <rotate android:fromDegrees="10.0" android:pivotX="-119.99817%" android:pivotY="179.99878%">
+            <shape android:shape="oval">
+                <gradient android:startColor="#ffe72c30" android:endColor="#ffe72c30" android:type="linear" android:centerColor="#ffe72c30" />
+                <size android:height="20.0dip" android:width="20.0dip" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

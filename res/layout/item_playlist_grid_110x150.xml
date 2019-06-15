@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/rl_empty_item_view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/bw_section_vert_padding_half"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCornerImageView android:id="@id/imgProductIcon" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_horizontal_item_rect_height" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <View android:id="@id/selectedBg" android:background="@drawable/rounded_corner_bg_white" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_horizontal_item_rect_height" android:scaleType="centerCrop" />
+    <com.gaana.view.CustomTextView android:textColor="@color/white" android:ellipsize="end" android:gravity="center|top" android:id="@id/tvTopHeadingMix" android:paddingTop="@dimen/home_title_padding" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/img_occasion_horizontal_item_rect_height" android:singleLine="true" style="@style/grid_caption" />
+    <View android:id="@id/shadow_layer" android:background="?grid_item_selector" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_horizontal_item_rect_height" />
+</FrameLayout>

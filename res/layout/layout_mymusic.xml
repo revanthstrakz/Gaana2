@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:id="@id/ad_banner_top" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <android.support.v7.widget.CardView android:orientation="vertical" android:id="@id/llParentHeader" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="5.0dip" app:cardCornerRadius="2.0dip" app:cardElevation="0.0dip" />
+    <android.support.design.widget.CoordinatorLayout android:id="@id/coordinator_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <android.support.design.widget.AppBarLayout android:id="@id/app_bar_layout" android:background="@null" android:layout_width="fill_parent" android:layout_height="wrap_content" app:elevation="0.0dip">
+            <LinearLayout android:orientation="vertical" android:id="@id/home_toolbar" android:paddingTop="@dimen/status_bar_height" android:layout_width="fill_parent" android:layout_height="@dimen/home_action_bar_height" android:layout_alignParentTop="true" app:layout_scrollFlags="enterAlways|scroll" />
+        </android.support.design.widget.AppBarLayout>
+        <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+            <android.support.v7.widget.RecyclerView android:orientation="vertical" android:id="@id/listViewHome" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="@dimen/fragment_top_margin" android:divider="@null" android:dividerPadding="0.0dip"
+              xmlns:android="http://schemas.android.com/apk/res/android" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.design.widget.CoordinatorLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/loadMoreView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+    <LinearLayout android:layout_gravity="center_horizontal" android:orientation="vertical" android:id="@id/adSlot" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="50.0dip" />
+</LinearLayout>

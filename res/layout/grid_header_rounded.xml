@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:paddingBottom="@dimen/dp10" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_small">
+        <View android:id="@id/grid_header_pin" android:background="?icon_active" android:layout_width="@dimen/dimen_25dp" android:layout_height="@dimen/dp2" android:layout_marginTop="@dimen/dp10" />
+        <TextView android:id="@id/grid_header_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginTop="@dimen/activity_horizontal_margin" android:layout_marginRight="@dimen/page_left_right_margin" style="@style/text_title" />
+        <TextView android:textSize="@dimen/dimen_15sp" android:textColor="@color/white" android:id="@id/grid_header_play" android:background="@drawable/red_rounded_button" android:paddingLeft="@dimen/dimen_45dp" android:paddingTop="@dimen/activity_horizontal_margin_small" android:paddingRight="@dimen/dimen_45dp" android:paddingBottom="@dimen/activity_horizontal_margin_small" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_medium" android:text="@string/play_all" />
+    </LinearLayout>
+</FrameLayout>

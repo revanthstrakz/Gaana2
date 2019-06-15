@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="?bottom_sheet_item_selector_attr" android:layout_width="fill_parent" android:layout_height="48.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:gravity="center_vertical" android:id="@id/share_option_img" android:layout_width="24.0sp" android:layout_height="24.0sp" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginRight="@dimen/activity_horizontal_margin" android:src="@drawable/streaming_setting_red_tickmark" android:scaleType="fitCenter" />
+    <TextView android:id="@id/share_option_name" android:layout_width="wrap_content" android:layout_height="fill_parent" style="@style/dialog_text" />
+</LinearLayout>

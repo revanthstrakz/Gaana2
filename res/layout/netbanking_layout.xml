@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?colorPrimary" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:adjustViewBounds="true" android:fillViewport="true" android:keepScreenOn="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" sothree:theme="@style/ActionBar"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sothree="http://schemas.android.com/apk/res-auto" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/main_toolbar">
+        <RelativeLayout android:paddingTop="16.0dip" android:paddingBottom="@dimen/dp20" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/total_amount_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="15.0dip" android:text="@string/total_amount_text" />
+            <TextView android:textSize="16.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/total_amount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:layout_marginRight="16.0dip" android:layout_alignParentRight="true" />
+            <RelativeLayout android:id="@id/popuplar_banks_container" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/total_amount">
+                <TextView android:textSize="16.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/popular_banks_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="40.0dip" android:text="Popular Banks" />
+                <include android:id="@id/state_bank" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_below="@id/popular_banks_title" layout="@layout/bank_item_layout" />
+                <include android:id="@id/icici_bank" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/state_bank" layout="@layout/bank_item_layout" />
+                <include android:id="@id/hdfc_bank" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/icici_bank" layout="@layout/bank_item_layout" />
+                <include android:id="@id/pnb_bank" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/hdfc_bank" layout="@layout/bank_item_layout" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/other_banks_list_container" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/popuplar_banks_container">
+                <TextView android:textSize="17.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/other_banks_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="30.0dip" android:text="Other Banks" />
+                <Spinner android:textColor="@color/black" android:id="@id/other_banks_list" android:background="@drawable/spinner_border" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginLeft="16.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="16.0dip" android:prompt="@string/select_bank" android:layout_below="@id/other_banks_title" />
+                <ImageView android:layout_width="12.0dip" android:layout_height="12.0dip" android:layout_marginTop="26.0dip" android:layout_marginRight="28.0dip" android:src="@drawable/chevron_down_grey" android:layout_below="@id/other_banks_title" android:layout_alignParentRight="true" />
+            </RelativeLayout>
+            <Button android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/pay_now_button" android:background="@drawable/rounded_button_follow" android:layout_width="220.0dip" android:layout_height="@dimen/dp40" android:layout_marginTop="30.0dip" android:text="@string/proceed" android:layout_below="@id/other_banks_list_container" android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </ScrollView>
+    <ProgressBar android:id="@id/progressBar" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+</RelativeLayout>

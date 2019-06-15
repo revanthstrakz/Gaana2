@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/search_container" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ProgressBar android:id="@id/llParentLoading" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/grid_swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/searchAdSlot">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/searchAdSlot">
+            <ProgressBar android:id="@id/progressBar" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:indeterminate="true" style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+            <LinearLayout android:orientation="vertical" android:id="@id/emptyTextContainer" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip">
+                <TextView android:textSize="20.0sp" android:gravity="center" android:id="@id/oopsText" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/oops_txt" />
+                <TextView android:textSize="18.0sp" android:gravity="center" android:id="@id/emptyTextView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:text="@string/search_null_result" />
+                <TextView android:textSize="14.0sp" android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/try_different_keyword" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView android:id="@id/recycler_view_main" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+            <android.support.v7.widget.RecyclerView android:id="@id/recycler_view" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/searchAdSlot" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="@dimen/dimen_50dp" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+    <include android:id="@id/remove_ad_cta" android:visibility="gone" android:layout_width="86.0dip" android:layout_height="20.0dip" android:layout_above="@id/searchAdSlot" android:layout_alignParentRight="true" layout="@layout/remove_ad_cta_layout" />
+</RelativeLayout>

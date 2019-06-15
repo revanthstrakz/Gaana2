@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="@dimen/grid_three_line_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.SwitchCompat android:theme="?my_check_box" android:gravity="center_vertical" android:id="@id/switchButton" android:layout_width="wrap_content" android:layout_height="@dimen/grid_three_line_bar_height" android:layout_marginRight="@dimen/activity_horizontal_margin" android:layout_alignBottom="@id/viewview" android:layout_alignParentRight="true" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:id="@id/llParentViews" android:layout_width="fill_parent" android:layout_height="@dimen/grid_three_line_bar_height" android:layout_toLeftOf="@id/switchButton" android:layout_alignParentLeft="true">
+        <TextView android:textColor="?first_line_color" android:id="@id/headerText" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/text_regular" />
+        <TextView android:id="@id/subheaderText" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="5.0dip" android:paddingRight="@dimen/activity_horizontal_margin" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/text_small" />
+    </LinearLayout>
+    <View android:id="@id/viewview" android:background="?gaana_listview_divider" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginTop="20.0dip" android:layout_marginRight="@dimen/activity_horizontal_margin" android:layout_below="@id/llParentViews" />
+</RelativeLayout>

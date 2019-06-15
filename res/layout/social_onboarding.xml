@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?gaana_social_feed_card_bg" android:layout_width="fill_parent" android:layout_height="?actionBarSize" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <android.support.v4.view.ViewPager android:id="@id/container" android:layout_width="fill_parent" android:layout_height="330.0dip" android:layout_marginTop="@dimen/dp10" />
+            <com.gaana.view.header.CirclePageIndicator android:id="@id/carouselPagerCircles" android:paddingTop="@dimen/dp1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dp20" />
+            <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:paddingBottom="50.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <RelativeLayout android:id="@id/rl_fb_btn" android:background="@drawable/fb_bg_selector" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="45.0dip" android:layout_marginRight="45.0dip" android:layout_below="@id/onboard_subtitle">
+                    <ImageView android:id="@id/img_btn_fb_logo" android:padding="8.0dip" android:layout_width="48.0dip" android:layout_height="wrap_content" android:layout_alignParentTop="@id/onboard_btn_fb" android:layout_alignParentBottom="@id/onboard_btn_fb" android:layout_centerVertical="true" app:srcCompat="@drawable/vector_icon_facebook_share" />
+                    <Button android:theme="@style/fb_onboard_button" android:textSize="14.0sp" android:textColor="@color/color_white" android:gravity="center|left" android:id="@id/onboard_btn_fb" android:background="@drawable/fb_bg_selector" android:paddingLeft="16.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="Connect With Facebook" android:layout_toRightOf="@id/img_btn_fb_logo" android:layout_centerHorizontal="true" android:textAllCaps="true" />
+                </RelativeLayout>
+                <Button android:textSize="16.0sp" android:textColor="?first_line_color_50" android:id="@id/intro_btn_finish" android:background="@color/transparent_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="90.0dip" android:layout_marginRight="90.0dip" android:text="@string/skip_text" android:textAllCaps="false" style="@style/Widget.AppCompat.Button.Borderless" />
+                <Button android:textSize="16.0sp" android:textColor="@color/white" android:id="@id/okayGotIt" android:background="@drawable/rounded_button_social_onboarding" android:paddingLeft="44.0dip" android:paddingTop="@dimen/vertical_margin" android:paddingRight="44.0dip" android:paddingBottom="@dimen/vertical_margin" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/okay_got_it" android:textAllCaps="false" style="@style/Widget.AppCompat.Button.Borderless" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

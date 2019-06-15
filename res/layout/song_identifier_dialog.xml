@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/song_identifier_dialog" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:visibility="gone" layout="@layout/identify_song_board_coachmark" />
+    <com.voice.RippleBackground android:gravity="bottom" android:layout_gravity="bottom" android:id="@id/listening_state" android:background="#d7000000" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="-150.0dip" app:rb_color="#ffe72c30" app:rb_duration="3000" app:rb_radius="150.0dip" app:rb_rippleAmount="4" app:rb_scale="6.0"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView android:textSize="@dimen/dimen_20sp" android:textColor="@color/white" android:gravity="bottom|center" android:layout_gravity="bottom" android:id="@id/song_listening_textview" android:paddingBottom="200.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/listening_text" />
+        <TextView android:textSize="@dimen/dimen_14sp" android:textColor="@color/white_alfa_75" android:gravity="bottom|center" android:layout_gravity="bottom" android:id="@id/song_listening_textview_hint" android:paddingBottom="180.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/listening_text" />
+    </com.voice.RippleBackground>
+    <include android:visibility="gone" layout="@layout/identify_song_result" />
+    <include android:visibility="gone" layout="@layout/identify_song_failure" />
+</FrameLayout>

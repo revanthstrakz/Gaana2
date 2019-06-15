@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/mainLayout" android:layout_width="wrap_content" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_margin="@dimen/dimen_10dp" card_view:cardBackgroundColor="?automated_playlist_card" card_view:cardCornerRadius="5.0dip" card_view:cardElevation="3.0dip" card_view:cardMaxElevation="5.0dip" card_view:contentPaddingBottom="@dimen/dimen_15dp">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:id="@id/desc_header_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:text="@string/automated_playlist_text" android:alpha="0.75" />
+            <View android:id="@id/view" android:background="?first_line_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="@dimen/dimen_15dp" android:layout_below="@id/desc_header_text" android:alpha="0.1" />
+            <TextView android:textSize="16.0sp" android:textColor="?first_line_color" android:id="@id/playlistName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="@dimen/dimen_20dp" android:layout_below="@id/view" />
+            <TextView android:textColor="@color/white" android:gravity="center" android:id="@id/save_button" android:background="@drawable/rounded_apply_orange_button" android:layout_width="@dimen/dimen_70dp" android:layout_height="@dimen/dimen_30dp" android:layout_marginTop="@dimen/dimen_20dp" android:layout_marginRight="15.0dip" android:text="@string/save" android:layout_below="@id/view" android:layout_alignParentRight="true" android:textAllCaps="true" />
+            <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:id="@id/songs_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_below="@id/playlistName" />
+            <android.support.v7.widget.RecyclerView android:id="@id/horizontal_recyclerView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="@dimen/dimen_15dp" android:layout_marginRight="10.0dip" android:layout_below="@id/songs_count" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

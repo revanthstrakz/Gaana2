@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?grid_text_bar_bgcolor" android:layout_width="fill_parent" android:layout_height="fill_parent" android:splitMotionEvents="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/similar.header.text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/activity_horizontal_margin" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:text="@string/opt_similar" style="@style/header_scroller" />
+    <com.views.HorizontalRecyclerView android:orientation="vertical" android:id="@id/horizontal_list_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="1.0dip" android:splitMotionEvents="false" android:nestedScrollingEnabled="false" />
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?colombia_car_bg_color" android:paddingTop="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="14.0sp" android:textColor="?colombia_car_text_color" android:ellipsize="end" android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="20.0dip" android:text="Title" android:maxLines="1" android:layout_toLeftOf="@id/logo_container" android:layout_alignParentLeft="true" android:lineSpacingExtra="6.0sp" />
+        <TextView android:textSize="10.0sp" android:textColor="?colombia_car_text_color" android:ellipsize="end" android:id="@id/sub_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:text="Sub Title" android:maxLines="1" android:layout_toLeftOf="@id/logo_container" android:layout_below="@id/title" android:layout_alignParentLeft="true" android:alpha="0.5" />
+        <FrameLayout android:id="@id/logo_container" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="15.0dip" android:layout_above="@id/horizontal_list_view" android:layout_alignParentRight="true">
+            <ImageView android:layout_width="24.0dip" android:layout_height="24.0dip" android:src="@drawable/colombia_icon" />
+        </FrameLayout>
+        <com.views.HorizontalRecyclerView android:id="@id/horizontal_list_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_login" android:layout_marginTop="15.0dip" android:layout_marginRight="@dimen/activity_horizontal_margin_login" android:layout_marginBottom="@dimen/activity_horizontal_margin_half" android:layout_below="@id/sub_title" />
+    </RelativeLayout>
+</LinearLayout>

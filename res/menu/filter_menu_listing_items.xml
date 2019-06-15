@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@id/menu_filter_default" android:visible="true" android:title="@string/recently_added" />
+    <item android:id="@id/menu_filter_by_name" android:visible="true" android:title="@string/filter_by_name" />
+    <group android:id="@id/menu_filter_group" android:visible="false">
+        <item android:id="@id/menu_filter_by_artist" android:title="@string/filter_by_artist" />
+        <item android:id="@id/menu_filter_by_popularity" android:title="@string/filter_by_popularity" />
+    </group>
+</menu>

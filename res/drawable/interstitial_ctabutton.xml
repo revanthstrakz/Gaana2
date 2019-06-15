@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:padding="0.0dip" android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/transparent_color" />
+    <stroke android:width="2.0dip" android:color="#ffcccccc" />
+    <corners android:topLeftRadius="@dimen/carousel_button_radius" android:topRightRadius="@dimen/carousel_button_radius" android:bottomLeftRadius="@dimen/carousel_button_radius" android:bottomRightRadius="@dimen/carousel_button_radius" />
+</shape>

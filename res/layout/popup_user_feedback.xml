@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_gravity="center" android:background="?mo_ufd_bgcolor" android:layout_width="255.0dip" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/img_header" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_centerHorizontal="true" app:srcCompat="@drawable/vector_more_option_favorited" />
+    <TextView android:gravity="center_horizontal" android:id="@id/txt_question" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginTop="16.0dip" android:layout_marginRight="12.0dip" android:layout_below="@id/img_header" style="?mo_ufd_question_txt" />
+    <TextView android:gravity="center_horizontal" android:id="@id/txt_subtitle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="14.0dip" android:layout_marginTop="6.0dip" android:layout_marginRight="14.0dip" android:layout_below="@id/txt_question" style="?mo_ufd_subtitle_txt" />
+    <Button android:id="@id/btn_ok" android:padding="3.0dip" android:layout_width="150.0dip" android:layout_height="45.0dip" android:layout_marginTop="25.0dip" android:layout_below="@id/txt_subtitle" android:layout_centerHorizontal="true" android:textAllCaps="true" style="?mo_ufd_ok_btn" />
+    <Button android:id="@id/btn_not_ok" android:padding="3.0dip" android:layout_width="150.0dip" android:layout_height="45.0dip" android:layout_marginTop="20.0dip" android:layout_marginBottom="30.0dip" android:layout_below="@id/btn_ok" android:layout_centerHorizontal="true" android:textAllCaps="true" style="?mo_ufd_not_ok_btn" />
+</RelativeLayout>

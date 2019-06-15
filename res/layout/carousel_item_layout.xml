@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/border_shaded" android:layout_width="@dimen/citem_width" android:layout_height="@dimen/citem_height" android:layout_marginLeft="@dimen/citem_margin_left" android:layout_marginRight="3.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:background="@drawable/border" android:padding="@dimen/border_margin" android:layout_width="fill_parent" android:layout_height="@dimen/citem_image_height">
+        <ImageView android:id="@id/citem_img" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="fitCenter" />
+    </FrameLayout>
+    <RelativeLayout android:paddingTop="3.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/citem_title_height" android:layout_marginLeft="@dimen/border_margin" android:layout_marginRight="@dimen/border_margin">
+        <Button android:textSize="13.0sp" android:textStyle="bold" android:ellipsize="end" android:id="@id/citem_cta" android:background="@drawable/border_shaded" android:paddingLeft="@dimen/citem_default_padding" android:paddingRight="@dimen/citem_default_padding" android:layout_width="wrap_content" android:layout_height="@dimen/citem_cta_height" android:layout_marginRight="3.0dip" android:maxWidth="@dimen/cta_max_width" android:maxLines="1" android:layout_alignParentTop="true" android:layout_alignParentRight="true" style="@style/videobuttonTheme" />
+        <TextView android:textSize="12.0sp" android:textStyle="bold" android:textColor="#ff000000" android:ellipsize="end" android:id="@id/citem_title" android:paddingLeft="3.0dip" android:paddingRight="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="2" android:layout_toLeftOf="@id/citem_cta" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" />
+    </RelativeLayout>
+    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:paddingLeft="3.0dip" android:paddingRight="@dimen/citem_default_padding" android:layout_width="fill_parent" android:layout_height="@dimen/citem_brand_height" android:layout_marginLeft="@dimen/border_margin" android:layout_marginRight="@dimen/border_margin">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0" />
+        <TextView android:textSize="11.0sp" android:ellipsize="end" android:id="@id/citem_brand" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginBottom="2.0dip" android:maxLines="1" />
+    </LinearLayout>
+</LinearLayout>

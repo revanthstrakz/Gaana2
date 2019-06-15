@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:background="?selector_btn_global_bg_white" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/dividerLine" android:background="?gaana_listview_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <Button android:id="@id/sync" android:background="@drawable/rounded_button_follow" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="@dimen/dp40" android:layout_marginLeft="110.0dip" android:layout_marginTop="40.0dip" android:layout_marginRight="110.0dip" android:text="@string/tab_to_sync_now" android:layout_below="@id/scroll_view" android:textAllCaps="true" android:elevation="2.0dip" style="@style/orange_button_style" />
+    <TextView android:textSize="12.0sp" android:textColor="?second_line_color" android:id="@id/headerText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/sync_device_button" android:layout_below="@id/sync" android:layout_centerHorizontal="true" />
+    <ScrollView android:id="@id/scroll_view" android:layout_width="fill_parent" android:layout_height="300.0dip" android:layout_alignParentTop="true">
+        <LinearLayout android:gravity="center" android:layout_gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginBottom="10.0dip">
+            <LinearLayout android:orientation="vertical" android:id="@id/llLanguageChooser" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+    <ProgressBar android:id="@id/progressBar1" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_centerInParent="true" />
+</RelativeLayout>

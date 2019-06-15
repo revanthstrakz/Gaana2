@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?opp_first_line_color" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true">
+        <com.library.controls.CrossFadeImageView android:id="@id/image_noti_image" android:layout_width="@dimen/view_item_favorite_size" android:layout_height="@dimen/view_item_favorite_size" android:layout_marginLeft="8.0dip" android:layout_marginTop="@dimen/list_padding" android:layout_marginRight="@dimen/dp8" android:layout_marginBottom="12.0dip" android:src="@drawable/placeholder_album_artwork_large" android:layout_alignParentLeft="true" />
+        <com.library.controls.CrossFadeImageView android:id="@id/image_noti_bg" android:background="@color/black_alfa_10" android:layout_width="@dimen/view_item_favorite_size" android:layout_height="@dimen/view_item_favorite_size" android:layout_marginLeft="12.0dip" android:layout_marginBottom="4.0dip" android:layout_alignBottom="@id/image_noti_image" android:layout_alignParentLeft="true" />
+        <com.library.controls.CrossFadeImageView android:id="@id/image_noti_logo_multi" android:layout_width="16.0dip" android:layout_height="16.0dip" android:src="@mipmap/gaana_logo" android:layout_alignRight="@id/image_noti_bg" android:layout_alignBottom="@id/image_noti_image" />
+        <com.library.controls.CrossFadeImageView android:id="@id/image_noti_logo_single" android:visibility="gone" android:layout_width="16.0dip" android:layout_height="16.0dip" android:src="@mipmap/gaana_logo" android:layout_alignRight="@id/image_noti_image" android:layout_alignBottom="@id/image_noti_image" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/list_padding" android:layout_marginRight="@dimen/activity_horizontal_margin_half" android:layout_marginBottom="@dimen/list_padding" android:layout_toRightOf="@id/img" android:layout_centerVertical="true">
+        <TextView android:ellipsize="end" android:gravity="center|left" android:id="@id/title" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/download_noti_plural_title" style="@style/list_download_item_first_line" />
+        <TextView android:ellipsize="end" android:gravity="center|left" android:id="@id/subtitle" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/download_noti_plural_subtitle" style="@style/setting_text2" />
+        <TextView android:textColor="#ff9f9b99" android:ellipsize="end" android:id="@id/tvItemDate" android:padding="2.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/item_text_second_line" />
+    </LinearLayout>
+    <View android:background="?notif_border_color" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_alignParentBottom="true" />
+</RelativeLayout>

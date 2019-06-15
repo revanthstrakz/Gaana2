@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:id="@id/video_thumbnail" android:layout_width="fill_parent" android:layout_height="@dimen/dp200" android:layout_marginLeft="@dimen/dp10" android:layout_marginTop="@dimen/dp10" android:layout_marginRight="@dimen/dp10" android:scaleType="fitXY" android:adjustViewBounds="true" android:layout_centerInParent="true" />
+    <ImageView android:id="@id/play_video" android:layout_width="70.0dip" android:layout_height="52.0dip" android:src="@drawable/video_play_icon" android:layout_centerInParent="true" />
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/llParentListing" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="@dimen/fragment_top_margin"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.CoordinatorLayout android:id="@id/coordinator_layout" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <com.gaana.view.item.SquareImageViewByHeight android:id="@id/details_artwork" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="?placeholder_album_artwork_large" android:scaleType="centerCrop" />
+        <com.gaana.view.item.SquareView android:id="@id/img_background" android:background="?top_overlay_details_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <com.collapsible_header.ObservableRecyclerView android:id="@id/recycler_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+        <com.gaana.view.item.SquareView android:id="@id/overlay" android:background="?view_foreground" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <LinearLayout android:orientation="vertical" android:paddingLeft="@dimen/margin_standard" android:layout_width="fill_parent" android:layout_height="wrap_content" android:paddingStart="@dimen/margin_standard" android:paddingEnd="@dimen/margin_standard">
+            <TextView android:gravity="center_vertical" android:id="@id/album_title" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/item_detail_title" />
+            <TextView android:id="@id/tvAlbumSongCount_Value" android:paddingBottom="@dimen/margin_standard" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:singleLine="true" android:layout_below="@id/album_title" style="@style/item_detail_second_line" />
+            <com.gaana.view.item.SquareView android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+        <View android:id="@id/toolbar_dummy_view" android:background="?album_header_background" android:layout_width="fill_parent" android:layout_height="?actionBarSize" />
+        <FrameLayout android:id="@id/button_padding" android:background="?view_foreground" android:layout_width="fill_parent" android:layout_height="@dimen/artist_tab_padding_fab" />
+        <android.support.design.widget.FloatingActionButton android:id="@id/shuffle_play_button" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/fab_btn_default_padding" android:scaleType="fitEnd" app:backgroundTint="@color/gaana.red" app:layout_anchor="@id/button_padding" app:layout_anchorGravity="end|center|top" app:srcCompat="@drawable/vector_player_play_white" />
+        <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="@android:color/transparent" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" />
+        <ProgressBar android:layout_gravity="center" android:id="@id/llParentLoading" android:visibility="gone" android:layout_width="50.0dip" android:layout_height="50.0dip" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+    </android.support.design.widget.CoordinatorLayout>
+    <include android:layout_gravity="center_horizontal" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="@dimen/dimen_50dp" android:layout_alignParentBottom="true" layout="@layout/ad_layout" />
+</LinearLayout>

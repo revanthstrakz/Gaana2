@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.AdView android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="1.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:background="?layer_card_background" android:layout_width="fill_parent" android:layout_height="@dimen/native_ad_height">
+            <com.library.controls.CrossFadeImageView android:id="@id/colom_ad_image" android:background="?list_selector" android:layout_width="86.0dip" android:layout_height="86.0dip" android:layout_marginLeft="8.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="4.0dip" android:layout_marginBottom="8.0dip" android:src="?placeholder_album_artwork_large" android:scaleType="fitXY" android:layout_alignParentLeft="true" />
+            <TextView android:ellipsize="end" android:id="@id/colom_ad_headLine" android:paddingLeft="@dimen/grid_line_padding" android:paddingTop="3.0dip" android:paddingRight="@dimen/grid_line_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="3" android:layout_toRightOf="@id/colom_ad_image" android:layout_alignTop="@id/colom_ad_image" style="@style/grid_caption" />
+            <TextView android:textStyle="bold" android:ellipsize="end" android:gravity="bottom|center|left" android:id="@id/colom_ad_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_marginBottom="4.0dip" android:text="@string/coloum_ad_text" android:singleLine="true" android:layout_toRightOf="@id/colom_ad_image" android:layout_alignBottom="@id/colom_ad_image" android:alpha="0.6" style="@style/item_text_second_line" />
+            <TextView android:ellipsize="end" android:id="@id/colom_ad_brand" android:layout_width="140.0dip" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_marginBottom="4.0dip" android:singleLine="true" android:layout_toRightOf="@id/colom_ad_text" android:layout_alignBottom="@id/colom_ad_image" style="@style/item_text_second_line" />
+            <ImageView android:id="@id/nativeColomIcon" android:layout_width="16.0dip" android:layout_height="16.0dip" android:layout_marginRight="8.0dip" android:layout_marginBottom="4.0dip" android:layout_alignBottom="@id/colom_ad_image" android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <View android:background="?gaana_listview_divider" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="1.0dip" android:layout_marginTop="8.0dip" />
+    </LinearLayout>
+</com.til.colombia.android.service.AdView>

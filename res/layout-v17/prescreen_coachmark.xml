@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:gravity="bottom|center" android:orientation="vertical" android:paddingLeft="@dimen/dp20" android:paddingTop="@dimen/dp30" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/search_chevron" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginTop="@dimen/activity_horizontal_margin" android:rotation="-90.0" android:textAlignment="center" app:srcCompat="@drawable/vector_chevron_top_orange" />
+    <TextView android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/coachmarkText" android:background="@drawable/search_bg_coach_red" android:paddingLeft="@dimen/dimen_30dp" android:paddingTop="@dimen/dimen_10dp" android:paddingRight="@dimen/dimen_30dp" android:paddingBottom="@dimen/dimen_10dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp20" android:text="@string/prescreen_coachmark_text" />
+</FrameLayout>

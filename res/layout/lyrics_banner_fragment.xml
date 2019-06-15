@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@id/parentscrollview" android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.constraint.ConstraintLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <RelativeLayout android:id="@id/top_layout" android:layout_width="fill_parent" android:layout_height="360.0dip">
+            <com.library.controls.CrossFadeImageView android:id="@id/display_img" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@color/black_alfa_60" android:scaleType="centerCrop" />
+            <TextView android:textColor="@color/first_line_color" android:gravity="center" android:layout_gravity="center" android:id="@id/display_text" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="6.0dip" />
+            <TextView android:textSize="12.0sp" android:textColor="@color/first_line_color" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/track_details" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="8.0dip" android:layout_above="@id/seperator_line" />
+            <View android:id="@id/seperator_line" android:background="@color/first_line_color" android:layout_width="51.0dip" android:layout_height="1.0dip" android:layout_marginBottom="8.0dip" android:layout_above="@id/gaana_logo" android:layout_centerHorizontal="true" />
+            <ImageView android:id="@id/gaana_logo" android:layout_width="90.0dip" android:layout_height="50.0dip" android:layout_marginBottom="14.0dip" android:scaleType="fitXY" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" app:srcCompat="@drawable/vector_icon_gaana_text" />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="@dimen/dimen_40dp" android:layout_marginRight="15.0dip" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent">
+            <ImageView android:id="@id/back_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" app:srcCompat="@drawable/vector_ab_back_white" />
+            <ImageView android:id="@id/share_lrc_card" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_share_new" android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/viewpager_container" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toBottomOf="@id/top_layout">
+            <android.support.design.widget.TabLayout android:id="@id/sliding_tabs" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_behavior="@string/appbar_scrolling_view_behavior" app:tabBackground="@android:color/transparent" app:tabIndicatorColor="@color/gaana.red" app:tabSelectedTextColor="?first_line_color" app:tabTextAppearance="@style/tab_text_style" />
+            <com.gaana.view.ScrollableViewPagerNew android:id="@id/viewpager" android:scrollbars="horizontal|vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="24.0dip" app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

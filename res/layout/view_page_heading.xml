@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView android:textSize="34.0dip" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/txt_page_title" android:padding="@dimen/dp2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp20" android:layout_marginRight="@dimen/dp20" android:layout_marginBottom="@dimen/dp20" android:text="@string/settings"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?tab_layout_background_attr" android:layout_width="fill_parent" android:layout_height="@dimen/abc_action_bar_default_height_material"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_gravity="center" android:id="@id/menu_icon" android:background="?list_selector" android:padding="12.0dip" android:layout_width="@dimen/settings_image_size" android:layout_height="@dimen/settings_image_size" android:layout_marginLeft="2.0dip" android:scaleType="centerCrop" android:layout_centerVertical="true" android:alpha="0.75" app:srcCompat="?actionbar_search" />
+    <android.support.v7.widget.SearchView android:id="@id/searchview_actionbar" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_toRightOf="@id/menu_icon" app:iconifiedByDefault="true" app:queryHint="@string/search_friends" app:searchHintIcon="@null" />
+</RelativeLayout>

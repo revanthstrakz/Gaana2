@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:paddingTop="@dimen/activity_horizontal_margin_small" android:layout_width="fill_parent" android:layout_height="60.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_gravity="center_vertical" android:layout_width="48.0dip" android:layout_height="48.0dip" android:layout_marginLeft="@dimen/vertical_margin" app:srcCompat="?moreoptions_download" />
+    <RelativeLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/vertical_margin">
+        <TextView android:textSize="18.0sp" android:id="@id/download.songs.header.main" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/download_songs" android:singleLine="true" style="@style/list_download_item_first_line" />
+        <TextView android:textSize="14.0sp" android:ellipsize="end" android:paddingLeft="@dimen/activity_horizontal_margin" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="@string/let_us_help_you_to_download_more_song" android:singleLine="true" android:layout_below="@id/download.songs.header.main" style="@style/list_download_item_second_line" />
+    </RelativeLayout>
+</LinearLayout>

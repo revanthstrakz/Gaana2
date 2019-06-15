@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.ColombiaNativeSponsoredAdView android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:background="@color/gaana_grey" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:id="@id/bgSponsoredImage" android:layout_width="fill_parent" android:layout_height="400.0dip" android:src="@drawable/placeholder_album_artwork_large" android:scaleType="fitXY" />
+        <TextView android:textSize="20.0sp" android:id="@id/sponsored_dismiss" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="30.0dip" android:text="@string/dismiss" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" style="@style/orange_button_style" />
+        <Button android:textSize="18.0sp" android:textStyle="bold" android:id="@id/sponsored_call_to_action" android:background="@drawable/nav_login_button" android:layout_width="fill_parent" android:layout_height="46.0dip" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip" android:layout_marginBottom="60.0dip" android:text="@string/watch_this_video" android:layout_above="@id/sponsored_dismiss" android:layout_centerHorizontal="true" style="@style/orange_button_style" />
+    </RelativeLayout>
+</com.til.colombia.android.service.ColombiaNativeSponsoredAdView>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:id="@id/coordinator_layout" android:background="?gaana_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/layout" android:padding="16.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" app:behavior_peekHeight="450.0dip" app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:layout_width="@dimen/dimen_40dp" android:layout_height="@dimen/dimen_40dp" android:src="@drawable/smart_download_icon" />
+            <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:layout_gravity="center" android:id="@id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:text="@string/smart_downloads_title" />
+        </LinearLayout>
+        <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:gravity="center" android:id="@id/downloaded_songs_message" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:text="@string/smart_downloads_subtitle" />
+        <LinearLayout android:orientation="vertical" android:id="@id/download_progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginTop="@dimen/dimen_30dp">
+            <TextView android:textSize="14.0sp" android:textColor="?bottom_sheet_gray_color" android:id="@id/download_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dimen_5dp" android:text="@string/downloading" />
+            <SeekBar android:theme="@style/ProgressSeekBarTheme" android:id="@id/seekBar" android:background="@color/black" android:paddingLeft="@dimen/dimen_0dp" android:layout_width="300.0dip" android:layout_height="4.0dip" android:layout_margin="@dimen/dimen_0dp" android:layout_marginBottom="@dimen/dimen_5dp" android:progress="0" />
+            <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:id="@id/progress_percentage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="100%" />
+        </LinearLayout>
+        <com.views.CustomButtonView android:enabled="false" android:textStyle="bold" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@id/btn_view" android:background="@drawable/shape_continue_btn" android:visibility="gone" android:layout_width="280.0dip" android:layout_height="40.0dip" android:layout_marginTop="30.0dip" android:text="@string/action_view" />
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/song_download_details" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="23.0dip" android:layout_marginBottom="@dimen/dimen_5dp">
+            <com.views.CustomCircularProgressBar android:id="@id/circular_download_progress" android:layout_width="65.0dip" android:layout_height="65.0dip" />
+            <TextView android:textSize="@dimen/dimen_15sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/song_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_5dp" android:text="Zingaat" android:layout_below="@id/smart_downloaded" />
+            <TextView android:textSize="@dimen/dimen_12sp" android:textColor="?first_line_color_50" android:id="@id/song_sub_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="dhadak" />
+        </LinearLayout>
+        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="?bottom_sheet_gray_color" android:autoLink="all" android:id="@id/whatsThis" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp15" android:layout_marginBottom="@dimen/dimen_25dp" android:text="@string/what_is_this" />
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="?one_touch_radio_bg" android:scaleType="centerCrop" />
+    <TextView android:layout_gravity="center_vertical" android:id="@id/one_touch_radio_header_container" android:paddingLeft="@dimen/one_touch_radio_text_left_padding" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/grid_line_padding_half" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/msg_onetouch_radio_1"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+</FrameLayout>

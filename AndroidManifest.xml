@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.gaana">
+    <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true"/>
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    <uses-feature android:name="android.hardware.wifi" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES" android:value="barcode"/>
+    <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+    <application android:allowBackup="false" android:icon="@mipmap/gaana_logo_adaptive" android:label="@string/app_name" android:largeHeap="true" android:name="com.gaana.application.GaanaApplication" android:networkSecurityConfig="@xml/network_security_config" android:roundIcon="@mipmap/gaana_logo_adaptive_round" android:supportsRtl="true" android:theme="@style/AppTheme">
+        <meta-data android:name="com.simpl.android.sdk.merchant_id" android:value="15bdd857b43914db73fe94a4f5d868e8"/>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_olaZSTrTZ6MJpGdppgju9gkbyAaRLfi4"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/places_api_key"/>
+        <meta-data android:name="com.google.android.gms.car.application" android:resource="@xml/automotive_app_desc"/>
+        <meta-data android:name="com.google.android.gms.car.application.theme" android:resource="@style/CarTheme"/>
+        <meta-data android:name="com.google.android.safetynet.ATTEST_API_KEY" android:value="AIzaSyBMde3isUI8uH6Jd2F_LLQ58uEzdTbejeg"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.gaana.GaanaActivity" android:screenOrientation="portrait" android:theme="@style/GaanaAppTheme" android:windowSoftInputMode="adjustNothing|stateHidden">
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.gaana.GaanaActivity"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.gms.actions.SEARCH_ACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="net.hockeyapp.android.UpdateActivity"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize" android:hardwareAccelerated="true" android:name="com.inmobi.rendering.InMobiAdActivity" android:resizeableActivity="false" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:icon="@mipmap/gaana_logo_adaptive" android:label="@string/app_name" android:name="com.gaana.SplashScreenActivity" android:screenOrientation="portrait" android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="gaana"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="gaanagoogle"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="com.google.android.apps.plus.VIEW_DEEP_LINK"/>
+                <data android:scheme="vnd.google.deeplink"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="touch.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="touch.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="get.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="get.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="www.get.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="www.get.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="www.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="www.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="touch.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="touch.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="m.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="m.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="ipad.gaana.com" android:scheme="https"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:host="ipad.gaana.com" android:scheme="http"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.apps.plus.VIEW_DEEP_LINK"/>
+                <data android:scheme="vnd.google.deeplink"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MUSIC_PLAYER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.APP_MUSIC"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.music.PLAYBACK_VIEWER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity-alias android:enabled="false" android:exported="true" android:icon="@mipmap/gaana_logo_mmx" android:label="@string/app_name_mmx" android:name="com.gaana.SplashScreenActivityMMX" android:targetActivity="com.gaana.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+        <receiver android:name="com.gaana.AppUpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:enabled="true" android:exported="true" android:name="com.inmobi.commons.core.utilities.uid.ImIdShareBroadCastReceiver">
+            <intent-filter>
+                <action android:name="com.inmobi.share.id"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="com.gaana.OnBoardArtistPreferenceActivity" android:screenOrientation="portrait" android:theme="@style/OnboardLanguagePreferenceTheme"/>
+        <activity android:name="com.gaana.OnBoardLanguagePreferenceActivityNew" android:screenOrientation="portrait" android:theme="@style/OnboardLanguagePreferenceTheme"/>
+        <activity android:name="com.gaana.AppLanguageSettingsScreenActivity" android:screenOrientation="portrait" android:theme="@style/AppDisplayLanguageTheme"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.gaana.WebViewActivity" android:theme="@style/GaanaAppTheme"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:style/Theme.Translucent"/>
+        <receiver android:exported="true" android:name="com.appsflyer.MultipleInstallBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService"/>
+        <receiver android:exported="true" android:name="com.gaana.GaanaCampaignTrackingReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="false" android:name="com.services.FileDownloadService"/>
+        <service android:exported="false" android:name="com.services.DownloadSyncService"/>
+        <service android:name="com.player_framework.GaanaMusicService"/>
+        <service android:exported="true" android:name="com.auto.AutoMediaBrowserService">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
+        <receiver android:name="com.player_framework.MediaButtonIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.player_framework.HeadsetPlugIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.HEADSET_PLUG"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.managers.AlarmManagerBroadcastReceiver"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:label="@string/app_name" android:name="com.facebook.FacebookActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.facebook.app.FacebookContentProvider183019041719404" android:exported="true" android:name="com.facebook.FacebookContentProvider"/>
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/>
+        <activity android:exported="true" android:name="com.facebook.CustomTabActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="@string/fb_login_protocol_scheme"/>
+            </intent-filter>
+        </activity>
+        <service android:exported="false" android:name="com.fcm.GaanaFcmMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:configChanges="keyboardHidden|orientation" android:name="com.gaana.Login" android:screenOrientation="portrait" android:theme="@style/GaanaAppTheme" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:configChanges="keyboardHidden|orientation" android:name="com.gaana.PaymentsActivity" android:screenOrientation="portrait" android:theme="@style/GaanaAppTheme" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:configChanges="keyboardHidden|orientation" android:name="com.gaana.AdyenWebViewActivity" android:screenOrientation="portrait" android:theme="@style/GaanaAppTheme" android:windowSoftInputMode="adjustResize"/>
+        <activity android:launchMode="singleTop" android:name="com.gaana.CoachMarksActivity" android:screenOrientation="portrait" android:theme="@style/CoachMarkTheme"/>
+        <activity android:name="com.gaana.AudioAdActivity" android:screenOrientation="portrait" android:theme="@style/GaanaAppTheme" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation" android:name="com.paytm.pgsdk.PaytmPGActivity" android:screenOrientation="portrait"/>
+        <meta-data android:name="APP_ID" android:value="4HX1BEIV7XX4VK1BGDIA8OMX"/>
+        <receiver android:exported="true" android:name="com.gaana.BranchIOInstallListener">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="SKIP_GCM_REGISTRATION" android:value="true"/>
+        <meta-data android:name="SENDER_ID" android:value="id:776891288343"/>
+        <meta-data android:name="NOTIFICATION_ICON" android:value="gaana_logo_notif"/>
+        <meta-data android:name="NOTIFICATION_LARGE_ICON" android:value="gaana_logo"/>
+        <meta-data android:name="NOTIFICATION_TYPE" android:value="@integer/notification_type_multiple"/>
+        <meta-data android:name="NOTIFICATION_COLOR" android:value="notification_color_filler"/>
+        <meta-data android:name="NOTIFICATION_TONE" android:value="@raw/bajnachahiyegaana"/>
+        <activity android:name="com.moe.pushlibrary.activities.MoEActivity" android:parentActivityName="com.gaana.SplashScreenActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.gaana.SplashScreenActivity"/>
+        </activity>
+        <activity android:name="com.gaana.ReferralSignupActivity" android:screenOrientation="portrait" android:theme="@style/OnBoardCoachmarkActivityTheme"/>
+        <activity android:name="com.gaana.MusicPickerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.OPENABLE"/>
+                <data android:mimeType="vnd.android.cursor.dir/audio"/>
+            </intent-filter>
+        </activity>
+        <activity android:excludeFromRecents="true" android:exported="true" android:name="com.gaana.GaanaAudioPreview" android:taskAffinity="" android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="file"/>
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="application/itunes"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="http"/>
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="application/itunes"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="content"/>
+                <data android:mimeType="audio/*"/>
+                <data android:mimeType="application/ogg"/>
+                <data android:mimeType="application/x-ogg"/>
+                <data android:mimeType="application/itunes"/>
+            </intent-filter>
+        </activity>
+        <service android:name="com.cast_music.reconnection.ReconnectionService"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.youtube.YouTubePlayerActivity" android:screenOrientation="sensorLandscape" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.gaanavideo.FullScreenVideoPlayerActivity" android:screenOrientation="sensorPortrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.gaanavideo.VideoPlayerActivity" android:screenOrientation="sensorPortrait" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.exoplayer2.VideoPlayerActivityTwo" android:screenOrientation="sensorPortrait" android:theme="@style/VideoPlayerTheme"/>
+        <activity android:launchMode="singleTop" android:name="com.gaanavideo.VideoCoachmarkActivity" android:theme="@style/CoachMarkTheme"/>
+        <service android:name="com.services.FavoriteSyncService"/>
+        <service android:name="com.services.DownloadedTracksMetaUpdateService"/>
+        <activity android:name="com.gaana.BannerAdActivity" android:screenOrientation="portrait" android:theme="@style/BannerAdTheme" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name="com.gaana.InternationalOnBoardingActivity" android:screenOrientation="portrait"/>
+        <receiver android:label="Gaana Widget" android:name="com.widget.GaanaWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/gaana_widget_player"/>
+        </receiver>
+        <receiver android:name="com.services.DownloadScheduleReceiver"/>
+        <receiver android:name="com.services.DownloadNotificationReceiver"/>
+        <activity android:label="@string/com_accountkit_button_log_in" android:launchMode="singleTop" android:name="com.facebook.accountkit.ui.AccountKitActivity" android:theme="@style/Theme.AccountKit" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="@string/ak_login_protocol_scheme"/>
+            </intent-filter>
+        </activity>
+        <meta-data android:name="com.facebook.accountkit.ApplicationName" android:value="@string/app_name"/>
+        <meta-data android:name="com.facebook.accountkit.ClientToken" android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN"/>
+        <meta-data android:name="com.facebook.accountkit.FacebookAppEventsEnabled" android:value="false"/>
+        <receiver android:name="com.auto.AutoBroadcastRevciever">
+            <intent-filter>
+                <action android:name="com.google.android.gms.car.media.STATUS"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="androidcontentprovidersso.tg.com.gaana" android:exported="true" android:name="com.login.nativesso.provider.TgidSaver"/>
+        <activity android:name="com.gaana.ConsentActivity" android:screenOrientation="portrait" android:theme="@style/ConsentScreenTheme"/>
+        <activity android:name="com.gaana.SaveToGalleryActivity"/>
+        <provider android:authorities="com.gaana.com.gaana.provider" android:exported="false" android:grantUriPermissions="true" android:name="com.services.GenericFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.facebook.ads.AudienceNetworkActivity"/>
+        <activity android:name="com.simpl.android.zeroClickSdk.internal.BaseSimplScreen" android:screenOrientation="portrait" android:theme="@style/SimplSdkStyle" android:windowSoftInputMode="adjustResize"/>
+        <service android:exported="true" android:name="com.google.firebase.messaging.FirebaseMessagingService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data android:name="com.google.android.gms.ads.AD_MANAGER_APP" android:value="true"/>
+        <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.analytics.AnalyticsReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.analytics.AnalyticsService"/>
+        <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.analytics.AnalyticsJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"/>
+        <activity android:exported="true" android:name="com.facebook.accountkit.ui.AccountKitEmailRedirectActivity" android:noHistory="true"/>
+        <provider android:authorities="com.gaana.AccountKitInitialization" android:exported="false" android:name="com.facebook.accountkit.internal.AccountKitInitProvider"/>
+        <activity android:name="com.facebook.CustomTabMainActivity"/>
+        <provider android:authorities="com.gaana.FacebookInitProvider" android:exported="false" android:name="com.facebook.internal.FacebookInitProvider"/>
+        <activity android:name="com.payu.custombrowser.CBActivity" android:screenOrientation="portrait" android:windowSoftInputMode="stateAlwaysHidden"/>
+        <service android:name="com.payu.custombrowser.services.SnoozeService"/>
+        <activity android:name="com.payu.custombrowser.upiintent.PaymentResponseActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:name="com.payu.custombrowser.PreLollipopPaymentsActivity">
+            <intent-filter>
+                <data android:scheme="com.gaana.success"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="com.gaana.failure"/>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.payu.custombrowser.PrePaymentsActivity"/>
+        <activity android:name="com.payu.magicretry.MainActivity"/>
+        <service android:exported="false" android:name="com.google.firebase.components.ComponentDiscoveryService">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar"/>
+        </service>
+        <receiver android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        <service android:exported="true" android:name="com.google.firebase.iid.FirebaseInstanceIdService">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <provider android:authorities="com.gaana.firebaseinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+        <provider android:authorities="com.gaana.mobileadsinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.android.gms.ads.MobileAdsInitProvider"/>
+        <provider android:authorities="com.gaana.helpshift.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="com.helpshift.support.providers.HelpshiftFileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/hs__provider_paths"/>
+        </provider>
+        <activity android:launchMode="singleTop" android:name="com.helpshift.support.activities.ParentActivity" android:theme="@style/Helpshift.Theme.Activity"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.helpshift.support.HSReview" android:theme="@style/Helpshift.Theme.Dialog"/>
+        <activity android:name="com.helpshift.campaigns.activities.ParentActivity" android:theme="@style/Helpshift.Theme.Activity"/>
+        <activity android:configChanges="layoutDirection|locale|orientation|screenSize" android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.helpshift.campaigns.activities.NotificationActivity" android:noHistory="true" android:taskAffinity="" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <service android:exported="false" android:name="com.helpshift.campaigns.services.NotificationService"/>
+        <receiver android:enabled="true" android:exported="false" android:name="com.moengage.addon.messaging.MoEMessageSyncReceiver"/>
+        <service android:enabled="true" android:exported="false" android:name="com.moengage.addon.messaging.MoEMessageSyncIntentService"/>
+        <service android:name="com.moengage.addon.messaging.MoEMessageSyncJob" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.til.colombia.android.service.LeadGenActivity" android:theme="@style/lgTransparentTheme" android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.til.colombia.android.service.InterstitialActivity" android:theme="@android:style/Theme"/>
+        <activity android:name="com.til.colombia.dmp.android.PsA" android:taskAffinity="" android:theme="@style/PsTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="dl" android:scheme="colombia-sdk"/>
+                <data android:host="www.colombia-sdk.com" android:pathPrefix="/dl" android:scheme="http"/>
+            </intent-filter>
+        </activity>
+        <service android:enabled="true" android:exported="true" android:name="com.til.colombia.dmp.android.PSService"/>
+        <receiver android:name="com.til.colombia.dmp.android.PersonaListener">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <activity android:name="net.hockeyapp.android.FeedbackActivity"/>
+        <activity android:name="net.hockeyapp.android.PaintActivity"/>
+        <activity android:name="net.hockeyapp.android.LoginActivity"/>
+        <activity android:name="net.hockeyapp.android.ExpiryInfoActivity"/>
+        <provider android:authorities="com.gaana.workmanager-init" android:directBootAware="false" android:exported="false" android:multiprocess="true" android:name="androidx.work.impl.WorkManagerInitializer"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
+        <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="false" android:name="androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver"/>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_OKAY"/>
+                <action android:name="android.intent.action.BATTERY_LOW"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy">
+            <intent-filter>
+                <action android:name="android.intent.action.DEVICE_STORAGE_LOW"/>
+                <action android:name="android.intent.action.DEVICE_STORAGE_OK"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="false" android:exported="false" android:name="androidx.work.impl.background.systemalarm.RescheduleReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver">
+            <intent-filter>
+                <action android:name="androidx.work.impl.background.systemalarm.UpdateProxies"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.gaana.lifecycle-trojan" android:exported="false" android:multiprocess="true" android:name="android.arch.lifecycle.ProcessLifecycleOwnerInitializer"/>
+        <service android:exported="false" android:name="com.moe.pushlibrary.MoEWorker"/>
+        <receiver android:name="com.moe.pushlibrary.AppUpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_MY_PACKAGE_REPLACED"/>
+                <data android:path="com.gaana" android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <provider android:authorities="com.gaana.moengage.provider" android:exported="false" android:name="com.moe.pushlibrary.providers.MoEProvider"/>
+        <receiver android:enabled="true" android:exported="false" android:name="com.moengage.core.MoEAlarmReceiver"/>
+        <activity android:name="com.moengage.core.integrationVerification.IntegrationVerificationActivity">
+            <meta-data android:name="showInApp" android:value="false"/>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="integration" android:scheme="moengage"/>
+            </intent-filter>
+        </activity>
+        <service android:name="com.moengage.core.DataSyncJob" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name="com.moengage.core.ScheduledDataSyncJob" android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <activity android:configChanges="orientation|screenSize" android:name="com.moengage.pushbase.activities.PushTracker" android:noHistory="true" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <meta-data android:name="showInApp" android:value="false"/>
+        </activity>
+        <activity android:configChanges="orientation|screenSize" android:excludeFromRecents="true" android:launchMode="singleTask" android:name="com.moengage.pushbase.activities.SnoozeTracker" android:taskAffinity=":NotificationDialog" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <meta-data android:name="showInApp" android:value="false"/>
+        </activity>
+        <service android:exported="false" android:name="com.moengage.pushbase.push.MoEPushWorker"/>
+        <service android:exported="false" android:name="com.moengage.locationlibrary.GeofenceIntentService"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:name="com.login.nativesso.activity.DummyActivity" android:theme="@style/Theme.Transparent"/>
+        <activity android:name="com.login.nativesso.activity.UploadProfilePicActivity"/>
+        <activity android:name="com.timespointssdk.ProfileViewActivity" android:theme="@style/LibTheme"/>
+    </application>
+</manifest>

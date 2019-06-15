@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:custom="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCustomImageView android:id="@id/image" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginLeft="@dimen/dimen_10dp" android:layout_marginTop="@dimen/dimen_10dp" custom:iconHeight="24.0dip" custom:iconImage="@drawable/ic_artwork_play" custom:iconWidth="24.0dip" custom:imageHeight="60.0dip" custom:imageWidth="60.0dip" />
+    <TextView android:textSize="12.0sp" android:textColor="?first_line_color" android:gravity="center" android:id="@id/title" android:layout_width="60.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_10dp" android:layout_marginTop="@dimen/dimen_10dp" android:maxLines="2" android:layout_below="@id/image" android:alpha="0.7" />
+</RelativeLayout>

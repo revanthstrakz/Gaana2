@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/main_toolbar" android:layout_width="fill_parent" android:layout_height="?actionBarSize">
+        <ImageView android:layout_gravity="left" android:id="@id/back_button" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/activity_horizontal_margin" app:srcCompat="?actionbar_back" />
+        <TextView android:textSize="20.0dip" android:textColor="?first_line_color" android:ellipsize="end" android:gravity="center" android:id="@id/ab_title" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="72.0dip" android:layout_marginRight="72.0dip" android:singleLine="true" />
+        <ImageView android:layout_gravity="right" android:id="@id/share_icon" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginRight="@dimen/activity_horizontal_margin" android:src="?share_icon_share_new" />
+    </FrameLayout>
+    <TextView android:textSize="16.0sp" android:textColor="?first_line_color" android:gravity="left" android:id="@id/txt_header" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginTop="15.0dip" android:layout_marginRight="@dimen/page_left_right_margin" android:layout_marginBottom="15.0dip" android:text="@string/start_party_ideas" />
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.collapsible_header.ObservableRecyclerView android:id="@id/recycler_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" sothree:layout_scrollFlags="enterAlways|scroll" sothree:theme="@style/ActionBar" xmlns:sothree="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/main_toolbar" xmlns:app="http://schemas.android.com/apk/res-auto">
+        <android.support.design.widget.TabLayout android:id="@id/sliding_tabs" android:background="?tab_layout_background_attr" android:layout_width="fill_parent" android:layout_height="wrap_content" app:tabGravity="fill" app:tabIndicatorColor="@color/gaana.red" app:tabIndicatorHeight="3.0dip" app:tabMaxWidth="0.0dip" app:tabMode="fixed" app:tabPaddingEnd="@dimen/activity_horizontal_margin_more" app:tabPaddingStart="@dimen/activity_horizontal_margin_more" app:tabSelectedTextColor="?first_line_color" app:tabTextAppearance="@style/gaana_tab" />
+        <LinearLayout android:orientation="vertical" android:id="@id/rootLayout" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginLeft="@dimen/dp10" android:layout_marginTop="@dimen/dp10" android:layout_marginRight="@dimen/dp10"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+            <android.support.v7.widget.SearchView android:gravity="center" android:id="@id/searchView" android:background="?button_rounded_last_heard" android:layout_width="fill_parent" android:layout_height="40.0dip" android:animateLayoutChanges="true" app:closeIcon="@null" app:queryHint="@string/search" app:searchHintIcon="@null" app:theme="@style/ProfileSearchView" />
+        </LinearLayout>
+        <android.support.v4.view.ViewPager android:id="@id/viewpager" android:layout_width="fill_parent" android:layout_height="0.0px" android:layout_weight="1.0" />
+    </LinearLayout>
+</RelativeLayout>

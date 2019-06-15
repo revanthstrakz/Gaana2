@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CrossFadeImageView android:id="@id/img_artwork" android:layout_width="36.0dip" android:layout_height="36.0dip" android:layout_marginLeft="16.0dip" android:layout_marginTop="8.0dip" android:src="?placeholder_album_artwork" app:isRoundedCorner="true" app:roundedCornerRadius="2.0dip" />
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView android:id="@id/vertical_video_view" android:visibility="gone" android:layout_width="36.0dip" android:layout_height="36.0dip" android:layout_marginLeft="16.0dip" android:layout_marginTop="8.0dip" app:use_controller="false" />
+    <TextView android:textSize="14.0dip" android:textStyle="bold" android:textColor="?first_line_color" android:ellipsize="marquee" android:gravity="bottom|center|left" android:id="@id/player_bottom_main_text_bottom" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="27.0dip" android:layout_marginLeft="62.0dip" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+    <TextView android:textSize="12.0dip" android:textStyle="normal" android:textColor="?second_line_color" android:gravity="center|left|top" android:id="@id/player_bottom_secondary_text_bottom" android:layout_width="fill_parent" android:layout_height="23.0dip" android:layout_marginLeft="62.0dip" android:layout_marginTop="@dimen/player_bottom_control_height_half" android:singleLine="true" />
+</FrameLayout>

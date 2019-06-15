@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" android:elevation="6.0dip" app:layout_scrollFlags="enterAlways|scroll" app:theme="@style/ActionBar" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/download.home.progressbar" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <RelativeLayout android:gravity="center_horizontal" android:id="@id/ll_download_home_mydownload" android:paddingTop="@dimen/activity_horizontal_margin_half" android:paddingBottom="@dimen/activity_horizontal_margin_half" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textColor="?gaana_background" android:id="@id/download_home_mydownload" android:background="?white_button_selector" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height" android:text="@string/take_to_downloads" style="@style/orange_button_style" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/llParentListing" android:layout_width="fill_parent" android:layout_height="wrap_content">android:orientation=vertical></LinearLayout>
+</LinearLayout>

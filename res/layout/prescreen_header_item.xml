@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginRight="@dimen/page_left_right_margin"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="34.0dip" android:textColor="?first_line_color" android:gravity="bottom" android:layout_gravity="bottom" android:id="@id/txt_section_header" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/for_you" />
+    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="?first_line_color_70" android:gravity="bottom" android:layout_gravity="bottom" android:id="@id/txt_section_headersub" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/personalised_music_curated" />
+</LinearLayout>

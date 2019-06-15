@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:gravity="bottom|center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:id="@id/ll_coachmark" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center_horizontal" android:id="@id/search_chevron" android:layout_width="20.0dip" android:layout_height="20.0dip" app:srcCompat="@drawable/vector_chevron_top_orange" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/coachmarkText" android:background="@drawable/search_bg_coach_red" android:paddingLeft="@dimen/dimen_30dp" android:paddingTop="@dimen/dimen_10dp" android:paddingRight="@dimen/dimen_30dp" android:paddingBottom="@dimen/dimen_10dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/share_playlist_friends" />
+    </LinearLayout>
+</FrameLayout>

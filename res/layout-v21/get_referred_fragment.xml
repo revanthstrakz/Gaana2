@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" sothree:theme="@style/ActionBar" xmlns:sothree="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <android.support.design.widget.TextInputLayout android:textColorHint="?first_line_color_50" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:backgroundTint="?first_line_color">
+        <EditText android:textColor="?first_line_color" android:ellipsize="end" android:id="@id/referral_code_input" android:layout_width="fill_parent" android:layout_height="48.0dip" android:layout_marginLeft="30.0dip" android:layout_marginTop="12.0dip" android:layout_marginRight="30.0dip" android:hint="@string/enter_referral_code_text" android:singleLine="true" android:inputType="text" android:imeOptions="actionNext" android:backgroundTint="?first_line_color" />
+    </android.support.design.widget.TextInputLayout>
+    <Button android:textSize="14.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/continue_btn" android:background="@drawable/nav_login_new_rectangle_button" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="16.0dip" android:layout_marginRight="30.0dip" android:text="@string/continue_text_caps" />
+</LinearLayout>

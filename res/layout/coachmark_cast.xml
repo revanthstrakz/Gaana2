@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent" android:baselineAligned="false"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <FrameLayout android:id="@id/videoSurfaceContainer" android:layout_width="fill_parent" android:layout_height="@dimen/coachmark_cast_container_height" android:layout_alignParentTop="true">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <RelativeLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <com.gaana.view.CircleOverlayView android:layout_width="fill_parent" android:layout_height="fill_parent" app:circle_margin_right="@dimen/circle_margin_right" app:circle_margin_top="@dimen/circle_margin_top" />
+                    <TextView android:textSize="16.0sp" android:textColor="?coachmark_text_color" android:gravity="center" android:id="@id/castTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="80.0dip" android:text="@string/touch_cast_text" android:layout_alignParentRight="true" />
+                    <RelativeLayout android:gravity="center" android:layout_gravity="center" android:layout_width="310.0dip" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="20.0dip" android:layout_below="@id/castTxt">
+                        <com.views.RateTextCircularProgressBar android:id="@id/rate_progress_bar" android:padding="@dimen/progress_bar_padding" android:visibility="visible" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginTop="15.0dip" android:layout_alignParentLeft="true" android:layout_centerInParent="true" android:layout_centerVertical="true" />
+                        <TextView android:textStyle="bold" android:textColor="?coachmark_text_color" android:gravity="right" android:layout_gravity="right" android:id="@id/gotItTxt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="15.0dip" android:text="GOT IT" android:layout_alignParentRight="true" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?voice_album_bg_attr" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="14.0sp" android:textColor="?voice_button_text_color" android:id="@id/voice_scroll_titleText" android:paddingLeft="@dimen/dp20" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp20" android:text="@string/top_matches" />
+    <com.views.HorizontalRecyclerView android:id="@id/voice_scroll" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp12" />
+    <TextView android:textSize="14.0sp" android:textColor="?voice_button_text_color" android:gravity="center" android:id="@id/voice_scroll_result" android:background="?first_line_color_inv_50" android:layout_width="fill_parent" android:layout_height="56.0dip" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/voice_scroll_autoplay" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_horizontal_margin_half" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_horizontal_margin_half" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <FrameLayout android:layout_width="@dimen/dp24" android:layout_height="@dimen/dp24">
+            <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/color_white" android:layout_gravity="center" android:id="@id/voice_scroll_autoplay_progresstext" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <com.views.CustomCircularProgressBar android:id="@id/voice_scroll_autoplay_progressbar" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </FrameLayout>
+        <TextView android:textColor="@color/color_white" android:id="@id/voice_scroll_autoplay_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_half" android:layout_marginRight="@dimen/activity_horizontal_margin_half" android:text="@string/voice_auto_play_text" android:layout_weight="1.0" />
+        <TextView android:textColor="@color/color_white" android:id="@id/voice_scroll_autoplay_cancel" android:padding="@dimen/activity_horizontal_margin_half" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cancel" android:textAllCaps="true" />
+    </LinearLayout>
+</LinearLayout>

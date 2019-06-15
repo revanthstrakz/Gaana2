@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="@drawable/selector_btn_global_bg_grey_white" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="@dimen/item_two_line_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RadioButton android:layout_gravity="center" android:id="@id/radioButton" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="8.0dip" />
+    <LinearLayout android:orientation="vertical" android:clickable="false" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <TextView android:textStyle="normal" android:textColor="@color/first_line_color_white" android:ellipsize="end" android:gravity="bottom|center|left" android:id="@id/tvSongName" android:clickable="false" android:layout_width="fill_parent" android:layout_height="@dimen/item_two_line_bar_height_half" android:singleLine="true" style="@style/text_medium" />
+        <TextView android:textSize="11.0sp" android:textStyle="normal" android:textColor="@color/second_line_color_white" android:ellipsize="end" android:gravity="center|left|top" android:id="@id/tvAlbumName" android:clickable="false" android:layout_width="fill_parent" android:layout_height="@dimen/item_two_line_bar_height_half" android:singleLine="true" />
+    </LinearLayout>
+    <ImageView android:layout_gravity="center" android:id="@id/pauseView" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="8.0dip" android:src="@drawable/miniplayer_pause_white" />
+</LinearLayout>

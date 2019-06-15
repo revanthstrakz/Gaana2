@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" android:elevation="6.0dip" sothree:theme="@style/ActionBar"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sothree="http://schemas.android.com/apk/res-auto" />
+    <ScrollView android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_below="@id/main_toolbar">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="17.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/choose_plan_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="20.0dip" android:text="@string/choose_plan" />
+            <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:id="@id/choose_plan_message" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="16.0dip" android:layout_below="@id/choose_plan_title" />
+            <LinearLayout android:orientation="vertical" android:id="@id/payment_carousel_view" android:paddingTop="@dimen/dp12" android:paddingBottom="@dimen/dp10" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/choose_plan_message">
+                <com.gaana.view.DiscreteScrollView android:id="@id/product_plan_pager" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView android:textSize="17.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/select_plan_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="20.0dip" android:text="@string/select_payment_method" android:layout_below="@id/payment_carousel_view" />
+            <RelativeLayout android:id="@id/payment_methods_container" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:layout_below="@id/select_plan_title">
+                <Spinner android:textColor="?first_line_color" android:id="@id/payment_methods" android:background="@drawable/payment_methods_border" android:layout_width="fill_parent" android:layout_height="40.0dip" android:layout_marginLeft="16.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="16.0dip" />
+                <ImageView android:layout_width="12.0dip" android:layout_height="12.0dip" android:layout_marginTop="26.0dip" android:layout_marginRight="28.0dip" android:src="@drawable/chevron_down_grey" android:layout_alignParentRight="true" />
+            </RelativeLayout>
+            <Button android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/proceed_button" android:background="@drawable/rounded_button_follow" android:layout_width="220.0dip" android:layout_height="@dimen/dp40" android:layout_marginTop="30.0dip" android:text="@string/proceed" android:layout_below="@id/payment_methods_container" android:layout_centerHorizontal="true" />
+            <TextView android:textSize="12.0sp" android:textColor="?first_line_color" android:id="@id/proceed_message" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="16.0dip" android:layout_marginBottom="30.0dip" android:text="Your Free 3 Months Gaana Plus subscription is valid with every plan." android:layout_below="@id/proceed_button" android:alpha="0.5" android:textAlignment="center" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_gravity="right" android:id="@id/search_chevron" android:layout_width="35.0dip" android:layout_height="10.0dip" android:layout_marginRight="@dimen/dp15" app:srcCompat="@drawable/vector_chevron_top_orange" />
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/coachmark_text_container" android:background="@drawable/search_bg_coach_red" android:paddingLeft="@dimen/dp5" android:paddingRight="@dimen/dp5" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/coachmark_voice_search_text_first" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/stop_typing_starting_talking" />
+        <TextView android:textSize="11.0sp" android:textColor="@color/white_alfa_75" android:id="@id/coachmark_voice_search_text_second" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/tap_on_mic_to_use_gaana_voice_search" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.AdView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="1.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:background="?ad_listview_bg" android:padding="8.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/home_banner_ad_height">
+            <com.library.controls.CrossFadeImageView android:id="@id/colom_ad_image" android:background="?list_selector" android:layout_width="100.0dip" android:layout_height="100.0dip" android:layout_marginLeft="2.0dip" android:layout_marginTop="2.0dip" android:layout_marginBottom="2.0dip" android:src="?placeholder_album_artwork_large" android:scaleType="fitXY" android:layout_alignParentLeft="true" />
+            <TextView android:id="@id/colom_ad_headLine" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="41.0dip" android:layout_marginBottom="25.0dip" android:maxLines="3" android:layout_toRightOf="@id/colom_ad_image" style="@style/ad_line_txt_style" />
+            <Button android:textSize="@dimen/med_cta_button_text" android:textColor="@color/white" android:ellipsize="end" android:id="@id/ctaText" android:background="@color/red_gaana" android:layout_width="100.0dip" android:layout_height="30.0dip" android:text="SHOP NOW" android:maxLines="1" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" />
+            <TextView android:ellipsize="end" android:id="@id/colom_ad_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/coloum_ad_text" android:maxLines="1" android:layout_alignParentRight="true" android:layout_alignParentBottom="true" style="@style/ad_bottom_txt_style" />
+        </RelativeLayout>
+        <View android:background="?gaana_listview_divider" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="1.0dip" android:layout_marginTop="8.0dip" />
+    </LinearLayout>
+</com.til.colombia.android.service.AdView>

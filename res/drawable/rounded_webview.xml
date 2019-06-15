@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:padding="10.0dip" android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#ffeeeeee" />
+    <corners android:topLeftRadius="@dimen/webview_corner_radius" android:topRightRadius="@dimen/webview_corner_radius" android:bottomLeftRadius="@dimen/webview_corner_radius" android:bottomRightRadius="@dimen/webview_corner_radius" />
+</shape>

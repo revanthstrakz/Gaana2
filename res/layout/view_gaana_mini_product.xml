@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/grid_item_padding" android:foreground="?selectableItemBackground" app:cardBackgroundColor="?tab_layout_background_attr" app:cardCornerRadius="2.0dip" app:cardElevation="6.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/activity_horizontal_margin">
+        <com.library.controls.CrossFadeImageView android:id="@id/imgProductIcon" android:layout_width="@dimen/view_item_image_size_two_line" android:layout_height="@dimen/view_item_image_size_two_line" android:src="?placeholder_album_artwork_large" android:layout_alignParentLeft="true" />
+        <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_toRightOf="@id/imgProductIcon" android:layout_alignTop="@id/imgProductIcon" android:layout_alignBottom="@id/imgProductIcon">
+            <TextView android:id="@id/product_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/grid_item_padding" style="@style/text_medium" />
+            <TextView android:textSize="12.0sp" android:textColor="?second_line_color" android:id="@id/product_description" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/grid_item_padding" android:text="@string/gaana_plus_mini_pack" />
+        </LinearLayout>
+        <View android:id="@id/horizontal_line" android:background="?alfa_10" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginTop="@dimen/grid_item_padding" android:layout_below="@id/imgProductIcon" />
+        <TextView android:textSize="12.0sp" android:id="@id/txt_expire_description" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/grid_item_padding" android:layout_marginBottom="@dimen/grid_item_padding" android:layout_below="@id/horizontal_line" android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

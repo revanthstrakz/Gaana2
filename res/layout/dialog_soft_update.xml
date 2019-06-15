@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/parentView" android:background="?gaana_su_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/dialog.header.text" android:padding="@dimen/dialogbox_text_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/list_download_item_first_line" />
+    <Button android:gravity="right" android:id="@id/dialog.button.stop" android:background="@color/transparent_color" android:paddingTop="4.0dip" android:paddingRight="24.0dip" android:paddingBottom="24.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/su_btn_txt_style" />
+</LinearLayout>

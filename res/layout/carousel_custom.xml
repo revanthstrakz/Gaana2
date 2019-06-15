@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/status_bar_latest_event_content" android:tag="bigPicture" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="192.0dip" android:layout_marginTop="64.0dip">
+        <ImageView android:layout_gravity="bottom" android:id="@id/big_picture" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="centerCrop" />
+        <include android:layout_gravity="bottom" android:id="@id/flipper_layout_left_to_right" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/notification_view_flipper_left_ro_right" />
+        <include android:layout_gravity="bottom" android:id="@id/flipper_layout_right_to_left" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" layout="@layout/notification_view_flipper_right_to_left" />
+        <ImageButton android:id="@id/prev_btn" android:background="#80999999" android:layout_width="40.0dip" android:layout_height="48.0dip" android:src="@drawable/ic_arrow_left" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+        <ImageButton android:id="@id/next_btn" android:background="#80999999" android:layout_width="40.0dip" android:layout_height="48.0dip" android:src="@drawable/ic_arrow_right" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+        <include android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" layout="@layout/notification_material_action_list_custom" />
+    </RelativeLayout>
+    <ImageView android:layout_width="fill_parent" android:layout_height="6.0dip" android:layout_marginTop="64.0dip" android:src="@drawable/title_bar_shadow" android:scaleType="fitXY" />
+    <include android:id="@id/base_layout" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="64.0dip" layout="@layout/notification_template_material_base" />
+</FrameLayout>

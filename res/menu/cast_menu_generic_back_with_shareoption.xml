@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:compat="http://schemas.android.com/apk/res-auto/android">
+    <group android:id="@id/cast_menu_home">
+        <item android:id="@id/media_route_menu_item" android:title="@string/opt_play_on" app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider" app:showAsAction="always" />
+        <item android:icon="?moreoptions_favorite" android:id="@id/favorite_actionbar" android:visible="true" android:title="@string/favorite_text" app:actionViewClass="android.widget.ImageView" app:showAsAction="always" compat:actionViewClass="android.widget.ImageView" />
+        <item android:icon="@drawable/icon_share_new" android:id="@id/shareview_actionbar" android:title="@string/opt_search" app:showAsAction="always" />
+        <item android:icon="?actionbar_search_typed_array" android:id="@id/searchview_actionbar" android:title="@string/opt_search" app:showAsAction="always" />
+    </group>
+</menu>

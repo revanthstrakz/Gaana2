@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?onboard_lang_pref_background_attr" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:layout_gravity="right" android:id="@id/txt_skip" android:padding="5.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_marginRight="10.0dip" android:text="@string/skip_text" style="?lang_pref_skip_txt_color_attr" />
+    <TextView android:textSize="34.0sp" android:gravity="center" android:id="@id/pref_header_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" style="?onboard_lang_pref_header_txt_attr" />
+    <android.support.v7.widget.RecyclerView android:layout_gravity="center_horizontal" android:id="@id/recyclerView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_weight="1.0" android:foregroundGravity="center_horizontal" />
+    <Button android:gravity="center" android:layout_gravity="center" android:id="@id/btn_all_done" android:background="@drawable/shape_continue_btn" android:padding="@dimen/dimen_0dp" android:layout_width="200.0dip" android:layout_height="40.0dip" android:layout_marginTop="13.0dip" android:layout_marginBottom="@dimen/dimen_20dp" android:text="@string/language_preference_submit" android:layout_centerHorizontal="true" android:elevation="3.0dip" style="?onboard_lang_pref_submit_attr" />
+</LinearLayout>

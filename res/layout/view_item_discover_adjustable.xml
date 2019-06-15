@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.gaana.view.AdjustableImageView android:id="@id/discoverTagImg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_marginTop="4.0dip" android:layout_marginRight="8.0dip" android:layout_marginBottom="4.0dip" android:src="?placeholder_discover_artwork" android:scaleType="fitXY" android:adjustViewBounds="true" />
+    <TextView android:textAppearance="@style/discover_text_Style" android:gravity="center_vertical" android:id="@id/discoverTagName" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/discover" android:layout_centerVertical="true" />
+</RelativeLayout>

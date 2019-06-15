@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:background="@drawable/orange_gradient_view" android:layout_width="fill_parent" android:layout_height="160.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="63.0sp" android:textColor="@color/white" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/trending_songs" android:alpha="0.12" android:textAllCaps="true" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:id="@id/mainlayout" android:paddingLeft="@dimen/dimen_20_dp" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_alignParentLeft="true" android:layout_centerInParent="true">
+        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/white" android:id="@id/trendingSongsText" android:layout_width="105.0dip" android:layout_height="wrap_content" android:text="@string/trending_songs" />
+        <TextView android:textColor="@color/new_gaana_red" android:gravity="center" android:id="@id/playAllButton" android:background="@drawable/button_rounded_corner_white_bg" android:layout_width="100.0dip" android:layout_height="36.0dip" android:layout_marginTop="10.0dip" android:text="@string/play_all" android:layout_below="@id/trendingSongsText" android:textAllCaps="true" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView android:orientation="horizontal" android:id="@id/recycler_view_list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_toRightOf="@id/mainlayout" android:layout_centerInParent="true" />
+</RelativeLayout>

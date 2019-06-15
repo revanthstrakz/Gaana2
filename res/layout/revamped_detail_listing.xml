@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/bottom_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/main_toolbar" />
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_above="@id/adSlot">
+        <com.collapsible_header.ObservableRecyclerView android:id="@id/revamp_recycler_view" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/carousal_parent_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/main_toolbar" />
+    <ProgressBar android:layout_gravity="center" android:id="@id/progressbarlisting" android:background="@drawable/circle_bg" android:padding="@dimen/dp2" android:visibility="gone" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginTop="56.0dip" android:indeterminate="false" android:layout_centerHorizontal="true" style="?android:progressBarStyleInverse" />
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" />
+    <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:gravity="center" android:id="@id/detail_info_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_40dp" android:layout_below="@id/carousal_parent_layout" android:layout_centerHorizontal="true" />
+    <include android:id="@id/remove_ad_cta" android:visibility="gone" android:layout_width="86.0dip" android:layout_height="20.0dip" android:layout_above="@id/adSlot" android:layout_alignParentRight="true" layout="@layout/remove_ad_cta_layout" />
+    <LinearLayout android:orientation="vertical" android:id="@id/adSlot" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="@dimen/dp50" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" />
+</RelativeLayout>

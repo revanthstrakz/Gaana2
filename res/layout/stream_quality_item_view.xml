@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="?view_foreground" android:layout_width="fill_parent" android:layout_height="48.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:gravity="center_vertical" android:id="@id/iv_check" android:layout_width="16.0sp" android:layout_height="16.0sp" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginRight="@dimen/activity_horizontal_margin" android:src="@drawable/streaming_setting_red_tickmark" android:scaleType="centerCrop" />
+    <TextView android:id="@id/tv_quality_name" android:layout_width="wrap_content" android:layout_height="fill_parent" style="@style/dialog_text" />
+</LinearLayout>

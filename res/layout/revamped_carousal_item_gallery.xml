@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/back_images" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <com.library.controls.CrossFadeImageView android:id="@id/gallery_image_left" android:layout_width="100.0dip" android:layout_height="100.0dip" />
+        <com.library.controls.CrossFadeImageView android:id="@id/gallery_image_right" android:layout_width="100.0dip" android:layout_height="100.0dip" android:layout_marginLeft="70.0dip" android:layout_toRightOf="@id/gallery_image_left" />
+    </RelativeLayout>
+    <FrameLayout android:id="@id/center_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <com.library.controls.CrossFadeImageView android:id="@id/gallery_image_center" android:layout_width="@dimen/dp200" android:layout_height="120.0dip" />
+        <com.library.controls.CrossFadeImageView android:layout_gravity="center" android:id="@id/gallery_image_center_sqaure" android:visibility="gone" android:layout_width="120.0dip" android:layout_height="120.0dip" android:layout_centerInParent="true" />
+    </FrameLayout>
+    <ImageView android:id="@id/play_icon" android:layout_width="40.0dip" android:layout_height="40.0dip" android:src="@drawable/video_play_icon" android:layout_centerInParent="true" />
+    <TextView android:textColor="?second_line_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp10" android:text="@string/tap_to_view_gallery" android:layout_below="@id/center_image" android:layout_centerHorizontal="true" style="@style/Base.TextAppearance.AppCompat.Small" />
+</RelativeLayout>

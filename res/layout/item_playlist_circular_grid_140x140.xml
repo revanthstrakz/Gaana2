@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/rl_empty_item_view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/bw_section_vert_padding_half"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CircularImageView android:id="@id/imgProductIcon" android:layout_width="@dimen/img_dynamic_horizontal_item_medium_square_width_height" android:layout_height="@dimen/img_dynamic_horizontal_item_medium_square_width_height" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <ImageView android:layout_gravity="center|right|top" android:id="@id/play_icon" android:visibility="invisible" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginTop="105.0dip" android:layout_marginRight="5.0dip" app:srcCompat="@drawable/ic_artwork_play" />
+    <com.gaana.view.CustomTextView android:ellipsize="end" android:gravity="center|top" android:id="@id/tvTopHeading" android:paddingTop="@dimen/home_title_padding" android:layout_width="@dimen/img_dynamic_horizontal_item_medium_square_width_height" android:layout_height="wrap_content" android:layout_marginTop="@dimen/img_dynamic_horizontal_item_medium_square_width_height" android:singleLine="true" style="@style/grid_caption" />
+    <com.library.controls.CircularImageView android:id="@id/shadow_layer" android:visibility="gone" android:layout_width="@dimen/img_dynamic_horizontal_item_medium_square_width_height" android:layout_height="@dimen/img_dynamic_horizontal_item_medium_square_width_height" android:src="@null" />
+</FrameLayout>

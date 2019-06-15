@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@color/black" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/other_plan_image_cross" android:padding="@dimen/dp20" android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="?cross_big" />
+    <TextView android:textSize="20.0sp" android:textColor="?first_line_color" android:gravity="center_horizontal" android:id="@id/other_plan_choose_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="choose a plan" android:layout_below="@id/other_plan_image_cross" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="12.0sp" android:textColor="?first_line_color_75" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="50.0dip" android:layout_marginTop="@dimen/horizontal_margin" android:layout_marginRight="50.0dip" android:text="Download and Stream Unlimited Songs, Ads-Free, in HD Quality with Gaana+" android:layout_below="@id/other_plan_choose_text" android:layout_centerHorizontal="true" />
+    <LinearLayout android:orientation="vertical" android:id="@id/payment_carousel_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_large" android:layout_centerInParent="true">
+        <FrameLayout android:layout_width="fill_parent" android:layout_height="200.0dip">
+            <android.support.v4.view.ViewPager android:layout_gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="200.0dip" />
+        </FrameLayout>
+    </LinearLayout>
+    <TextView android:textSize="12.0sp" android:textColor="?first_line_color_75" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginTop="@dimen/dp40" android:layout_marginRight="20.0dip" android:text="Download and Stream Unlimited Songs, Ads-Free, in HD Quality with Gaana+" android:layout_below="@id/payment_carousel_view" />
+</RelativeLayout>

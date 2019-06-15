@@ -1,0 +1,32 @@
+package com.google.android.gms.cast;
+
+import android.os.RemoteException;
+import com.google.android.gms.cast.Cast.CastApi.zza;
+import com.google.android.gms.common.api.Api.AnyClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.internal.BaseImplementation.ResultHolder;
+import com.google.android.gms.internal.cast.zzdd;
+
+final class zzg extends zza {
+    private final /* synthetic */ String zzag;
+
+    zzg(zza zza, GoogleApiClient googleApiClient, String str) {
+        this.zzag = str;
+        super(googleApiClient);
+    }
+
+    public final void zza(zzdd zzdd) throws RemoteException {
+        try {
+            String str = this.zzag;
+            LaunchOptions launchOptions = new LaunchOptions();
+            launchOptions.setRelaunchIfRunning(false);
+            zzdd.zza(str, launchOptions, (ResultHolder) this);
+        } catch (IllegalStateException unused) {
+            zzp(2001);
+        }
+    }
+
+    public final /* synthetic */ void doExecute(AnyClient anyClient) throws RemoteException {
+        doExecute((zzdd) anyClient);
+    }
+}

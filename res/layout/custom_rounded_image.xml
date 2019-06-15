@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:id="@id/mainCustomView" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCornerImageView android:id="@id/backgroundImage" android:layout_width="fill_parent" android:layout_height="fill_parent" app:has_gradient="true" app:show_loading_states="true" />
+    <ImageView android:layout_gravity="bottom|center|right" android:id="@id/iconImage" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/dimen_5dp" android:layout_marginBottom="@dimen/dimen_5dp" />
+    <ImageView android:layout_gravity="bottom|center|left" android:id="@id/indicatorIconLeft" android:visibility="gone" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginLeft="@dimen/dimen_4dp" android:layout_marginBottom="@dimen/dimen_4dp" />
+    <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:layout_gravity="bottom|center|left" android:id="@id/playCount" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="24.0dip" android:layout_marginBottom="4.0dip" />
+</merge>

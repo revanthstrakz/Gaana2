@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <AutoCompleteTextView android:id="@id/searchHeaderEdtTxt" android:background="@drawable/apptheme_textfield_activated_holo_light" android:padding="10.0dip" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/activity_horizontal_margin" android:hint="@string/radio_search_hint" android:singleLine="true" android:inputType="text" android:imeOptions="actionSearch" android:imeActionLabel="Search" android:dropDownVerticalOffset="2.0dip" style="@style/setting_text" />
+    <ListView android:id="@id/autoSuggestListView" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/searchHeaderEdtTxt" />
+</RelativeLayout>

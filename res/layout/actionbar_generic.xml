@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="@dimen/home_action_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/menu_icon" android:layout_width="55.0dip" android:layout_height="24.0dip" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginTop="16.0dip" android:src="?gaana_logo_attr" />
+    <FrameLayout android:id="@id/menu_pre_screen" android:paddingRight="@dimen/dp55" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="42.0dip" android:layout_marginTop="@dimen/activity_horizontal_margin_small" android:animateLayoutChanges="true">
+        <TextView android:textSize="@dimen/text_size_16" android:textColor="@color/white" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/menu_pre_screen_text" android:background="@drawable/rounded_button_half" android:paddingLeft="@dimen/activity_horizontal_margin_large" android:paddingRight="@dimen/activity_horizontal_margin" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/for_you" />
+        <ImageView android:layout_gravity="center_vertical" android:background="@drawable/rounded_button_half" android:layout_width="19.0dip" android:layout_height="fill_parent" app:srcCompat="@drawable/vector_arrow_left_white" />
+    </FrameLayout>
+</FrameLayout>

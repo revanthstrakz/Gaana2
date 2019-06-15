@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:id="@id/home_diwali_background" android:layout_width="fill_parent" android:layout_height="80.0dip" android:src="?placeholder_album_artwork_large" android:scaleType="fitXY" />
+    <android.support.v7.widget.SwitchCompat android:theme="@style/ColorSwitchStyle" android:id="@id/color_switch" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="28.0dip" android:layout_marginRight="24.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true" android:scaleX="1.4" android:scaleY="1.4" />
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:compat="http://schemas.android.com/apk/res-auto/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item android:id="@id/media_route_menu_item" android:title="@string/opt_cast_gaana" app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider" app:showAsAction="always" />
+        <item android:icon="?selector_item_option" android:id="@id/menu_add_to_playlist" android:title="@string/opt_more" app:actionViewClass="android.widget.ImageView" app:showAsAction="always" compat:actionViewClass="android.widget.ImageView" />
+        <item android:icon="?vector_selector_states" android:id="@id/menu_option" android:title="More" app:showAsAction="always" />
+    </group>
+</menu>

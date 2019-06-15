@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:clickable="false" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/dp20" android:splitMotionEvents="false"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:id="@id/header.text" android:padding="@dimen/activity_horizontal_margin" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/header_scroller" />
+    <View android:id="@id/centerLine" android:layout_width="0.0dip" android:layout_height="40.0dip" android:layout_centerHorizontal="true" />
+    <LinearLayout android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/header.text">
+        <FrameLayout android:layout_width="150.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/grid_line_padding_half" android:layout_marginTop="8.0dip" android:layout_marginRight="@dimen/activity_horizontal_margin_medium" android:layout_weight="@integer/int_1">
+            <include android:id="@id/ll.grid.firstitem" android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/view_grid_item_party" />
+            <com.gaana.view.item.SquareFrameLayout android:id="@id/create_playlist" android:background="@drawable/rounded_button_create" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <ImageView android:layout_gravity="center_horizontal" android:layout_width="@dimen/dimen_35dp" android:layout_height="@dimen/dimen_35dp" android:layout_marginTop="@dimen/dp40" app:srcCompat="@drawable/vector_plus_party" />
+                <TextView android:textSize="@dimen/text_size_16" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_70dp" android:text="Create a party playlist" />
+            </com.gaana.view.item.SquareFrameLayout>
+        </FrameLayout>
+        <include android:id="@id/ll.grid.seconditem" android:layout_width="150.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_medium" android:layout_marginTop="8.0dip" android:layout_marginRight="@dimen/grid_line_padding_half" android:layout_weight="@integer/int_1" layout="@layout/view_grid_item_party" />
+    </LinearLayout>
+</RelativeLayout>

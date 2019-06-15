@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_gravity="center" android:background="@android:color/transparent" android:paddingLeft="@dimen/activity_horizontal_margin_half" android:paddingRight="@dimen/activity_horizontal_margin_half" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCornerImageView android:orientation="vertical" android:id="@id/party_carousel_image" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="fitXY" app:roundedCornerRadius="5.0dip" app:show_loading_states="true"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" />
+</FrameLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center_horizontal" android:orientation="vertical" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <FrameLayout android:id="@id/videoSurfaceContainer" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerVertical="true">
+            <SurfaceView android:id="@id/videoSurface" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </FrameLayout>
+        <ProgressBar android:layout_gravity="center" android:id="@id/progressbar" android:visibility="gone" android:layout_width="50.0dip" android:layout_height="50.0dip" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+    </RelativeLayout>
+</LinearLayout>

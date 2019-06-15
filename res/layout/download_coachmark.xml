@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="top" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/download_track" android:visibility="gone" android:layout_width="200.0dip" android:layout_height="wrap_content" android:layout_marginTop="@dimen/status_bar_height" android:layout_alignParentTop="true">
+        <LinearLayout android:gravity="center" android:id="@id/txtContainer" android:background="@drawable/player_bg_coach_red" android:paddingLeft="14.0dip" android:paddingTop="@dimen/dimen_12dp" android:paddingRight="14.0dip" android:paddingBottom="@dimen/dimen_12dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:textColor="@color/white" android:id="@id/player_coachmark_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/download_song_coachmarks_text" />
+        </LinearLayout>
+        <ImageView android:id="@id/search_chevron" android:layout_width="50.0dip" android:layout_height="42.0dip" android:layout_marginLeft="-24.0dip" android:layout_toRightOf="@id/txtContainer" android:rotation="270.0" app:srcCompat="@drawable/vector_chevron_down_player_coachmark" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/downloaded_songs" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="20.0dip" android:layout_marginBottom="@dimen/dimen_40dp" android:layout_alignParentRight="true" android:layout_alignParentBottom="true">
+        <LinearLayout android:gravity="center" android:id="@id/txtContainer_downloaded_songs" android:background="@drawable/player_bg_coach_red" android:paddingLeft="14.0dip" android:paddingTop="@dimen/dimen_12dp" android:paddingRight="14.0dip" android:paddingBottom="@dimen/dimen_12dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:textColor="@color/white" android:id="@id/player_coachmark_text_downloaded_songs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/downloaded_songs_coachmarks_text" />
+        </LinearLayout>
+        <ImageView android:id="@id/search_chevron_downloaded_songs" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="-50.0dip" android:layout_marginTop="20.0dip" android:layout_toRightOf="@id/txtContainer_downloaded_songs" android:rotation="0.0" app:srcCompat="@drawable/vector_chevron_down_player_coachmark" />
+    </RelativeLayout>
+</RelativeLayout>

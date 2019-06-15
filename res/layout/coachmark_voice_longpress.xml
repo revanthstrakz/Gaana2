@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="14.0sp" android:textColor="@color/white" android:gravity="center" android:background="@drawable/search_bg_coach_red" android:paddingTop="@dimen/dp5" android:paddingBottom="@dimen/dp5" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_70dp" android:layout_marginRight="@dimen/dimen_70dp" android:text="@string/voice_try_gaana_assistant" android:lines="@integer/int_1" />
+    <ImageView android:layout_gravity="left" android:id="@id/search_chevron" android:layout_width="35.0dip" android:layout_height="10.0dip" android:rotation="180.0" app:srcCompat="@drawable/vector_chevron_top_orange" />
+</LinearLayout>

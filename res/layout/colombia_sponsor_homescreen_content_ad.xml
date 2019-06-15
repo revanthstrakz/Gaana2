@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.AdView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="1.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_gravity="center" android:padding="15.0dip" android:layout_width="fill_parent" android:layout_height="@dimen/home_sponsored_ad_height">
+        <TextView android:textSize="@dimen/sponsor_ad_smalltext_size" android:textColor="@color/white" android:id="@id/leftdrawer_sponsor_small_braught_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/brought_to_you_by" android:maxLength="27" />
+        <TextView android:textSize="@dimen/sponsor_ad_largetext_size" android:textColor="@color/white" android:id="@id/leftdrawer_sponsor_company_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3.0dip" android:layout_marginRight="5.0dip" android:text="@string/brought_to_you_by" android:maxLength="25" android:layout_below="@id/leftdrawer_sponsor_small_braught_text" />
+        <Button android:id="@id/leftdrawer_sponsor_button" android:background="@drawable/sponsor_button_ad_cornor" android:paddingLeft="10.0dip" android:paddingTop="5.0dip" android:paddingRight="10.0dip" android:paddingBottom="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerInParent="true" />
+    </RelativeLayout>
+</com.til.colombia.android.service.AdView>

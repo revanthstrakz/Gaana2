@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:id="@id/bg_intl_onboarding" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="?intl_onboard_bg_img" android:scaleType="centerCrop" />
+    <TextView android:gravity="center" android:id="@id/txt_next_screen" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip" android:text="@string/next_text" android:layout_alignParentBottom="true" style="?intl_onboard_next_txt" />
+</RelativeLayout>

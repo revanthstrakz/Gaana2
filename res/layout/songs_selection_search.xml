@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="@dimen/actionbar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.actionbar.CustomSearchView android:id="@id/custom_songs_search_view" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    <FrameLayout android:id="@id/songs_selection_fragment" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="5.0" />
+</LinearLayout>

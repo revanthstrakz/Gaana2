@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:background="?unblock_bg" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CircularImageView android:layout_gravity="center_horizontal" android:id="@id/dialog.img" android:layout_width="80.0dip" android:layout_height="80.0dip" android:layout_marginLeft="116.0dip" android:layout_marginTop="22.0dip" android:layout_marginRight="116.0dip" />
+    <TextView android:layout_gravity="center_horizontal" android:id="@id/dialog.header.text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="41.0dip" android:layout_marginBottom="38.0dip" style="@style/list_download_item_first_line" />
+    <View android:background="?first_line_color_10" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <LinearLayout android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="48.0dip" android:weightSum="6.0">
+        <TextView android:textColor="?cancel_text_color" android:id="@id/dialog.button.no" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="3.0" style="@style/su_btn_txt_style" />
+        <View android:background="?first_line_color_10" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" />
+        <TextView android:id="@id/dialog.button.yes" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="3.0" style="@style/su_btn_txt_style" />
+    </LinearLayout>
+</LinearLayout>

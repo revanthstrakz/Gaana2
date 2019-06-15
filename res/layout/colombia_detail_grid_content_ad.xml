@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.AdView android:id="@id/columbia_detail_ad_view" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/llNativeAdSlot" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:background="?selector_btn_global_bg_grey" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <FrameLayout android:id="@id/imgProductIcon_frame" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.gaana.view.item.SquareImageView android:id="@id/colom_ad_image" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="?placeholder_album_artwork_large" android:scaleType="centerCrop" />
+            </FrameLayout>
+            <TextView android:ellipsize="end" android:gravity="center_vertical" android:id="@id/colom_ad_headLine" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/grid_right_padding" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="14.0dip" android:maxLines="1" android:layout_below="@id/imgProductIcon_frame" style="@style/grid_caption" />
+            <LinearLayout android:gravity="center" android:layout_width="@dimen/grid_item_height" android:layout_height="wrap_content" android:layout_marginRight="@dimen/grid_line_padding" android:layout_alignTop="@id/colom_ad_headLine" android:layout_alignBottom="@id/colom_ad_headLine" android:layout_alignParentRight="true" android:layout_alignParentBottom="true">
+                <ImageView android:id="@id/nativeColomIcon" android:layout_width="18.0dip" android:layout_height="18.0dip" />
+            </LinearLayout>
+            <TextView android:textStyle="bold" android:ellipsize="end" android:id="@id/colom_ad_text" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ad" android:singleLine="true" android:layout_below="@id/colom_ad_headLine" android:alpha="0.6" android:textAllCaps="true" style="@style/list_download_item_second_line" />
+            <TextView android:ellipsize="end" android:id="@id/colom_ad_brand" android:layout_width="85.0dip" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="My Name is khan" android:singleLine="true" android:layout_toRightOf="@id/colom_ad_text" android:layout_below="@id/colom_ad_headLine" android:textAllCaps="true" style="@style/list_download_item_second_line" />
+            <View android:background="?grid_item_selector" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignLeft="@id/imgProductIcon_frame" android:layout_alignTop="@id/imgProductIcon_frame" android:layout_alignRight="@id/imgProductIcon_frame" android:layout_alignBottom="@id/imgProductIcon_frame" />
+        </RelativeLayout>
+    </LinearLayout>
+</com.til.colombia.android.service.AdView>

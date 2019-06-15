@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/empty_state" android:background="?gaana_social_feed_card_bg" android:paddingLeft="@dimen/horizontal_margin" android:paddingTop="@dimen/dp10" android:paddingRight="@dimen/horizontal_margin" android:paddingBottom="@dimen/dp5" android:visibility="gone" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <View android:background="?first_line_color_10" android:layout_width="42.0dip" android:layout_height="42.0dip" />
+        <View android:background="?empty_state_social_attr1" android:layout_width="fill_parent" android:layout_height="@dimen/dp8" android:layout_marginLeft="@dimen/dp12" />
+    </LinearLayout>
+    <View android:background="?empty_state_social_attr" android:layout_width="fill_parent" android:layout_height="@dimen/dp8" android:layout_marginTop="@dimen/dp10" />
+    <View android:background="?empty_state_social_attr2" android:layout_width="fill_parent" android:layout_height="@dimen/dp8" android:layout_marginTop="@dimen/dp10" />
+</LinearLayout>

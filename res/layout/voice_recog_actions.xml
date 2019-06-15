@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?album_fab_container_background" android:layout_width="fill_parent" android:layout_height="210.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <TextView android:textSize="20.0sp" android:textColor="?first_line_color_50" android:gravity="center" android:id="@id/voice_action_command_text" android:paddingLeft="@dimen/dp20" android:paddingRight="@dimen/dp20" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/voice_default_text" android:maxLines="5" android:layout_weight="1.0" />
+        <HorizontalScrollView android:id="@id/voice_action_horizontalScroll" android:paddingTop="@dimen/activity_horizontal_margin" android:visibility="gone" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" />
+    </LinearLayout>
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <com.library.controls.CrossFadeImageView android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/voice_action_image_anim" android:visibility="gone" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+        <TextView android:textSize="12.0sp" android:textColor="?voice_button_text_color" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/voice_action_status" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_horizontal_margin_large" android:textAllCaps="true" />
+    </FrameLayout>
+</LinearLayout>

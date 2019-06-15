@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="6.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/open_my_downloads" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="23.0dip" android:layout_alignParentLeft="true" android:layout_alignParentTop="true">
+        <ImageView android:id="@id/chevron_my_downloads" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:scaleX="3.0" android:scaleY="3.0" android:rotation="180.0" app:srcCompat="@drawable/vector_chevron_down_player_coachmark" />
+        <LinearLayout android:gravity="center" android:id="@id/ll_my_downloads" android:background="@drawable/player_bg_coach_red" android:padding="@dimen/dp10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15.0dip">
+            <TextView android:textColor="@color/white" android:id="@id/txt_coachmark_my_downloads" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/coachmark_txt_open_my_downloads" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View android:id="@id/view" android:background="?first_line_color_20" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginLeft="26.0dip" android:layout_marginTop="25.0dip" android:layout_marginRight="10.0dip" />
+    <com.library.controls.RoundedCornerImageView android:layout_gravity="center_horizontal" android:id="@id/my_music_party_banner" android:background="@drawable/my_music_party_banner" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/dimen_60dp" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginRight="@dimen/page_left_right_margin" />
+    <com.gaana.view.CustomTextView android:textSize="@dimen/dimen_18dp" android:textStyle="bold" android:textColor="?first_line_color" android:id="@id/txt_header" android:background="?selector_btn_global" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="18.0dip" android:layout_marginRight="14.0dip" android:text="@string/browse_categories" app:drawableRightCompat="?chevron_down" />
+</LinearLayout>

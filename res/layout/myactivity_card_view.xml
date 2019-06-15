@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?tab_layout_background_attr" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:paddingBottom="@dimen/dp10" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginBottom="10.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:paddingTop="@dimen/dp10" android:paddingBottom="@dimen/dp10" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:id="@id/test" android:paddingTop="@dimen/dp10" android:paddingBottom="@dimen/dp10" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.library.controls.CircularImageView android:id="@id/user_image" android:layout_width="@dimen/dp40" android:layout_height="@dimen/dp40" android:layout_marginLeft="7.0dip" app:srcCompat="?ic_profile_small_icon_attr" />
+            <ImageView android:id="@id/crown_user_badge" android:visibility="gone" android:layout_width="16.0dip" android:layout_height="16.0dip" android:layout_marginLeft="-10.0dip" android:src="@drawable/crown_badge_gaana_color" android:layout_toRightOf="@id/user_image" />
+            <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_toRightOf="@id/user_image">
+                <TextView android:id="@id/feedDesciption" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/text_medium" />
+                <com.gaana.view.CustomTextView android:textSize="12.0sp" android:textColor="?second_line_color" android:layout_gravity="center_vertical" android:id="@id/songName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="1" android:drawablePadding="@dimen/grid_line_padding_half" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout android:orientation="vertical" android:id="@id/playSong" android:background="?social_post_bottom_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/test">
+            <com.gaana.view.item.SquareImageView android:id="@id/social_post_image" android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="@drawable/placeholder_album_artwork_large" android:scaleType="centerCrop" />
+            <ImageView android:id="@id/playImage" android:layout_width="100.0dip" android:layout_height="100.0dip" android:layout_centerInParent="true" app:srcCompat="@drawable/vector_circle_play_button_overlay" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <FrameLayout android:id="@id/bottom_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+</LinearLayout>

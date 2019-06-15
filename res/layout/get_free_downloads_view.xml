@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/llParentLayout" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginRight="@dimen/page_left_right_margin" android:src="?refer_card_bg" android:scaleType="fitXY" />
+</RelativeLayout>

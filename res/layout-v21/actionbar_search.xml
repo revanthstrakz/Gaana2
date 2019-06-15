@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="@dimen/dp40"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/menu_icon_back" android:layout_width="@dimen/dp30" android:layout_height="@dimen/dp40" android:layout_marginLeft="@dimen/dp14" android:scaleType="centerInside" android:alpha="0.75" app:srcCompat="?actionbar_back" />
+    <RelativeLayout android:id="@id/innerActionBar" android:background="?search_header_rounded" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginRight="@dimen/activity_horizontal_margin" android:layout_toRightOf="@id/menu_icon_back">
+        <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_icon" android:paddingLeft="@dimen/activity_horizontal_margin_half" android:paddingTop="12.0dip" android:paddingBottom="12.0dip" android:layout_width="@dimen/dp30" android:layout_height="@dimen/dp30" android:scaleType="centerCrop" app:srcCompat="?actionbar_search_light" />
+            <android.support.v7.widget.SearchView android:id="@id/searchview_actionbar" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_weight="@integer/int_1" android:voiceSearchMode="launchRecognizer|showVoiceSearchButton" android:elevation="0.0dip" app:iconifiedByDefault="true" app:queryHint="@string/search_query_hint_text" app:searchHintIcon="@null" />
+        </LinearLayout>
+        <FrameLayout android:id="@id/menu_icon_voice_container" android:background="?list_selector" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/activity_horizontal_margin_half" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+            <ImageView android:layout_gravity="center" android:id="@id/menu_icon_voice" android:layout_width="wrap_content" android:layout_height="wrap_content" android:scaleType="centerCrop" app:srcCompat="?vector_voice_icon_attr" />
+        </FrameLayout>
+    </RelativeLayout>
+</RelativeLayout>

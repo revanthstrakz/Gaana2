@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:splitMotionEvents="false"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:elevation="6.0dip" app:theme="@style/ActionBar" />
+    <View android:id="@id/dummy_shadow" android:background="@drawable/below_shadow" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/action_bar_shadow_height" />
+    <LinearLayout android:orientation="vertical" android:id="@id/llParentListing" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0" android:splitMotionEvents="false" />
+    <LinearLayout android:layout_gravity="center_horizontal" android:orientation="vertical" android:id="@id/adSlot" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="50.0dip" />
+</LinearLayout>

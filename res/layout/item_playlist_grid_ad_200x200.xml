@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/rl_empty_item_view" android:layout_width="200.0dip" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/bw_section_vert_padding_half"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCornerImageView android:layout_gravity="center_horizontal" android:id="@id/imgProductIcon" android:layout_width="140.0dip" android:layout_height="140.0dip" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <com.gaana.view.CustomTextView android:textSize="10.0dip" android:ellipsize="end" android:gravity="center|top" android:id="@id/tvTopHeading" android:paddingTop="@dimen/home_title_padding" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="140.0dip" android:maxLines="3" style="@style/grid_caption" />
+    <View android:layout_gravity="center_horizontal" android:id="@id/shadow_layer" android:background="?grid_item_selector" android:layout_width="200.0dip" android:layout_height="140.0dip" />
+</FrameLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:orientation="vertical" android:id="@id/success_response_layout" android:background="#ff33453a" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.voice.RippleBackground android:id="@id/song_success_listening_state" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="-120.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:rb_color="@color/black_alfa_10" app:rb_duration="3000" app:rb_radius="120.0dip" app:rb_rippleAmount="1" app:rb_ripple_allowed="0" app:rb_scale="1.0"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView android:textSize="12.0sp" android:textColor="@color/white" android:id="@id/identifySongButton" android:background="@drawable/bg_action_button_rounded" android:paddingLeft="10.0dip" android:paddingTop="13.0dip" android:paddingRight="10.0dip" android:paddingBottom="13.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="140.0dip" android:text="@string/identify_another_song" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:textAllCaps="true" />
+    </com.voice.RippleBackground>
+    <ScrollView android:id="@id/scroll_view" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout android:orientation="vertical" android:background="#ff33453a" android:layout_width="fill_parent" android:layout_height="wrap_content" android:baselineAligned="false">
+            <com.library.controls.CrossFadeImageView android:layout_gravity="center_horizontal" android:id="@id/result_artwork" android:layout_width="100.0dip" android:layout_height="100.0dip" android:layout_marginTop="60.0dip" android:src="@drawable/placeholder_album_artwork_large" />
+            <TextView android:textSize="16.0sp" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@id/song_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" />
+            <TextView android:textSize="12.0sp" android:textColor="@color/white_alfa_60" android:ellipsize="marquee" android:layout_gravity="center_horizontal" android:id="@id/album_artist_details" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxWidth="@dimen/dp200" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever" />
+            <TextView android:textSize="12.0sp" android:textColor="@color/white" android:layout_gravity="center_horizontal" android:id="@id/view_album_button" android:background="@drawable/bg_action_button_rounded" android:paddingLeft="15.0dip" android:paddingTop="5.0dip" android:paddingRight="15.0dip" android:paddingBottom="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginTop="15.0dip" android:layout_marginRight="15.0dip" android:layout_marginBottom="5.0dip" android:text="@string/view_album" />
+            <LinearLayout android:orientation="vertical" android:id="@id/result_song_options" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="32.0dip">
+                <LinearLayout android:orientation="horizontal" android:id="@id/row1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/play_now" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_player_play_white" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/play_now" />
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/history" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/ic_history" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/history" />
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/favorite" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:id="@id/favoriteImg" android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_ab_favorite_white" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="12.0dip" android:text="@string/favorite" />
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/add_to_playlist" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_more_option_add_to_playlist_white" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/opt_add_to_playlist" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:id="@id/row2" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="32.0dip">
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/play_next" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_player_next_white" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/opt_play_first" />
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/add_to_queue" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_addto_playlistorqueue_white" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/opt_play_next" />
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/info" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_more_option_info_white" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/songInfo" />
+                    </LinearLayout>
+                    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/share" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/icon_share_new" />
+                        <TextView android:textSize="@dimen/dimen_12sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12.0dip" android:text="@string/share_text" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <ImageView android:id="@id/cross_result_screen" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginTop="50.0dip" android:src="@drawable/player_cross" app:layout_constraintBottom_toTopOf="@id/scroll_view" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

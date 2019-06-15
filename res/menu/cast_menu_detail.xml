@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:compat="http://schemas.android.com/apk/res-auto/android">
+    <group android:id="@id/cast_menu_detail">
+        <item android:id="@id/media_route_menu_item" android:title="@string/opt_cast_gaana" app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider" app:showAsAction="always" />
+        <item android:icon="?menu_download_paused" android:id="@id/menu_download" android:title="@string/opt_download" app:showAsAction="always" />
+        <item android:icon="?moreoptions_favorite" android:id="@id/menu_favourite" android:visible="true" android:title="@string/favorite_text" app:actionViewClass="android.widget.ImageView" app:showAsAction="always" compat:actionViewClass="android.widget.ImageView" />
+        <item android:icon="?actionbar_search_typed_array" android:id="@id/menu_search" android:title="@string/opt_search" app:showAsAction="always" />
+        <item android:icon="?vector_selector_states" android:id="@id/menu_option" android:title="@string/opt_more" app:showAsAction="always" />
+    </group>
+</menu>

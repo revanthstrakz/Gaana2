@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?revamped_bg_color" android:layout_width="fill_parent" android:layout_height="@dimen/item_two_line_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/img_download_curated" android:background="?dashed_img_border" android:padding="8.0dip" android:layout_width="@dimen/dp40" android:layout_height="@dimen/dp40" android:layout_marginLeft="@dimen/dp16" android:layout_marginTop="10.0dip" android:layout_marginBottom="10.0dip" android:tint="?first_line_color" android:layout_alignParentLeft="true" android:layout_centerVertical="true" app:srcCompat="@drawable/vector_ab_download_white" />
+    <LinearLayout android:orientation="vertical" android:id="@id/ll_curated_container" android:paddingLeft="@dimen/dp16" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp2" android:layout_marginRight="32.0dip" android:layout_marginBottom="@dimen/dp2" android:layout_toRightOf="@id/img_download_curated" android:layout_centerVertical="true">
+        <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:id="@id/tv_curated_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/download_songs" android:maxLines="1" />
+        <com.gaana.view.CustomTextView android:textSize="11.0sp" android:textStyle="normal" android:textColor="?revamped_secondary_fg_color" android:id="@id/tv_curated_subtitle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="4.0dip" android:text="@string/let_us_help_you_to_download_more_song" android:maxLines="1" />
+    </LinearLayout>
+</RelativeLayout>

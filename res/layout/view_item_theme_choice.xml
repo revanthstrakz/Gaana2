@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:gravity="center_vertical" android:background="@color/transparent_color" android:layout_width="fill_parent" android:layout_height="66.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:gravity="center_vertical" android:background="@color/transparent_color" android:layout_width="fill_parent" android:layout_height="66.0dip">
+        <ImageView android:id="@id/language_bg_img" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="?onboard_lang_pref_item_bg_attr" android:scaleType="fitXY" android:adjustViewBounds="true" />
+        <TextView android:textSize="@dimen/dimen_14sp" android:id="@id/language_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="35.0dip" android:layout_centerVertical="true" style="?onboard_lang_pref_item_txt_attr" />
+        <ImageView android:id="@id/language_selected" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="31.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" app:srcCompat="@drawable/vector_download_completed" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

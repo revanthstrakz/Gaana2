@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:layout_scrollFlags="enterAlways|scroll" app:theme="@style/ActionBar" />
+    <LinearLayout android:orientation="vertical" android:id="@id/settingsParent" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent" android:fillViewport="true">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:id="@id/settingsContainer" android:layout_width="fill_parent" android:layout_height="wrap_content" android:splitMotionEvents="false" />
+            <ImageButton android:background="?list_selector" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="36.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="20.0dip" android:text="@string/opt_logout" android:layout_below="@id/settingsContainer" android:layout_centerHorizontal="true" style="@style/orange_button_style" />
+            <TextView android:id="@id/logout_buttonText" android:background="@drawable/red_button_selector" android:paddingLeft="@dimen/grid_single_line_bar_height" android:paddingTop="@dimen/activity_horizontal_margin_login" android:paddingRight="@dimen/grid_single_line_bar_height" android:paddingBottom="@dimen/activity_horizontal_margin_login" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/opt_logout" android:layout_below="@id/settingsContainer" android:layout_centerHorizontal="true" style="@style/orange_button_style" />
+            <View android:id="@id/settingsContainer1" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height" android:layout_below="@id/logout_buttonText" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

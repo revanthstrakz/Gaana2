@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="center" android:orientation="vertical" android:id="@id/parentView" android:background="?context_action_button_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textColor="?first_line_color" android:id="@id/dialog.header.text" android:padding="@dimen/dialogbox_text_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/list_download_item_first_line" />
+    <View android:id="@id/dividerView" android:background="@color/gaana.red" android:layout_width="fill_parent" android:layout_height="0.5dip" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="30.0dip">
+        <CheckBox android:theme="?my_check_box" android:gravity="center_vertical" android:id="@id/chkLanguageName" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_margin="5.0dip" />
+        <TextView android:textSize="12.0sp" android:textColor="?first_line_color" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/dont_show_this_msg" />
+    </LinearLayout>
+    <RelativeLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="48.0dip">
+        <Button android:textColor="@color/gaana.red" android:id="@id/dialog.button.cancel" android:background="@drawable/white_button_selector_whitebg" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/dlg_msg_cancel_cap" android:layout_toLeftOf="@id/middleLine" style="@style/orange_button_style" />
+        <View android:id="@id/middleLine" android:background="@color/gaana.red" android:layout_width="0.5dip" android:layout_height="fill_parent" android:layout_centerHorizontal="true" />
+        <Button android:textColor="@color/white" android:id="@id/dialog.button.stop" android:background="@drawable/red_button_selector" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/dl_msg_ok_caps" android:layout_toRightOf="@id/middleLine" style="@style/orange_button_style" />
+    </RelativeLayout>
+</LinearLayout>

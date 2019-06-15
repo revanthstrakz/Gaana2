@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?tab_layout_background_attr" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textColor="?list_header_layout_text_queue" android:id="@id/player_queue_panel_text" android:background="?list_header_layout" android:paddingLeft="@dimen/activity_vertical_margin" android:paddingTop="@dimen/activity_vertical_margin_small" android:paddingBottom="@dimen/activity_vertical_margin_small" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/queue_up_next" />
+    <View android:background="@color/gaana_grey_alfa_70" android:layout_width="fill_parent" android:layout_height="@dimen/setting_grey_line_height" />
+    <com.gaana.FastScrollRecyclerView.FastScrollRecyclerView android:id="@id/scroll" android:layout_width="fill_parent" android:layout_height="fill_parent" app:fastScrollAutoHide="true" app:fastScrollAutoHideDelay="1500" app:fastScrollPopupBgColor="@color/accentColor" app:fastScrollPopupTextColor="@android:color/primary_text_dark" app:fastScrollThumbColor="@color/accentColor" />
+</LinearLayout>

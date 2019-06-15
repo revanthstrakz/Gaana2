@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="90.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CrossFadeImageView android:id="@id/language_bg_img" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="?onboard_lang_pref_item_bg_attr" android:scaleType="fitXY" android:adjustViewBounds="true" />
+    <View android:id="@id/lang_bg_grd" android:background="@drawable/shape_bg_grd_lang" android:layout_width="fill_parent" android:layout_height="90.0dip" android:alpha="0.7" />
+    <TextView android:textSize="@dimen/dimen_20dp" android:id="@id/language_name_translted" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="35.0dip" android:layout_marginTop="5.0dip" android:layout_centerVertical="true" style="?onboard_lang_pref_item_txt_attr" />
+    <TextView android:textSize="14.0sp" android:id="@id/language_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="12.0dip" android:layout_toRightOf="@id/language_name_translted" android:layout_centerVertical="true" style="?onboard_lang_pref_item_txt_attr" />
+    <ImageView android:id="@id/language_selected" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="31.0dip" android:src="@drawable/accept_tick" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?search_intervention_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/mainText" android:paddingTop="@dimen/margin_standard" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_login" style="@style/horizontal_list_first_line" />
+    <TextView android:textSize="13.0sp" android:id="@id/subText" android:paddingTop="5.0dip" android:paddingBottom="@dimen/margin_standard" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_login" style="@style/list_download_item_second_line" />
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/video_preview_container" android:layout_width="fill_parent" android:layout_height="175.0dip" android:layout_marginLeft="8.0dip" android:layout_marginTop="8.0dip" android:layout_marginRight="8.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CrossFadeImageView android:id="@id/user_video_container" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/placeholder_album_artwork_large" android:scaleType="fitXY" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/share_option_video" android:paddingLeft="11.0dip" android:paddingBottom="8.0dip" android:layout_width="wrap_content" android:layout_height="40.0dip" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true">
+        <com.library.controls.CrossFadeImageView android:layout_gravity="center_vertical" android:layout_width="24.0dip" android:layout_height="24.0dip" android:scaleType="fitCenter" app:srcCompat="@drawable/vector_more_option_share_white_50" />
+        <TextView android:textSize="14.0sp" android:textColor="#ffffffff" android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" android:text="@string/opt_share" />
+    </LinearLayout>
+</RelativeLayout>

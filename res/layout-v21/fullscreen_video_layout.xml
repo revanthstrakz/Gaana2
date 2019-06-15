@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/fs_container" android:background="@android:color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ProgressBar android:theme="@android:style/Widget.ProgressBar" android:layout_gravity="center" android:id="@id/fs_progress" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <TextureView android:layout_gravity="center" android:id="@id/fs_textureview" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <ImageView android:layout_gravity="center" android:id="@id/fs_play" android:background="@drawable/pause" android:visibility="gone" android:layout_width="@dimen/play_icon_size" android:layout_height="@dimen/play_icon_size" />
+    <ImageView android:layout_gravity="center" android:id="@id/fs_thumb" android:visibility="invisible" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    <Button android:textSize="14.0sp" android:typeface="serif" android:textColor="@color/color_white" android:layout_gravity="center|top" android:id="@id/fs_cta" android:background="@drawable/transparent_bg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/cta_pause_margin_top" />
+    <ImageButton android:layout_gravity="bottom|center|right" android:id="@id/fs_sound" android:background="@drawable/unmute" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:elevation="3.0dip" />
+</FrameLayout>

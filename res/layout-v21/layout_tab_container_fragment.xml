@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" android:elevation="6.0dip" sothree:layout_scrollFlags="enterAlways|scroll" sothree:theme="@style/ActionBar" xmlns:sothree="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <android.support.design.widget.TabLayout android:id="@id/sliding_tabs" android:background="?tab_layout_background_attr" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" android:elevation="6.0dip" app:tabGravity="fill" app:tabIndicatorColor="@color/gaana.red" app:tabMode="fixed" app:tabSelectedTextColor="?first_line_color" app:tabTextAppearance="@style/gaana_tab" />
+    <android.support.v4.view.ViewPager android:id="@id/viewpager" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+</LinearLayout>

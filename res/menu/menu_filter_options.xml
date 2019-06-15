@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@id/item_all" android:title="@string/all_results" />
+    <item android:id="@id/item_favorites" android:title="@string/mymusic_favorites" />
+    <item android:id="@id/item_by_me" android:visible="false" android:title="@string/my_music_by_me" />
+    <item android:id="@id/item_download" android:title="@string/mymusic_downloads" />
+</menu>

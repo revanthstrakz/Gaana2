@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.AdView android:id="@id/columbia_detail_ad_view" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:id="@id/llNativeAdSlot" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <RelativeLayout android:id="@id/rl_parent_list_content" android:background="?ad_listview_bg" android:layout_width="fill_parent" android:layout_height="62.0dip">
+            <com.library.controls.CrossFadeImageView android:id="@id/colom_ad_image" android:background="@drawable/rounded_corners_artwork" android:layout_width="@dimen/view_item_image_size_two_line" android:layout_height="@dimen/view_item_image_size_two_line" android:layout_marginLeft="@dimen/dp16" android:layout_marginTop="@dimen/dp12" android:layout_marginBottom="@dimen/dp12" android:src="?placeholder_album_artwork_large" android:scaleType="fitXY" android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+            <TextView android:ellipsize="end" android:id="@id/colom_ad_headLine" android:paddingLeft="@dimen/dimen_12dp" android:layout_width="150.0dip" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_8_dp" android:layout_marginRight="@dimen/dimen_12dp" android:maxLines="1" android:layout_toRightOf="@id/colom_ad_image" style="@style/ad_line_txt_style" />
+            <TextView android:ellipsize="end" android:id="@id/colom_ad_text" android:paddingLeft="@dimen/dimen_12dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/dimen_12dp" android:maxLines="2" android:layout_toLeftOf="@id/ctaText" android:layout_toRightOf="@id/colom_ad_image" android:layout_below="@id/colom_ad_headLine" style="@style/list_download_item_second_line" />
+            <Button android:textSize="@dimen/med_sub_title" android:textColor="@color/white" android:id="@id/ctaText" android:background="@color/red_gaana" android:layout_width="wrap_content" android:layout_height="30.0dip" android:layout_marginRight="@dimen/dimen_12dp" android:text="SHOP NOW" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+            <ImageView android:id="@id/nativeColomIcon" android:layout_width="12.0dip" android:layout_height="12.0dip" android:layout_marginTop="1.0dip" android:layout_marginRight="4.0dip" android:src="@drawable/colombia_icon" android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <View android:background="?ad_listview_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_alignParentBottom="true" />
+    </LinearLayout>
+</com.til.colombia.android.service.AdView>

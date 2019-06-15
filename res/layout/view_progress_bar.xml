@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="horizontal" android:background="?gaana_background" android:layout_width="fill_parent" android:layout_height="120.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/tv.title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:text="@string/upgrading_to_latest_version" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" style="@style/grid_caption" />
+    <ProgressBar android:id="@id/progress_bar" android:layout_width="fill_parent" android:layout_height="5.0dip" android:layout_marginLeft="10.0dip" android:layout_marginBottom="5.0dip" android:maxHeight="5.0dip" android:progressDrawable="@drawable/layer_download_progressbar" android:layout_toLeftOf="@id/tv.progress" android:layout_centerVertical="true" style="@android:style/Widget.ProgressBar.Horizontal" />
+    <TextView android:id="@id/tv.progress" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5.0dip" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/white_normal_12" />
+</RelativeLayout>

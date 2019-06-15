@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="?list_selector" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="70.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:layout_gravity="center_vertical" android:id="@id/img_artwork" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="?placeholder_album_artwork" />
+    <TextView android:textSize="14.0dip" android:textColor="?first_line_color" android:layout_gravity="center_vertical" android:id="@id/txt_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="60.0dip" />
+</FrameLayout>

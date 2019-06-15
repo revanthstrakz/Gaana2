@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_half" android:layout_marginRight="@dimen/activity_horizontal_margin_half" android:layout_marginBottom="@dimen/activity_horizontal_margin_half"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:id="@id/divider" android:background="?gaana_listview_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <TextView android:textStyle="bold" android:ellipsize="end" android:gravity="center|left" android:id="@id/headerText" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height" android:layout_marginLeft="@dimen/activity_horizontal_margin_login" android:maxLines="2" android:layout_below="@id/divider" android:layout_alignParentLeft="true" android:lineSpacingExtra="2.0dip" style="@style/header_scroller" />
+    <ImageView android:id="@id/clickoptionImage" android:padding="@dimen/padding_10dp" android:visibility="gone" android:layout_width="@dimen/view_item_download_size" android:layout_height="@dimen/view_item_download_size" android:layout_marginTop="@dimen/dp10" android:scaleType="centerCrop" android:layout_alignParentRight="true" android:rotation="90.0" app:srcCompat="?vector_selector_states" />
+    <android.support.v7.widget.RecyclerView android:id="@id/recycler_view" android:paddingBottom="@dimen/search_see_all_height" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/headerText" />
+    <LinearLayout android:orientation="vertical" android:id="@id/viewAllContainer" android:background="?list_selector" android:layout_width="fill_parent" android:layout_height="@dimen/search_see_all_height" android:layout_alignParentBottom="true">
+        <TextView android:textSize="13.0sp" android:textColor="?button_link" android:gravity="center" android:layout_gravity="center" android:id="@id/viewAll" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/see_all_search" android:layout_weight="@integer/int_1" android:textAllCaps="true" />
+    </LinearLayout>
+</RelativeLayout>

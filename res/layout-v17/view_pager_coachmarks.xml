@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_60dp" android:layout_marginRight="@dimen/dimen_12dp" android:layout_alignParentRight="true">
+        <TextView android:textSize="14.0sp" android:textColor="@color/white_alfa_75" android:background="@drawable/search_bg_coach_red" android:paddingLeft="@dimen/dimen_12sp" android:paddingTop="@dimen/dimen_12sp" android:paddingRight="@dimen/dimen_60dp" android:paddingBottom="@dimen/dimen_12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/view_pager_coachmark_text" />
+        <ImageView android:id="@id/search_chevron" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginLeft="-6.0dip" android:rotation="90.0" android:textAlignment="center" app:srcCompat="@drawable/vector_chevron_top_orange" />
+    </LinearLayout>
+</RelativeLayout>

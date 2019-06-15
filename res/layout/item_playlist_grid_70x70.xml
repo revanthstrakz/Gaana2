@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/rl_empty_item_view" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/bw_section_vert_padding_half" android:layout_centerInParent="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CrossFadeImageView android:id="@id/imgProductIcon" android:layout_width="@dimen/dimen_70dp" android:layout_height="@dimen/dimen_70dp" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <ImageView android:id="@id/imgLightOverlay" android:visibility="gone" android:layout_width="@dimen/dimen_70dp" android:layout_height="@dimen/dimen_70dp" android:scaleType="centerCrop" />
+    <ImageView android:layout_gravity="center|right|top" android:id="@id/play_icon" android:visibility="visible" android:layout_width="30.0dip" android:layout_height="30.0dip" android:layout_marginTop="35.0dip" android:layout_marginRight="5.0dip" app:srcCompat="@drawable/ic_artwork_play" />
+    <com.gaana.view.CustomTextView android:ellipsize="end" android:gravity="center|top" android:id="@id/tvTopHeading" android:paddingTop="@dimen/home_title_padding" android:layout_width="@dimen/dimen_70dp" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_70dp" android:singleLine="true" style="@style/grid_caption" />
+    <View android:id="@id/shadow_layer" android:background="?grid_item_selector" android:layout_width="@dimen/dimen_70dp" android:layout_height="@dimen/dimen_70dp" />
+</FrameLayout>

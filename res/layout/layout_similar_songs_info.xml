@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="bottom" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:gravity="bottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/horizontal_margin" android:layout_marginTop="10.0dip" android:layout_marginBottom="80.0dip">
+        <TextView android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/infoText" android:background="@drawable/similar_info_bg" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginRight="@dimen/dp30" android:text="i" android:layout_alignParentRight="true" />
+        <ImageView android:id="@id/search_chevron" android:paddingBottom="0.0dip" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginTop="-10.0dip" android:layout_marginRight="-15.0dip" android:layout_marginBottom="-25.0dip" android:scaleType="fitXY" android:layout_below="@id/infoText" android:layout_alignRight="@id/infoText" android:layout_centerVertical="true" android:rotation="180.0" app:srcCompat="@drawable/vector_chevron_down_player_coachmark" />
+        <LinearLayout android:gravity="center" android:id="@id/txtContainer" android:background="@drawable/player_bg_coach_red" android:paddingLeft="@dimen/dimen_20dp" android:paddingRight="@dimen/dimen_20dp" android:layout_width="wrap_content" android:layout_height="35.0dip" android:layout_marginRight="@dimen/dp20" android:layout_below="@id/search_chevron" android:layout_alignRight="@id/infoText" android:layout_alignParentRight="true">
+            <TextView android:textColor="@color/white" android:id="@id/player_coachmark_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/player_similar_song_info_text" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

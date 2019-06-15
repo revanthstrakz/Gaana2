@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/ll_view_user_msg" android:background="?selector_btn_global_bg_grey" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:layout_gravity="center" android:id="@id/tvUserMsg" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10.0dip" android:text="@string/msg_no_items" />
+    <ImageView android:id="@id/followMsgImageView" android:background="?locked" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <TextView android:gravity="center_horizontal" android:id="@id/followMsgView" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:text="Follow to view activity" android:inputType="textCapSentences" style="@style/text_medium" />
+    <ScrollView android:id="@id/no_downloads_here" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:paddingTop="@dimen/grid_single_line_bar_height_half" android:paddingBottom="@dimen/grid_single_line_bar_height_half" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <ImageView android:id="@id/no_downloads_here_image" android:layout_width="100.0dip" android:layout_height="100.0dip" app:srcCompat="?no_downloads_here" />
+            <TextView android:textSize="18.0sp" android:id="@id/no_downloads_here_text_first" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/vertical_margin" android:text="@string/no_downloaded_song" />
+            <TextView android:layout_gravity="center_horizontal" android:id="@id/no_downloads_here_text_second" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/vertical_margin" android:text="@string/help_download_first_song" style="@style/text_medium" />
+            <TextView android:textSize="14.0sp" android:textColor="@color/white" android:id="@id/no_downloads_here_download_now_button" android:background="@drawable/rounded_corner_red" android:paddingLeft="35.0dip" android:paddingTop="@dimen/activity_horizontal_margin_small" android:paddingRight="35.0dip" android:paddingBottom="@dimen/activity_horizontal_margin_small" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/vertical_margin" android:text="@string/download_now" android:textAllCaps="true" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/mini_player" android:background="?view_foreground" android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.gaana.view.CustomTextView android:textSize="@dimen/dimen_12sp" android:textColor="?first_line_color" android:gravity="center" android:id="@id/pullUpToViewTextContainer" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="30.0dip" android:layout_marginLeft="@dimen/dimen_40dp" android:layout_marginRight="@dimen/dimen_40dp" android:text="@string/mini_player_pull_up_text" android:drawablePadding="@dimen/dimen_20dp" app:drawableLeftCompat="?chevron_up" />
+    <SeekBar android:id="@id/seekBarMiniPLayer" android:paddingLeft="0.0px" android:paddingRight="0.0px" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_margin="0.0dip" android:maxHeight="2.0dip" android:progressDrawable="?layer_seekbar" />
+</LinearLayout>

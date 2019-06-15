@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?gaana_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/icon_cantuse" android:layout_width="125.0dip" android:layout_height="125.0dip" android:layout_marginTop="@dimen/dp56" android:src="@drawable/icon_cantuse_app" android:scaleType="centerCrop" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp40" android:layout_marginTop="@dimen/dp20" android:layout_marginRight="@dimen/dp40" android:text="@string/cantuse_app_msg" android:layout_below="@id/icon_cantuse" android:layout_centerHorizontal="true" />
+</RelativeLayout>

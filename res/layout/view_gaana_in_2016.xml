@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?opp_first_line_color" android:paddingTop="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin" android:layout_marginBottom="@dimen/activity_horizontal_margin"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin_login" android:layout_marginBottom="@dimen/activity_vertical_margin" android:text="@string/in_2016_on_gaana" style="@style/header_scroller" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="@dimen/sliding_player_height" android:layout_height="@dimen/sliding_player_height" android:layout_marginLeft="@dimen/activity_vertical_margin_small" android:layout_marginRight="@dimen/activity_vertical_margin_small" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_vertical_margin_small" android:src="@drawable/musical_note" />
+            <TextView android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/yim_2016_5_billion" style="@style/grid_caption" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/yim_2016_songs_played" style="@style/item_text_second_line" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="@dimen/sliding_player_height" android:layout_height="@dimen/sliding_player_height" android:layout_marginLeft="@dimen/activity_vertical_margin_small" android:layout_marginRight="@dimen/activity_vertical_margin_small" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_vertical_margin_small" android:src="@drawable/vinyl" />
+            <TextView android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/yim_2016_2_million" style="@style/grid_caption" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/yim_2016_playlist_created" style="@style/item_text_second_line" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="@dimen/sliding_player_height" android:layout_height="@dimen/sliding_player_height" android:layout_marginLeft="@dimen/activity_vertical_margin_small" android:layout_marginRight="@dimen/activity_vertical_margin_small" android:layout_weight="1.0">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_vertical_margin_small" android:src="@drawable/fill_2_fill_4_mask" />
+            <TextView android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/yim_2016_200_countries" style="@style/grid_caption" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/yim_2016_played_in" style="@style/item_text_second_line" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

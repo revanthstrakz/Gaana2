@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?revamped_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCornerImageView android:id="@id/image_created_by_rect" android:layout_width="@dimen/revamped_header_artwork_size" android:layout_height="@dimen/revamped_header_artwork_size" android:src="?placeholder_album_artwork" android:scaleType="centerCrop" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="@dimen/dp18" android:textStyle="bold" android:textColor="?first_line_color" android:ellipsize="end" android:id="@id/created_title" android:paddingTop="@dimen/dp1" android:paddingBottom="@dimen/dp1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dp20" android:layout_marginTop="@dimen/dp5" android:layout_marginRight="@dimen/dp20" android:maxLines="1" android:layout_below="@id/image_created_by_rect" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="@dimen/dp12" android:textColor="?second_line_color" android:ellipsize="end" android:id="@id/created_desc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_4dp" android:maxLines="1" android:layout_below="@id/created_title" android:layout_centerHorizontal="true" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/created_bottom_info" android:background="@drawable/bg_revamped_fav_count" android:visibility="gone" android:layout_width="@dimen/dp140" android:layout_height="@dimen/dp30" android:layout_alignBottom="@id/image_created_by_rect" android:layout_centerHorizontal="true">
+        <TextView android:textSize="@dimen/dp12" android:textColor="@color/white_alfa_70" android:id="@id/fav_count" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

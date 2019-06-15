@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?tab_layout_background_attr" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="@dimen/onboard_player_bottom_control_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/playlist_title" android:layout_width="fill_parent" android:layout_height="100.0dip">
+        <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16.0dip" android:layout_marginRight="16.0dip" android:layout_toLeftOf="@id/playerButtonLayout" android:layout_alignParentLeft="true">
+            <TextView android:id="@id/onboard_player_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="22.0dip" android:text="@string/default_onboard_player_text" android:maxLines="2" style="@style/text_medium" />
+            <TextView android:textSize="14.0sp" android:textColor="?first_line_color_50" android:id="@id/onboard_player_timer_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/playing_in" android:layout_below="@id/onboard_player_text" />
+        </LinearLayout>
+        <RelativeLayout android:gravity="center" android:id="@id/playerButtonLayout" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginRight="16.0dip" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <View android:id="@id/divider" android:background="?gaana_listview_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/playlist_title" />
+    <RelativeLayout android:background="#ffff0000" android:layout_width="fill_parent" android:layout_height="@dimen/player_bottom_control_height" android:layout_below="@id/divider">
+        <com.library.controls.CrossFadeImageView android:id="@id/button_up" android:layout_width="@dimen/player_bottom_control_height" android:layout_height="@dimen/player_bottom_control_height" android:layout_marginTop="2.0dip" android:src="?chevron_up" android:scaleType="centerInside" android:layout_alignParentLeft="true" />
+        <TextView android:gravity="center" android:id="@id/gaana_playlist_title" android:layout_width="wrap_content" android:layout_height="@dimen/player_bottom_control_height" android:layout_marginLeft="16.0dip" android:text="@string/default_onboard_player_bottom_text" android:layout_toRightOf="@id/button_up" style="@style/text_medium" />
+        <TextView android:textSize="14.0sp" android:textColor="?first_line_color_50" android:gravity="center" android:id="@id/do_not_play_button" android:layout_width="wrap_content" android:layout_height="@dimen/player_bottom_control_height" android:layout_marginRight="16.0dip" android:text="@string/default_onboard_player_stop_text" android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</RelativeLayout>

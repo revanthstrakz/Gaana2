@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?coachmarksshadow" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="horizontal" android:id="@id/searchTabs" android:paddingTop="@dimen/abc_action_bar_default_height_material" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/activity_horizontal_margin" android:weightSum="2.0">
+        <TextView android:id="@id/tab_gaana_search" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" />
+        <TextView android:id="@id/tab_mymusic_search" android:background="@color/gaana_plus_settings_sync_quality_value" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/my_music" android:layout_weight="1.0" style="@style/search_tabs_text_highlight_style" />
+    </LinearLayout>
+    <View android:id="@id/centreView" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_centerInParent="true" />
+    <ImageView android:id="@id/circluarView" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="16.0dip" android:src="?ic_action_up" android:layout_above="@id/textViewPhoneMusic" android:layout_below="@id/searchTabs" android:layout_alignLeft="@id/centreView" android:layout_alignStart="@id/centreView" />
+    <TextView android:textAppearance="?android:textAppearanceMedium" android:textStyle="bold" android:textColor="?first_line_color" android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="16.0dip" android:text="@string/search_downloads" android:layout_below="@id/circluarView" android:layout_alignLeft="@id/centreView" android:layout_alignStart="@id/centreView" />
+</RelativeLayout>

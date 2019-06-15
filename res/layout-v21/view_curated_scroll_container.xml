@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/layout_horzontal_scroll_container" android:layout_width="fill_parent" android:layout_height="wrap_content" android:splitMotionEvents="false"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="top" android:orientation="horizontal" android:id="@id/select_all_container" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/grid_line_padding" android:layout_marginRight="15.0dip" android:layout_alignParentTop="true" android:layout_alignParentRight="true">
+        <TextView android:textSize="14.0sp" android:gravity="top" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/opt_select_all" android:inputType="textCapSentences" style="@style/horizontal_list_first_line" />
+        <ImageView android:id="@id/select_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="9.0dip" app:srcCompat="?unselect_icon" />
+    </LinearLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/header_text_container" android:background="?list_selector" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/grid_line_padding" android:layout_alignParentLeft="true">
+        <TextView android:textStyle="bold" android:ellipsize="end" android:gravity="center|left" android:id="@id/header.text" android:paddingLeft="@dimen/activity_horizontal_margin_login" android:paddingRight="80.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxLines="1" style="@style/header_scroller" />
+        <TextView android:textSize="12.0sp" android:ellipsize="end" android:gravity="center|left" android:id="@id/header.text.subtitle" android:paddingLeft="@dimen/activity_horizontal_margin_login" android:paddingRight="80.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="3.0dip" android:maxLines="1" style="@style/list_download_item_second_line" />
+    </LinearLayout>
+    <com.views.HorizontalRecyclerView android:id="@id/horizontal_list_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp18" android:layout_marginBottom="@dimen/activity_horizontal_margin_half" android:layout_below="@id/header_text_container" android:nestedScrollingEnabled="false" />
+</RelativeLayout>

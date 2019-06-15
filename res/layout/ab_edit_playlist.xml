@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?tab_layout_background_attr" android:layout_width="fill_parent" android:layout_height="@dimen/abc_action_bar_default_height_material"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/btnLeft" android:background="?list_selector" android:padding="@dimen/action_bar_menu_back_padding" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" android:layout_above="@id/view1" android:layout_centerVertical="true" app:srcCompat="?actionbar_cancel" />
+    <TextView android:id="@id/tvCurrentViewTag" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/opt_add_to_playlist" android:layout_toRightOf="@id/btnLeft" style="@style/text_regular" />
+    <EditText android:textColor="?first_line_color" android:id="@id/etPlaylistName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toLeftOf="@id/btnRight" android:layout_toRightOf="@id/btnLeft" android:layout_below="@id/tvCurrentViewTag" style="@style/text_regular" />
+    <View android:id="@id/view1" android:background="#ffd0d0d0" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_alignParentBottom="true" />
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/btnRight" android:background="?list_selector" android:padding="@dimen/action_bar_menu_back_padding" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:src="?ic_action_forward" android:scaleType="centerInside" android:layout_above="@id/view1" android:layout_alignParentRight="true" android:layout_centerVertical="true" />
+    <View android:background="?gaana_listview_divider" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_alignParentBottom="true" />
+</RelativeLayout>

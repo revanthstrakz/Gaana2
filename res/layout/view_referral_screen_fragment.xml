@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" sothree:theme="@style/ActionBar" xmlns:sothree="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android" />
+    <ScrollView android:background="?gaana_background" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_below="@id/main_toolbar">
+        <RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <FrameLayout android:id="@id/first_child" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.library.controls.CrossFadeImageView android:layout_width="fill_parent" android:layout_height="wrap_content" android:src="?referral_screen_bg" android:scaleType="fitXY" />
+                <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="57.0dip">
+                    <TextView android:textSize="16.0sp" android:textColor="?colorAccent" android:gravity="center" android:id="@id/page_desc" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/referral_screen_desc1" />
+                    <TextView android:textSize="14.0sp" android:textColor="?invite_code_color" android:layout_gravity="center" android:id="@id/invite_code_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50.0dip" android:text="@string/your_invite_code_is" android:layout_below="@id/page_desc" />
+                    <TextView android:textSize="16.0sp" android:layout_gravity="center" android:id="@id/invite_code" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="7.0dip" android:text="@string/no_referral_code_avail" android:layout_below="@id/invite_code_title" />
+                </LinearLayout>
+            </FrameLayout>
+            <com.library.controls.CrossFadeImageView android:id="@id/whtsapp_share" android:background="?selector_btn_global_bg_grey" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="41.0dip" android:src="?referral_whatsapp_large" android:layout_below="@id/first_child" android:layout_centerHorizontal="true" />
+            <com.library.controls.CrossFadeImageView android:id="@id/facebook_share" android:background="?selector_btn_global_bg_grey" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dip" android:src="?referral_facebook_large" android:layout_below="@id/whtsapp_share" android:layout_centerHorizontal="true" />
+            <com.library.controls.CrossFadeImageView android:id="@id/messenger_share" android:background="?selector_btn_global_bg_grey" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dip" android:src="?referral_messanger_large" android:layout_below="@id/facebook_share" android:layout_centerHorizontal="true" />
+            <TextView android:textSize="14.0sp" android:textColor="?invite_code_color" android:gravity="center" android:id="@id/more_share_options" android:paddingTop="4.0dip" android:paddingBottom="4.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="19.0dip" android:text="@string/more_share_options" android:layout_below="@id/messenger_share" />
+            <LinearLayout android:gravity="center" android:id="@id/gaana_plus_period_view" android:background="?gaana_plus_period_color" android:paddingTop="24.0dip" android:paddingBottom="24.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="18.0dip" android:layout_below="@id/more_share_options">
+                <TextView android:textSize="20.0sp" android:textColor="?gaana_plus_period_elements_color" android:id="@id/free_gaanaplus_earned_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/free_earned_days" />
+                <TextView android:textSize="20.0sp" android:textColor="?gaana_plus_period_elements_color" android:id="@id/free_gaanaplus_earned_period" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/default_free_gaanaplus_period" android:layout_toRightOf="@id/free_gaanaplus_earned_msg" />
+            </LinearLayout>
+            <RelativeLayout android:orientation="horizontal" android:id="@id/activity_and_referred_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="26.0dip" android:layout_below="@id/gaana_plus_period_view">
+                <TextView android:textSize="14.0sp" android:textColor="?gaana_plus_period_elements_color" android:id="@id/view_activity_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="37.0dip" android:text="@string/activity" android:layout_alignParentLeft="true" />
+                <TextView android:textSize="14.0sp" android:textColor="?gaana_plus_period_elements_color" android:id="@id/view_get_referred" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="37.0dip" android:text="@string/get_referred" android:layout_alignParentRight="true" />
+            </RelativeLayout>
+            <TextView android:textSize="10.0sp" android:textColor="?gaana_terms_n_condition_color" android:id="@id/view_terms_and_conditions" android:paddingTop="16.0dip" android:paddingBottom="16.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="37.0dip" android:layout_marginBottom="6.0dip" android:text="@string/terms_and_conditions_simple_text" android:layout_below="@id/activity_and_referred_layout" android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

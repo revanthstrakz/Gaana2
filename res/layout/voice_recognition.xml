@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.constraint.ConstraintLayout android:background="?album_fab_container_background" android:paddingBottom="@dimen/search_tabs_height" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <FrameLayout android:id="@id/voice_close_layout" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <com.views.CustomCircularProgressBar android:id="@id/voice_recog_close_progress" android:padding="@dimen/hs__listPreferredItemPaddingBottom" android:visibility="gone" android:layout_width="@dimen/settings_image_size" android:layout_height="@dimen/settings_image_size" app:layout_constraintLeft_toLeftOf="parent" />
+            <ImageView android:id="@id/voice_recog_close" android:padding="@dimen/hs__msgPreferredItemPaddingLeft" android:layout_width="@dimen/settings_image_size" android:layout_height="@dimen/settings_image_size" app:layout_constraintLeft_toLeftOf="parent" app:srcCompat="?voice_close_attr" />
+        </FrameLayout>
+        <ImageView android:id="@id/voice_recog_help_img" android:padding="@dimen/horizontal_margin" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintRight_toRightOf="parent" app:srcCompat="?actionbar_search_typed_array" />
+        <TextView android:textColor="?custom_uber_theme" android:id="@id/voice_recog_help_text" android:padding="@dimen/horizontal_margin" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back" android:textAllCaps="true" app:layout_constraintRight_toRightOf="parent" />
+        <TextView android:textSize="20.0sp" android:textColor="?first_line_color" android:gravity="center_horizontal" android:id="@id/voice_recog_command" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/horizontal_margin" android:layout_marginTop="@dimen/dp20" android:layout_marginRight="@dimen/horizontal_margin" app:layout_constraintTop_toBottomOf="@id/voice_close_layout" />
+    </android.support.constraint.ConstraintLayout>
+    <FrameLayout android:id="@id/voice_interact_container" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ViewStub android:id="@id/voice_interact_play" android:layout="@layout/voice_interaction_play" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <ViewStub android:id="@id/voice_interact_scroll" android:layout="@layout/voice_interaction_scroll" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <include android:id="@id/voice_interact_actions" android:visibility="gone" layout="@layout/voice_recog_actions" />
+    <ProgressBar android:id="@id/voice_recog_progress" android:background="?tab_layout_background_attr" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="3.0dip" android:indeterminate="true" android:indeterminateDuration="2000" android:minHeight="3.0dip" style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+    <android.support.constraint.ConstraintLayout android:id="@id/voice_recog_mic_overlay" android:background="@drawable/voice_recog_bg_gradient" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <ImageView android:id="@id/voice_recog_button_mic" android:background="@drawable/circle_bg" android:layout_width="@dimen/listitem_height" android:layout_height="@dimen/listitem_height" android:layout_marginBottom="@dimen/horizontal_margin" android:scaleType="center" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" app:srcCompat="@drawable/vector_icon_voice_red" />
+        <TextView android:textColor="@color/white" android:gravity="center_horizontal" android:id="@id/voice_recog_type_search" android:paddingTop="@dimen/activity_horizontal_margin_small" android:paddingBottom="@dimen/activity_horizontal_margin_small" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/voice_recog_button_mic" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

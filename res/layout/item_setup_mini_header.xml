@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:id="@id/main_layout" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <CheckBox android:theme="?my_check_box" android:id="@id/checkbox_setup" android:visibility="visible" android:clickable="true" android:layout_width="wrap_content" android:layout_height="@dimen/item_two_line_bar_height" android:layout_marginLeft="@dimen/grid_line_padding" android:layout_marginTop="7.0dip" />
+    <TextView android:gravity="center_horizontal" android:id="@id/txt_header" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="15.0dip" android:text="ajsdashd" android:layout_toRightOf="@id/checkbox_setup" />
+    <TextView android:gravity="center_horizontal" android:id="@id/txt_header_below" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="22.0dip" android:text="teasda" android:layout_toRightOf="@id/checkbox_setup" android:layout_below="@id/txt_header" />
+    <View android:id="@id/item_divider" android:background="?gaana_listview_divider" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_alignParentBottom="true" />
+</RelativeLayout>

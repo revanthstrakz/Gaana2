@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?selector_btn_global_bg_grey" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/dimen_5dp" android:layout_marginTop="@dimen/dp10" android:layout_marginRight="5.0dip" android:layout_marginBottom="@dimen/dp10"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.RecyclerView android:orientation="horizontal" android:id="@id/tags_recyclerview" android:paddingLeft="13.0dip" android:paddingRight="13.0dip" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/select_all_layout" android:background="?selector_btn_global_bg_grey" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent">
+        <CheckBox android:theme="?my_check_box" android:id="@id/select_all_checkbox" android:clickable="true" android:layout_width="wrap_content" android:layout_height="@dimen/item_two_line_bar_height" android:layout_marginLeft="@dimen/grid_line_padding" />
+        <TextView android:id="@id/select_all_text" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="@dimen/item_two_line_bar_height_half" android:layout_marginRight="@dimen/radius_progress" android:text="@string/select_all" android:singleLine="true" style="@style/list_item_first_line" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView android:id="@id/songs_recyclerview" android:clipToPadding="false" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/action_details" android:layout_width="fill_parent" android:layout_height="@dimen/abc_action_bar_default_height_material"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/menu_icon" android:background="?list_selector" android:visibility="gone" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?actionbar_back" />
+    <TextView android:textColor="@android:color/white" android:gravity="center_vertical" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="fill_parent" android:maxLines="1" style="@style/list_download_item_first_line" />
+</LinearLayout>

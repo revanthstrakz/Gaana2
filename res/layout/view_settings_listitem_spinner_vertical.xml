@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textStyle="bold" android:gravity="center|left" android:id="@id/tvHeader" android:background="?selector_btn_global_bg_white" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_weight="1.0" style="@style/text_medium" />
+    <Spinner android:gravity="right" android:layout_gravity="right" android:id="@id/spinner" android:background="@color/transparent_color" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_alignParentLeft="true" />
+</LinearLayout>

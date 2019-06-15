@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?view_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?gaana_social_feed_card_bg" android:layout_width="fill_parent" android:layout_height="?actionBarSize" />
+    <LinearLayout android:orientation="vertical" android:id="@id/llParentHeader" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1.0">
+        <FrameLayout android:id="@id/edit_social_settings_card" android:background="?view_foreground" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="16.0dip" android:elevation="8.0dip">
+            <ImageView android:layout_gravity="end" android:id="@id/crossButton" android:layout_width="24.0dip" android:layout_height="24.0dip" android:layout_margin="6.0dip" app:srcCompat="?cancel_cross" />
+            <LinearLayout android:layout_gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip">
+                <TextView android:textStyle="bold" android:textColor="?first_line_color" android:layout_gravity="center_horizontal" android:id="@id/social_settings_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/manage_social_settings" style="@style/Base.TextAppearance.AppCompat.Small" />
+                <TextView android:textSize="14.0sp" android:textColor="@color/first_line_color" android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/social_settings_btn" android:background="@drawable/card_button_back_darkred" android:layout_width="150.0dip" android:layout_height="30.0dip" android:layout_marginTop="10.0dip" android:text="@string/edit_settings" android:textAllCaps="true" />
+            </LinearLayout>
+        </FrameLayout>
+        <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/social_feed_layout_progressbar" android:layout_below="@id/edit_social_settings_card">
+                <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <android.support.v7.widget.RecyclerView android:id="@id/recycler_view" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+                    <RelativeLayout android:gravity="center" android:id="@id/no_feeds_available" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                        <ImageView android:id="@id/empty_feed_image" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="?no_activity" android:layout_centerHorizontal="true" />
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_vertical_margin" android:text="No Feeds are available...." android:layout_below="@id/empty_feed_image" android:layout_centerHorizontal="true" style="@style/list_download_item_first_line" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </android.support.v4.widget.SwipeRefreshLayout>
+            <com.library.controls.CircularImageView android:layout_gravity="bottom|center|right" android:id="@id/fab" android:visibility="visible" android:clickable="true" android:layout_width="60.0dip" android:layout_height="60.0dip" android:layout_marginRight="18.0dip" android:layout_marginBottom="50.0dip" android:src="@drawable/people_search" android:scaleType="centerCrop" android:elevation="6.0dip" />
+        </FrameLayout>
+        <ProgressBar android:id="@id/social_feed_layout_progressbar" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progress_bar" android:layout_alignParentBottom="true" style="@style/Base.Widget.AppCompat.ProgressBar" />
+        <ProgressBar android:id="@id/social_feed_layout_intial_progressbar" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+        <TextView android:textColor="@color/first_line_color" android:id="@id/social_feed_new_stories" android:background="@drawable/rounded_button_follow" android:paddingLeft="@dimen/dp20" android:paddingTop="@dimen/activity_horizontal_padding_login" android:paddingRight="@dimen/dp20" android:paddingBottom="@dimen/activity_horizontal_padding_login" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/vertical_margin" android:text="@string/new_stories" android:drawableLeft="@drawable/arrow" android:layout_below="@id/edit_social_settings_card" android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/bottomAdSlot" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+</LinearLayout>

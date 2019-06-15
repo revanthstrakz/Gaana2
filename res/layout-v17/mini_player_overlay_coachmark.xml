@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:gravity="bottom|center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:background="@color/black_alfa_80" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="86.0dip" />
+    <LinearLayout android:gravity="bottom|center" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginBottom="56.0dip">
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:textSize="12.0sp" android:textColor="@color/white" android:id="@id/coachmarkText" android:background="@drawable/search_bg_coach_red" android:paddingLeft="@dimen/dimen_30dp" android:paddingTop="@dimen/dimen_10dp" android:paddingRight="@dimen/dimen_30dp" android:paddingBottom="@dimen/dimen_10dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mini_player_overlay_coachmark_text" />
+            <ImageView android:id="@id/search_chevron" android:layout_width="20.0dip" android:layout_height="20.0dip" android:layout_marginTop="-8.0dip" android:rotation="180.0" android:textAlignment="center" app:srcCompat="@drawable/vector_chevron_top_orange" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="80.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.CardView android:layout_gravity="center_horizontal" android:layout_width="320.0dip" android:layout_height="fill_parent" app:cardCornerRadius="4.0dip">
+        <com.library.controls.CrossFadeImageView android:id="@id/carouselImage" android:layout_width="320.0dip" android:layout_height="80.0dip" android:scaleType="fitXY" app:show_loading_states="true" />
+    </android.support.v7.widget.CardView>
+</FrameLayout>

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gaana.view.CustomTextView android:gravity="center|left" android:id="@id/headerText" android:background="?selector_btn_global_bg_white" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height" android:layout_alignParentLeft="true" android:layout_centerVertical="true" app:drawableLeftCompat="?arrow_right" style="@style/text_regular"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" />

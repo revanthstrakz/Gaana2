@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="?view_foreground" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/menu_icon" android:background="?list_selector" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?actionbar_back" />
+    <TextView android:id="@id/actionbar_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" android:layout_toRightOf="@id/menu_icon" android:layout_centerVertical="true" style="@style/text_title" />
+    <ImageView android:id="@id/accept_icon" android:background="?list_selector" android:padding="@dimen/abc_action_bar_subtitle_bottom_margin" android:visibility="visible" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" android:layout_alignParentRight="true" app:srcCompat="?ic_action_accept" />
+    <android.support.v7.widget.SearchView android:id="@id/searchview_actionbar" android:background="?list_selector" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/abc_action_button_min_width" android:layout_marginRight="6.0dip" android:layout_alignParentRight="true" app:iconifiedByDefault="true" />
+</RelativeLayout>

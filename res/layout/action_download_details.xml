@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:id="@id/action_download_details" android:layout_width="fill_parent" android:layout_height="@dimen/abc_action_bar_default_height_material"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/menu_icon" android:background="?list_selector" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?actionbar_back" />
+    <TextView android:layout_gravity="center_vertical" android:id="@id/action_title" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/abc_action_button_min_width" android:text="@string/downloads" style="@style/text_title" />
+    <LinearLayout android:layout_gravity="right" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/abc_action_button_min_width" android:layout_marginRight="6.0dip">
+        <ImageView android:id="@id/menu_add_playlist" android:paddingLeft="8.0dip" android:paddingRight="8.0dip" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="fill_parent" app:srcCompat="?vector_add_btn_attr" />
+        <ImageView android:id="@id/menu_sort_option" android:background="?list_selector" android:layout_width="40.0dip" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" android:tint="?first_line_color" app:srcCompat="@drawable/vector_ic_sort_option" />
+        <ImageView android:id="@id/menu_option" android:background="?list_selector" android:layout_width="40.0dip" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?actionbar_option" />
+    </LinearLayout>
+</FrameLayout>

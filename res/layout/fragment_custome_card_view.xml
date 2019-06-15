@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_gravity="center" android:id="@id/dialogContainer" android:background="@color/black_alfa_60" android:paddingTop="?actionBarSize" android:paddingBottom="@dimen/dimen_45dp" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:gravity="center" android:id="@id/custom_card_vw_background" android:padding="15.0dip" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:layout_centerInParent="true">
+        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/white" android:gravity="center" android:id="@id/suggestion_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="117.0dip" />
+        <TextView android:textSize="15.0sp" android:textColor="@color/white" android:gravity="center" android:id="@id/gaanaPlusButton" android:background="@drawable/rounded_corner_tab_white_red" android:layout_width="200.0dip" android:layout_height="36.0dip" android:layout_marginTop="31.0dip" android:layout_below="@id/suggestion_text" android:layout_centerInParent="true" />
+        <TextView android:textSize="14.0sp" android:textStyle="bold" android:textColor="@color/white_alfa_70" android:gravity="center" android:id="@id/learn_more_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="11.0dip" android:layout_below="@id/gaanaPlusButton" android:layout_centerInParent="true" />
+        <TextView android:textSize="12.0sp" android:textColor="@color/white_alfa_40" android:gravity="center" android:id="@id/term_apply_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="40.0dip" android:layout_below="@id/learn_more_text" android:layout_alignParentLeft="true" />
+    </RelativeLayout>
+</RelativeLayout>

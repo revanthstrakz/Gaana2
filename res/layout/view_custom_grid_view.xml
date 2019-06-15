@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textStyle="bold" android:gravity="center_vertical" android:id="@id/headerText" android:paddingLeft="@dimen/activity_horizontal_margin" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height" style="@style/text_medium" />
+    <ProgressBar android:id="@id/llParentLoading" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/grid_swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_above="@id/llCustomListViewTabs" android:layout_below="@id/headerText">
+        <android.support.v7.widget.RecyclerView android:id="@id/listViewHome" android:focusable="true" android:focusableInTouchMode="true" android:scrollbars="none" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" android:listSelector="?list_selector" android:drawSelectorOnTop="true" android:cacheColorHint="@android:color/transparent" android:divider="@null" android:choiceMode="singleChoice" android:layout_above="@id/llCustomListViewTabs" android:footerDividersEnabled="true" android:splitMotionEvents="false" android:dividerPadding="0.0dip" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout android:orientation="vertical" android:id="@id/llCustomListViewTabs" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" />
+</RelativeLayout>

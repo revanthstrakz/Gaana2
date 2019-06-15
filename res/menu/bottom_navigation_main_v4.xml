@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/vector_bottom_nav_home" android:enabled="true" android:id="@id/action_home" android:title="@string/home" app:showAsAction="always" />
+    <item android:icon="@drawable/vector_icon_voice_black" android:enabled="true" android:id="@id/action_search" android:title="@string/search_title" app:showAsAction="always" />
+    <item android:enabled="true" android:id="@id/action_social_dummy" android:visible="false" android:title="" app:showAsAction="always" />
+    <item android:icon="@drawable/vector_bottom_nav_radio" android:enabled="true" android:id="@id/action_radio" android:title="@string/radio" app:showAsAction="always" />
+    <item android:icon="@drawable/vector_bottom_nav_mymusic" android:enabled="true" android:id="@id/action_my_music" android:title="@string/mymusic" app:showAsAction="always" />
+</menu>

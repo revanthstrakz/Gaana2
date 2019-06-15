@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:id="@id/search_new_voice_card_container" android:background="?tab_layout_background_attr" android:paddingLeft="@dimen/dp20" android:paddingTop="@dimen/hs__listPreferredItemPaddingBottom" android:paddingRight="@dimen/dp20" android:paddingBottom="@dimen/hs__listPreferredItemPaddingBottom" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_behavior="@string/appbar_scrolling_view_behavior"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:background="?two_shade_circle_bg" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="?voice_icon_attr" />
+    </FrameLayout>
+    <LinearLayout android:orientation="vertical" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/voice_try_gaana_assistant" style="@style/list_download_item_first_line" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/voice_try_gaana_assistant_sub" style="@style/list_download_item_second_line" />
+    </LinearLayout>
+</LinearLayout>

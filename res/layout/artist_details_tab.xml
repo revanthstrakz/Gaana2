@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:background="?gaana_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textStyle="bold" android:textColor="@color/gaana.red" android:gravity="center" android:id="@id/albumsButton" android:background="?selector_btn_global" android:visibility="visible" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/middle_tab_height" android:scaleType="center" android:text="@string/tab_artist_album" android:layout_weight="1.0" style="@style/list_download_item_first_line" />
+    <TextView android:textStyle="bold" android:textColor="?first_line_color" android:gravity="center" android:id="@id/songsButton" android:background="?selector_btn_global" android:visibility="visible" android:clickable="true" android:layout_width="fill_parent" android:layout_height="@dimen/middle_tab_height" android:scaleType="center" android:text="@string/tab_artist_songs" android:layout_weight="1.0" style="@style/list_download_item_first_line" />
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="@dimen/dp140" android:layout_height="@dimen/dp140">
+        <ImageView android:layout_width="@dimen/dp50" android:layout_height="@dimen/dp50" android:layout_marginBottom="@dimen/dp5" app:srcCompat="@drawable/vec_download_songs" />
+        <TextView android:textSize="15.0sp" android:textColor="?first_line_color" android:gravity="center_horizontal" android:id="@id/txt_download" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp5" android:text="@string/download_songs" />
+    </LinearLayout>
+</RelativeLayout>

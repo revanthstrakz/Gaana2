@@ -1,0 +1,43 @@
+package com.facebook.ads.internal.s.d;
+
+public final class b {
+    public static int A = 1802;
+    public static int B = 1803;
+    public static int C = 1804;
+    public static int D = 1805;
+    public static int E = 1901;
+    public static int F = 1902;
+    public static int G = 2001;
+    public static int H = 2101;
+    public static int I = 2102;
+    public static int J = 2103;
+    public static int K = 2104;
+    public static int L = 2201;
+    public static int M = 2202;
+    public static int a = 0;
+    public static int b = 1001;
+    public static int c = 1002;
+    public static int d = 1003;
+    public static int e = 1004;
+    public static int f = 1005;
+    public static int g = 1006;
+    public static int h = 1007;
+    public static int i = 1008;
+    public static int j = 1009;
+    public static int k = 1101;
+    public static int l = 1201;
+    public static int m = 1202;
+    public static int n = 1203;
+    public static int o = 1204;
+    public static int p = 1301;
+    public static int q = 1302;
+    public static int r = 1303;
+    public static int s = 1304;
+    public static int t = 1401;
+    public static int u = 1501;
+    public static int v = 1502;
+    public static int w = 1601;
+    public static int x = 1602;
+    public static int y = 1701;
+    public static int z = 1801;
+}

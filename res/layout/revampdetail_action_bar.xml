@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@id/action_details" android:layout_width="fill_parent" android:layout_height="@dimen/abc_action_bar_default_height_material"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:id="@id/menu_back" android:visibility="visible" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?actionbar_back" />
+        <ImageView android:id="@id/menu_close" android:visibility="gone" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?cancel_cross" />
+    </RelativeLayout>
+    <TextView android:textColor="?first_line_color" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/title" android:layout_width="0.0dip" android:layout_height="fill_parent" android:maxLines="1" android:layout_weight="1.0" style="@style/list_download_item_first_line" />
+    <ImageView android:id="@id/searchview_actionbar" android:background="?list_selector" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?actionbar_search" />
+    <ImageView android:id="@id/overflow_menu" android:visibility="visible" android:layout_width="@dimen/abc_action_button_min_width" android:layout_height="@dimen/abc_action_bar_default_height_material" android:scaleType="centerInside" app:srcCompat="?ic_action_overflow" />
+</LinearLayout>

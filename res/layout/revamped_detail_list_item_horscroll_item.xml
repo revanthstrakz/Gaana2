@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_5dp" android:layout_marginRight="@dimen/dimen_10dp" android:layout_marginBottom="@dimen/dimen_5dp"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.RoundedCornerImageView android:id="@id/item_image" android:background="?placeholder_album_artwork" android:layout_width="100.0dip" android:layout_height="100.0dip" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <TextView android:textSize="@dimen/dp12" android:textColor="?first_line_color" android:ellipsize="end" android:id="@id/item_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_8dp" android:maxWidth="100.0dip" android:maxLines="2" android:layout_below="@id/item_image" />
+</RelativeLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.library.controls.CrossFadeImageView android:id="@id/details_artwork_footer" android:layout_width="fill_parent" android:layout_height="216.0dip" android:src="?opp_first_line_color" android:scaleType="centerCrop" android:layout_alignParentBottom="true" />
+        <View android:background="?opp_first_line_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/details_artwork_footer" android:layout_below="@id/details_artwork" />
+        <View android:background="?persona_footer_gradient" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignTop="@id/details_artwork_footer" android:layout_alignBottom="@id/details_artwork_footer" />
+        <android.support.design.widget.CoordinatorLayout android:id="@id/coordinator_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <com.collapsible_header.ObservableRecyclerView android:id="@id/scroll" android:clipChildren="false" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            <ProgressBar android:layout_gravity="center" android:id="@id/progressbar" android:visibility="gone" android:layout_width="50.0dip" android:layout_height="50.0dip" android:indeterminate="false" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+        </android.support.design.widget.CoordinatorLayout>
+        <com.library.controls.CrossFadeImageView android:id="@id/details_artwork" android:layout_width="fill_parent" android:layout_height="142.0dip" android:src="?opp_first_line_color" android:scaleType="centerCrop" android:layout_alignParentTop="true" />
+        <View android:background="?event_header_gradient" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignTop="@id/details_artwork" android:layout_alignBottom="@id/details_artwork" />
+        <TextView android:id="@id/album_title" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="6.0dip" android:layout_alignBottom="@id/details_artwork" style="@style/list_download_item_first_line" />
+        <android.support.v7.widget.Toolbar android:theme="@style/GaanaAppTheme" android:id="@id/main_toolbar" android:background="@android:color/transparent" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" />
+        <LinearLayout android:layout_gravity="top" android:orientation="vertical" android:id="@id/llNativeAdSlot1" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginTop="?actionBarSize" />
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

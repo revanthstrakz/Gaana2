@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:paddingLeft="@dimen/page_left_right_margin" android:paddingTop="@dimen/dimen_40dp" android:paddingRight="@dimen/page_left_right_margin" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/fragment_edu_back" android:layout_width="@dimen/dp24" android:layout_height="@dimen/dp24" app:srcCompat="?cancel_cross" />
+    <ImageView android:paddingTop="@dimen/dimen_35dp" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:srcCompat="@drawable/gaana_logo_in_widget" />
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="?vector_hd_quality" />
+        <TextView android:textSize="@dimen/dp20" android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_small" android:text="@string/cool" style="@style/text_title" />
+        <TextView android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_small" android:text="@string/favorite_music_in_hd_quality" style="@style/text_regular" />
+        <android.support.v7.widget.SwitchCompat android:theme="@style/SCBSwitch" android:id="@id/edu_hd_switch" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_40dp" />
+    </LinearLayout>
+    <TextView android:textSize="10.0sp" android:textColor="?first_line_color_30" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_small" android:layout_marginBottom="@dimen/dp20" android:text="@string/turn_off_playback_settings" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" />
+</android.support.constraint.ConstraintLayout>

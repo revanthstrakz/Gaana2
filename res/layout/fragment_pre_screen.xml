@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:background="?view_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.AppBarLayout android:background="@null" android:layout_width="fill_parent" android:layout_height="wrap_content" app:elevation="@dimen/dimen_0dp">
+        <FrameLayout android:paddingTop="@dimen/status_bar_height" android:layout_width="fill_parent" android:layout_height="@dimen/home_action_bar_height" android:layout_marginLeft="@dimen/page_left_right_margin" app:layout_scrollFlags="enterAlways|scroll" app:theme="@style/ActionBar">
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_icon" android:layout_width="55.0dip" android:layout_height="24.0dip" android:src="?gaana_logo_attr" />
+            <ImageView android:layout_gravity="center|right" android:id="@id/menu_back" android:paddingRight="@dimen/page_left_right_margin" android:layout_width="wrap_content" android:layout_height="@dimen/activity_horizontal_margin_large" android:scaleType="centerInside" app:srcCompat="?actionbar_back" />
+        </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <android.support.v7.widget.RecyclerView android:id="@id/prescreen_recycler_view" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</android.support.design.widget.CoordinatorLayout>

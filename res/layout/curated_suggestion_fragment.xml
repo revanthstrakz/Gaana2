@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:orientation="vertical" android:id="@id/llParentBotom" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_footer_height" android:layout_alignParentBottom="true" />
+    <ImageView android:id="@id/overlay_bottom" android:background="?event_footer_gradient" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_footer_height" android:layout_alignParentBottom="true" />
+    <android.support.design.widget.CoordinatorLayout android:id="@id/coordinator_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.library.controls.CrossFadeImageView android:id="@id/details_artwork" android:background="?placeholder_album_artwork_large" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_header_height" android:scaleType="centerCrop" android:layout_alignParentTop="true" />
+        <View android:id="@id/overlay_background" android:background="?event_header_gradient" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="150.0dip" android:layout_marginTop="150.0dip" android:layout_alignParentTop="true" />
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <com.collapsible_header.ObservableRecyclerView android:id="@id/recycler_view" android:descendantFocusability="blocksDescendants" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+            <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="@color/first_line_color" android:gravity="center" android:id="@id/download_songs_view" android:background="@color/gaana.red" android:padding="16.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="3.0dip" android:text="@string/download_songs_message" />
+        </LinearLayout>
+        <View android:id="@id/overlay" android:background="?album_header_background" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="@dimen/img_occasion_header_height" />
+        <android.support.v7.widget.Toolbar android:theme="@style/GaanaAppTheme" android:id="@id/main_toolbar" android:background="@android:color/transparent" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" />
+    </android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

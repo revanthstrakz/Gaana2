@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?grid_text_bar_bgcolor" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="wrap_content" custom:layout_collapseMode="parallax" custom:layout_scrollFlags="enterAlways|scroll"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:custom="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="horizontal" android:id="@id/llHeaderView" android:layout_width="fill_parent" android:layout_height="100.0dip" android:weightSum="3.5">
+        <com.library.controls.CircularImageView android:layout_gravity="center_vertical" android:id="@id/imgArtwork" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="2.0" custom:border="true" />
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="2.5" />
+        <ImageView android:gravity="center" android:id="@id/followAction" android:background="?selector_btn_global" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10.0dip" android:src="@drawable/profile_follow" />
+    </LinearLayout>
+    <View android:layout_gravity="center_vertical" android:background="#ffcccccc" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_below="@id/llHeaderView" />
+</RelativeLayout>

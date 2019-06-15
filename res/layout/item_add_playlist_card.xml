@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView android:layout_width="fill_parent" android:layout_height="60.0dip" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:layout_marginBottom="10.0dip" app:cardCornerRadius="2.0dip" app:cardElevation="0.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.gaana.view.CustomTextView android:textColor="?first_line_color" android:gravity="center" android:layout_gravity="center" android:id="@id/txt_header" android:layout_width="wrap_content" android:layout_height="fill_parent" android:text="@string/create_new_playlist" android:drawablePadding="5.0dip" android:textAllCaps="true" app:drawableLeftCompat="@drawable/vector_add_more_song" style="@style/text_regular" />
+</android.support.v7.widget.CardView>

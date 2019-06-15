@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:id="@id/header" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="22.0dip" android:typeface="sans" android:textStyle="normal" android:textColor="#ffffffff" android:gravity="center_vertical" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:text="@string/offline_mode" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip">
+        <TextView android:textSize="16.0dip" android:typeface="sans" android:textStyle="normal" android:textColor="#ff000000" android:gravity="center" android:id="@id/textView1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:text="@string/msg_offline_reminder" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip">
+        <Button android:id="@id/buttonOk" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/dl_msg_ok_caps" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

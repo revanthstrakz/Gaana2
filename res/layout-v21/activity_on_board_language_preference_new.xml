@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/parent_ll_layout" android:background="?onboard_lang_pref_background_attr" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:gravity="center" android:id="@id/txt_skip" android:padding="5.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_marginRight="10.0dip" android:text="@string/skip_text" android:layout_alignParentRight="true" style="?lang_pref_skip_txt_color_attr" />
+    <TextView android:textSize="34.0sp" android:gravity="center" android:id="@id/pref_header_text" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_below="@id/txt_skip" style="?onboard_lang_pref_header_txt_attr" />
+    <ProgressBar android:id="@id/lp_progress_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progress_bar" android:layout_centerInParent="true" style="?android:progressBarStyleInverse" />
+    <LinearLayout android:gravity="center" android:id="@id/btn_background" android:background="@drawable/lang_submit_bg_shape" android:layout_width="fill_parent" android:layout_height="80.0dip" android:layout_alignParentBottom="true">
+        <Button android:gravity="center" android:id="@id/btn_all_done" android:background="@drawable/shape_continue_btn" android:padding="@dimen/dimen_0dp" android:layout_width="200.0dip" android:layout_height="40.0dip" android:text="@string/language_preference_submit" android:layout_centerHorizontal="true" android:elevation="3.0dip" style="?onboard_lang_pref_submit_attr" />
+    </LinearLayout>
+    <ListView android:gravity="center" android:id="@id/list_view" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="34.0dip" android:layout_above="@id/btn_background" android:layout_below="@id/pref_header_text" />
+    <View android:id="@id/dummy_shadow" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_alignBottom="@id/list_view" />
+</RelativeLayout>

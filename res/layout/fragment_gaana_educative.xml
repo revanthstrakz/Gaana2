@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:paddingLeft="@dimen/page_left_right_margin" android:paddingRight="@dimen/page_left_right_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_large">
+        <ImageView android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" app:srcCompat="@drawable/vector_gaana_icon" />
+        <ImageView android:layout_gravity="center_vertical" android:id="@id/fragment_edu_back" android:layout_width="@dimen/dp24" android:layout_height="@dimen/dp24" app:srcCompat="?cancel_cross" />
+    </FrameLayout>
+    <TextView android:textSize="@dimen/dimen_20sp" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_medium" android:text="@string/congratulations" style="@style/text_title" />
+    <TextView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginTop="@dimen/dp40" android:layout_marginRight="@dimen/activity_horizontal_margin" android:text="@string/you_get" style="@style/text_regular" />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:layout_marginTop="@dimen/activity_horizontal_margin_small" android:layout_marginRight="@dimen/activity_horizontal_margin">
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="@integer/int_1">
+            <ImageView android:layout_gravity="center_horizontal" android:layout_width="@dimen/dp30" android:layout_height="@dimen/dp30" app:srcCompat="?vector_downloadround" />
+            <TextView android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp40" android:text="@string/free_downloads" style="@style/text_small" />
+        </FrameLayout>
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="@integer/int_1">
+            <ImageView android:layout_gravity="center_horizontal" android:layout_width="@dimen/dp30" android:layout_height="@dimen/dp30" app:srcCompat="?vector_nowifi" />
+            <TextView android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp40" android:text="@string/play_without_internet" style="@style/text_small" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/fragment_edu_noads" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="@integer/int_1">
+            <ImageView android:layout_gravity="center_horizontal" android:layout_width="@dimen/dp30" android:layout_height="@dimen/dp30" app:srcCompat="?vector_noads_round" />
+            <TextView android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp40" android:text="@string/ad_free_music" style="@style/text_small" />
+        </FrameLayout>
+    </LinearLayout>
+    <TextView android:textSize="@dimen/dimen_20sp" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/page_left_right_margin" android:layout_marginTop="@dimen/dimen_40dp" android:layout_marginRight="@dimen/page_left_right_margin" android:text="@string/tap_download_icons_songs" style="@style/text_regular" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin" android:layout_weight="@integer/int_1">
+        <android.support.v7.widget.RecyclerView android:id="@id/gaana_edu_recycler" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        <ProgressBar android:layout_gravity="center" android:id="@id/fragment_edu_progress_bar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progress_bar" style="?android:progressBarStyleInverse" />
+    </FrameLayout>
+    <TextView android:textSize="@dimen/dimen_15_sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/download_more_songs" android:background="@drawable/red_rounded_button" android:paddingLeft="@dimen/dimen_40dp" android:paddingTop="@dimen/activity_horizontal_margin_small" android:paddingRight="@dimen/dimen_40dp" android:paddingBottom="@dimen/activity_horizontal_margin_small" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin_large" android:layout_marginBottom="@dimen/activity_horizontal_margin_large" android:text="@string/download_more_songs" />
+</LinearLayout>

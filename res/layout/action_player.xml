@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="@dimen/abc_action_bar_default_height_material"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:layout_gravity="center_vertical" android:id="@id/menu_icon" android:background="?list_selector" android:padding="@dimen/queue_expand_cancel_button_padding" android:layout_width="@dimen/player_menu_icon_height" android:layout_height="@dimen/player_menu_icon_height" android:scaleType="centerInside" app:srcCompat="?actionbar_cancel" />
+    <LinearLayout android:gravity="center_vertical" android:layout_gravity="center_vertical" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:ellipsize="end" android:gravity="left" android:id="@id/trackText" android:paddingLeft="@dimen/grid_line_padding_half" android:paddingRight="@dimen/grid_line_padding_half" android:layout_width="fill_parent" android:layout_height="wrap_content" android:scrollHorizontally="false" android:singleLine="true" style="@style/list_download_item_first_line" />
+        <TextView android:ellipsize="end" android:gravity="left" android:id="@id/albumText" android:paddingLeft="@dimen/grid_line_padding_half" android:paddingRight="@dimen/grid_line_padding_half" android:layout_width="wrap_content" android:layout_height="wrap_content" android:scrollHorizontally="false" android:singleLine="true" style="@style/list_download_item_second_line" />
+    </LinearLayout>
+</LinearLayout>

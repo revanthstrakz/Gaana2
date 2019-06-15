@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/divider1" android:background="#ffd2d2d2" android:layout_width="fill_parent" android:layout_height="1.0dip" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/textlayout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/divider1">
+        <TextView android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:text="From" android:layout_weight="1.0" />
+        <View android:background="#ffd2d2d2" android:layout_width="2.0dip" android:layout_height="fill_parent" />
+        <TextView android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:text="To" android:layout_weight="1.0" />
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@id/spinnerlayout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@id/textlayout">
+        <Spinner android:entries="@array/schedule_time_slots" android:id="@id/spinner1" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" android:dropDownWidth="100.0dip" />
+        <View android:background="#ffd2d2d2" android:layout_width="2.0dip" android:layout_height="fill_parent" />
+        <Spinner android:entries="@array/schedule_time_slots" android:id="@id/spinner2" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" android:dropDownWidth="100.0dip" />
+    </LinearLayout>
+    <View android:background="#ffd2d2d2" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="16.0dip" android:layout_below="@id/spinnerlayout" />
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textStyle="bold" android:ellipsize="end" android:gravity="center" android:background="?list_selector" android:layout_width="fill_parent" android:layout_height="@dimen/grid_single_line_bar_height" style="@style/header_scroller" />
+    <android.support.v7.widget.RecyclerView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_marginRight="8.0dip" />
+</LinearLayout>

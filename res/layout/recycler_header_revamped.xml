@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/ll_header_container" android:background="?revamped_bg_color" android:layout_width="fill_parent" android:layout_height="@dimen/dp27"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textSize="18.0dip" android:textColor="?first_line_color" android:layout_gravity="bottom" android:id="@id/text_download_all" android:layout_width="wrap_content" android:layout_height="@dimen/dp24" android:layout_marginLeft="@dimen/dp20" android:layout_marginBottom="@dimen/dp2" android:text="@string/download_album" android:layout_weight="4.0" />
+    <ImageView android:layout_gravity="bottom|center|right" android:id="@id/btn_action_download" android:layout_width="@dimen/dp24" android:layout_height="@dimen/dp24" android:layout_marginRight="@dimen/dp20" android:layout_marginBottom="@dimen/dimen_4dp" android:layout_weight="1.0" app:srcCompat="?moreoptions_download" />
+</LinearLayout>

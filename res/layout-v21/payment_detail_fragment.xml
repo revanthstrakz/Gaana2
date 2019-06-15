@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="?payment_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" android:elevation="6.0dip" sothree:layout_scrollFlags="enterAlways|scroll" sothree:theme="@style/ActionBar"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sothree="http://schemas.android.com/apk/res-auto" />
+    <ScrollView android:id="@id/scrollView" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:id="@id/offer_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <TextView android:textStyle="bold" android:layout_gravity="center_horizontal" android:id="@id/offer_msg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:text="@string/offer_message" style="@style/list_download_item_first_line" />
+                <TextView android:textSize="14.0sp" android:layout_gravity="center_horizontal" android:id="@id/terms_conditions_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dip" android:layout_marginBottom="8.0dip" android:text="@string/terms_and_conditions" style="@style/list_download_item_first_line" />
+            </LinearLayout>
+            <TextView android:textSize="20.0sp" android:layout_gravity="center_horizontal" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16.0dip" android:text="@string/choose_payment_option" style="@style/list_download_item_first_line" />
+            <TextView android:textSize="16.0sp" android:layout_gravity="center_horizontal" android:id="@id/coupon_applied_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:text="@string/coupon_applied_successfully" style="@style/list_download_item_second_line" />
+            <LinearLayout android:orientation="vertical" android:id="@id/product_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout android:orientation="vertical" android:id="@id/coupon_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:padding="16.0dip" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textStyle="bold" android:layout_gravity="right" android:id="@id/img_cancel_skip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/skip_text" style="?onboard_skip_txt" />
+    <ImageView android:layout_gravity="center_horizontal" android:id="@id/gaana_logo" android:layout_width="95.0dip" android:layout_height="32.0dip" android:layout_marginTop="19.0dip" android:src="@drawable/gaana_logo_in_widget" />
+    <TextView android:layout_gravity="center_horizontal" android:id="@id/onboard_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="25.0dip" android:text="@string/onboard_login_title" style="?onboard_title_txt" />
+    <com.views.CustomButtonView android:layout_gravity="center_horizontal" android:id="@id/phone_login_button" android:background="?phone_button_border" android:layout_width="250.0dip" android:layout_height="40.0dip" android:layout_marginTop="100.0dip" android:text="@string/onboard_phone_text" style="?login_button" />
+    <TextView android:layout_gravity="center_horizontal" android:id="@id/continue_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="40.0dip" android:text="@string/continue_text" style="?continue_txt" />
+    <LinearLayout android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+        <ImageButton android:id="@id/rl_google_btn" android:background="?email_icon_shape" android:layout_width="50.0dip" android:layout_height="50.0dip" android:src="@drawable/google_icon" />
+        <ImageButton android:id="@id/rl_fb_btn" android:background="@drawable/shape_login_fb_icon" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="40.0dip" android:src="@drawable/facebook_logo" />
+        <ImageButton android:id="@id/email_login" android:background="?email_icon_shape" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginLeft="40.0dip" android:src="?email_icon_login" />
+    </LinearLayout>
+</LinearLayout>

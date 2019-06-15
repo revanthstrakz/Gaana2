@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:background="@color/white" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minWidth="500.0dip">
+        <ProgressBar android:layout_gravity="center" android:id="@id/spinner" android:layout_width="wrap_content" android:layout_height="wrap_content" style="?android:progressBarStyle" />
+        <TextView android:textSize="14.0sp" android:textColor="@color/first_line_color_white" android:layout_gravity="center" android:id="@id/loading" android:paddingTop="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <SeekBar android:id="@id/progress" android:paddingLeft="0.0dip" android:paddingRight="0.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="2.0dip" android:progressDrawable="@drawable/layer_seekbar" android:thumb="@drawable/thumb_image" android:thumbOffset="0.0dip" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/titleandbuttons" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_weight="1.0">
+                <TextView android:textSize="14.0sp" android:textColor="@color/first_line_color_white" android:ellipsize="end" android:id="@id/line1" android:paddingTop="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textSize="14.0sp" android:textColor="@color/second_line_color_white" android:ellipsize="end" android:id="@id/line2" android:paddingTop="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <ImageView android:layout_gravity="center_vertical" android:id="@id/playpause" android:padding="5.0dip" android:layout_width="35.0dip" android:layout_height="35.0dip" android:layout_marginLeft="16.0dip" android:src="@drawable/miniplayer_play" android:onClick="playPauseClicked" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

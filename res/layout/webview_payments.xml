@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:background="?first_line_color" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <android.support.v7.widget.Toolbar android:id="@id/main_tool" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" sothree:theme="@style/ActionBar"
+      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:sothree="http://schemas.android.com/apk/res-auto" />
+    <FrameLayout android:id="@id/fullscreen_custom_content" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="?actionBarSize" />
+    <LinearLayout android:id="@id/linearlayout" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="?actionBarSize">
+        <WebView android:id="@id/webView" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </LinearLayout>
+    <ProgressBar android:layout_gravity="center" android:id="@id/progress_loader" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@android:style/Widget.ProgressBar.Inverse" />
+</FrameLayout>

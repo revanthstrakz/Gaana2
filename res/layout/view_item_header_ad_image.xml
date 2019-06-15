@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:clickable="true" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CrossFadeImageView android:id="@id/discoverTagImg" android:layout_width="fill_parent" android:layout_height="180.0dip" android:scaleType="centerCrop" android:adjustViewBounds="true" app:show_loading_states="true" />
+    <com.gaana.view.CustomTextView android:textAppearance="@style/discover_text_Style" android:gravity="center_vertical" android:id="@id/discoverTagName" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:text="@string/discover" android:drawablePadding="@dimen/grid_line_padding_half" android:layout_centerVertical="true" />
+</RelativeLayout>

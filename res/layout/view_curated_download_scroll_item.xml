@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/rl_empty_item_view" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout android:id="@id/imgProductIcon_frame" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <com.library.controls.CrossFadeImageView android:id="@id/imgProductIcon" android:layout_width="@dimen/home_playlist_width_height" android:layout_height="@dimen/home_playlist_width_height" android:scaleType="centerCrop" app:show_loading_states="true" />
+        <ImageView android:layout_gravity="center|right|top" android:id="@id/select_icon" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:layout_marginRight="5.0dip" app:srcCompat="@drawable/vector_download_completed_disabled_white" />
+    </FrameLayout>
+    <TextView android:ellipsize="end" android:gravity="center|left|top" android:id="@id/tvTopHeading" android:paddingTop="@dimen/grid_line_padding" android:paddingRight="@dimen/grid_line_padding" android:paddingBottom="@dimen/grid_line_padding" android:layout_width="@dimen/home_playlist_width_height" android:layout_height="wrap_content" android:maxLines="2" android:minLines="2" android:layout_below="@id/imgProductIcon_frame" android:layout_alignLeft="@id/imgProductIcon_frame" android:layout_alignRight="@id/imgProductIcon_frame" style="@style/text_regular" />
+    <TextView android:ellipsize="end" android:gravity="left" android:id="@id/tvBottomHeading" android:visibility="gone" android:layout_width="@dimen/home_playlist_width_height" android:layout_height="wrap_content" android:maxLines="1" style="@style/item_text_second_line" />
+    <View android:background="?grid_item_selector" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignLeft="@id/imgProductIcon_frame" android:layout_alignTop="@id/imgProductIcon_frame" android:layout_alignRight="@id/imgProductIcon_frame" android:layout_alignBottom="@id/imgProductIcon_frame" />
+</RelativeLayout>

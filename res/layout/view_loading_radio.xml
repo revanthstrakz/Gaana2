@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gaana.view.item.SquareLinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="@dimen/home_header_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:indeterminateDrawable="@drawable/progress_bar" style="?android:progressBarStyleInverse" />
+    <TextView android:textColor="?second_line_color" android:id="@id/tvTrackName" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin" style="@style/black_bold_16" />
+    <TextView android:textColor="?second_line_color" android:id="@id/tvAlbumName" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_horizontal_margin" style="@style/black_bold_14" />
+</com.gaana.view.item.SquareLinearLayout>

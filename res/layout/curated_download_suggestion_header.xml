@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <View android:layout_width="fill_parent" android:layout_height="16.0dip" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="15.0dip" android:layout_marginRight="15.0dip">
+        <ImageView android:id="@id/cross_big_curated" android:background="@drawable/selector_btn_global" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:tint="?first_line_color" android:layout_alignParentLeft="true" app:srcCompat="@drawable/ic_cross_close" />
+        <TextView android:textSize="20.0sp" android:textStyle="bold" android:textColor="?first_line_color" android:gravity="center" android:paddingTop="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/curated_download_suggestion_first_line" android:layout_centerHorizontal="true" />
+        <ImageView android:id="@id/tick_big_curated" android:background="@drawable/selector_btn_global" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:tint="?first_line_color" android:layout_alignParentRight="true" app:srcCompat="@drawable/ic_tick_done" />
+    </RelativeLayout>
+    <TextView android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp10" android:text="@string/curated_download_suggestion_second_line_darwin" style="@style/text_regular" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/ll_download_all" android:background="?revamped_bg_color" android:layout_width="fill_parent" android:layout_height="27.0dip" android:layout_marginTop="25.0dip">
+        <TextView android:textSize="16.0dip" android:textColor="?first_line_color" android:layout_gravity="bottom" android:id="@id/text_download_all" android:layout_width="wrap_content" android:layout_height="@dimen/dp24" android:layout_marginLeft="16.0dip" android:layout_marginBottom="2.0dip" android:text="@string/download_all_songs" android:layout_weight="4.0" />
+        <ImageView android:layout_gravity="bottom|center|right" android:id="@id/btn_download_all" android:layout_width="@dimen/dp24" android:layout_height="@dimen/dp24" android:layout_marginBottom="2.0dip" android:layout_weight="1.0" app:srcCompat="?moreoptions_download" />
+    </LinearLayout>
+    <View android:layout_width="fill_parent" android:layout_height="10.0dip" />
+</LinearLayout>

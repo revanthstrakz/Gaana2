@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:id="@id/cast_menu_home">
+        <item android:id="@id/media_route_menu_item" android:title="Cast gaana" app:actionProviderClass="android.support.v7.app.MediaRouteActionProvider" app:showAsAction="always" />
+        <item android:icon="?actionbar_search_typed_array" android:id="@id/searchview_actionbar" android:title="@string/search" app:showAsAction="always" />
+        <item android:icon="?actionbar_video_feed" android:id="@id/video_feed_action_bar" android:title="Video Feed" app:showAsAction="always" />
+        <item android:icon="?vector_ic_settings_attr" android:id="@id/settings_actionbar" android:title="@string/settings" app:showAsAction="always" />
+    </group>
+</menu>

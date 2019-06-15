@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout android:orientation="vertical" android:background="?item_popup_background_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content" app:behavior_peekHeight="400.0dip" app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+        <android.support.v7.widget.AppCompatTextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="?first_line_color_55" android:gravity="center_vertical" android:id="@id/title" android:background="?item_popup_background_color" android:layout_width="wrap_content" android:layout_height="@dimen/item_two_line_bar_height_text" android:layout_marginLeft="@dimen/activity_horizontal_margin" android:text="@string/share_using" />
+        <ListView android:layout_gravity="center_horizontal" android:id="@id/share_options_list" android:layout_width="fill_parent" android:layout_height="wrap_content" android:divider="@null" android:dividerHeight="0.0dip" android:layout_below="@id/title" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

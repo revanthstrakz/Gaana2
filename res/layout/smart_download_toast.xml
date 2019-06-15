@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/rootLayout" android:background="@color/cb_nb_background" android:layout_width="340.0dip" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="@color/new_gaana_red" android:gravity="center" android:id="@id/action_button" android:layout_width="wrap_content" android:layout_height="40.0dip" android:layout_marginRight="@dimen/dimen_20dp" android:text="@string/settings" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:textAllCaps="true" />
+    <TextView android:textSize="@dimen/dimen_14sp" android:textColor="@color/white" android:id="@id/description" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/dimen_15dp" android:text="@string/smart_download_toast_text" android:layout_toLeftOf="@id/action_button" />
+</RelativeLayout>

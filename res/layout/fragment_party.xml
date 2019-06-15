@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.library.controls.CrossFadeImageView android:id="@id/fragment_party_header" android:layout_width="fill_parent" android:layout_height="@dimen/juke_party_header_height" android:scaleType="centerCrop" app:show_loading_states="true" />
+    <View android:id="@id/fragment_party_header_overlay" android:background="?view_background" android:layout_width="fill_parent" android:layout_height="@dimen/juke_party_header_height" android:alpha="0.0" />
+    <android.support.v4.widget.SwipeRefreshLayout android:id="@id/swipe_refresh_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.collapsible_header.ObservableRecyclerView android:id="@id/party_main_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <LinearLayout android:layout_gravity="bottom|center" android:orientation="vertical" android:id="@id/bottom_ad_banner" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="50.0dip" />
+    <View android:id="@id/toolbar_bg" android:background="?view_foreground" android:layout_width="fill_parent" android:layout_height="@dimen/actionbar_height" android:alpha="0.0" />
+    <android.support.v7.widget.Toolbar android:id="@id/fragment_party_toolbar" android:layout_width="fill_parent" android:layout_height="@dimen/actionbar_height">
+        <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:id="@id/fragment_party_back" android:paddingLeft="@dimen/activity_horizontal_margin" android:layout_width="wrap_content" android:layout_height="fill_parent" app:srcCompat="?actionbar_back" />
+            <LinearLayout android:layout_gravity="right" android:paddingLeft="@dimen/dp2" android:paddingTop="@dimen/dp2" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/dp2" android:layout_width="wrap_content" android:layout_height="@dimen/dimen_26dp">
+                <ImageView android:id="@id/fragment_party_qr" android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="?vector_ic_qr_attr" />
+                <ImageView android:gravity="center" android:id="@id/share_icon" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="24.0dip" android:src="?share_icon_share_new" />
+            </LinearLayout>
+        </FrameLayout>
+    </android.support.v7.widget.Toolbar>
+</FrameLayout>
