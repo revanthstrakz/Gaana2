@@ -50,14 +50,14 @@ public class f {
         }
     };
 
-    public interface a {
-        void a(int i);
-    }
-
     public interface b {
         void onCancelListner();
 
         void onOkListner(String str);
+    }
+
+    public interface a {
+        void a(int i);
     }
 
     public interface c {

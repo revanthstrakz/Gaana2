@@ -97,7 +97,7 @@ public final class CredentialRequest extends AbstractSafeParcelable {
                 this.zzaa = new String[0];
             }
             if (this.zzz || this.zzaa.length != 0) {
-                return new CredentialRequest(this);
+                return new CredentialRequest(this, null);
             }
             throw new IllegalStateException("At least one authentication method must be specified");
         }
@@ -187,5 +187,9 @@ public final class CredentialRequest extends AbstractSafeParcelable {
         SafeParcelWriter.writeInt(parcel, 1000, this.zzu);
         SafeParcelWriter.writeBoolean(parcel, 8, this.zzag);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
+    }
+
+    /* synthetic */ CredentialRequest(Builder builder, zzf zzf) {
+        this(builder);
     }
 }

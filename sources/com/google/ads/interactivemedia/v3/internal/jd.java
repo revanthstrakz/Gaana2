@@ -72,6 +72,16 @@ public class jd implements com.google.ads.interactivemedia.v3.internal.je.a {
         void a(String str, jf jfVar, List<Float> list, SortedSet<Float> sortedSet, boolean z);
     }
 
+    public interface d {
+        void a(AdErrorType adErrorType, int i, String str);
+
+        void a(AdErrorType adErrorType, AdErrorCode adErrorCode, String str);
+
+        void a(c cVar);
+
+        void a(Map<String, CompanionData> map);
+    }
+
     public static class c {
         public final AdEventType a;
         public final com.google.ads.interactivemedia.v3.impl.data.b b;
@@ -92,16 +102,6 @@ public class jd implements com.google.ads.interactivemedia.v3.internal.je.a {
         public int hashCode() {
             return lz.a(this, new String[0]);
         }
-    }
-
-    public interface d {
-        void a(AdErrorType adErrorType, int i, String str);
-
-        void a(AdErrorType adErrorType, AdErrorCode adErrorCode, String str);
-
-        void a(c cVar);
-
-        void a(Map<String, CompanionData> map);
     }
 
     public interface e {

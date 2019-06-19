@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public final class zzgs {
-    private static boolean zzabu = false;
-    private static boolean zzabv = false;
+    private static boolean zzabu;
+    private static boolean zzabv;
     private int streamType;
     private final zzgh zzabw = null;
     private final zzhb zzabx;

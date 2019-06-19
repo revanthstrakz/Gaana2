@@ -6,8 +6,8 @@ import android.os.Build.VERSION;
 
 @SuppressLint({"NewApi"})
 public class API4 {
-    private static boolean a = false;
-    private static boolean b = false;
+    private static boolean a;
+    private static boolean b;
 
     public static boolean isPackageInstalledFromGooglePlayStore(Context context) {
         if (a) {

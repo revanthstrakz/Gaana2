@@ -58,6 +58,14 @@ public abstract class bg extends bo {
     private boolean y;
     private ByteBuffer[] z;
 
+    public interface b {
+        void a(CryptoException cryptoException);
+
+        void a(a aVar);
+
+        void a(String str, long j, long j2);
+    }
+
     public static class a extends Exception {
         public final String a;
         public final boolean b;
@@ -106,14 +114,6 @@ public abstract class bg extends bo {
             stringBuilder.append(i);
             return stringBuilder.toString();
         }
-    }
-
-    public interface b {
-        void a(CryptoException cryptoException);
-
-        void a(a aVar);
-
-        void a(String str, long j, long j2);
     }
 
     public bg(bn bnVar, bf bfVar, bv<bx> bvVar, boolean z, Handler handler, b bVar) {

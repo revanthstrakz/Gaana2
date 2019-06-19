@@ -90,20 +90,6 @@ public abstract class r<T extends IInterface> implements t {
         }
     }
 
-    final class e implements ServiceConnection {
-        e() {
-        }
-
-        public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            r.this.b(iBinder);
-        }
-
-        public final void onServiceDisconnected(ComponentName componentName) {
-            r.this.c = null;
-            r.this.h();
-        }
-    }
-
     protected final class c extends b<Boolean> {
         public final YouTubeInitializationResult b;
         public final IBinder c;
@@ -143,6 +129,20 @@ public abstract class r<T extends IInterface> implements t {
 
         public final void a(String str, IBinder iBinder) {
             r.this.a.sendMessage(r.this.a.obtainMessage(1, new c(str, iBinder)));
+        }
+    }
+
+    final class e implements ServiceConnection {
+        e() {
+        }
+
+        public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            r.this.b(iBinder);
+        }
+
+        public final void onServiceDisconnected(ComponentName componentName) {
+            r.this.c = null;
+            r.this.h();
         }
     }
 

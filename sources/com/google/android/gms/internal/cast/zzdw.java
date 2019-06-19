@@ -6,7 +6,7 @@ import com.google.android.gms.common.internal.Preconditions;
 import java.util.Locale;
 
 public final class zzdw {
-    private static boolean zzzn = false;
+    private static boolean zzzn;
     private final String mTag;
     private final boolean zzzo;
     private boolean zzzp;

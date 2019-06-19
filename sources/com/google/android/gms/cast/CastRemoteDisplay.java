@@ -29,16 +29,6 @@ public final class CastRemoteDisplay {
     }
 
     @Deprecated
-    public interface CastRemoteDisplaySessionCallbacks {
-        void onRemoteDisplayEnded(Status status);
-    }
-
-    @Deprecated
-    public interface CastRemoteDisplaySessionResult extends Result {
-        Display getPresentationDisplay();
-    }
-
-    @Deprecated
     public static final class CastRemoteDisplayOptions implements HasOptions {
         final CastDevice zzaj;
         final CastRemoteDisplaySessionCallbacks zzbc;
@@ -75,6 +65,16 @@ public final class CastRemoteDisplay {
         /* synthetic */ CastRemoteDisplayOptions(Builder builder, zzo zzo) {
             this(builder);
         }
+    }
+
+    @Deprecated
+    public interface CastRemoteDisplaySessionCallbacks {
+        void onRemoteDisplayEnded(Status status);
+    }
+
+    @Deprecated
+    public interface CastRemoteDisplaySessionResult extends Result {
+        Display getPresentationDisplay();
     }
 
     public static final boolean isRemoteDisplaySdkSupported(Context context) {

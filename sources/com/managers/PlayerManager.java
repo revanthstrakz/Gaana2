@@ -28,9 +28,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class PlayerManager {
-    private static PlayerTrack F = null;
-    public static boolean a = false;
-    public static boolean b = false;
+    private static PlayerTrack F;
+    public static boolean a;
+    public static boolean b;
     private static PlayerManager d;
     private boolean A = false;
     private boolean B = false;

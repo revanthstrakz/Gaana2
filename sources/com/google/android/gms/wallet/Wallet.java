@@ -33,6 +33,27 @@ public final class Wallet {
     private static final WalletObjects zzer = new zzao();
     private static final zzg zzes = new zzan();
 
+    public static abstract class zza<R extends Result> extends ApiMethodImpl<R, zzaf> {
+        public zza(GoogleApiClient googleApiClient) {
+            super(Wallet.API, googleApiClient);
+        }
+
+        @VisibleForTesting
+        /* renamed from: zza */
+        public abstract void doExecute(zzaf zzaf) throws RemoteException;
+    }
+
+    public static abstract class zzb extends zza<Status> {
+        public zzb(GoogleApiClient googleApiClient) {
+            super(googleApiClient);
+        }
+
+        /* Access modifiers changed, original: protected|synthetic */
+        public /* synthetic */ Result createFailedResult(Status status) {
+            return status;
+        }
+    }
+
     public static final class WalletOptions implements HasAccountOptions {
         private final Account account;
         public final int environment;
@@ -104,27 +125,6 @@ public final class Wallet {
 
         /* synthetic */ WalletOptions(Builder builder, zzaq zzaq) {
             this(builder);
-        }
-    }
-
-    public static abstract class zza<R extends Result> extends ApiMethodImpl<R, zzaf> {
-        public zza(GoogleApiClient googleApiClient) {
-            super(Wallet.API, googleApiClient);
-        }
-
-        @VisibleForTesting
-        /* renamed from: zza */
-        public abstract void doExecute(zzaf zzaf) throws RemoteException;
-    }
-
-    public static abstract class zzb extends zza<Status> {
-        public zzb(GoogleApiClient googleApiClient) {
-            super(googleApiClient);
-        }
-
-        /* Access modifiers changed, original: protected|synthetic */
-        public /* synthetic */ Result createFailedResult(Status status) {
-            return status;
         }
     }
 

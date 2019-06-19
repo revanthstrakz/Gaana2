@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class al {
-    public static boolean a = false;
+    public static boolean a;
     private static al b;
     private ArrayList<BusinessObject> c;
     private boolean d;

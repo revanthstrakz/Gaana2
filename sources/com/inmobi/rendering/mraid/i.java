@@ -29,26 +29,6 @@ public class i {
     public RenderView a;
     private a c;
 
-    static final class a extends Handler {
-        private static final String a = "i$a";
-        private WeakReference<RenderView> b;
-
-        public a(Looper looper, RenderView renderView) {
-            super(looper);
-            this.b = new WeakReference(renderView);
-        }
-
-        public final void handleMessage(Message message) {
-            if (message.what == 1) {
-                String str = (String) message.obj;
-                RenderView renderView = (RenderView) this.b.get();
-                if (renderView != null) {
-                    renderView.a(str, "broadcastEvent('vibrateComplete');");
-                }
-            }
-        }
-    }
-
     /* renamed from: com.inmobi.rendering.mraid.i$1 */
     class AnonymousClass1 implements com.inmobi.rendering.InMobiAdActivity.a {
         final /* synthetic */ Context a;
@@ -136,6 +116,26 @@ public class i {
                 contentValues2.put("method", Integer.valueOf(1));
                 contentValues2.put("minutes", Integer.valueOf(i2));
                 contentResolver.insert(Reminders.CONTENT_URI, contentValues2);
+            }
+        }
+    }
+
+    static final class a extends Handler {
+        private static final String a = "i$a";
+        private WeakReference<RenderView> b;
+
+        public a(Looper looper, RenderView renderView) {
+            super(looper);
+            this.b = new WeakReference(renderView);
+        }
+
+        public final void handleMessage(Message message) {
+            if (message.what == 1) {
+                String str = (String) message.obj;
+                RenderView renderView = (RenderView) this.b.get();
+                if (renderView != null) {
+                    renderView.a(str, "broadcastEvent('vibrateComplete');");
+                }
             }
         }
     }

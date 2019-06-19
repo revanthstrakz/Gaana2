@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
 import android.support.annotation.RestrictTo.Scope;
 import androidx.work.BackoffPolicy;
+import androidx.work.OverwritingInputMerger;
 import androidx.work.WorkInfo;
 import androidx.work.WorkInfo.State;
 import androidx.work.b;
@@ -23,7 +24,7 @@ public class j {
     public State b = State.ENQUEUED;
     @NonNull
     public String c;
-    public String d;
+    public String d = OverwritingInputMerger.class.getName();
     @NonNull
     public d e = d.a;
     @NonNull

@@ -25,16 +25,16 @@ public class ListAdapterSectionIndexer extends ListAdapter implements Filterable
     private OnNotificationsCleared mOnNotificationsCleared = null;
     private SearchFilter mSearchFilter = null;
 
+    public interface OnSearchCompleted {
+        void onSearch(ArrayList<BusinessObject> arrayList);
+    }
+
     public interface OnFilterStarted {
         ArrayList<BusinessObject> onFilter(ArrayList<Object> arrayList, String str, boolean z, String str2, String str3, x xVar);
     }
 
     public interface OnNotificationsCleared {
         void notificationsCleared();
-    }
-
-    public interface OnSearchCompleted {
-        void onSearch(ArrayList<BusinessObject> arrayList);
     }
 
     public class SearchFilter extends Filter {

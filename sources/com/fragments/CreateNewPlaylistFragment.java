@@ -330,14 +330,14 @@ public class CreateNewPlaylistFragment extends BaseGaanaFragment implements OnCl
             h.a().a(new TaskListner() {
                 public void onBackGroundTaskCompleted() {
                     ((BaseActivity) context).hideProgressDialog();
-                    switch (CreateNewPlaylistFragment.this.h) {
-                        case SUCCESS:
+                    switch (AnonymousClass6.a[CreateNewPlaylistFragment.this.h.ordinal()]) {
+                        case 1:
                             aj.a().a(context, context.getResources().getString(R.string.Add_TO_PLAYLIST_SUCCESS_MSG));
                             break;
-                        case FAILED:
+                        case 2:
                             aj.a().a(context, context.getResources().getString(R.string.Add_TO_PLAYLIST_FAILURE_MSG));
                             break;
-                        case PLAYLIST_ALREADY_ADDED:
+                        case 3:
                             aj.a().a(context, context.getString(R.string.playlist_already_created));
                             break;
                     }

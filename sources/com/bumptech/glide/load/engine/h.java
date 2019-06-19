@@ -74,6 +74,29 @@ public class h implements com.bumptech.glide.load.engine.b.h.a, j, a {
         }
     }
 
+    private static class c implements d {
+        private final com.bumptech.glide.load.engine.b.a.a a;
+        private volatile com.bumptech.glide.load.engine.b.a b;
+
+        public c(com.bumptech.glide.load.engine.b.a.a aVar) {
+            this.a = aVar;
+        }
+
+        public com.bumptech.glide.load.engine.b.a a() {
+            if (this.b == null) {
+                synchronized (this) {
+                    if (this.b == null) {
+                        this.b = this.a.a();
+                    }
+                    if (this.b == null) {
+                        this.b = new com.bumptech.glide.load.engine.b.b();
+                    }
+                }
+            }
+            return this.b;
+        }
+    }
+
     public static class d {
         private final i<?> a;
         private final com.bumptech.glide.request.g b;
@@ -112,29 +135,6 @@ public class h implements com.bumptech.glide.load.engine.b.h.a, j, a {
         public f(com.bumptech.glide.load.c cVar, m<?> mVar, ReferenceQueue<? super m<?>> referenceQueue) {
             super(mVar, referenceQueue);
             this.a = cVar;
-        }
-    }
-
-    private static class c implements d {
-        private final com.bumptech.glide.load.engine.b.a.a a;
-        private volatile com.bumptech.glide.load.engine.b.a b;
-
-        public c(com.bumptech.glide.load.engine.b.a.a aVar) {
-            this.a = aVar;
-        }
-
-        public com.bumptech.glide.load.engine.b.a a() {
-            if (this.b == null) {
-                synchronized (this) {
-                    if (this.b == null) {
-                        this.b = this.a.a();
-                    }
-                    if (this.b == null) {
-                        this.b = new com.bumptech.glide.load.engine.b.b();
-                    }
-                }
-            }
-            return this.b;
         }
     }
 

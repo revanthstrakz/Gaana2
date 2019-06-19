@@ -72,6 +72,64 @@ class DecodeJob<R> implements com.bumptech.glide.f.a.a.c, com.bumptech.glide.loa
         void a(q<R> qVar, DataSource dataSource);
     }
 
+    private final class b<Z> implements a<Z> {
+        private final DataSource b;
+
+        b(DataSource dataSource) {
+            this.b = dataSource;
+        }
+
+        public q<Z> a(q<Z> qVar) {
+            i iVar;
+            q transform;
+            EncodeStrategy a;
+            Class b = b(qVar);
+            h hVar = null;
+            if (this.b != DataSource.RESOURCE_DISK_CACHE) {
+                i c = DecodeJob.this.a.c(b);
+                iVar = c;
+                transform = c.transform(DecodeJob.this.n, qVar, DecodeJob.this.d, DecodeJob.this.e);
+            } else {
+                transform = qVar;
+                iVar = null;
+            }
+            if (!qVar.equals(transform)) {
+                qVar.e();
+            }
+            if (DecodeJob.this.a.a(transform)) {
+                hVar = DecodeJob.this.a.b(transform);
+                a = hVar.a(DecodeJob.this.g);
+            } else {
+                a = EncodeStrategy.NONE;
+            }
+            h hVar2 = hVar;
+            if (!DecodeJob.this.f.a(DecodeJob.this.a.a(DecodeJob.this.h) ^ 1, this.b, a)) {
+                return transform;
+            }
+            if (hVar2 == null) {
+                throw new NoResultEncoderAvailableException(transform.c().getClass());
+            }
+            com.bumptech.glide.load.c bVar;
+            if (a == EncodeStrategy.SOURCE) {
+                bVar = new b(DecodeJob.this.h, DecodeJob.this.c);
+            } else if (a == EncodeStrategy.TRANSFORMED) {
+                com.bumptech.glide.load.c sVar = new s(DecodeJob.this.h, DecodeJob.this.c, DecodeJob.this.d, DecodeJob.this.e, iVar, b, DecodeJob.this.g);
+            } else {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Unknown strategy: ");
+                stringBuilder.append(a);
+                throw new IllegalArgumentException(stringBuilder.toString());
+            }
+            q<Z> a2 = p.a(transform);
+            DecodeJob.this.b.a(bVar, hVar2, a2);
+            return a2;
+        }
+
+        private Class<Z> b(q<Z> qVar) {
+            return qVar.c().getClass();
+        }
+    }
+
     private static class c<Z> {
         private com.bumptech.glide.load.c a;
         private h<Z> b;
@@ -150,64 +208,6 @@ class DecodeJob<R> implements com.bumptech.glide.f.a.a.c, com.bumptech.glide.loa
 
         private boolean b(boolean z) {
             return (this.c || z || this.b) && this.a;
-        }
-    }
-
-    private final class b<Z> implements a<Z> {
-        private final DataSource b;
-
-        b(DataSource dataSource) {
-            this.b = dataSource;
-        }
-
-        public q<Z> a(q<Z> qVar) {
-            i iVar;
-            q transform;
-            EncodeStrategy a;
-            Class b = b(qVar);
-            h hVar = null;
-            if (this.b != DataSource.RESOURCE_DISK_CACHE) {
-                i c = DecodeJob.this.a.c(b);
-                iVar = c;
-                transform = c.transform(DecodeJob.this.n, qVar, DecodeJob.this.d, DecodeJob.this.e);
-            } else {
-                transform = qVar;
-                iVar = null;
-            }
-            if (!qVar.equals(transform)) {
-                qVar.e();
-            }
-            if (DecodeJob.this.a.a(transform)) {
-                hVar = DecodeJob.this.a.b(transform);
-                a = hVar.a(DecodeJob.this.g);
-            } else {
-                a = EncodeStrategy.NONE;
-            }
-            h hVar2 = hVar;
-            if (!DecodeJob.this.f.a(DecodeJob.this.a.a(DecodeJob.this.h) ^ 1, this.b, a)) {
-                return transform;
-            }
-            if (hVar2 == null) {
-                throw new NoResultEncoderAvailableException(transform.c().getClass());
-            }
-            com.bumptech.glide.load.c bVar;
-            if (a == EncodeStrategy.SOURCE) {
-                bVar = new b(DecodeJob.this.h, DecodeJob.this.c);
-            } else if (a == EncodeStrategy.TRANSFORMED) {
-                com.bumptech.glide.load.c sVar = new s(DecodeJob.this.h, DecodeJob.this.c, DecodeJob.this.d, DecodeJob.this.e, iVar, b, DecodeJob.this.g);
-            } else {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("Unknown strategy: ");
-                stringBuilder.append(a);
-                throw new IllegalArgumentException(stringBuilder.toString());
-            }
-            q<Z> a2 = p.a(transform);
-            DecodeJob.this.b.a(bVar, hVar2, a2);
-            return a2;
-        }
-
-        private Class<Z> b(q<Z> qVar) {
-            return qVar.c().getClass();
         }
     }
 

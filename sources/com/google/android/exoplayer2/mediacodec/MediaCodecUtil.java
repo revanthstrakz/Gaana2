@@ -87,23 +87,6 @@ public final class MediaCodecUtil {
         boolean secureDecodersExplicit();
     }
 
-    private static final class RawAudioCodecComparator implements Comparator<MediaCodecInfo> {
-        private RawAudioCodecComparator() {
-        }
-
-        public int compare(MediaCodecInfo mediaCodecInfo, MediaCodecInfo mediaCodecInfo2) {
-            return scoreMediaCodecInfo(mediaCodecInfo) - scoreMediaCodecInfo(mediaCodecInfo2);
-        }
-
-        private static int scoreMediaCodecInfo(MediaCodecInfo mediaCodecInfo) {
-            String str = mediaCodecInfo.name;
-            if (str.startsWith("OMX.google") || str.startsWith("c2.android")) {
-                return -1;
-            }
-            return (Util.SDK_INT >= 26 || !str.equals("OMX.MTK.AUDIO.DECODER.RAW")) ? 0 : 1;
-        }
-    }
-
     private static final class MediaCodecListCompatV16 implements MediaCodecListCompat {
         public boolean secureDecodersExplicit() {
             return false;
@@ -156,6 +139,23 @@ public final class MediaCodecUtil {
             if (this.mediaCodecInfos == null) {
                 this.mediaCodecInfos = new MediaCodecList(this.codecKind).getCodecInfos();
             }
+        }
+    }
+
+    private static final class RawAudioCodecComparator implements Comparator<MediaCodecInfo> {
+        private RawAudioCodecComparator() {
+        }
+
+        public int compare(MediaCodecInfo mediaCodecInfo, MediaCodecInfo mediaCodecInfo2) {
+            return scoreMediaCodecInfo(mediaCodecInfo) - scoreMediaCodecInfo(mediaCodecInfo2);
+        }
+
+        private static int scoreMediaCodecInfo(MediaCodecInfo mediaCodecInfo) {
+            String str = mediaCodecInfo.name;
+            if (str.startsWith("OMX.google") || str.startsWith("c2.android")) {
+                return -1;
+            }
+            return (Util.SDK_INT >= 26 || !str.equals("OMX.MTK.AUDIO.DECODER.RAW")) ? 0 : 1;
         }
     }
 

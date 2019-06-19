@@ -95,18 +95,6 @@ final class cw {
         }
     }
 
-    private static final class g {
-        private final int a;
-        private final long b;
-        private final int c;
-
-        public g(int i, long j, int i2) {
-            this.a = i;
-            this.b = j;
-            this.c = i2;
-        }
-    }
-
     static final class e implements c {
         private final int a = this.c.s();
         private final int b = this.c.s();
@@ -164,6 +152,18 @@ final class cw {
             }
             this.e = this.a.f();
             return (this.e & PsExtractor.VIDEO_STREAM_MASK) >> 4;
+        }
+    }
+
+    private static final class g {
+        private final int a;
+        private final long b;
+        private final int c;
+
+        public g(int i, long j, int i2) {
+            this.a = i;
+            this.b = j;
+            this.c = i2;
         }
     }
 

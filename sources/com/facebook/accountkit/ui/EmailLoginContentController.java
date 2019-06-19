@@ -48,19 +48,6 @@ final class EmailLoginContentController extends ContentControllerBase implements
     private TextFragment textFragment;
     private TopFragment topFragment;
 
-    enum EmailSourceAppSupplied {
-        NO_APP_SUPPLIED_EMAIL,
-        APP_SUPPLIED_EMAIL_CHANGED,
-        APP_SUPPLIED_EMAIL_USED
-    }
-
-    enum EmailSourceSelected {
-        NO_SELECTABLE_EMAILS,
-        SELECTED_CHANGED,
-        SELECTED_NOT_USED,
-        SELECTED_USED
-    }
-
     public interface OnCompleteListener {
         void onNext(Context context, String str);
     }
@@ -167,6 +154,83 @@ final class EmailLoginContentController extends ContentControllerBase implements
             if (this.nextButton != null) {
                 this.nextButton.setText(getNextButtonTextId());
             }
+        }
+    }
+
+    enum EmailSourceAppSupplied {
+        NO_APP_SUPPLIED_EMAIL,
+        APP_SUPPLIED_EMAIL_CHANGED,
+        APP_SUPPLIED_EMAIL_USED
+    }
+
+    enum EmailSourceSelected {
+        NO_SELECTABLE_EMAILS,
+        SELECTED_CHANGED,
+        SELECTED_NOT_USED,
+        SELECTED_USED
+    }
+
+    public static final class TextFragment extends TextContentFragment {
+        private static final String ACCOUNT_KIT_URL = "https://www.accountkit.com/faq";
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isKeyboardFragment() {
+            return false;
+        }
+
+        public /* bridge */ /* synthetic */ int getContentPaddingBottom() {
+            return super.getContentPaddingBottom();
+        }
+
+        public /* bridge */ /* synthetic */ int getContentPaddingTop() {
+            return super.getContentPaddingTop();
+        }
+
+        public /* bridge */ /* synthetic */ void onActivityCreated(Bundle bundle) {
+            super.onActivityCreated(bundle);
+        }
+
+        public /* bridge */ /* synthetic */ void onCreate(Bundle bundle) {
+            super.onCreate(bundle);
+        }
+
+        public /* bridge */ /* synthetic */ View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+            return super.onCreateView(layoutInflater, viewGroup, bundle);
+        }
+
+        public /* bridge */ /* synthetic */ void onSaveInstanceState(Bundle bundle) {
+            super.onSaveInstanceState(bundle);
+        }
+
+        public /* bridge */ /* synthetic */ void onStart() {
+            super.onStart();
+        }
+
+        public /* bridge */ /* synthetic */ void setContentPaddingBottom(int i) {
+            super.setContentPaddingBottom(i);
+        }
+
+        public /* bridge */ /* synthetic */ void setContentPaddingTop(int i) {
+            super.setContentPaddingTop(i);
+        }
+
+        public /* bridge */ /* synthetic */ void setNextButtonTextProvider(NextButtonTextProvider nextButtonTextProvider) {
+            super.setNextButtonTextProvider(nextButtonTextProvider);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public LoginFlowState getLoginFlowState() {
+            return EmailLoginContentController.LOGIN_FLOW_STATE;
+        }
+
+        /* Access modifiers changed, original: protected */
+        public View createView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
+            return layoutInflater.inflate(R.layout.com_accountkit_fragment_email_login_text, viewGroup, false);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public Spanned getText(String str) {
+            return Html.fromHtml(getString(R.string.com_accountkit_email_login_text, new Object[]{str, AccountKit.getApplicationName(), ACCOUNT_KIT_URL}));
         }
     }
 
@@ -300,70 +364,6 @@ final class EmailLoginContentController extends ContentControllerBase implements
                     this.emailView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
             }
-        }
-    }
-
-    public static final class TextFragment extends TextContentFragment {
-        private static final String ACCOUNT_KIT_URL = "https://www.accountkit.com/faq";
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isKeyboardFragment() {
-            return false;
-        }
-
-        public /* bridge */ /* synthetic */ int getContentPaddingBottom() {
-            return super.getContentPaddingBottom();
-        }
-
-        public /* bridge */ /* synthetic */ int getContentPaddingTop() {
-            return super.getContentPaddingTop();
-        }
-
-        public /* bridge */ /* synthetic */ void onActivityCreated(Bundle bundle) {
-            super.onActivityCreated(bundle);
-        }
-
-        public /* bridge */ /* synthetic */ void onCreate(Bundle bundle) {
-            super.onCreate(bundle);
-        }
-
-        public /* bridge */ /* synthetic */ View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-            return super.onCreateView(layoutInflater, viewGroup, bundle);
-        }
-
-        public /* bridge */ /* synthetic */ void onSaveInstanceState(Bundle bundle) {
-            super.onSaveInstanceState(bundle);
-        }
-
-        public /* bridge */ /* synthetic */ void onStart() {
-            super.onStart();
-        }
-
-        public /* bridge */ /* synthetic */ void setContentPaddingBottom(int i) {
-            super.setContentPaddingBottom(i);
-        }
-
-        public /* bridge */ /* synthetic */ void setContentPaddingTop(int i) {
-            super.setContentPaddingTop(i);
-        }
-
-        public /* bridge */ /* synthetic */ void setNextButtonTextProvider(NextButtonTextProvider nextButtonTextProvider) {
-            super.setNextButtonTextProvider(nextButtonTextProvider);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public LoginFlowState getLoginFlowState() {
-            return EmailLoginContentController.LOGIN_FLOW_STATE;
-        }
-
-        /* Access modifiers changed, original: protected */
-        public View createView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
-            return layoutInflater.inflate(R.layout.com_accountkit_fragment_email_login_text, viewGroup, false);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public Spanned getText(String str) {
-            return Html.fromHtml(getString(R.string.com_accountkit_email_login_text, new Object[]{str, AccountKit.getApplicationName(), ACCOUNT_KIT_URL}));
         }
     }
 

@@ -18,13 +18,13 @@ public class PlaybackControlView extends PlayerControlView {
     }
 
     @Deprecated
-    public interface VisibilityListener extends com.google.android.exoplayer2.ui.PlayerControlView.VisibilityListener {
-    }
-
-    @Deprecated
     private static final class DefaultControlDispatcher extends com.google.android.exoplayer2.DefaultControlDispatcher implements ControlDispatcher {
         private DefaultControlDispatcher() {
         }
+    }
+
+    @Deprecated
+    public interface VisibilityListener extends com.google.android.exoplayer2.ui.PlayerControlView.VisibilityListener {
     }
 
     public PlaybackControlView(Context context) {

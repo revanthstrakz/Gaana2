@@ -94,6 +94,40 @@ public interface HttpDataSource extends DataSource {
         }
     }
 
+    public static final class InvalidContentTypeException extends HttpDataSourceException {
+        public final String contentType;
+
+        public InvalidContentTypeException(String str, DataSpec dataSpec) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Invalid content type: ");
+            stringBuilder.append(str);
+            super(stringBuilder.toString(), dataSpec, 1);
+            this.contentType = str;
+        }
+    }
+
+    public static final class InvalidResponseCodeException extends HttpDataSourceException {
+        public final Map<String, List<String>> headerFields;
+        public final int responseCode;
+        @Nullable
+        public final String responseMessage;
+
+        @Deprecated
+        public InvalidResponseCodeException(int i, Map<String, List<String>> map, DataSpec dataSpec) {
+            this(i, null, map, dataSpec);
+        }
+
+        public InvalidResponseCodeException(int i, @Nullable String str, Map<String, List<String>> map, DataSpec dataSpec) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Response code: ");
+            stringBuilder.append(i);
+            super(stringBuilder.toString(), dataSpec, 1);
+            this.responseCode = i;
+            this.responseMessage = str;
+            this.headerFields = map;
+        }
+    }
+
     public static final class RequestProperties {
         private final Map<String, String> requestProperties = new HashMap();
         private Map<String, String> requestPropertiesSnapshot;
@@ -129,40 +163,6 @@ public interface HttpDataSource extends DataSource {
                 this.requestPropertiesSnapshot = Collections.unmodifiableMap(new HashMap(this.requestProperties));
             }
             return this.requestPropertiesSnapshot;
-        }
-    }
-
-    public static final class InvalidContentTypeException extends HttpDataSourceException {
-        public final String contentType;
-
-        public InvalidContentTypeException(String str, DataSpec dataSpec) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Invalid content type: ");
-            stringBuilder.append(str);
-            super(stringBuilder.toString(), dataSpec, 1);
-            this.contentType = str;
-        }
-    }
-
-    public static final class InvalidResponseCodeException extends HttpDataSourceException {
-        public final Map<String, List<String>> headerFields;
-        public final int responseCode;
-        @Nullable
-        public final String responseMessage;
-
-        @Deprecated
-        public InvalidResponseCodeException(int i, Map<String, List<String>> map, DataSpec dataSpec) {
-            this(i, null, map, dataSpec);
-        }
-
-        public InvalidResponseCodeException(int i, @Nullable String str, Map<String, List<String>> map, DataSpec dataSpec) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Response code: ");
-            stringBuilder.append(i);
-            super(stringBuilder.toString(), dataSpec, 1);
-            this.responseCode = i;
-            this.responseMessage = str;
-            this.headerFields = map;
         }
     }
 

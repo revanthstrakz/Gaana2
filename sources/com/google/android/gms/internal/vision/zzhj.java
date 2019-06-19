@@ -6643,49 +6643,49 @@ final class zzhj<T> implements zzhw<T> {
 
     private static int zza(byte[] bArr, int i, int i2, zzjd zzjd, Class<?> cls, zzei zzei) throws IOException {
         int zzb;
-        switch (zzjd) {
-            case BOOL:
+        switch (zzhk.zzrr[zzjd.ordinal()]) {
+            case 1:
                 zzb = zzeh.zzb(bArr, i, zzei);
                 zzei.zzrq = Boolean.valueOf(zzei.zzrp != 0);
                 return zzb;
-            case BYTES:
+            case 2:
                 return zzeh.zze(bArr, i, zzei);
-            case DOUBLE:
+            case 3:
                 zzei.zzrq = Double.valueOf(zzeh.zzc(bArr, i));
                 return i + 8;
-            case FIXED32:
-            case SFIXED32:
+            case 4:
+            case 5:
                 zzei.zzrq = Integer.valueOf(zzeh.zza(bArr, i));
                 return i + 4;
-            case FIXED64:
-            case SFIXED64:
+            case 6:
+            case 7:
                 zzei.zzrq = Long.valueOf(zzeh.zzb(bArr, i));
                 return i + 8;
-            case FLOAT:
+            case 8:
                 zzei.zzrq = Float.valueOf(zzeh.zzd(bArr, i));
                 return i + 4;
-            case ENUM:
-            case INT32:
-            case UINT32:
+            case 9:
+            case 10:
+            case 11:
                 zzb = zzeh.zza(bArr, i, zzei);
                 zzei.zzrq = Integer.valueOf(zzei.zzro);
                 return zzb;
-            case INT64:
-            case UINT64:
+            case 12:
+            case 13:
                 zzb = zzeh.zzb(bArr, i, zzei);
                 zzei.zzrq = Long.valueOf(zzei.zzrp);
                 return zzb;
-            case MESSAGE:
+            case 14:
                 return zza(zzhs.zzgl().zzf(cls), bArr, i, i2, zzei);
-            case SINT32:
+            case 15:
                 zzb = zzeh.zza(bArr, i, zzei);
                 zzei.zzrq = Integer.valueOf(zzez.zzaq(zzei.zzro));
                 return zzb;
-            case SINT64:
+            case 16:
                 zzb = zzeh.zzb(bArr, i, zzei);
                 zzei.zzrq = Long.valueOf(zzez.zzd(zzei.zzrp));
                 return zzb;
-            case STRING:
+            case 17:
                 return zzeh.zzd(bArr, i, zzei);
             default:
                 throw new RuntimeException("unsupported field type.");

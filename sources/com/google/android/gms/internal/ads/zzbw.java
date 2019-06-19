@@ -14,7 +14,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 final class zzbw {
-    private static boolean zziu = false;
+    private static boolean zziu;
     private static MessageDigest zziv;
     private static final Object zziw = new Object();
     private static final Object zzix = new Object();

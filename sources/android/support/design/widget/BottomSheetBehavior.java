@@ -190,29 +190,6 @@ public class BottomSheetBehavior<V extends View> extends Behavior<V> {
         public abstract void onStateChanged(@NonNull View view, int i);
     }
 
-    private class SettleRunnable implements Runnable {
-        private final int mTargetState;
-        private final View mView;
-
-        SettleRunnable(View view, int i) {
-            this.mView = view;
-            this.mTargetState = i;
-        }
-
-        public void run() {
-            if (BottomSheetBehavior.this.mViewDragHelper == null || !BottomSheetBehavior.this.mViewDragHelper.continueSettling(true)) {
-                BottomSheetBehavior.this.setStateInternal(this.mTargetState);
-            } else {
-                ViewCompat.postOnAnimation(this.mView, this);
-            }
-        }
-    }
-
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface State {
-    }
-
     protected static class SavedState extends AbsSavedState {
         public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
             public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
@@ -247,6 +224,29 @@ public class BottomSheetBehavior<V extends View> extends Behavior<V> {
             super.writeToParcel(parcel, i);
             parcel.writeInt(this.state);
         }
+    }
+
+    private class SettleRunnable implements Runnable {
+        private final int mTargetState;
+        private final View mView;
+
+        SettleRunnable(View view, int i) {
+            this.mView = view;
+            this.mTargetState = i;
+        }
+
+        public void run() {
+            if (BottomSheetBehavior.this.mViewDragHelper == null || !BottomSheetBehavior.this.mViewDragHelper.continueSettling(true)) {
+                BottomSheetBehavior.this.setStateInternal(this.mTargetState);
+            } else {
+                ViewCompat.postOnAnimation(this.mView, this);
+            }
+        }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface State {
     }
 
     public BottomSheetBehavior(Context context, AttributeSet attributeSet) {

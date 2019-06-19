@@ -10,14 +10,18 @@ import java.io.IOException;
 
 public interface HlsPlaylistTracker {
 
-    public interface Factory {
-        HlsPlaylistTracker createTracker(HlsDataSourceFactory hlsDataSourceFactory, LoadErrorHandlingPolicy loadErrorHandlingPolicy, HlsPlaylistParserFactory hlsPlaylistParserFactory);
-    }
-
     public interface PlaylistEventListener {
         void onPlaylistChanged();
 
         boolean onPlaylistError(HlsUrl hlsUrl, long j);
+    }
+
+    public interface PrimaryPlaylistListener {
+        void onPrimaryPlaylistRefreshed(HlsMediaPlaylist hlsMediaPlaylist);
+    }
+
+    public interface Factory {
+        HlsPlaylistTracker createTracker(HlsDataSourceFactory hlsDataSourceFactory, LoadErrorHandlingPolicy loadErrorHandlingPolicy, HlsPlaylistParserFactory hlsPlaylistParserFactory);
     }
 
     public static final class PlaylistResetException extends IOException {
@@ -34,10 +38,6 @@ public interface HlsPlaylistTracker {
         public PlaylistStuckException(String str) {
             this.url = str;
         }
-    }
-
-    public interface PrimaryPlaylistListener {
-        void onPrimaryPlaylistRefreshed(HlsMediaPlaylist hlsMediaPlaylist);
     }
 
     void addListener(PlaylistEventListener playlistEventListener);

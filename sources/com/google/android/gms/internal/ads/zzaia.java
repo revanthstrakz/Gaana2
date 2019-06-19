@@ -6,4 +6,8 @@ final class zzaia {
     private zzaia(zzaif zzaif) {
         this.zzdig = zzaif;
     }
+
+    /* synthetic */ zzaia(zzaif zzaif, zzahz zzahz) {
+        this(zzaif);
+    }
 }

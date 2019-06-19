@@ -9,18 +9,18 @@ import java.util.List;
 public abstract class NativeAd {
     public static final String ASSET_ADCHOICES_CONTAINER_VIEW = "1098";
 
-    public static abstract class AdChoicesInfo {
-        public abstract List<Image> getImages();
-
-        public abstract CharSequence getText();
-    }
-
     public static abstract class Image {
         public abstract Drawable getDrawable();
 
         public abstract double getScale();
 
         public abstract Uri getUri();
+    }
+
+    public static abstract class AdChoicesInfo {
+        public abstract List<Image> getImages();
+
+        public abstract CharSequence getText();
     }
 
     @KeepForSdk

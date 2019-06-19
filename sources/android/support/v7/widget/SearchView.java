@@ -217,110 +217,6 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
         boolean onSuggestionSelect(int i);
     }
 
-    private static class UpdatableTouchDelegate extends TouchDelegate {
-        private final Rect mActualBounds = new Rect();
-        private boolean mDelegateTargeted;
-        private final View mDelegateView;
-        private final int mSlop;
-        private final Rect mSlopBounds = new Rect();
-        private final Rect mTargetBounds = new Rect();
-
-        public UpdatableTouchDelegate(Rect rect, Rect rect2, View view) {
-            super(rect, view);
-            this.mSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
-            setBounds(rect, rect2);
-            this.mDelegateView = view;
-        }
-
-        public void setBounds(Rect rect, Rect rect2) {
-            this.mTargetBounds.set(rect);
-            this.mSlopBounds.set(rect);
-            this.mSlopBounds.inset(-this.mSlop, -this.mSlop);
-            this.mActualBounds.set(rect2);
-        }
-
-        public boolean onTouchEvent(android.view.MotionEvent r7) {
-            /*
-            r6 = this;
-            r0 = r7.getX();
-            r0 = (int) r0;
-            r1 = r7.getY();
-            r1 = (int) r1;
-            r2 = r7.getAction();
-            r3 = 1;
-            r4 = 0;
-            switch(r2) {
-                case 0: goto L_0x0027;
-                case 1: goto L_0x0019;
-                case 2: goto L_0x0019;
-                case 3: goto L_0x0014;
-                default: goto L_0x0013;
-            };
-        L_0x0013:
-            goto L_0x0033;
-        L_0x0014:
-            r2 = r6.mDelegateTargeted;
-            r6.mDelegateTargeted = r4;
-            goto L_0x0034;
-        L_0x0019:
-            r2 = r6.mDelegateTargeted;
-            if (r2 == 0) goto L_0x0034;
-        L_0x001d:
-            r5 = r6.mSlopBounds;
-            r5 = r5.contains(r0, r1);
-            if (r5 != 0) goto L_0x0034;
-        L_0x0025:
-            r3 = r4;
-            goto L_0x0034;
-        L_0x0027:
-            r2 = r6.mTargetBounds;
-            r2 = r2.contains(r0, r1);
-            if (r2 == 0) goto L_0x0033;
-        L_0x002f:
-            r6.mDelegateTargeted = r3;
-            r2 = r3;
-            goto L_0x0034;
-        L_0x0033:
-            r2 = r4;
-        L_0x0034:
-            if (r2 == 0) goto L_0x006b;
-        L_0x0036:
-            if (r3 == 0) goto L_0x0056;
-        L_0x0038:
-            r2 = r6.mActualBounds;
-            r2 = r2.contains(r0, r1);
-            if (r2 != 0) goto L_0x0056;
-        L_0x0040:
-            r0 = r6.mDelegateView;
-            r0 = r0.getWidth();
-            r0 = r0 / 2;
-            r0 = (float) r0;
-            r1 = r6.mDelegateView;
-            r1 = r1.getHeight();
-            r1 = r1 / 2;
-            r1 = (float) r1;
-            r7.setLocation(r0, r1);
-            goto L_0x0065;
-        L_0x0056:
-            r2 = r6.mActualBounds;
-            r2 = r2.left;
-            r0 = r0 - r2;
-            r0 = (float) r0;
-            r2 = r6.mActualBounds;
-            r2 = r2.top;
-            r1 = r1 - r2;
-            r1 = (float) r1;
-            r7.setLocation(r0, r1);
-        L_0x0065:
-            r0 = r6.mDelegateView;
-            r4 = r0.dispatchTouchEvent(r7);
-        L_0x006b:
-            return r4;
-            */
-            throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.SearchView$UpdatableTouchDelegate.onTouchEvent(android.view.MotionEvent):boolean");
-        }
-    }
-
     static class SavedState extends AbsSavedState {
         public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
             public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
@@ -497,6 +393,110 @@ public class SearchView extends LinearLayoutCompat implements CollapsibleActionV
             } else {
                 this.mHasPendingShowSoftInputRequest = true;
             }
+        }
+    }
+
+    private static class UpdatableTouchDelegate extends TouchDelegate {
+        private final Rect mActualBounds = new Rect();
+        private boolean mDelegateTargeted;
+        private final View mDelegateView;
+        private final int mSlop;
+        private final Rect mSlopBounds = new Rect();
+        private final Rect mTargetBounds = new Rect();
+
+        public UpdatableTouchDelegate(Rect rect, Rect rect2, View view) {
+            super(rect, view);
+            this.mSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+            setBounds(rect, rect2);
+            this.mDelegateView = view;
+        }
+
+        public void setBounds(Rect rect, Rect rect2) {
+            this.mTargetBounds.set(rect);
+            this.mSlopBounds.set(rect);
+            this.mSlopBounds.inset(-this.mSlop, -this.mSlop);
+            this.mActualBounds.set(rect2);
+        }
+
+        public boolean onTouchEvent(android.view.MotionEvent r7) {
+            /*
+            r6 = this;
+            r0 = r7.getX();
+            r0 = (int) r0;
+            r1 = r7.getY();
+            r1 = (int) r1;
+            r2 = r7.getAction();
+            r3 = 1;
+            r4 = 0;
+            switch(r2) {
+                case 0: goto L_0x0027;
+                case 1: goto L_0x0019;
+                case 2: goto L_0x0019;
+                case 3: goto L_0x0014;
+                default: goto L_0x0013;
+            };
+        L_0x0013:
+            goto L_0x0033;
+        L_0x0014:
+            r2 = r6.mDelegateTargeted;
+            r6.mDelegateTargeted = r4;
+            goto L_0x0034;
+        L_0x0019:
+            r2 = r6.mDelegateTargeted;
+            if (r2 == 0) goto L_0x0034;
+        L_0x001d:
+            r5 = r6.mSlopBounds;
+            r5 = r5.contains(r0, r1);
+            if (r5 != 0) goto L_0x0034;
+        L_0x0025:
+            r3 = r4;
+            goto L_0x0034;
+        L_0x0027:
+            r2 = r6.mTargetBounds;
+            r2 = r2.contains(r0, r1);
+            if (r2 == 0) goto L_0x0033;
+        L_0x002f:
+            r6.mDelegateTargeted = r3;
+            r2 = r3;
+            goto L_0x0034;
+        L_0x0033:
+            r2 = r4;
+        L_0x0034:
+            if (r2 == 0) goto L_0x006b;
+        L_0x0036:
+            if (r3 == 0) goto L_0x0056;
+        L_0x0038:
+            r2 = r6.mActualBounds;
+            r2 = r2.contains(r0, r1);
+            if (r2 != 0) goto L_0x0056;
+        L_0x0040:
+            r0 = r6.mDelegateView;
+            r0 = r0.getWidth();
+            r0 = r0 / 2;
+            r0 = (float) r0;
+            r1 = r6.mDelegateView;
+            r1 = r1.getHeight();
+            r1 = r1 / 2;
+            r1 = (float) r1;
+            r7.setLocation(r0, r1);
+            goto L_0x0065;
+        L_0x0056:
+            r2 = r6.mActualBounds;
+            r2 = r2.left;
+            r0 = r0 - r2;
+            r0 = (float) r0;
+            r2 = r6.mActualBounds;
+            r2 = r2.top;
+            r1 = r1 - r2;
+            r1 = (float) r1;
+            r7.setLocation(r0, r1);
+        L_0x0065:
+            r0 = r6.mDelegateView;
+            r4 = r0.dispatchTouchEvent(r7);
+        L_0x006b:
+            return r4;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.SearchView$UpdatableTouchDelegate.onTouchEvent(android.view.MotionEvent):boolean");
         }
     }
 

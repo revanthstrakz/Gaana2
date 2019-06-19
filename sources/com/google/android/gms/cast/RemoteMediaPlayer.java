@@ -37,6 +37,11 @@ public class RemoteMediaPlayer implements MessageReceivedCallback {
     private OnStatusUpdatedListener zzfk;
 
     @Deprecated
+    public interface MediaChannelResult extends Result {
+        JSONObject getCustomData();
+    }
+
+    @Deprecated
     public interface OnMetadataUpdatedListener {
         void onMetadataUpdated();
     }
@@ -54,11 +59,6 @@ public class RemoteMediaPlayer implements MessageReceivedCallback {
     @Deprecated
     public interface OnStatusUpdatedListener {
         void onStatusUpdated();
-    }
-
-    @Deprecated
-    public interface MediaChannelResult extends Result {
-        JSONObject getCustomData();
     }
 
     private class zza implements zzeb {
@@ -80,24 +80,6 @@ public class RemoteMediaPlayer implements MessageReceivedCallback {
             long j = this.zzgj + 1;
             this.zzgj = j;
             return j;
-        }
-    }
-
-    private static final class zzc implements MediaChannelResult {
-        private final Status zzgq;
-        private final JSONObject zzp;
-
-        zzc(Status status, JSONObject jSONObject) {
-            this.zzgq = status;
-            this.zzp = jSONObject;
-        }
-
-        public final Status getStatus() {
-            return this.zzgq;
-        }
-
-        public final JSONObject getCustomData() {
-            return this.zzp;
         }
     }
 
@@ -168,6 +150,24 @@ public class RemoteMediaPlayer implements MessageReceivedCallback {
 
         public /* synthetic */ Result createFailedResult(Status status) {
             return new zzbw(this, status);
+        }
+    }
+
+    private static final class zzc implements MediaChannelResult {
+        private final Status zzgq;
+        private final JSONObject zzp;
+
+        zzc(Status status, JSONObject jSONObject) {
+            this.zzgq = status;
+            this.zzp = jSONObject;
+        }
+
+        public final Status getStatus() {
+            return this.zzgq;
+        }
+
+        public final JSONObject getCustomData() {
+            return this.zzp;
         }
     }
 

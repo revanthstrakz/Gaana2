@@ -38,6 +38,12 @@ public final class YouTubePlayerView extends ViewGroup implements Provider {
     private boolean k;
     private boolean l;
 
+    interface b {
+        void a(YouTubePlayerView youTubePlayerView);
+
+        void a(YouTubePlayerView youTubePlayerView, String str, OnInitializedListener onInitializedListener);
+    }
+
     private final class a implements OnGlobalFocusChangeListener {
         private a() {
         }
@@ -51,12 +57,6 @@ public final class YouTubePlayerView extends ViewGroup implements Provider {
                 YouTubePlayerView.this.e.g();
             }
         }
-    }
-
-    interface b {
-        void a(YouTubePlayerView youTubePlayerView);
-
-        void a(YouTubePlayerView youTubePlayerView, String str, OnInitializedListener onInitializedListener);
     }
 
     public YouTubePlayerView(Context context) {

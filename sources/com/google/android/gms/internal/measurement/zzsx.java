@@ -3,7 +3,7 @@ package com.google.android.gms.internal.measurement;
 import java.io.IOException;
 
 public abstract class zzsx<MessageType extends zzsx<MessageType, BuilderType>, BuilderType extends zzsy<MessageType, BuilderType>> implements zzvv {
-    private static boolean zzbtj = false;
+    private static boolean zzbtj;
     protected int zzbti = 0;
 
     public final zzte zztw() {

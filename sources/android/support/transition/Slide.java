@@ -76,11 +76,6 @@ public class Slide extends Visibility {
         float getGoneY(ViewGroup viewGroup, View view);
     }
 
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface GravityFlag {
-    }
-
     private static abstract class CalculateSlideHorizontal implements CalculateSlide {
         private CalculateSlideHorizontal() {
         }
@@ -105,6 +100,11 @@ public class Slide extends Visibility {
         public float getGoneX(ViewGroup viewGroup, View view) {
             return view.getTranslationX();
         }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface GravityFlag {
     }
 
     public Slide() {

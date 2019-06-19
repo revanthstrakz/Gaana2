@@ -17,10 +17,10 @@ import java.util.List;
 public class c {
     private static final String a = "c";
     @SuppressLint({"StaticFieldLeak"})
-    private static Context b = null;
-    private static a c = null;
-    private static Handler d = null;
-    private static boolean e = false;
+    private static Context b;
+    private static a c;
+    private static Handler d;
+    private static boolean e;
     private static final IntentFilter f = new IntentFilter("android.net.wifi.SCAN_RESULTS");
     private static List<a> g;
     private static Runnable h = new Runnable() {

@@ -92,7 +92,7 @@ public class TypefaceCompatUtil {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:34:0x0051 A:{Splitter:B:7:0x0013, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:34:0x0051 A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:7:0x0013} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:34:0x0051, code skipped:
             r9 = th;

@@ -64,6 +64,12 @@ public class VASTXmlParser implements Serializable {
     private a vastListener;
     private volatile VASTXmlParser wrappedVASTXml;
 
+    public interface a {
+        void onVASTReady(VASTXmlParser vASTXmlParser);
+
+        void onVASTWrapperFound(String str);
+    }
+
     public class MediaFile implements Serializable {
         public Integer bitrate;
         public Integer h;
@@ -133,12 +139,6 @@ public class VASTXmlParser implements Serializable {
         public void resetVtEvent() {
             this.vtEvent.setIsTracked(false);
         }
-    }
-
-    public interface a {
-        void onVASTReady(VASTXmlParser vASTXmlParser);
-
-        void onVASTWrapperFound(String str);
     }
 
     public VASTXmlParser(Context context, a aVar) {

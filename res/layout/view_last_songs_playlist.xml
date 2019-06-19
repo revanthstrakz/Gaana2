@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?tab_layout_background_attr" android:layout_width="wrap_content" android:layout_height="@dimen/grid_two_line_bar_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.library.controls.CrossFadeImageView android:id="@id/imgProductIcon" android:layout_width="62.0dip" android:layout_height="62.0dip" android:layout_marginRight="10.0dip" android:src="?placeholder_album_artwork_large" android:layout_alignParentLeft="true" />
+</RelativeLayout>

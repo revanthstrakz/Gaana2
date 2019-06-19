@@ -16,7 +16,7 @@ import org.json.JSONObject;
 public abstract class b {
     private static boolean a = false;
     private static double b = 1.0d;
-    private static boolean c = false;
+    private static boolean c;
     private static final Set<String> d = new HashSet();
     private static final Set<String> e = new HashSet();
 

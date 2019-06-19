@@ -66,8 +66,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public abstract class b extends a implements com.payu.custombrowser.b.b {
-    private static boolean a = false;
-    public static boolean hasToStart = false;
+    private static boolean a;
+    public static boolean hasToStart;
     public static int snoozeImageDownloadTimeout;
     protected static List<String> whiteListedUrls = new ArrayList();
     protected String SNOOZE_GET_WEBVIEW_STATUS_INTENT_ACTION = "webview_status_action";

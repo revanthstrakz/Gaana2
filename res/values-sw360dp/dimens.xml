@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ad_height_300x250">250.0dip</dimen>
+    <dimen name="ad_height_300x300">300.0dip</dimen>
+    <dimen name="ad_height_320x480">480.0dip</dimen>
+    <dimen name="ad_width_300x250">300.0dip</dimen>
+    <dimen name="ad_width_300x300">300.0dip</dimen>
+    <dimen name="ad_width_320x480">320.0dip</dimen>
+    <dimen name="edit_text_height">50.0dip</dimen>
+    <dimen name="logo_image_height">150.0dip</dimen>
+    <dimen name="logo_image_width">190.0dip</dimen>
+    <dimen name="logo_margin">27.0dip</dimen>
+    <dimen name="padding_top">16.0dip</dimen>
+    <dimen name="player_v2_card_size">220.0dip</dimen>
+    <dimen name="tab_text_size">13.0sp</dimen>
+    <dimen name="text_margin_left">25.0dip</dimen>
+</resources>

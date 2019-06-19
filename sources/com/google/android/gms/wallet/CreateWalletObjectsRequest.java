@@ -64,6 +64,10 @@ public final class CreateWalletObjectsRequest extends AbstractSafeParcelable {
             Preconditions.checkState(z, "CreateWalletObjectsRequest must have exactly one Wallet Object");
             return CreateWalletObjectsRequest.this;
         }
+
+        /* synthetic */ Builder(CreateWalletObjectsRequest createWalletObjectsRequest, zzi zzi) {
+            this();
+        }
     }
 
     public final void writeToParcel(Parcel parcel, int i) {
@@ -118,6 +122,6 @@ public final class CreateWalletObjectsRequest extends AbstractSafeParcelable {
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new CreateWalletObjectsRequest(), null);
     }
 }

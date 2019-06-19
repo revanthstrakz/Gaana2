@@ -37,11 +37,6 @@ public interface Player {
     public static final int TIMELINE_CHANGE_REASON_PREPARED = 0;
     public static final int TIMELINE_CHANGE_REASON_RESET = 1;
 
-    @Documented
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface DiscontinuityReason {
-    }
-
     public interface EventListener {
         void onLoadingChanged(boolean z);
 
@@ -62,6 +57,11 @@ public interface Player {
         void onTimelineChanged(Timeline timeline, @Nullable Object obj, int i);
 
         void onTracksChanged(TrackGroupArray trackGroupArray, TrackSelectionArray trackSelectionArray);
+    }
+
+    @Documented
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface DiscontinuityReason {
     }
 
     @Documented
@@ -95,6 +95,53 @@ public interface Player {
         void setAuxEffectInfo(AuxEffectInfo auxEffectInfo);
 
         void setVolume(float f);
+    }
+
+    @Deprecated
+    public static abstract class DefaultEventListener implements EventListener {
+        public void onLoadingChanged(boolean z) {
+            Player$EventListener$$CC.onLoadingChanged(this, z);
+        }
+
+        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+            Player$EventListener$$CC.onPlaybackParametersChanged(this, playbackParameters);
+        }
+
+        public void onPlayerError(ExoPlaybackException exoPlaybackException) {
+            Player$EventListener$$CC.onPlayerError(this, exoPlaybackException);
+        }
+
+        public void onPlayerStateChanged(boolean z, int i) {
+            Player$EventListener$$CC.onPlayerStateChanged(this, z, i);
+        }
+
+        public void onPositionDiscontinuity(int i) {
+            Player$EventListener$$CC.onPositionDiscontinuity(this, i);
+        }
+
+        public void onRepeatModeChanged(int i) {
+            Player$EventListener$$CC.onRepeatModeChanged(this, i);
+        }
+
+        public void onSeekProcessed() {
+            Player$EventListener$$CC.onSeekProcessed(this);
+        }
+
+        public void onShuffleModeEnabledChanged(boolean z) {
+            Player$EventListener$$CC.onShuffleModeEnabledChanged(this, z);
+        }
+
+        @Deprecated
+        public void onTimelineChanged(Timeline timeline, @Nullable Object obj) {
+        }
+
+        public void onTracksChanged(TrackGroupArray trackGroupArray, TrackSelectionArray trackSelectionArray) {
+            Player$EventListener$$CC.onTracksChanged(this, trackGroupArray, trackSelectionArray);
+        }
+
+        public void onTimelineChanged(Timeline timeline, @Nullable Object obj, int i) {
+            onTimelineChanged(timeline, obj);
+        }
     }
 
     public interface MetadataComponent {
@@ -143,53 +190,6 @@ public interface Player {
         void setVideoSurfaceView(SurfaceView surfaceView);
 
         void setVideoTextureView(TextureView textureView);
-    }
-
-    @Deprecated
-    public static abstract class DefaultEventListener implements EventListener {
-        public void onLoadingChanged(boolean z) {
-            Player$EventListener$$CC.onLoadingChanged(this, z);
-        }
-
-        public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-            Player$EventListener$$CC.onPlaybackParametersChanged(this, playbackParameters);
-        }
-
-        public void onPlayerError(ExoPlaybackException exoPlaybackException) {
-            Player$EventListener$$CC.onPlayerError(this, exoPlaybackException);
-        }
-
-        public void onPlayerStateChanged(boolean z, int i) {
-            Player$EventListener$$CC.onPlayerStateChanged(this, z, i);
-        }
-
-        public void onPositionDiscontinuity(int i) {
-            Player$EventListener$$CC.onPositionDiscontinuity(this, i);
-        }
-
-        public void onRepeatModeChanged(int i) {
-            Player$EventListener$$CC.onRepeatModeChanged(this, i);
-        }
-
-        public void onSeekProcessed() {
-            Player$EventListener$$CC.onSeekProcessed(this);
-        }
-
-        public void onShuffleModeEnabledChanged(boolean z) {
-            Player$EventListener$$CC.onShuffleModeEnabledChanged(this, z);
-        }
-
-        @Deprecated
-        public void onTimelineChanged(Timeline timeline, @Nullable Object obj) {
-        }
-
-        public void onTracksChanged(TrackGroupArray trackGroupArray, TrackSelectionArray trackSelectionArray) {
-            Player$EventListener$$CC.onTracksChanged(this, trackGroupArray, trackSelectionArray);
-        }
-
-        public void onTimelineChanged(Timeline timeline, @Nullable Object obj, int i) {
-            onTimelineChanged(timeline, obj);
-        }
     }
 
     void addListener(EventListener eventListener);

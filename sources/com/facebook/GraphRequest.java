@@ -113,6 +113,14 @@ public class GraphRequest {
     private Object tag;
     private String version;
 
+    public interface Callback {
+        void onCompleted(GraphResponse graphResponse);
+    }
+
+    private interface KeyValueSerializer {
+        void writeString(String str, String str2) throws IOException;
+    }
+
     private static class Attachment {
         private final GraphRequest request;
         private final Object value;
@@ -131,10 +139,6 @@ public class GraphRequest {
         }
     }
 
-    public interface Callback {
-        void onCompleted(GraphResponse graphResponse);
-    }
-
     public interface GraphJSONArrayCallback {
         void onCompleted(JSONArray jSONArray, GraphResponse graphResponse);
     }
@@ -143,8 +147,8 @@ public class GraphRequest {
         void onCompleted(JSONObject jSONObject, GraphResponse graphResponse);
     }
 
-    private interface KeyValueSerializer {
-        void writeString(String str, String str2) throws IOException;
+    public interface OnProgressCallback extends Callback {
+        void onProgress(long j, long j2);
     }
 
     public static class ParcelableResourceWithMimeType<RESOURCE extends Parcelable> implements Parcelable {
@@ -186,10 +190,6 @@ public class GraphRequest {
             this.mimeType = parcel.readString();
             this.resource = parcel.readParcelable(FacebookSdk.getApplicationContext().getClassLoader());
         }
-    }
-
-    public interface OnProgressCallback extends Callback {
-        void onProgress(long j, long j2);
     }
 
     private static class Serializer implements KeyValueSerializer {

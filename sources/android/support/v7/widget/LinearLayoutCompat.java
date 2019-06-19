@@ -47,11 +47,6 @@ public class LinearLayoutCompat extends ViewGroup {
     private boolean mUseLargestChild;
     private float mWeightSum;
 
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface DividerMode {
-    }
-
     public static class LayoutParams extends MarginLayoutParams {
         public int gravity;
         public float weight;
@@ -93,6 +88,11 @@ public class LinearLayoutCompat extends ViewGroup {
             this.weight = layoutParams.weight;
             this.gravity = layoutParams.gravity;
         }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface DividerMode {
     }
 
     @RestrictTo({Scope.LIBRARY_GROUP})

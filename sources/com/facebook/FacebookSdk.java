@@ -72,8 +72,8 @@ public final class FacebookSdk {
     private static volatile Executor executor = null;
     private static volatile String facebookDomain = "facebook.com";
     private static String graphApiVersion = ServerProtocol.getDefaultAPIVersion();
-    private static volatile boolean isDebugEnabled = false;
-    private static boolean isLegacyTokenUpgradeSupported = false;
+    private static volatile boolean isDebugEnabled;
+    private static boolean isLegacyTokenUpgradeSupported;
     private static final HashSet<LoggingBehavior> loggingBehaviors = new HashSet(Arrays.asList(new LoggingBehavior[]{LoggingBehavior.DEVELOPER_ERRORS}));
     private static AtomicLong onProgressThreshold = new AtomicLong(PlaybackStateCompat.ACTION_PREPARE_FROM_SEARCH);
     private static Boolean sdkInitialized = Boolean.valueOf(false);

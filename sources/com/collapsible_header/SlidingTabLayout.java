@@ -27,28 +27,6 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private final h h;
     private b i;
 
-    public interface b {
-        void a(int i);
-    }
-
-    private class c implements OnClickListener {
-        private c() {
-        }
-
-        public void onClick(View view) {
-            for (int i = 0; i < SlidingTabLayout.this.h.getChildCount(); i++) {
-                if (view == SlidingTabLayout.this.h.getChildAt(i)) {
-                    SlidingTabLayout.this.e.setCurrentItem(i);
-                    return;
-                }
-            }
-        }
-    }
-
-    public interface d {
-        int a(int i);
-    }
-
     private class a implements OnPageChangeListener {
         private int b;
 
@@ -91,6 +69,28 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 SlidingTabLayout.this.i.a(i);
             }
         }
+    }
+
+    public interface b {
+        void a(int i);
+    }
+
+    private class c implements OnClickListener {
+        private c() {
+        }
+
+        public void onClick(View view) {
+            for (int i = 0; i < SlidingTabLayout.this.h.getChildCount(); i++) {
+                if (view == SlidingTabLayout.this.h.getChildAt(i)) {
+                    SlidingTabLayout.this.e.setCurrentItem(i);
+                    return;
+                }
+            }
+        }
+    }
+
+    public interface d {
+        int a(int i);
     }
 
     public SlidingTabLayout(Context context) {

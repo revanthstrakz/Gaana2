@@ -11,35 +11,6 @@ public abstract class zzdj<MessageType extends zzdj<MessageType, BuilderType>, B
     protected zzfy zzjt = zzfy.zzdp();
     private int zzju = -1;
 
-    public enum zzd {
-        public static final int zzka = 1;
-        public static final int zzkb = 2;
-        public static final int zzkc = 3;
-        public static final int zzkd = 4;
-        public static final int zzke = 5;
-        public static final int zzkf = 6;
-        public static final int zzkg = 7;
-        private static final /* synthetic */ int[] zzkh = new int[]{zzka, zzkb, zzkc, zzkd, zzke, zzkf, zzkg};
-        public static final int zzki = 1;
-        public static final int zzkj = 2;
-        private static final /* synthetic */ int[] zzkk = new int[]{zzki, zzkj};
-        public static final int zzkl = 1;
-        public static final int zzkm = 2;
-        private static final /* synthetic */ int[] zzkn = new int[]{zzkl, zzkm};
-
-        public static int[] zzcb() {
-            return (int[]) zzkh.clone();
-        }
-    }
-
-    public static class zzb<T extends zzdj<T, ?>> extends zzbz<T> {
-        private final T zzjw;
-
-        public zzb(T t) {
-            this.zzjw = t;
-        }
-    }
-
     public static abstract class zza<MessageType extends zzdj<MessageType, BuilderType>, BuilderType extends zza<MessageType, BuilderType>> extends zzby<MessageType, BuilderType> {
         private final MessageType zzjw;
         protected MessageType zzjx;
@@ -122,8 +93,37 @@ public abstract class zzdj<MessageType extends zzdj<MessageType, BuilderType>, B
         }
     }
 
+    public static class zzb<T extends zzdj<T, ?>> extends zzbz<T> {
+        private final T zzjw;
+
+        public zzb(T t) {
+            this.zzjw = t;
+        }
+    }
+
     public static abstract class zzc<MessageType extends zzc<MessageType, BuilderType>, BuilderType> extends zzdj<MessageType, BuilderType> implements zzes {
         protected zzdc<Object> zzjz = zzdc.zzbh();
+    }
+
+    public enum zzd {
+        public static final int zzka = 1;
+        public static final int zzkb = 2;
+        public static final int zzkc = 3;
+        public static final int zzkd = 4;
+        public static final int zzke = 5;
+        public static final int zzkf = 6;
+        public static final int zzkg = 7;
+        private static final /* synthetic */ int[] zzkh = new int[]{zzka, zzkb, zzkc, zzkd, zzke, zzkf, zzkg};
+        public static final int zzki = 1;
+        public static final int zzkj = 2;
+        private static final /* synthetic */ int[] zzkk = new int[]{zzki, zzkj};
+        public static final int zzkl = 1;
+        public static final int zzkm = 2;
+        private static final /* synthetic */ int[] zzkn = new int[]{zzkl, zzkm};
+
+        public static int[] zzcb() {
+            return (int[]) zzkh.clone();
+        }
     }
 
     public abstract Object zza(int i, Object obj, Object obj2);

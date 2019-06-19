@@ -30,9 +30,9 @@ import java.util.Map;
 import org.json.JSONObject;
 
 public class MagicRetryFragment extends Fragment implements OnClickListener {
-    public static boolean a = false;
+    public static boolean a;
     private static List<String> n = new ArrayList();
-    private static boolean r = false;
+    private static boolean r;
     private static String u;
     private static String v;
     String b = CBConstant.PAYU_DOMAIN_TEST;

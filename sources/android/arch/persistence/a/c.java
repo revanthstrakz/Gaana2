@@ -12,6 +12,10 @@ import java.io.File;
 
 public interface c {
 
+    public interface c {
+        c a(b bVar);
+    }
+
     public static abstract class a {
         public final int a;
 
@@ -41,7 +45,7 @@ public interface c {
         /* JADX WARNING: Removed duplicated region for block: B:24:0x0071  */
         /* JADX WARNING: Removed duplicated region for block: B:20:0x0059  */
         /* JADX WARNING: Missing exception handler attribute for start block: B:9:0x0031 */
-        /* JADX WARNING: Removed duplicated region for block: B:8:0x002f A:{Splitter:B:5:0x0029, ExcHandler: all (th java.lang.Throwable), PHI: r0 } */
+        /* JADX WARNING: Removed duplicated region for block: B:8:0x002f A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:5:0x0029, PHI: r0 } */
         /* JADX WARNING: Failed to process nested try/catch */
         /* JADX WARNING: Missing block: B:11:0x0035, code skipped:
             if (r0 != null) goto L_0x0037;
@@ -204,10 +208,6 @@ public interface c {
         public static a a(Context context) {
             return new a(context);
         }
-    }
-
-    public interface c {
-        c a(b bVar);
     }
 
     b a();

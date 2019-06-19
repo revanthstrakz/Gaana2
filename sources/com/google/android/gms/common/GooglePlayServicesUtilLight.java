@@ -52,12 +52,12 @@ public class GooglePlayServicesUtilLight {
     @VisibleForTesting
     static final AtomicBoolean sCanceledAvailabilityNotification = new AtomicBoolean();
     @VisibleForTesting
-    private static boolean zzah = false;
+    private static boolean zzah;
     @VisibleForTesting
-    private static boolean zzai = false;
-    private static boolean zzaj = false;
+    private static boolean zzai;
+    private static boolean zzaj;
     @VisibleForTesting
-    private static boolean zzak = false;
+    private static boolean zzak;
     private static final AtomicBoolean zzal = new AtomicBoolean();
 
     @ShowFirstParty

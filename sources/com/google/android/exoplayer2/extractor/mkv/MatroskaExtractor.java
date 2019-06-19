@@ -238,6 +238,130 @@ public final class MatroskaExtractor implements Extractor {
     public @interface Flags {
     }
 
+    private final class InnerEbmlReaderOutput implements EbmlReaderOutput {
+        public int getElementType(int i) {
+            switch (i) {
+                case MatroskaExtractor.ID_TRACK_TYPE /*131*/:
+                case MatroskaExtractor.ID_FLAG_DEFAULT /*136*/:
+                case MatroskaExtractor.ID_BLOCK_DURATION /*155*/:
+                case MatroskaExtractor.ID_CHANNELS /*159*/:
+                case MatroskaExtractor.ID_PIXEL_WIDTH /*176*/:
+                case MatroskaExtractor.ID_CUE_TIME /*179*/:
+                case MatroskaExtractor.ID_PIXEL_HEIGHT /*186*/:
+                case MatroskaExtractor.ID_TRACK_NUMBER /*215*/:
+                case MatroskaExtractor.ID_TIME_CODE /*231*/:
+                case MatroskaExtractor.ID_CUE_CLUSTER_POSITION /*241*/:
+                case MatroskaExtractor.ID_REFERENCE_BLOCK /*251*/:
+                case MatroskaExtractor.ID_CONTENT_COMPRESSION_ALGORITHM /*16980*/:
+                case MatroskaExtractor.ID_DOC_TYPE_READ_VERSION /*17029*/:
+                case MatroskaExtractor.ID_EBML_READ_VERSION /*17143*/:
+                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_ALGORITHM /*18401*/:
+                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_AES_SETTINGS_CIPHER_MODE /*18408*/:
+                case MatroskaExtractor.ID_CONTENT_ENCODING_ORDER /*20529*/:
+                case MatroskaExtractor.ID_CONTENT_ENCODING_SCOPE /*20530*/:
+                case MatroskaExtractor.ID_SEEK_POSITION /*21420*/:
+                case MatroskaExtractor.ID_STEREO_MODE /*21432*/:
+                case MatroskaExtractor.ID_DISPLAY_WIDTH /*21680*/:
+                case MatroskaExtractor.ID_DISPLAY_UNIT /*21682*/:
+                case MatroskaExtractor.ID_DISPLAY_HEIGHT /*21690*/:
+                case MatroskaExtractor.ID_FLAG_FORCED /*21930*/:
+                case MatroskaExtractor.ID_COLOUR_RANGE /*21945*/:
+                case MatroskaExtractor.ID_COLOUR_TRANSFER /*21946*/:
+                case MatroskaExtractor.ID_COLOUR_PRIMARIES /*21947*/:
+                case MatroskaExtractor.ID_MAX_CLL /*21948*/:
+                case MatroskaExtractor.ID_MAX_FALL /*21949*/:
+                case MatroskaExtractor.ID_CODEC_DELAY /*22186*/:
+                case MatroskaExtractor.ID_SEEK_PRE_ROLL /*22203*/:
+                case MatroskaExtractor.ID_AUDIO_BIT_DEPTH /*25188*/:
+                case MatroskaExtractor.ID_DEFAULT_DURATION /*2352003*/:
+                case MatroskaExtractor.ID_TIMECODE_SCALE /*2807729*/:
+                    return 2;
+                case 134:
+                case 17026:
+                case MatroskaExtractor.ID_NAME /*21358*/:
+                case MatroskaExtractor.ID_LANGUAGE /*2274716*/:
+                    return 3;
+                case 160:
+                case MatroskaExtractor.ID_TRACK_ENTRY /*174*/:
+                case MatroskaExtractor.ID_CUE_TRACK_POSITIONS /*183*/:
+                case MatroskaExtractor.ID_CUE_POINT /*187*/:
+                case 224:
+                case MatroskaExtractor.ID_AUDIO /*225*/:
+                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_AES_SETTINGS /*18407*/:
+                case MatroskaExtractor.ID_SEEK /*19899*/:
+                case MatroskaExtractor.ID_CONTENT_COMPRESSION /*20532*/:
+                case MatroskaExtractor.ID_CONTENT_ENCRYPTION /*20533*/:
+                case MatroskaExtractor.ID_COLOUR /*21936*/:
+                case MatroskaExtractor.ID_MASTERING_METADATA /*21968*/:
+                case MatroskaExtractor.ID_CONTENT_ENCODING /*25152*/:
+                case MatroskaExtractor.ID_CONTENT_ENCODINGS /*28032*/:
+                case MatroskaExtractor.ID_PROJECTION /*30320*/:
+                case MatroskaExtractor.ID_SEEK_HEAD /*290298740*/:
+                case 357149030:
+                case MatroskaExtractor.ID_TRACKS /*374648427*/:
+                case MatroskaExtractor.ID_SEGMENT /*408125543*/:
+                case MatroskaExtractor.ID_EBML /*440786851*/:
+                case MatroskaExtractor.ID_CUES /*475249515*/:
+                case MatroskaExtractor.ID_CLUSTER /*524531317*/:
+                    return 1;
+                case MatroskaExtractor.ID_BLOCK /*161*/:
+                case MatroskaExtractor.ID_SIMPLE_BLOCK /*163*/:
+                case MatroskaExtractor.ID_CONTENT_COMPRESSION_SETTINGS /*16981*/:
+                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_KEY_ID /*18402*/:
+                case MatroskaExtractor.ID_SEEK_ID /*21419*/:
+                case MatroskaExtractor.ID_CODEC_PRIVATE /*25506*/:
+                case MatroskaExtractor.ID_PROJECTION_PRIVATE /*30322*/:
+                    return 4;
+                case MatroskaExtractor.ID_SAMPLING_FREQUENCY /*181*/:
+                case MatroskaExtractor.ID_DURATION /*17545*/:
+                case MatroskaExtractor.ID_PRIMARY_R_CHROMATICITY_X /*21969*/:
+                case MatroskaExtractor.ID_PRIMARY_R_CHROMATICITY_Y /*21970*/:
+                case MatroskaExtractor.ID_PRIMARY_G_CHROMATICITY_X /*21971*/:
+                case MatroskaExtractor.ID_PRIMARY_G_CHROMATICITY_Y /*21972*/:
+                case MatroskaExtractor.ID_PRIMARY_B_CHROMATICITY_X /*21973*/:
+                case MatroskaExtractor.ID_PRIMARY_B_CHROMATICITY_Y /*21974*/:
+                case MatroskaExtractor.ID_WHITE_POINT_CHROMATICITY_X /*21975*/:
+                case MatroskaExtractor.ID_WHITE_POINT_CHROMATICITY_Y /*21976*/:
+                case MatroskaExtractor.ID_LUMNINANCE_MAX /*21977*/:
+                case MatroskaExtractor.ID_LUMNINANCE_MIN /*21978*/:
+                    return 5;
+                default:
+                    return 0;
+            }
+        }
+
+        public boolean isLevel1Element(int i) {
+            return i == 357149030 || i == MatroskaExtractor.ID_CLUSTER || i == MatroskaExtractor.ID_CUES || i == MatroskaExtractor.ID_TRACKS;
+        }
+
+        private InnerEbmlReaderOutput() {
+        }
+
+        public void startMasterElement(int i, long j, long j2) throws ParserException {
+            MatroskaExtractor.this.startMasterElement(i, j, j2);
+        }
+
+        public void endMasterElement(int i) throws ParserException {
+            MatroskaExtractor.this.endMasterElement(i);
+        }
+
+        public void integerElement(int i, long j) throws ParserException {
+            MatroskaExtractor.this.integerElement(i, j);
+        }
+
+        public void floatElement(int i, double d) throws ParserException {
+            MatroskaExtractor.this.floatElement(i, d);
+        }
+
+        public void stringElement(int i, String str) throws ParserException {
+            MatroskaExtractor.this.stringElement(i, str);
+        }
+
+        public void binaryElement(int i, int i2, ExtractorInput extractorInput) throws IOException, InterruptedException {
+            MatroskaExtractor.this.binaryElement(i, i2, extractorInput);
+        }
+    }
+
     private static final class Track {
         private static final int DEFAULT_MAX_CLL = 1000;
         private static final int DEFAULT_MAX_FALL = 200;
@@ -1414,130 +1538,6 @@ public final class MatroskaExtractor implements Extractor {
                 track.output.sampleMetadata(this.timeUs, this.blockFlags, this.chunkSize, 0, track.cryptoData);
                 this.sampleCount = 0;
             }
-        }
-    }
-
-    private final class InnerEbmlReaderOutput implements EbmlReaderOutput {
-        public int getElementType(int i) {
-            switch (i) {
-                case MatroskaExtractor.ID_TRACK_TYPE /*131*/:
-                case MatroskaExtractor.ID_FLAG_DEFAULT /*136*/:
-                case MatroskaExtractor.ID_BLOCK_DURATION /*155*/:
-                case MatroskaExtractor.ID_CHANNELS /*159*/:
-                case MatroskaExtractor.ID_PIXEL_WIDTH /*176*/:
-                case MatroskaExtractor.ID_CUE_TIME /*179*/:
-                case MatroskaExtractor.ID_PIXEL_HEIGHT /*186*/:
-                case MatroskaExtractor.ID_TRACK_NUMBER /*215*/:
-                case MatroskaExtractor.ID_TIME_CODE /*231*/:
-                case MatroskaExtractor.ID_CUE_CLUSTER_POSITION /*241*/:
-                case MatroskaExtractor.ID_REFERENCE_BLOCK /*251*/:
-                case MatroskaExtractor.ID_CONTENT_COMPRESSION_ALGORITHM /*16980*/:
-                case MatroskaExtractor.ID_DOC_TYPE_READ_VERSION /*17029*/:
-                case MatroskaExtractor.ID_EBML_READ_VERSION /*17143*/:
-                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_ALGORITHM /*18401*/:
-                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_AES_SETTINGS_CIPHER_MODE /*18408*/:
-                case MatroskaExtractor.ID_CONTENT_ENCODING_ORDER /*20529*/:
-                case MatroskaExtractor.ID_CONTENT_ENCODING_SCOPE /*20530*/:
-                case MatroskaExtractor.ID_SEEK_POSITION /*21420*/:
-                case MatroskaExtractor.ID_STEREO_MODE /*21432*/:
-                case MatroskaExtractor.ID_DISPLAY_WIDTH /*21680*/:
-                case MatroskaExtractor.ID_DISPLAY_UNIT /*21682*/:
-                case MatroskaExtractor.ID_DISPLAY_HEIGHT /*21690*/:
-                case MatroskaExtractor.ID_FLAG_FORCED /*21930*/:
-                case MatroskaExtractor.ID_COLOUR_RANGE /*21945*/:
-                case MatroskaExtractor.ID_COLOUR_TRANSFER /*21946*/:
-                case MatroskaExtractor.ID_COLOUR_PRIMARIES /*21947*/:
-                case MatroskaExtractor.ID_MAX_CLL /*21948*/:
-                case MatroskaExtractor.ID_MAX_FALL /*21949*/:
-                case MatroskaExtractor.ID_CODEC_DELAY /*22186*/:
-                case MatroskaExtractor.ID_SEEK_PRE_ROLL /*22203*/:
-                case MatroskaExtractor.ID_AUDIO_BIT_DEPTH /*25188*/:
-                case MatroskaExtractor.ID_DEFAULT_DURATION /*2352003*/:
-                case MatroskaExtractor.ID_TIMECODE_SCALE /*2807729*/:
-                    return 2;
-                case 134:
-                case 17026:
-                case MatroskaExtractor.ID_NAME /*21358*/:
-                case MatroskaExtractor.ID_LANGUAGE /*2274716*/:
-                    return 3;
-                case 160:
-                case MatroskaExtractor.ID_TRACK_ENTRY /*174*/:
-                case MatroskaExtractor.ID_CUE_TRACK_POSITIONS /*183*/:
-                case MatroskaExtractor.ID_CUE_POINT /*187*/:
-                case 224:
-                case MatroskaExtractor.ID_AUDIO /*225*/:
-                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_AES_SETTINGS /*18407*/:
-                case MatroskaExtractor.ID_SEEK /*19899*/:
-                case MatroskaExtractor.ID_CONTENT_COMPRESSION /*20532*/:
-                case MatroskaExtractor.ID_CONTENT_ENCRYPTION /*20533*/:
-                case MatroskaExtractor.ID_COLOUR /*21936*/:
-                case MatroskaExtractor.ID_MASTERING_METADATA /*21968*/:
-                case MatroskaExtractor.ID_CONTENT_ENCODING /*25152*/:
-                case MatroskaExtractor.ID_CONTENT_ENCODINGS /*28032*/:
-                case MatroskaExtractor.ID_PROJECTION /*30320*/:
-                case MatroskaExtractor.ID_SEEK_HEAD /*290298740*/:
-                case 357149030:
-                case MatroskaExtractor.ID_TRACKS /*374648427*/:
-                case MatroskaExtractor.ID_SEGMENT /*408125543*/:
-                case MatroskaExtractor.ID_EBML /*440786851*/:
-                case MatroskaExtractor.ID_CUES /*475249515*/:
-                case MatroskaExtractor.ID_CLUSTER /*524531317*/:
-                    return 1;
-                case MatroskaExtractor.ID_BLOCK /*161*/:
-                case MatroskaExtractor.ID_SIMPLE_BLOCK /*163*/:
-                case MatroskaExtractor.ID_CONTENT_COMPRESSION_SETTINGS /*16981*/:
-                case MatroskaExtractor.ID_CONTENT_ENCRYPTION_KEY_ID /*18402*/:
-                case MatroskaExtractor.ID_SEEK_ID /*21419*/:
-                case MatroskaExtractor.ID_CODEC_PRIVATE /*25506*/:
-                case MatroskaExtractor.ID_PROJECTION_PRIVATE /*30322*/:
-                    return 4;
-                case MatroskaExtractor.ID_SAMPLING_FREQUENCY /*181*/:
-                case MatroskaExtractor.ID_DURATION /*17545*/:
-                case MatroskaExtractor.ID_PRIMARY_R_CHROMATICITY_X /*21969*/:
-                case MatroskaExtractor.ID_PRIMARY_R_CHROMATICITY_Y /*21970*/:
-                case MatroskaExtractor.ID_PRIMARY_G_CHROMATICITY_X /*21971*/:
-                case MatroskaExtractor.ID_PRIMARY_G_CHROMATICITY_Y /*21972*/:
-                case MatroskaExtractor.ID_PRIMARY_B_CHROMATICITY_X /*21973*/:
-                case MatroskaExtractor.ID_PRIMARY_B_CHROMATICITY_Y /*21974*/:
-                case MatroskaExtractor.ID_WHITE_POINT_CHROMATICITY_X /*21975*/:
-                case MatroskaExtractor.ID_WHITE_POINT_CHROMATICITY_Y /*21976*/:
-                case MatroskaExtractor.ID_LUMNINANCE_MAX /*21977*/:
-                case MatroskaExtractor.ID_LUMNINANCE_MIN /*21978*/:
-                    return 5;
-                default:
-                    return 0;
-            }
-        }
-
-        public boolean isLevel1Element(int i) {
-            return i == 357149030 || i == MatroskaExtractor.ID_CLUSTER || i == MatroskaExtractor.ID_CUES || i == MatroskaExtractor.ID_TRACKS;
-        }
-
-        private InnerEbmlReaderOutput() {
-        }
-
-        public void startMasterElement(int i, long j, long j2) throws ParserException {
-            MatroskaExtractor.this.startMasterElement(i, j, j2);
-        }
-
-        public void endMasterElement(int i) throws ParserException {
-            MatroskaExtractor.this.endMasterElement(i);
-        }
-
-        public void integerElement(int i, long j) throws ParserException {
-            MatroskaExtractor.this.integerElement(i, j);
-        }
-
-        public void floatElement(int i, double d) throws ParserException {
-            MatroskaExtractor.this.floatElement(i, d);
-        }
-
-        public void stringElement(int i, String str) throws ParserException {
-            MatroskaExtractor.this.stringElement(i, str);
-        }
-
-        public void binaryElement(int i, int i2, ExtractorInput extractorInput) throws IOException, InterruptedException {
-            MatroskaExtractor.this.binaryElement(i, i2, extractorInput);
         }
     }
 

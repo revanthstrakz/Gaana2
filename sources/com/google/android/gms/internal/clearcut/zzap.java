@@ -14,6 +14,16 @@ public final class zzap {
         private int zzeq;
         private int zzer;
 
+        public static final class zza extends com.google.android.gms.internal.clearcut.zzcg.zza<zza, zza> implements zzdq {
+            private zza() {
+                super(zza.zzes);
+            }
+
+            /* synthetic */ zza(zzaq zzaq) {
+                this();
+            }
+        }
+
         public enum zzb implements zzcj {
             UNKNOWN(0),
             ON(1),
@@ -49,16 +59,6 @@ public final class zzap {
 
             public final int zzc() {
                 return this.value;
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.clearcut.zzcg.zza<zza, zza> implements zzdq {
-            private zza() {
-                super(zza.zzes);
-            }
-
-            /* synthetic */ zza(zzaq zzaq) {
-                this();
             }
         }
 

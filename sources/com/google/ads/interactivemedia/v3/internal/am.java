@@ -8,14 +8,14 @@ public abstract class am extends AsyncTask<Object, Void, String> {
     private a a;
     protected final b d;
 
-    public interface a {
-        void a(am amVar);
-    }
-
     public interface b {
         void a(JSONObject jSONObject);
 
         JSONObject b();
+    }
+
+    public interface a {
+        void a(am amVar);
     }
 
     public am(b bVar) {

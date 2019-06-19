@@ -74,15 +74,6 @@ public class FragmentActivity extends BaseFragmentActivityApi16 implements OnReq
     boolean mStopped = true;
     private r mViewModelStore;
 
-    static final class NonConfigurationInstances {
-        Object custom;
-        FragmentManagerNonConfig fragments;
-        r viewModelStore;
-
-        NonConfigurationInstances() {
-        }
-    }
-
     class HostCallbacks extends FragmentHostCallback<FragmentActivity> {
         public HostCallbacks() {
             super(FragmentActivity.this);
@@ -152,6 +143,15 @@ public class FragmentActivity extends BaseFragmentActivityApi16 implements OnReq
         public boolean onHasView() {
             Window window = FragmentActivity.this.getWindow();
             return (window == null || window.peekDecorView() == null) ? false : true;
+        }
+    }
+
+    static final class NonConfigurationInstances {
+        Object custom;
+        FragmentManagerNonConfig fragments;
+        r viewModelStore;
+
+        NonConfigurationInstances() {
         }
     }
 

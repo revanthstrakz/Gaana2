@@ -42,79 +42,6 @@ public class zzea {
     private zzdn zzadr;
     protected final Clock zzrz;
 
-    abstract class zzb implements Runnable {
-        final long timestamp;
-        final long zzaev;
-        private final boolean zzaew;
-
-        zzb(zzea zzea) {
-            this(true);
-        }
-
-        public abstract void zzgd() throws RemoteException;
-
-        /* Access modifiers changed, original: protected */
-        public void zzge() {
-        }
-
-        zzb(boolean z) {
-            this.timestamp = zzea.this.zzrz.currentTimeMillis();
-            this.zzaev = zzea.this.zzrz.elapsedRealtime();
-            this.zzaew = z;
-        }
-
-        public void run() {
-            if (zzea.this.zzadp) {
-                zzge();
-                return;
-            }
-            try {
-                zzgd();
-            } catch (Exception e) {
-                zzea.this.zza(e, false, this.zzaew);
-                zzge();
-            }
-        }
-    }
-
-    class zze implements ActivityLifecycleCallbacks {
-        zze() {
-        }
-
-        public final void onActivityCreated(Activity activity, Bundle bundle) {
-            zzea.this.zza(new zzex(this, activity, bundle));
-        }
-
-        public final void onActivityStarted(Activity activity) {
-            zzea.this.zza(new zzey(this, activity));
-        }
-
-        public final void onActivityResumed(Activity activity) {
-            zzea.this.zza(new zzez(this, activity));
-        }
-
-        public final void onActivityPaused(Activity activity) {
-            zzea.this.zza(new zzfa(this, activity));
-        }
-
-        public final void onActivityStopped(Activity activity) {
-            zzea.this.zza(new zzfb(this, activity));
-        }
-
-        public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
-            zza zza = new zza();
-            zzea.this.zza(new zzfc(this, activity, zza));
-            Bundle zzl = zza.zzl(50);
-            if (zzl != null) {
-                bundle.putAll(zzl);
-            }
-        }
-
-        public final void onActivityDestroyed(Activity activity) {
-            zzea.this.zza(new zzfd(this, activity));
-        }
-    }
-
     class zza extends zzdr {
         private final AtomicReference<Bundle> zzaet = new AtomicReference();
         private boolean zzaeu;
@@ -175,6 +102,41 @@ public class zzea {
         }
     }
 
+    abstract class zzb implements Runnable {
+        final long timestamp;
+        final long zzaev;
+        private final boolean zzaew;
+
+        zzb(zzea zzea) {
+            this(true);
+        }
+
+        public abstract void zzgd() throws RemoteException;
+
+        /* Access modifiers changed, original: protected */
+        public void zzge() {
+        }
+
+        zzb(boolean z) {
+            this.timestamp = zzea.this.zzrz.currentTimeMillis();
+            this.zzaev = zzea.this.zzrz.elapsedRealtime();
+            this.zzaew = z;
+        }
+
+        public void run() {
+            if (zzea.this.zzadp) {
+                zzge();
+                return;
+            }
+            try {
+                zzgd();
+            } catch (Exception e) {
+                zzea.this.zza(e, false, this.zzaew);
+                zzge();
+            }
+        }
+    }
+
     static class zzc extends zzdu {
         private final zzcx zzaex;
 
@@ -204,6 +166,44 @@ public class zzea {
 
         public final int id() {
             return this.zzaey.hashCode();
+        }
+    }
+
+    class zze implements ActivityLifecycleCallbacks {
+        zze() {
+        }
+
+        public final void onActivityCreated(Activity activity, Bundle bundle) {
+            zzea.this.zza(new zzex(this, activity, bundle));
+        }
+
+        public final void onActivityStarted(Activity activity) {
+            zzea.this.zza(new zzey(this, activity));
+        }
+
+        public final void onActivityResumed(Activity activity) {
+            zzea.this.zza(new zzez(this, activity));
+        }
+
+        public final void onActivityPaused(Activity activity) {
+            zzea.this.zza(new zzfa(this, activity));
+        }
+
+        public final void onActivityStopped(Activity activity) {
+            zzea.this.zza(new zzfb(this, activity));
+        }
+
+        public final void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
+            zza zza = new zza();
+            zzea.this.zza(new zzfc(this, activity, zza));
+            Bundle zzl = zza.zzl(50);
+            if (zzl != null) {
+                bundle.putAll(zzl);
+            }
+        }
+
+        public final void onActivityDestroyed(Activity activity) {
+            zzea.this.zza(new zzfd(this, activity));
         }
     }
 

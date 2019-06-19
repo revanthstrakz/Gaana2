@@ -18,6 +18,20 @@ public class r {
     private final Set<b<?, ?>> e;
     private final Pool<List<Throwable>> f;
 
+    private static class a implements n<Object, Object> {
+        @Nullable
+        public com.bumptech.glide.load.b.n.a<Object> a(Object obj, int i, int i2, f fVar) {
+            return null;
+        }
+
+        public boolean a(Object obj) {
+            return false;
+        }
+
+        a() {
+        }
+    }
+
     private static class b<Model, Data> {
         final Class<Data> a;
         final o<Model, Data> b;
@@ -44,20 +58,6 @@ public class r {
 
         public <Model, Data> q<Model, Data> a(List<n<Model, Data>> list, Pool<List<Throwable>> pool) {
             return new q(list, pool);
-        }
-    }
-
-    private static class a implements n<Object, Object> {
-        @Nullable
-        public com.bumptech.glide.load.b.n.a<Object> a(Object obj, int i, int i2, f fVar) {
-            return null;
-        }
-
-        public boolean a(Object obj) {
-            return false;
-        }
-
-        a() {
         }
     }
 

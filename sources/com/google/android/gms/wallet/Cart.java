@@ -52,10 +52,14 @@ public final class Cart extends AbstractSafeParcelable implements ReflectedParce
         public final Cart build() {
             return Cart.this;
         }
+
+        /* synthetic */ Builder(Cart cart, zzf zzf) {
+            this();
+        }
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new Cart(), null);
     }
 
     public final void writeToParcel(Parcel parcel, int i) {

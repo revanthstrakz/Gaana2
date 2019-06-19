@@ -123,28 +123,6 @@ public class LyricsBannerFragment extends BaseGaanaFragment implements OnClickLi
     private TextView u;
     private Typeface v;
 
-    class d {
-        @SerializedName("cards")
-        String[] a;
-
-        public String[] a() {
-            return this.a;
-        }
-    }
-
-    class g implements Comparator<LrcRow> {
-        g() {
-        }
-
-        /* renamed from: a */
-        public int compare(LrcRow lrcRow, LrcRow lrcRow2) {
-            if (lrcRow.time == lrcRow2.time) {
-                return 0;
-            }
-            return lrcRow.time < lrcRow2.time ? -1 : 1;
-        }
-    }
-
     private class a extends Adapter {
         private a() {
         }
@@ -236,6 +214,15 @@ public class LyricsBannerFragment extends BaseGaanaFragment implements OnClickLi
         }
     }
 
+    class d {
+        @SerializedName("cards")
+        String[] a;
+
+        public String[] a() {
+            return this.a;
+        }
+    }
+
     private class e extends Adapter {
         private e() {
         }
@@ -301,6 +288,19 @@ public class LyricsBannerFragment extends BaseGaanaFragment implements OnClickLi
             this.a = (ConstraintLayout) view.findViewById(R.id.container);
             this.b = (SquareImageByHeight) view.findViewById(R.id.background_img);
             this.c = (ImageView) view.findViewById(R.id.plus_icon);
+        }
+    }
+
+    class g implements Comparator<LrcRow> {
+        g() {
+        }
+
+        /* renamed from: a */
+        public int compare(LrcRow lrcRow, LrcRow lrcRow2) {
+            if (lrcRow.time == lrcRow2.time) {
+                return 0;
+            }
+            return lrcRow.time < lrcRow2.time ? -1 : 1;
         }
     }
 

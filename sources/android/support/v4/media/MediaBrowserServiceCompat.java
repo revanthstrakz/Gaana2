@@ -59,63 +59,6 @@ public abstract class MediaBrowserServiceCompat extends Service {
     private MediaBrowserServiceImpl mImpl;
     Token mSession;
 
-    public static final class BrowserRoot {
-        public static final String EXTRA_OFFLINE = "android.service.media.extra.OFFLINE";
-        public static final String EXTRA_RECENT = "android.service.media.extra.RECENT";
-        public static final String EXTRA_SUGGESTED = "android.service.media.extra.SUGGESTED";
-        @Deprecated
-        public static final String EXTRA_SUGGESTION_KEYWORDS = "android.service.media.extra.SUGGESTION_KEYWORDS";
-        private final Bundle mExtras;
-        private final String mRootId;
-
-        public BrowserRoot(@NonNull String str, @Nullable Bundle bundle) {
-            if (str == null) {
-                throw new IllegalArgumentException("The root id in BrowserRoot cannot be null. Use null for BrowserRoot instead.");
-            }
-            this.mRootId = str;
-            this.mExtras = bundle;
-        }
-
-        public String getRootId() {
-            return this.mRootId;
-        }
-
-        public Bundle getExtras() {
-            return this.mExtras;
-        }
-    }
-
-    private class ConnectionRecord implements DeathRecipient {
-        ServiceCallbacks callbacks;
-        String pkg;
-        BrowserRoot root;
-        Bundle rootHints;
-        HashMap<String, List<Pair<IBinder, Bundle>>> subscriptions = new HashMap();
-
-        ConnectionRecord() {
-        }
-
-        public void binderDied() {
-            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
-                public void run() {
-                    MediaBrowserServiceCompat.this.mConnections.remove(ConnectionRecord.this.callbacks.asBinder());
-                }
-            });
-        }
-    }
-
-    interface MediaBrowserServiceImpl {
-        Bundle getBrowserRootHints();
-
-        void notifyChildrenChanged(String str, Bundle bundle);
-
-        IBinder onBind(Intent intent);
-
-        void onCreate();
-
-        void setSessionToken(Token token);
-    }
-
     public static class Result<T> {
         private final Object mDebug;
         private boolean mDetachCalled;
@@ -225,6 +168,348 @@ public abstract class MediaBrowserServiceCompat extends Service {
                 if (f < -1.0E-5f || f > 1.00001f) {
                     throw new IllegalArgumentException("The value of the EXTRA_DOWNLOAD_PROGRESS field must be a float number within [0.0, 1.0].");
                 }
+            }
+        }
+    }
+
+    public static final class BrowserRoot {
+        public static final String EXTRA_OFFLINE = "android.service.media.extra.OFFLINE";
+        public static final String EXTRA_RECENT = "android.service.media.extra.RECENT";
+        public static final String EXTRA_SUGGESTED = "android.service.media.extra.SUGGESTED";
+        @Deprecated
+        public static final String EXTRA_SUGGESTION_KEYWORDS = "android.service.media.extra.SUGGESTION_KEYWORDS";
+        private final Bundle mExtras;
+        private final String mRootId;
+
+        public BrowserRoot(@NonNull String str, @Nullable Bundle bundle) {
+            if (str == null) {
+                throw new IllegalArgumentException("The root id in BrowserRoot cannot be null. Use null for BrowserRoot instead.");
+            }
+            this.mRootId = str;
+            this.mExtras = bundle;
+        }
+
+        public String getRootId() {
+            return this.mRootId;
+        }
+
+        public Bundle getExtras() {
+            return this.mExtras;
+        }
+    }
+
+    private class ConnectionRecord implements DeathRecipient {
+        ServiceCallbacks callbacks;
+        String pkg;
+        BrowserRoot root;
+        Bundle rootHints;
+        HashMap<String, List<Pair<IBinder, Bundle>>> subscriptions = new HashMap();
+
+        ConnectionRecord() {
+        }
+
+        public void binderDied() {
+            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
+                public void run() {
+                    MediaBrowserServiceCompat.this.mConnections.remove(ConnectionRecord.this.callbacks.asBinder());
+                }
+            });
+        }
+    }
+
+    interface MediaBrowserServiceImpl {
+        Bundle getBrowserRootHints();
+
+        void notifyChildrenChanged(String str, Bundle bundle);
+
+        IBinder onBind(Intent intent);
+
+        void onCreate();
+
+        void setSessionToken(Token token);
+    }
+
+    @RequiresApi(21)
+    class MediaBrowserServiceImplApi21 implements MediaBrowserServiceImpl, ServiceCompatProxy {
+        Messenger mMessenger;
+        final List<Bundle> mRootExtrasList = new ArrayList();
+        Object mServiceObj;
+
+        MediaBrowserServiceImplApi21() {
+        }
+
+        public void onCreate() {
+            this.mServiceObj = MediaBrowserServiceCompatApi21.createService(MediaBrowserServiceCompat.this, this);
+            MediaBrowserServiceCompatApi21.onCreate(this.mServiceObj);
+        }
+
+        public IBinder onBind(Intent intent) {
+            return MediaBrowserServiceCompatApi21.onBind(this.mServiceObj, intent);
+        }
+
+        public void setSessionToken(final Token token) {
+            MediaBrowserServiceCompat.this.mHandler.postOrRun(new Runnable() {
+                public void run() {
+                    if (!MediaBrowserServiceImplApi21.this.mRootExtrasList.isEmpty()) {
+                        IMediaSession extraBinder = token.getExtraBinder();
+                        if (extraBinder != null) {
+                            for (Bundle putBinder : MediaBrowserServiceImplApi21.this.mRootExtrasList) {
+                                BundleCompat.putBinder(putBinder, MediaBrowserProtocol.EXTRA_SESSION_BINDER, extraBinder.asBinder());
+                            }
+                        }
+                        MediaBrowserServiceImplApi21.this.mRootExtrasList.clear();
+                    }
+                    MediaBrowserServiceCompatApi21.setSessionToken(MediaBrowserServiceImplApi21.this.mServiceObj, token.getToken());
+                }
+            });
+        }
+
+        public void notifyChildrenChanged(String str, Bundle bundle) {
+            notifyChildrenChangedForFramework(str, bundle);
+            notifyChildrenChangedForCompat(str, bundle);
+        }
+
+        public Bundle getBrowserRootHints() {
+            Bundle bundle = null;
+            if (this.mMessenger == null) {
+                return null;
+            }
+            if (MediaBrowserServiceCompat.this.mCurConnection == null) {
+                throw new IllegalStateException("This should be called inside of onLoadChildren, onLoadItem or onSearch methods");
+            }
+            if (MediaBrowserServiceCompat.this.mCurConnection.rootHints != null) {
+                bundle = new Bundle(MediaBrowserServiceCompat.this.mCurConnection.rootHints);
+            }
+            return bundle;
+        }
+
+        public BrowserRoot onGetRoot(String str, int i, Bundle bundle) {
+            Bundle bundle2;
+            if (bundle == null || bundle.getInt(MediaBrowserProtocol.EXTRA_CLIENT_VERSION, 0) == 0) {
+                bundle2 = null;
+            } else {
+                bundle.remove(MediaBrowserProtocol.EXTRA_CLIENT_VERSION);
+                this.mMessenger = new Messenger(MediaBrowserServiceCompat.this.mHandler);
+                bundle2 = new Bundle();
+                bundle2.putInt(MediaBrowserProtocol.EXTRA_SERVICE_VERSION, 2);
+                BundleCompat.putBinder(bundle2, MediaBrowserProtocol.EXTRA_MESSENGER_BINDER, this.mMessenger.getBinder());
+                if (MediaBrowserServiceCompat.this.mSession != null) {
+                    IBinder iBinder;
+                    IMediaSession extraBinder = MediaBrowserServiceCompat.this.mSession.getExtraBinder();
+                    String str2 = MediaBrowserProtocol.EXTRA_SESSION_BINDER;
+                    if (extraBinder == null) {
+                        iBinder = null;
+                    } else {
+                        iBinder = extraBinder.asBinder();
+                    }
+                    BundleCompat.putBinder(bundle2, str2, iBinder);
+                } else {
+                    this.mRootExtrasList.add(bundle2);
+                }
+            }
+            BrowserRoot onGetRoot = MediaBrowserServiceCompat.this.onGetRoot(str, i, bundle);
+            if (onGetRoot == null) {
+                return null;
+            }
+            if (bundle2 == null) {
+                bundle2 = onGetRoot.getExtras();
+            } else if (onGetRoot.getExtras() != null) {
+                bundle2.putAll(onGetRoot.getExtras());
+            }
+            return new BrowserRoot(onGetRoot.getRootId(), bundle2);
+        }
+
+        public void onLoadChildren(String str, final ResultWrapper<List<Parcel>> resultWrapper) {
+            MediaBrowserServiceCompat.this.onLoadChildren(str, new Result<List<MediaItem>>(str) {
+                /* Access modifiers changed, original: 0000 */
+                public void onResultSent(List<MediaItem> list) {
+                    Object arrayList;
+                    if (list != null) {
+                        arrayList = new ArrayList();
+                        for (MediaItem mediaItem : list) {
+                            Parcel obtain = Parcel.obtain();
+                            mediaItem.writeToParcel(obtain, 0);
+                            arrayList.add(obtain);
+                        }
+                    } else {
+                        arrayList = null;
+                    }
+                    resultWrapper.sendResult(arrayList);
+                }
+
+                public void detach() {
+                    resultWrapper.detach();
+                }
+            });
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void notifyChildrenChangedForFramework(String str, Bundle bundle) {
+            MediaBrowserServiceCompatApi21.notifyChildrenChanged(this.mServiceObj, str);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void notifyChildrenChangedForCompat(final String str, final Bundle bundle) {
+            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
+                public void run() {
+                    for (IBinder iBinder : MediaBrowserServiceCompat.this.mConnections.keySet()) {
+                        ConnectionRecord connectionRecord = (ConnectionRecord) MediaBrowserServiceCompat.this.mConnections.get(iBinder);
+                        List<Pair> list = (List) connectionRecord.subscriptions.get(str);
+                        if (list != null) {
+                            for (Pair pair : list) {
+                                if (MediaBrowserCompatUtils.hasDuplicatedItems(bundle, (Bundle) pair.second)) {
+                                    MediaBrowserServiceCompat.this.performLoadChildren(str, connectionRecord, (Bundle) pair.second);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    @RequiresApi(23)
+    class MediaBrowserServiceImplApi23 extends MediaBrowserServiceImplApi21 implements MediaBrowserServiceCompatApi23.ServiceCompatProxy {
+        MediaBrowserServiceImplApi23() {
+            super();
+        }
+
+        public void onCreate() {
+            this.mServiceObj = MediaBrowserServiceCompatApi23.createService(MediaBrowserServiceCompat.this, this);
+            MediaBrowserServiceCompatApi21.onCreate(this.mServiceObj);
+        }
+
+        public void onLoadItem(String str, final ResultWrapper<Parcel> resultWrapper) {
+            MediaBrowserServiceCompat.this.onLoadItem(str, new Result<MediaItem>(str) {
+                /* Access modifiers changed, original: 0000 */
+                public void onResultSent(MediaItem mediaItem) {
+                    if (mediaItem == null) {
+                        resultWrapper.sendResult(null);
+                        return;
+                    }
+                    Parcel obtain = Parcel.obtain();
+                    mediaItem.writeToParcel(obtain, 0);
+                    resultWrapper.sendResult(obtain);
+                }
+
+                public void detach() {
+                    resultWrapper.detach();
+                }
+            });
+        }
+    }
+
+    @RequiresApi(26)
+    class MediaBrowserServiceImplApi26 extends MediaBrowserServiceImplApi23 implements MediaBrowserServiceCompatApi26.ServiceCompatProxy {
+        MediaBrowserServiceImplApi26() {
+            super();
+        }
+
+        public void onCreate() {
+            this.mServiceObj = MediaBrowserServiceCompatApi26.createService(MediaBrowserServiceCompat.this, this);
+            MediaBrowserServiceCompatApi21.onCreate(this.mServiceObj);
+        }
+
+        public void onLoadChildren(String str, final ResultWrapper resultWrapper, Bundle bundle) {
+            MediaBrowserServiceCompat.this.onLoadChildren(str, new Result<List<MediaItem>>(str) {
+                /* Access modifiers changed, original: 0000 */
+                public void onResultSent(List<MediaItem> list) {
+                    List arrayList;
+                    if (list != null) {
+                        arrayList = new ArrayList();
+                        for (MediaItem mediaItem : list) {
+                            Parcel obtain = Parcel.obtain();
+                            mediaItem.writeToParcel(obtain, 0);
+                            arrayList.add(obtain);
+                        }
+                    } else {
+                        arrayList = null;
+                    }
+                    resultWrapper.sendResult(arrayList, getFlags());
+                }
+
+                public void detach() {
+                    resultWrapper.detach();
+                }
+            }, bundle);
+        }
+
+        public Bundle getBrowserRootHints() {
+            if (MediaBrowserServiceCompat.this.mCurConnection == null) {
+                return MediaBrowserServiceCompatApi26.getBrowserRootHints(this.mServiceObj);
+            }
+            return MediaBrowserServiceCompat.this.mCurConnection.rootHints == null ? null : new Bundle(MediaBrowserServiceCompat.this.mCurConnection.rootHints);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void notifyChildrenChangedForFramework(String str, Bundle bundle) {
+            if (bundle != null) {
+                MediaBrowserServiceCompatApi26.notifyChildrenChanged(this.mServiceObj, str, bundle);
+            } else {
+                super.notifyChildrenChangedForFramework(str, bundle);
+            }
+        }
+    }
+
+    class MediaBrowserServiceImplBase implements MediaBrowserServiceImpl {
+        private Messenger mMessenger;
+
+        MediaBrowserServiceImplBase() {
+        }
+
+        public void onCreate() {
+            this.mMessenger = new Messenger(MediaBrowserServiceCompat.this.mHandler);
+        }
+
+        public IBinder onBind(Intent intent) {
+            return MediaBrowserServiceCompat.SERVICE_INTERFACE.equals(intent.getAction()) ? this.mMessenger.getBinder() : null;
+        }
+
+        public void setSessionToken(final Token token) {
+            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
+                public void run() {
+                    Iterator it = MediaBrowserServiceCompat.this.mConnections.values().iterator();
+                    while (it.hasNext()) {
+                        ConnectionRecord connectionRecord = (ConnectionRecord) it.next();
+                        try {
+                            connectionRecord.callbacks.onConnect(connectionRecord.root.getRootId(), token, connectionRecord.root.getExtras());
+                        } catch (RemoteException unused) {
+                            String str = MediaBrowserServiceCompat.TAG;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("Connection for ");
+                            stringBuilder.append(connectionRecord.pkg);
+                            stringBuilder.append(" is no longer valid.");
+                            Log.w(str, stringBuilder.toString());
+                            it.remove();
+                        }
+                    }
+                }
+            });
+        }
+
+        public void notifyChildrenChanged(@NonNull final String str, final Bundle bundle) {
+            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
+                public void run() {
+                    for (IBinder iBinder : MediaBrowserServiceCompat.this.mConnections.keySet()) {
+                        ConnectionRecord connectionRecord = (ConnectionRecord) MediaBrowserServiceCompat.this.mConnections.get(iBinder);
+                        List<Pair> list = (List) connectionRecord.subscriptions.get(str);
+                        if (list != null) {
+                            for (Pair pair : list) {
+                                if (MediaBrowserCompatUtils.hasDuplicatedItems(bundle, (Bundle) pair.second)) {
+                                    MediaBrowserServiceCompat.this.performLoadChildren(str, connectionRecord, (Bundle) pair.second);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        public Bundle getBrowserRootHints() {
+            if (MediaBrowserServiceCompat.this.mCurConnection != null) {
+                return MediaBrowserServiceCompat.this.mCurConnection.rootHints == null ? null : new Bundle(MediaBrowserServiceCompat.this.mCurConnection.rootHints);
+            } else {
+                throw new IllegalStateException("This should be called inside of onLoadChildren, onLoadItem or onSearch methods");
             }
         }
     }
@@ -465,6 +750,52 @@ public abstract class MediaBrowserServiceCompat extends Service {
         void onLoadChildren(String str, List<MediaItem> list, Bundle bundle) throws RemoteException;
     }
 
+    private static class ServiceCallbacksCompat implements ServiceCallbacks {
+        final Messenger mCallbacks;
+
+        ServiceCallbacksCompat(Messenger messenger) {
+            this.mCallbacks = messenger;
+        }
+
+        public IBinder asBinder() {
+            return this.mCallbacks.getBinder();
+        }
+
+        public void onConnect(String str, Token token, Bundle bundle) throws RemoteException {
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putInt(MediaBrowserProtocol.EXTRA_SERVICE_VERSION, 2);
+            Bundle bundle2 = new Bundle();
+            bundle2.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
+            bundle2.putParcelable(MediaBrowserProtocol.DATA_MEDIA_SESSION_TOKEN, token);
+            bundle2.putBundle(MediaBrowserProtocol.DATA_ROOT_HINTS, bundle);
+            sendRequest(1, bundle2);
+        }
+
+        public void onConnectFailed() throws RemoteException {
+            sendRequest(2, null);
+        }
+
+        public void onLoadChildren(String str, List<MediaItem> list, Bundle bundle) throws RemoteException {
+            Bundle bundle2 = new Bundle();
+            bundle2.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
+            bundle2.putBundle(MediaBrowserProtocol.DATA_OPTIONS, bundle);
+            if (list != null) {
+                bundle2.putParcelableArrayList(MediaBrowserProtocol.DATA_MEDIA_ITEM_LIST, list instanceof ArrayList ? (ArrayList) list : new ArrayList(list));
+            }
+            sendRequest(3, bundle2);
+        }
+
+        private void sendRequest(int i, Bundle bundle) throws RemoteException {
+            Message obtain = Message.obtain();
+            obtain.what = i;
+            obtain.arg1 = 2;
+            obtain.setData(bundle);
+            this.mCallbacks.send(obtain);
+        }
+    }
+
     private final class ServiceHandler extends Handler {
         private final ServiceBinderImpl mServiceBinderImpl = new ServiceBinderImpl();
 
@@ -527,337 +858,6 @@ public abstract class MediaBrowserServiceCompat extends Service {
                 runnable.run();
             } else {
                 post(runnable);
-            }
-        }
-    }
-
-    @RequiresApi(21)
-    class MediaBrowserServiceImplApi21 implements MediaBrowserServiceImpl, ServiceCompatProxy {
-        Messenger mMessenger;
-        final List<Bundle> mRootExtrasList = new ArrayList();
-        Object mServiceObj;
-
-        MediaBrowserServiceImplApi21() {
-        }
-
-        public void onCreate() {
-            this.mServiceObj = MediaBrowserServiceCompatApi21.createService(MediaBrowserServiceCompat.this, this);
-            MediaBrowserServiceCompatApi21.onCreate(this.mServiceObj);
-        }
-
-        public IBinder onBind(Intent intent) {
-            return MediaBrowserServiceCompatApi21.onBind(this.mServiceObj, intent);
-        }
-
-        public void setSessionToken(final Token token) {
-            MediaBrowserServiceCompat.this.mHandler.postOrRun(new Runnable() {
-                public void run() {
-                    if (!MediaBrowserServiceImplApi21.this.mRootExtrasList.isEmpty()) {
-                        IMediaSession extraBinder = token.getExtraBinder();
-                        if (extraBinder != null) {
-                            for (Bundle putBinder : MediaBrowserServiceImplApi21.this.mRootExtrasList) {
-                                BundleCompat.putBinder(putBinder, MediaBrowserProtocol.EXTRA_SESSION_BINDER, extraBinder.asBinder());
-                            }
-                        }
-                        MediaBrowserServiceImplApi21.this.mRootExtrasList.clear();
-                    }
-                    MediaBrowserServiceCompatApi21.setSessionToken(MediaBrowserServiceImplApi21.this.mServiceObj, token.getToken());
-                }
-            });
-        }
-
-        public void notifyChildrenChanged(String str, Bundle bundle) {
-            notifyChildrenChangedForFramework(str, bundle);
-            notifyChildrenChangedForCompat(str, bundle);
-        }
-
-        public Bundle getBrowserRootHints() {
-            Bundle bundle = null;
-            if (this.mMessenger == null) {
-                return null;
-            }
-            if (MediaBrowserServiceCompat.this.mCurConnection == null) {
-                throw new IllegalStateException("This should be called inside of onLoadChildren, onLoadItem or onSearch methods");
-            }
-            if (MediaBrowserServiceCompat.this.mCurConnection.rootHints != null) {
-                bundle = new Bundle(MediaBrowserServiceCompat.this.mCurConnection.rootHints);
-            }
-            return bundle;
-        }
-
-        public BrowserRoot onGetRoot(String str, int i, Bundle bundle) {
-            Bundle bundle2;
-            if (bundle == null || bundle.getInt(MediaBrowserProtocol.EXTRA_CLIENT_VERSION, 0) == 0) {
-                bundle2 = null;
-            } else {
-                bundle.remove(MediaBrowserProtocol.EXTRA_CLIENT_VERSION);
-                this.mMessenger = new Messenger(MediaBrowserServiceCompat.this.mHandler);
-                bundle2 = new Bundle();
-                bundle2.putInt(MediaBrowserProtocol.EXTRA_SERVICE_VERSION, 2);
-                BundleCompat.putBinder(bundle2, MediaBrowserProtocol.EXTRA_MESSENGER_BINDER, this.mMessenger.getBinder());
-                if (MediaBrowserServiceCompat.this.mSession != null) {
-                    IBinder iBinder;
-                    IMediaSession extraBinder = MediaBrowserServiceCompat.this.mSession.getExtraBinder();
-                    String str2 = MediaBrowserProtocol.EXTRA_SESSION_BINDER;
-                    if (extraBinder == null) {
-                        iBinder = null;
-                    } else {
-                        iBinder = extraBinder.asBinder();
-                    }
-                    BundleCompat.putBinder(bundle2, str2, iBinder);
-                } else {
-                    this.mRootExtrasList.add(bundle2);
-                }
-            }
-            BrowserRoot onGetRoot = MediaBrowserServiceCompat.this.onGetRoot(str, i, bundle);
-            if (onGetRoot == null) {
-                return null;
-            }
-            if (bundle2 == null) {
-                bundle2 = onGetRoot.getExtras();
-            } else if (onGetRoot.getExtras() != null) {
-                bundle2.putAll(onGetRoot.getExtras());
-            }
-            return new BrowserRoot(onGetRoot.getRootId(), bundle2);
-        }
-
-        public void onLoadChildren(String str, final ResultWrapper<List<Parcel>> resultWrapper) {
-            MediaBrowserServiceCompat.this.onLoadChildren(str, new Result<List<MediaItem>>(str) {
-                /* Access modifiers changed, original: 0000 */
-                public void onResultSent(List<MediaItem> list) {
-                    Object arrayList;
-                    if (list != null) {
-                        arrayList = new ArrayList();
-                        for (MediaItem mediaItem : list) {
-                            Parcel obtain = Parcel.obtain();
-                            mediaItem.writeToParcel(obtain, 0);
-                            arrayList.add(obtain);
-                        }
-                    } else {
-                        arrayList = null;
-                    }
-                    resultWrapper.sendResult(arrayList);
-                }
-
-                public void detach() {
-                    resultWrapper.detach();
-                }
-            });
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void notifyChildrenChangedForFramework(String str, Bundle bundle) {
-            MediaBrowserServiceCompatApi21.notifyChildrenChanged(this.mServiceObj, str);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void notifyChildrenChangedForCompat(final String str, final Bundle bundle) {
-            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
-                public void run() {
-                    for (IBinder iBinder : MediaBrowserServiceCompat.this.mConnections.keySet()) {
-                        ConnectionRecord connectionRecord = (ConnectionRecord) MediaBrowserServiceCompat.this.mConnections.get(iBinder);
-                        List<Pair> list = (List) connectionRecord.subscriptions.get(str);
-                        if (list != null) {
-                            for (Pair pair : list) {
-                                if (MediaBrowserCompatUtils.hasDuplicatedItems(bundle, (Bundle) pair.second)) {
-                                    MediaBrowserServiceCompat.this.performLoadChildren(str, connectionRecord, (Bundle) pair.second);
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    class MediaBrowserServiceImplBase implements MediaBrowserServiceImpl {
-        private Messenger mMessenger;
-
-        MediaBrowserServiceImplBase() {
-        }
-
-        public void onCreate() {
-            this.mMessenger = new Messenger(MediaBrowserServiceCompat.this.mHandler);
-        }
-
-        public IBinder onBind(Intent intent) {
-            return MediaBrowserServiceCompat.SERVICE_INTERFACE.equals(intent.getAction()) ? this.mMessenger.getBinder() : null;
-        }
-
-        public void setSessionToken(final Token token) {
-            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
-                public void run() {
-                    Iterator it = MediaBrowserServiceCompat.this.mConnections.values().iterator();
-                    while (it.hasNext()) {
-                        ConnectionRecord connectionRecord = (ConnectionRecord) it.next();
-                        try {
-                            connectionRecord.callbacks.onConnect(connectionRecord.root.getRootId(), token, connectionRecord.root.getExtras());
-                        } catch (RemoteException unused) {
-                            String str = MediaBrowserServiceCompat.TAG;
-                            StringBuilder stringBuilder = new StringBuilder();
-                            stringBuilder.append("Connection for ");
-                            stringBuilder.append(connectionRecord.pkg);
-                            stringBuilder.append(" is no longer valid.");
-                            Log.w(str, stringBuilder.toString());
-                            it.remove();
-                        }
-                    }
-                }
-            });
-        }
-
-        public void notifyChildrenChanged(@NonNull final String str, final Bundle bundle) {
-            MediaBrowserServiceCompat.this.mHandler.post(new Runnable() {
-                public void run() {
-                    for (IBinder iBinder : MediaBrowserServiceCompat.this.mConnections.keySet()) {
-                        ConnectionRecord connectionRecord = (ConnectionRecord) MediaBrowserServiceCompat.this.mConnections.get(iBinder);
-                        List<Pair> list = (List) connectionRecord.subscriptions.get(str);
-                        if (list != null) {
-                            for (Pair pair : list) {
-                                if (MediaBrowserCompatUtils.hasDuplicatedItems(bundle, (Bundle) pair.second)) {
-                                    MediaBrowserServiceCompat.this.performLoadChildren(str, connectionRecord, (Bundle) pair.second);
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        public Bundle getBrowserRootHints() {
-            if (MediaBrowserServiceCompat.this.mCurConnection != null) {
-                return MediaBrowserServiceCompat.this.mCurConnection.rootHints == null ? null : new Bundle(MediaBrowserServiceCompat.this.mCurConnection.rootHints);
-            } else {
-                throw new IllegalStateException("This should be called inside of onLoadChildren, onLoadItem or onSearch methods");
-            }
-        }
-    }
-
-    private static class ServiceCallbacksCompat implements ServiceCallbacks {
-        final Messenger mCallbacks;
-
-        ServiceCallbacksCompat(Messenger messenger) {
-            this.mCallbacks = messenger;
-        }
-
-        public IBinder asBinder() {
-            return this.mCallbacks.getBinder();
-        }
-
-        public void onConnect(String str, Token token, Bundle bundle) throws RemoteException {
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            bundle.putInt(MediaBrowserProtocol.EXTRA_SERVICE_VERSION, 2);
-            Bundle bundle2 = new Bundle();
-            bundle2.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
-            bundle2.putParcelable(MediaBrowserProtocol.DATA_MEDIA_SESSION_TOKEN, token);
-            bundle2.putBundle(MediaBrowserProtocol.DATA_ROOT_HINTS, bundle);
-            sendRequest(1, bundle2);
-        }
-
-        public void onConnectFailed() throws RemoteException {
-            sendRequest(2, null);
-        }
-
-        public void onLoadChildren(String str, List<MediaItem> list, Bundle bundle) throws RemoteException {
-            Bundle bundle2 = new Bundle();
-            bundle2.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
-            bundle2.putBundle(MediaBrowserProtocol.DATA_OPTIONS, bundle);
-            if (list != null) {
-                bundle2.putParcelableArrayList(MediaBrowserProtocol.DATA_MEDIA_ITEM_LIST, list instanceof ArrayList ? (ArrayList) list : new ArrayList(list));
-            }
-            sendRequest(3, bundle2);
-        }
-
-        private void sendRequest(int i, Bundle bundle) throws RemoteException {
-            Message obtain = Message.obtain();
-            obtain.what = i;
-            obtain.arg1 = 2;
-            obtain.setData(bundle);
-            this.mCallbacks.send(obtain);
-        }
-    }
-
-    @RequiresApi(23)
-    class MediaBrowserServiceImplApi23 extends MediaBrowserServiceImplApi21 implements MediaBrowserServiceCompatApi23.ServiceCompatProxy {
-        MediaBrowserServiceImplApi23() {
-            super();
-        }
-
-        public void onCreate() {
-            this.mServiceObj = MediaBrowserServiceCompatApi23.createService(MediaBrowserServiceCompat.this, this);
-            MediaBrowserServiceCompatApi21.onCreate(this.mServiceObj);
-        }
-
-        public void onLoadItem(String str, final ResultWrapper<Parcel> resultWrapper) {
-            MediaBrowserServiceCompat.this.onLoadItem(str, new Result<MediaItem>(str) {
-                /* Access modifiers changed, original: 0000 */
-                public void onResultSent(MediaItem mediaItem) {
-                    if (mediaItem == null) {
-                        resultWrapper.sendResult(null);
-                        return;
-                    }
-                    Parcel obtain = Parcel.obtain();
-                    mediaItem.writeToParcel(obtain, 0);
-                    resultWrapper.sendResult(obtain);
-                }
-
-                public void detach() {
-                    resultWrapper.detach();
-                }
-            });
-        }
-    }
-
-    @RequiresApi(26)
-    class MediaBrowserServiceImplApi26 extends MediaBrowserServiceImplApi23 implements MediaBrowserServiceCompatApi26.ServiceCompatProxy {
-        MediaBrowserServiceImplApi26() {
-            super();
-        }
-
-        public void onCreate() {
-            this.mServiceObj = MediaBrowserServiceCompatApi26.createService(MediaBrowserServiceCompat.this, this);
-            MediaBrowserServiceCompatApi21.onCreate(this.mServiceObj);
-        }
-
-        public void onLoadChildren(String str, final ResultWrapper resultWrapper, Bundle bundle) {
-            MediaBrowserServiceCompat.this.onLoadChildren(str, new Result<List<MediaItem>>(str) {
-                /* Access modifiers changed, original: 0000 */
-                public void onResultSent(List<MediaItem> list) {
-                    List arrayList;
-                    if (list != null) {
-                        arrayList = new ArrayList();
-                        for (MediaItem mediaItem : list) {
-                            Parcel obtain = Parcel.obtain();
-                            mediaItem.writeToParcel(obtain, 0);
-                            arrayList.add(obtain);
-                        }
-                    } else {
-                        arrayList = null;
-                    }
-                    resultWrapper.sendResult(arrayList, getFlags());
-                }
-
-                public void detach() {
-                    resultWrapper.detach();
-                }
-            }, bundle);
-        }
-
-        public Bundle getBrowserRootHints() {
-            if (MediaBrowserServiceCompat.this.mCurConnection == null) {
-                return MediaBrowserServiceCompatApi26.getBrowserRootHints(this.mServiceObj);
-            }
-            return MediaBrowserServiceCompat.this.mCurConnection.rootHints == null ? null : new Bundle(MediaBrowserServiceCompat.this.mCurConnection.rootHints);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void notifyChildrenChangedForFramework(String str, Bundle bundle) {
-            if (bundle != null) {
-                MediaBrowserServiceCompatApi26.notifyChildrenChanged(this.mServiceObj, str, bundle);
-            } else {
-                super.notifyChildrenChangedForFramework(str, bundle);
             }
         }
     }

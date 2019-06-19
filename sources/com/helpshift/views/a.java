@@ -13,9 +13,9 @@ import com.helpshift.util.l;
 import java.lang.ref.WeakReference;
 
 public final class a {
-    private static Typeface a = null;
-    private static f b = null;
-    private static boolean c = false;
+    private static Typeface a;
+    private static f b;
+    private static boolean c;
 
     private static class a implements OnGlobalLayoutListener {
         private final WeakReference<View> a;

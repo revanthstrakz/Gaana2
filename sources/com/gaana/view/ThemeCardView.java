@@ -29,7 +29,7 @@ import com.managers.u;
 import com.services.d;
 
 public class ThemeCardView extends BaseItemView implements OnClickListener, OnCheckedChangeListener {
-    private static boolean mImpressionAnalyticsRecorded = false;
+    private static boolean mImpressionAnalyticsRecorded;
     private DiwaliCardContentViewHolder loginBannerContentViewHolder;
     protected GaanaApplication mAppState = ((GaanaApplication) this.mContext.getApplicationContext());
     private BusinessObject mBusinessObject;

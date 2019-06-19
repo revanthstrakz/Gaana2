@@ -74,6 +74,14 @@ public enum JukeSessionManager {
     private JukePlaylist mJukeSessionPlaylist;
     private String mUserNick;
 
+    public interface JukeSyncListener {
+        void onSyncEnd(BusinessObject businessObject);
+
+        void onSyncError();
+
+        void onSyncStarted();
+    }
+
     @Retention(RetentionPolicy.SOURCE)
     public @interface JukeAction {
     }
@@ -90,14 +98,6 @@ public enum JukeSessionManager {
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface JukeSessionType {
-    }
-
-    public interface JukeSyncListener {
-        void onSyncEnd(BusinessObject businessObject);
-
-        void onSyncError();
-
-        void onSyncStarted();
     }
 
     public void setJukeSessionPlaylist(JukePlaylist jukePlaylist) {

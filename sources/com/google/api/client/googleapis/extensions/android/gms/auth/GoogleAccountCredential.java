@@ -164,7 +164,7 @@ public class GoogleAccountCredential implements HttpRequestInitializer {
         return AccountPicker.newChooseAccountIntent(this.selectedAccount, null, new String[]{"com.google"}, true, null, null, null, null);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0009 A:{LOOP_START, SYNTHETIC, Splitter:B:3:0x0009, LOOP:0: B:3:0x0009->B:13:0x0009} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0009 A:{LOOP_START, SYNTHETIC, LOOP:0: B:3:0x0009->B:13:0x0009, Splitter:B:3:0x0009} */
     /* JADX WARNING: Missing exception handler attribute for start block: B:3:0x0009 */
     /* JADX WARNING: Can't wrap try/catch for region: R(4:3|4|14|5) */
     /* JADX WARNING: Missing block: B:6:0x0014, code skipped:

@@ -25,6 +25,19 @@ public class ResultReceiver implements Parcelable {
     final boolean mLocal;
     IResultReceiver mReceiver;
 
+    class MyResultReceiver extends Stub {
+        MyResultReceiver() {
+        }
+
+        public void send(int i, Bundle bundle) {
+            if (ResultReceiver.this.mHandler != null) {
+                ResultReceiver.this.mHandler.post(new MyRunnable(i, bundle));
+            } else {
+                ResultReceiver.this.onReceiveResult(i, bundle);
+            }
+        }
+    }
+
     class MyRunnable implements Runnable {
         final int mResultCode;
         final Bundle mResultData;
@@ -36,19 +49,6 @@ public class ResultReceiver implements Parcelable {
 
         public void run() {
             ResultReceiver.this.onReceiveResult(this.mResultCode, this.mResultData);
-        }
-    }
-
-    class MyResultReceiver extends Stub {
-        MyResultReceiver() {
-        }
-
-        public void send(int i, Bundle bundle) {
-            if (ResultReceiver.this.mHandler != null) {
-                ResultReceiver.this.mHandler.post(new MyRunnable(i, bundle));
-            } else {
-                ResultReceiver.this.onReceiveResult(i, bundle);
-            }
         }
     }
 

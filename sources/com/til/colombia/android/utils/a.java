@@ -19,6 +19,16 @@ public final class a {
     HashMap<b, String> a = new HashMap();
     public c b;
 
+    public interface b {
+        void a();
+
+        void a(Bitmap bitmap);
+    }
+
+    public interface c {
+        void a();
+    }
+
     class a extends AsyncTask<Void, Void, Bitmap> {
         WeakReference<a> a;
         WeakReference<b> b;
@@ -141,16 +151,6 @@ public final class a {
             */
             throw new UnsupportedOperationException("Method not decompiled: com.til.colombia.android.utils.a$a.a():android.graphics.Bitmap");
         }
-    }
-
-    public interface b {
-        void a();
-
-        void a(Bitmap bitmap);
-    }
-
-    public interface c {
-        void a();
     }
 
     private static void a(int i) {

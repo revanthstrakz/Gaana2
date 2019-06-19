@@ -7,6 +7,20 @@ import java.util.RandomAccess;
 public abstract class la<E> extends kz<E> implements List<E>, RandomAccess {
     private static final lo<Object> a = new a(lj.a, 0);
 
+    static class a<E> extends kt<E> {
+        private final la<E> a;
+
+        a(la<E> laVar, int i) {
+            super(laVar.size(), i);
+            this.a = laVar;
+        }
+
+        /* Access modifiers changed, original: protected */
+        public E a(int i) {
+            return this.a.get(i);
+        }
+    }
+
     class b extends la<E> {
         final transient int a;
         final transient int b;
@@ -49,20 +63,6 @@ public abstract class la<E> extends kz<E> implements List<E>, RandomAccess {
         public la<E> subList(int i, int i2) {
             kr.a(i, i2, this.b);
             return la.this.subList(i + this.a, i2 + this.a);
-        }
-    }
-
-    static class a<E> extends kt<E> {
-        private final la<E> a;
-
-        a(la<E> laVar, int i) {
-            super(laVar.size(), i);
-            this.a = laVar;
-        }
-
-        /* Access modifiers changed, original: protected */
-        public E a(int i) {
-            return this.a.get(i);
         }
     }
 

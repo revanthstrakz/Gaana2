@@ -76,6 +76,48 @@ public class NextGenAutoSuggestAdapter extends Adapter<ViewHolder> {
     private String searchText;
     private RecycledViewPool viewPool;
 
+    public static class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
+        public ViewHolder(View view) {
+            super(view);
+        }
+    }
+
+    public static class HeaderViewHolder extends ViewHolder {
+        private ImageView clickOptionImage;
+        private ItemAdapter itemAdapter;
+        private RecyclerView recyclerView;
+        private TextView title;
+        private TextView viewAll;
+        private LinearLayout viewAllContainer;
+
+        public HeaderViewHolder(View view) {
+            super(view);
+            this.title = (TextView) view.findViewById(R.id.headerText);
+            this.viewAll = (TextView) view.findViewById(R.id.viewAll);
+            this.viewAllContainer = (LinearLayout) view.findViewById(R.id.viewAllContainer);
+            this.clickOptionImage = (ImageView) view.findViewById(R.id.clickoptionImage);
+            this.viewAll.setTypeface(i.a(view.getContext().getAssets(), "fonts/Roboto-Medium.ttf"));
+            this.recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+            this.recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        }
+    }
+
+    public static class HorizontalViewHolder extends ViewHolder {
+        public HorizontalRecyclerView recyclerView;
+        public TextView textLabel;
+        public TextView viewAll;
+
+        public HorizontalViewHolder(View view) {
+            super(view);
+            this.textLabel = (TextView) view.findViewById(R.id.f62similar.header.text);
+            this.viewAll = (TextView) view.findViewById(R.id.f63similar.header.view_all);
+            this.viewAll.setTypeface(i.a(view.getContext().getAssets(), "fonts/Roboto-Medium.ttf"));
+            this.recyclerView = (HorizontalRecyclerView) view.findViewById(R.id.horizontal_list_view);
+            this.recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), 0, false));
+            this.recyclerView.setHasFixedSize(false);
+        }
+    }
+
     public class ItemAdapter extends Adapter<android.support.v7.widget.RecyclerView.ViewHolder> {
         private ArrayList<AutoComplete> arrListItem;
         private ArrayList<Track> currentTracksInPlaylist;
@@ -137,48 +179,6 @@ public class NextGenAutoSuggestAdapter extends Adapter<ViewHolder> {
             } catch (Exception e) {
                 ThrowableExtension.printStackTrace(e);
             }
-        }
-    }
-
-    public static class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
-        public ViewHolder(View view) {
-            super(view);
-        }
-    }
-
-    public static class HeaderViewHolder extends ViewHolder {
-        private ImageView clickOptionImage;
-        private ItemAdapter itemAdapter;
-        private RecyclerView recyclerView;
-        private TextView title;
-        private TextView viewAll;
-        private LinearLayout viewAllContainer;
-
-        public HeaderViewHolder(View view) {
-            super(view);
-            this.title = (TextView) view.findViewById(R.id.headerText);
-            this.viewAll = (TextView) view.findViewById(R.id.viewAll);
-            this.viewAllContainer = (LinearLayout) view.findViewById(R.id.viewAllContainer);
-            this.clickOptionImage = (ImageView) view.findViewById(R.id.clickoptionImage);
-            this.viewAll.setTypeface(i.a(view.getContext().getAssets(), "fonts/Roboto-Medium.ttf"));
-            this.recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-            this.recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        }
-    }
-
-    public static class HorizontalViewHolder extends ViewHolder {
-        public HorizontalRecyclerView recyclerView;
-        public TextView textLabel;
-        public TextView viewAll;
-
-        public HorizontalViewHolder(View view) {
-            super(view);
-            this.textLabel = (TextView) view.findViewById(R.id.f62similar.header.text);
-            this.viewAll = (TextView) view.findViewById(R.id.f63similar.header.view_all);
-            this.viewAll.setTypeface(i.a(view.getContext().getAssets(), "fonts/Roboto-Medium.ttf"));
-            this.recyclerView = (HorizontalRecyclerView) view.findViewById(R.id.horizontal_list_view);
-            this.recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), 0, false));
-            this.recyclerView.setHasFixedSize(false);
         }
     }
 

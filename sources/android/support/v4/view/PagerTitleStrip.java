@@ -44,19 +44,6 @@ public class PagerTitleStrip extends ViewGroup {
     private boolean mUpdatingText;
     private WeakReference<PagerAdapter> mWatchingAdapter;
 
-    private static class SingleLineAllCapsTransform extends SingleLineTransformationMethod {
-        private Locale mLocale;
-
-        SingleLineAllCapsTransform(Context context) {
-            this.mLocale = context.getResources().getConfiguration().locale;
-        }
-
-        public CharSequence getTransformation(CharSequence charSequence, View view) {
-            charSequence = super.getTransformation(charSequence, view);
-            return charSequence != null ? charSequence.toString().toUpperCase(this.mLocale) : null;
-        }
-    }
-
     private class PageListener extends DataSetObserver implements OnAdapterChangeListener, OnPageChangeListener {
         private int mScrollState;
 
@@ -96,6 +83,19 @@ public class PagerTitleStrip extends ViewGroup {
                 f = PagerTitleStrip.this.mLastKnownPositionOffset;
             }
             PagerTitleStrip.this.updateTextPositions(PagerTitleStrip.this.mPager.getCurrentItem(), f, true);
+        }
+    }
+
+    private static class SingleLineAllCapsTransform extends SingleLineTransformationMethod {
+        private Locale mLocale;
+
+        SingleLineAllCapsTransform(Context context) {
+            this.mLocale = context.getResources().getConfiguration().locale;
+        }
+
+        public CharSequence getTransformation(CharSequence charSequence, View view) {
+            charSequence = super.getTransformation(charSequence, view);
+            return charSequence != null ? charSequence.toString().toUpperCase(this.mLocale) : null;
         }
     }
 

@@ -52,6 +52,21 @@ public class DefaultDrmSessionManager<T extends ExoMediaCrypto> implements Provi
     public @interface Mode {
     }
 
+    @Deprecated
+    public interface EventListener extends DefaultDrmSessionEventListener {
+    }
+
+    private class MediaDrmEventListener implements OnEventListener<T> {
+        private MediaDrmEventListener() {
+        }
+
+        public void onEvent(ExoMediaDrm<? extends T> exoMediaDrm, byte[] bArr, int i, int i2, byte[] bArr2) {
+            if (DefaultDrmSessionManager.this.mode == 0) {
+                DefaultDrmSessionManager.this.mediaDrmHandler.obtainMessage(i, bArr).sendToTarget();
+            }
+        }
+    }
+
     @SuppressLint({"HandlerLeak"})
     private class MediaDrmHandler extends Handler {
         public MediaDrmHandler(Looper looper) {
@@ -75,21 +90,6 @@ public class DefaultDrmSessionManager<T extends ExoMediaCrypto> implements Provi
             stringBuilder.append("Media does not support uuid: ");
             stringBuilder.append(uuid);
             super(stringBuilder.toString());
-        }
-    }
-
-    @Deprecated
-    public interface EventListener extends DefaultDrmSessionEventListener {
-    }
-
-    private class MediaDrmEventListener implements OnEventListener<T> {
-        private MediaDrmEventListener() {
-        }
-
-        public void onEvent(ExoMediaDrm<? extends T> exoMediaDrm, byte[] bArr, int i, int i2, byte[] bArr2) {
-            if (DefaultDrmSessionManager.this.mode == 0) {
-                DefaultDrmSessionManager.this.mediaDrmHandler.obtainMessage(i, bArr).sendToTarget();
-            }
         }
     }
 

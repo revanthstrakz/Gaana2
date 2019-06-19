@@ -110,6 +110,10 @@ public final class PaymentDataRequest extends AbstractSafeParcelable {
             }
             return PaymentDataRequest.this;
         }
+
+        /* synthetic */ Builder(PaymentDataRequest paymentDataRequest, zzae zzae) {
+            this();
+        }
     }
 
     @Constructor
@@ -184,7 +188,7 @@ public final class PaymentDataRequest extends AbstractSafeParcelable {
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new PaymentDataRequest(), null);
     }
 
     public static PaymentDataRequest fromJson(String str) {

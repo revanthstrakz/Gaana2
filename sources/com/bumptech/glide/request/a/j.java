@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public abstract class j<T extends View, Z> extends a<Z> {
-    private static boolean b = false;
+    private static boolean b;
     @Nullable
     private static Integer c;
     protected final T a;

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class zzbt {
-    private static volatile boolean zzgm = false;
+    private static volatile boolean zzgm;
     private static final Class<?> zzgn = zzam();
     static final zzbt zzgo = new zzbt(true);
     private final Map<Object, zzf<?, ?>> zzgp;

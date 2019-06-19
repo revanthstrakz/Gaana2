@@ -4,6 +4,10 @@ import com.helpshift.util.l;
 
 public class e {
 
+    public static abstract class b<T> implements Runnable {
+        public T a;
+    }
+
     public static class a implements Runnable {
         private final Runnable a;
         private boolean b;
@@ -36,9 +40,5 @@ public class e {
                 }
             }
         }
-    }
-
-    public static abstract class b<T> implements Runnable {
-        public T a;
     }
 }

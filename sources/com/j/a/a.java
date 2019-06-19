@@ -195,12 +195,12 @@ public final class a {
     private static final b cz = new b(173, "DISPLAY_WIDTH_PIXELS", 1);
     static String d = "";
     @SuppressLint({"StaticFieldLeak"})
-    static Context e = null;
-    static String f = null;
-    static e g = null;
+    static Context e;
+    static String f;
+    static e g;
     private static final int h = VERSION.SDK_INT;
     private static d i = new d();
-    private static boolean j = false;
+    private static boolean j;
     private static boolean k;
     private static boolean l;
     private static boolean m;
@@ -390,7 +390,7 @@ public final class a {
     /* JADX WARNING: Removed duplicated region for block: B:150:0x0610  */
     /* JADX WARNING: Removed duplicated region for block: B:141:0x05b8  */
     /* JADX WARNING: Removed duplicated region for block: B:176:0x06d2 A:{Catch:{ SocketException | JSONException -> 0x06da }} */
-    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, PHI: r1 , LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }} */
+    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }, PHI: r1 } */
     /* JADX WARNING: Removed duplicated region for block: B:187:0x0706 A:{Catch:{ Exception -> 0x071b }} */
     /* JADX WARNING: Removed duplicated region for block: B:205:0x0744  */
     /* JADX WARNING: Removed duplicated region for block: B:199:0x072e  */
@@ -441,7 +441,7 @@ public final class a {
     /* JADX WARNING: Removed duplicated region for block: B:108:0x0460 A:{Catch:{ Exception -> 0x04bc }} */
     /* JADX WARNING: Removed duplicated region for block: B:141:0x05b8  */
     /* JADX WARNING: Removed duplicated region for block: B:150:0x0610  */
-    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, PHI: r1 , LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }} */
+    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }, PHI: r1 } */
     /* JADX WARNING: Removed duplicated region for block: B:176:0x06d2 A:{Catch:{ SocketException | JSONException -> 0x06da }} */
     /* JADX WARNING: Removed duplicated region for block: B:187:0x0706 A:{Catch:{ Exception -> 0x071b }} */
     /* JADX WARNING: Removed duplicated region for block: B:199:0x072e  */
@@ -501,7 +501,7 @@ public final class a {
     /* JADX WARNING: Removed duplicated region for block: B:150:0x0610  */
     /* JADX WARNING: Removed duplicated region for block: B:141:0x05b8  */
     /* JADX WARNING: Removed duplicated region for block: B:176:0x06d2 A:{Catch:{ SocketException | JSONException -> 0x06da }} */
-    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, PHI: r1 , LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }} */
+    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }, PHI: r1 } */
     /* JADX WARNING: Removed duplicated region for block: B:187:0x0706 A:{Catch:{ Exception -> 0x071b }} */
     /* JADX WARNING: Removed duplicated region for block: B:205:0x0744  */
     /* JADX WARNING: Removed duplicated region for block: B:199:0x072e  */
@@ -563,7 +563,7 @@ public final class a {
     /* JADX WARNING: Removed duplicated region for block: B:108:0x0460 A:{Catch:{ Exception -> 0x04bc }} */
     /* JADX WARNING: Removed duplicated region for block: B:141:0x05b8  */
     /* JADX WARNING: Removed duplicated region for block: B:150:0x0610  */
-    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, PHI: r1 , LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }} */
+    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }, PHI: r1 } */
     /* JADX WARNING: Removed duplicated region for block: B:176:0x06d2 A:{Catch:{ SocketException | JSONException -> 0x06da }} */
     /* JADX WARNING: Removed duplicated region for block: B:187:0x0706 A:{Catch:{ Exception -> 0x071b }} */
     /* JADX WARNING: Removed duplicated region for block: B:199:0x072e  */
@@ -635,7 +635,7 @@ public final class a {
     /* JADX WARNING: Removed duplicated region for block: B:150:0x0610  */
     /* JADX WARNING: Removed duplicated region for block: B:141:0x05b8  */
     /* JADX WARNING: Removed duplicated region for block: B:176:0x06d2 A:{Catch:{ SocketException | JSONException -> 0x06da }} */
-    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, PHI: r1 , LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }} */
+    /* JADX WARNING: Removed duplicated region for block: B:155:0x0639 A:{LOOP_START, LOOP:2: B:155:0x0639->B:380:0x0639, Catch:{ SocketException | JSONException -> 0x06da }, PHI: r1 } */
     /* JADX WARNING: Removed duplicated region for block: B:187:0x0706 A:{Catch:{ Exception -> 0x071b }} */
     /* JADX WARNING: Removed duplicated region for block: B:205:0x0744  */
     /* JADX WARNING: Removed duplicated region for block: B:199:0x072e  */

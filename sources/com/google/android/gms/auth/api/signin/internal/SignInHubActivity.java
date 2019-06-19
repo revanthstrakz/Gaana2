@@ -18,7 +18,7 @@ import com.google.android.gms.common.api.Status;
 
 @KeepName
 public class SignInHubActivity extends FragmentActivity {
-    private static boolean zzbt = false;
+    private static boolean zzbt;
     private boolean zzbu = false;
     private SignInConfiguration zzbv;
     private boolean zzbw;
@@ -39,6 +39,10 @@ public class SignInHubActivity extends FragmentActivity {
         public final /* synthetic */ void onLoadFinished(Loader loader, Object obj) {
             SignInHubActivity.this.setResult(SignInHubActivity.this.zzbx, SignInHubActivity.this.zzby);
             SignInHubActivity.this.finish();
+        }
+
+        /* synthetic */ zzc(SignInHubActivity signInHubActivity, zzy zzy) {
+            this();
         }
     }
 
@@ -139,7 +143,7 @@ public class SignInHubActivity extends FragmentActivity {
     }
 
     private final void zzn() {
-        getSupportLoaderManager().initLoader(0, null, new zzc());
+        getSupportLoaderManager().initLoader(0, null, new zzc(this, null));
         zzbt = false;
     }
 

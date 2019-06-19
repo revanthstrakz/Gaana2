@@ -185,6 +185,352 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
     private final ProcessCallback mViewInfoProcessCallback;
     final ViewInfoStore mViewInfoStore;
 
+    public static abstract class ViewHolder {
+        static final int FLAG_ADAPTER_FULLUPDATE = 1024;
+        static final int FLAG_ADAPTER_POSITION_UNKNOWN = 512;
+        static final int FLAG_APPEARED_IN_PRE_LAYOUT = 4096;
+        static final int FLAG_BOUNCED_FROM_HIDDEN_LIST = 8192;
+        static final int FLAG_BOUND = 1;
+        static final int FLAG_IGNORE = 128;
+        static final int FLAG_INVALID = 4;
+        static final int FLAG_MOVED = 2048;
+        static final int FLAG_NOT_RECYCLABLE = 16;
+        static final int FLAG_REMOVED = 8;
+        static final int FLAG_RETURNED_FROM_SCRAP = 32;
+        static final int FLAG_SET_A11Y_ITEM_DELEGATE = 16384;
+        static final int FLAG_TMP_DETACHED = 256;
+        static final int FLAG_UPDATE = 2;
+        private static final List<Object> FULLUPDATE_PAYLOADS = Collections.EMPTY_LIST;
+        static final int PENDING_ACCESSIBILITY_STATE_NOT_SET = -1;
+        public final View itemView;
+        private int mFlags;
+        private boolean mInChangeScrap = false;
+        private int mIsRecyclableCount = 0;
+        long mItemId = -1;
+        int mItemViewType = -1;
+        WeakReference<RecyclerView> mNestedRecyclerView;
+        int mOldPosition = -1;
+        RecyclerView mOwnerRecyclerView;
+        List<Object> mPayloads = null;
+        @VisibleForTesting
+        int mPendingAccessibilityState = -1;
+        int mPosition = -1;
+        int mPreLayoutPosition = -1;
+        private Recycler mScrapContainer = null;
+        ViewHolder mShadowedHolder = null;
+        ViewHolder mShadowingHolder = null;
+        List<Object> mUnmodifiedPayloads = null;
+        private int mWasImportantForAccessibilityBeforeHidden = 0;
+
+        public ViewHolder(View view) {
+            if (view == null) {
+                throw new IllegalArgumentException("itemView may not be null");
+            }
+            this.itemView = view;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void flagRemovedAndOffsetPosition(int i, int i2, boolean z) {
+            addFlags(8);
+            offsetPosition(i2, z);
+            this.mPosition = i;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void offsetPosition(int i, boolean z) {
+            if (this.mOldPosition == -1) {
+                this.mOldPosition = this.mPosition;
+            }
+            if (this.mPreLayoutPosition == -1) {
+                this.mPreLayoutPosition = this.mPosition;
+            }
+            if (z) {
+                this.mPreLayoutPosition += i;
+            }
+            this.mPosition += i;
+            if (this.itemView.getLayoutParams() != null) {
+                ((LayoutParams) this.itemView.getLayoutParams()).mInsetsDirty = true;
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void clearOldPosition() {
+            this.mOldPosition = -1;
+            this.mPreLayoutPosition = -1;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void saveOldPosition() {
+            if (this.mOldPosition == -1) {
+                this.mOldPosition = this.mPosition;
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean shouldIgnore() {
+            return (this.mFlags & 128) != 0;
+        }
+
+        @Deprecated
+        public final int getPosition() {
+            return this.mPreLayoutPosition == -1 ? this.mPosition : this.mPreLayoutPosition;
+        }
+
+        public final int getLayoutPosition() {
+            return this.mPreLayoutPosition == -1 ? this.mPosition : this.mPreLayoutPosition;
+        }
+
+        public final int getAdapterPosition() {
+            if (this.mOwnerRecyclerView == null) {
+                return -1;
+            }
+            return this.mOwnerRecyclerView.getAdapterPositionFor(this);
+        }
+
+        public final int getOldPosition() {
+            return this.mOldPosition;
+        }
+
+        public final long getItemId() {
+            return this.mItemId;
+        }
+
+        public final int getItemViewType() {
+            return this.mItemViewType;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isScrap() {
+            return this.mScrapContainer != null;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void unScrap() {
+            this.mScrapContainer.unscrapView(this);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean wasReturnedFromScrap() {
+            return (this.mFlags & 32) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void clearReturnedFromScrapFlag() {
+            this.mFlags &= -33;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void clearTmpDetachFlag() {
+            this.mFlags &= -257;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void stopIgnoring() {
+            this.mFlags &= -129;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setScrapContainer(Recycler recycler, boolean z) {
+            this.mScrapContainer = recycler;
+            this.mInChangeScrap = z;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isInvalid() {
+            return (this.mFlags & 4) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean needsUpdate() {
+            return (this.mFlags & 2) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isBound() {
+            return (this.mFlags & 1) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isRemoved() {
+            return (this.mFlags & 8) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean hasAnyOfTheFlags(int i) {
+            return (i & this.mFlags) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isTmpDetached() {
+            return (this.mFlags & 256) != 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isAdapterPositionUnknown() {
+            return (this.mFlags & 512) != 0 || isInvalid();
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setFlags(int i, int i2) {
+            this.mFlags = (i & i2) | (this.mFlags & (i2 ^ -1));
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void addFlags(int i) {
+            this.mFlags = i | this.mFlags;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void addChangePayload(Object obj) {
+            if (obj == null) {
+                addFlags(1024);
+            } else if ((1024 & this.mFlags) == 0) {
+                createPayloadsIfNeeded();
+                this.mPayloads.add(obj);
+            }
+        }
+
+        private void createPayloadsIfNeeded() {
+            if (this.mPayloads == null) {
+                this.mPayloads = new ArrayList();
+                this.mUnmodifiedPayloads = Collections.unmodifiableList(this.mPayloads);
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void clearPayload() {
+            if (this.mPayloads != null) {
+                this.mPayloads.clear();
+            }
+            this.mFlags &= -1025;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public List<Object> getUnmodifiedPayloads() {
+            if ((this.mFlags & 1024) != 0) {
+                return FULLUPDATE_PAYLOADS;
+            }
+            if (this.mPayloads == null || this.mPayloads.size() == 0) {
+                return FULLUPDATE_PAYLOADS;
+            }
+            return this.mUnmodifiedPayloads;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void resetInternal() {
+            this.mFlags = 0;
+            this.mPosition = -1;
+            this.mOldPosition = -1;
+            this.mItemId = -1;
+            this.mPreLayoutPosition = -1;
+            this.mIsRecyclableCount = 0;
+            this.mShadowedHolder = null;
+            this.mShadowingHolder = null;
+            clearPayload();
+            this.mWasImportantForAccessibilityBeforeHidden = 0;
+            this.mPendingAccessibilityState = -1;
+            RecyclerView.clearNestedRecyclerViewIfNotNested(this);
+        }
+
+        private void onEnteredHiddenState(RecyclerView recyclerView) {
+            if (this.mPendingAccessibilityState != -1) {
+                this.mWasImportantForAccessibilityBeforeHidden = this.mPendingAccessibilityState;
+            } else {
+                this.mWasImportantForAccessibilityBeforeHidden = ViewCompat.getImportantForAccessibility(this.itemView);
+            }
+            recyclerView.setChildImportantForAccessibilityInternal(this, 4);
+        }
+
+        private void onLeftHiddenState(RecyclerView recyclerView) {
+            recyclerView.setChildImportantForAccessibilityInternal(this, this.mWasImportantForAccessibilityBeforeHidden);
+            this.mWasImportantForAccessibilityBeforeHidden = 0;
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("ViewHolder{");
+            stringBuilder.append(Integer.toHexString(hashCode()));
+            stringBuilder.append(" position=");
+            stringBuilder.append(this.mPosition);
+            stringBuilder.append(" id=");
+            stringBuilder.append(this.mItemId);
+            stringBuilder.append(", oldPos=");
+            stringBuilder.append(this.mOldPosition);
+            stringBuilder.append(", pLpos:");
+            stringBuilder.append(this.mPreLayoutPosition);
+            StringBuilder stringBuilder2 = new StringBuilder(stringBuilder.toString());
+            if (isScrap()) {
+                stringBuilder2.append(" scrap ");
+                stringBuilder2.append(this.mInChangeScrap ? "[changeScrap]" : "[attachedScrap]");
+            }
+            if (isInvalid()) {
+                stringBuilder2.append(" invalid");
+            }
+            if (!isBound()) {
+                stringBuilder2.append(" unbound");
+            }
+            if (needsUpdate()) {
+                stringBuilder2.append(" update");
+            }
+            if (isRemoved()) {
+                stringBuilder2.append(" removed");
+            }
+            if (shouldIgnore()) {
+                stringBuilder2.append(" ignored");
+            }
+            if (isTmpDetached()) {
+                stringBuilder2.append(" tmpDetached");
+            }
+            if (!isRecyclable()) {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(" not recyclable(");
+                stringBuilder.append(this.mIsRecyclableCount);
+                stringBuilder.append(")");
+                stringBuilder2.append(stringBuilder.toString());
+            }
+            if (isAdapterPositionUnknown()) {
+                stringBuilder2.append(" undefined adapter position");
+            }
+            if (this.itemView.getParent() == null) {
+                stringBuilder2.append(" no parent");
+            }
+            stringBuilder2.append("}");
+            return stringBuilder2.toString();
+        }
+
+        public final void setIsRecyclable(boolean z) {
+            this.mIsRecyclableCount = z ? this.mIsRecyclableCount - 1 : this.mIsRecyclableCount + 1;
+            if (this.mIsRecyclableCount < 0) {
+                this.mIsRecyclableCount = 0;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for ");
+                stringBuilder.append(this);
+                Log.e("View", stringBuilder.toString());
+            } else if (!z && this.mIsRecyclableCount == 1) {
+                this.mFlags |= 16;
+            } else if (z && this.mIsRecyclableCount == 0) {
+                this.mFlags &= -17;
+            }
+        }
+
+        public final boolean isRecyclable() {
+            return (this.mFlags & 16) == 0 && !ViewCompat.hasTransientState(this.itemView);
+        }
+
+        private boolean shouldBeKeptAsChild() {
+            return (this.mFlags & 16) != 0;
+        }
+
+        private boolean doesTransientStatePreventRecycling() {
+            return (this.mFlags & 16) == 0 && ViewCompat.hasTransientState(this.itemView);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isUpdated() {
+            return (this.mFlags & 2) != 0;
+        }
+    }
+
     public static abstract class Adapter<VH extends ViewHolder> {
         private boolean mHasStableIds = false;
         private final AdapterDataObservable mObservable = new AdapterDataObservable();
@@ -318,91 +664,6 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
 
         public final void notifyItemRangeRemoved(int i, int i2) {
             this.mObservable.notifyItemRangeRemoved(i, i2);
-        }
-    }
-
-    static class AdapterDataObservable extends Observable<AdapterDataObserver> {
-        AdapterDataObservable() {
-        }
-
-        public boolean hasObservers() {
-            return this.mObservers.isEmpty() ^ 1;
-        }
-
-        public void notifyChanged() {
-            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
-                ((AdapterDataObserver) this.mObservers.get(size)).onChanged();
-            }
-        }
-
-        public void notifyItemRangeChanged(int i, int i2) {
-            notifyItemRangeChanged(i, i2, null);
-        }
-
-        public void notifyItemRangeChanged(int i, int i2, @Nullable Object obj) {
-            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
-                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeChanged(i, i2, obj);
-            }
-        }
-
-        public void notifyItemRangeInserted(int i, int i2) {
-            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
-                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeInserted(i, i2);
-            }
-        }
-
-        public void notifyItemRangeRemoved(int i, int i2) {
-            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
-                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeRemoved(i, i2);
-            }
-        }
-
-        public void notifyItemMoved(int i, int i2) {
-            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
-                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeMoved(i, i2, 1);
-            }
-        }
-    }
-
-    public static abstract class AdapterDataObserver {
-        public void onChanged() {
-        }
-
-        public void onItemRangeChanged(int i, int i2) {
-        }
-
-        public void onItemRangeInserted(int i, int i2) {
-        }
-
-        public void onItemRangeMoved(int i, int i2, int i3) {
-        }
-
-        public void onItemRangeRemoved(int i, int i2) {
-        }
-
-        public void onItemRangeChanged(int i, int i2, @Nullable Object obj) {
-            onItemRangeChanged(i, i2);
-        }
-    }
-
-    public interface ChildDrawingOrderCallback {
-        int onGetChildDrawingOrder(int i, int i2);
-    }
-
-    public static class EdgeEffectFactory {
-        public static final int DIRECTION_BOTTOM = 3;
-        public static final int DIRECTION_LEFT = 0;
-        public static final int DIRECTION_RIGHT = 2;
-        public static final int DIRECTION_TOP = 1;
-
-        @Retention(RetentionPolicy.SOURCE)
-        public @interface EdgeDirection {
-        }
-
-        /* Access modifiers changed, original: protected */
-        @NonNull
-        public EdgeEffect createEdgeEffect(RecyclerView recyclerView, int i) {
-            return new EdgeEffect(recyclerView.getContext());
         }
     }
 
@@ -604,6 +865,78 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
 
         public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, State state) {
             getItemOffsets(rect, ((LayoutParams) view.getLayoutParams()).getViewLayoutPosition(), recyclerView);
+        }
+    }
+
+    public static abstract class OnScrollListener {
+        public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+        }
+
+        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+        }
+    }
+
+    public interface OnItemTouchListener {
+        boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent);
+
+        void onRequestDisallowInterceptTouchEvent(boolean z);
+
+        void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent);
+    }
+
+    public static class LayoutParams extends MarginLayoutParams {
+        final Rect mDecorInsets = new Rect();
+        boolean mInsetsDirty = true;
+        boolean mPendingInvalidate = false;
+        ViewHolder mViewHolder;
+
+        public LayoutParams(Context context, AttributeSet attributeSet) {
+            super(context, attributeSet);
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+        }
+
+        public LayoutParams(MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+        }
+
+        public LayoutParams(android.view.ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        public LayoutParams(LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        public boolean viewNeedsUpdate() {
+            return this.mViewHolder.needsUpdate();
+        }
+
+        public boolean isViewInvalid() {
+            return this.mViewHolder.isInvalid();
+        }
+
+        public boolean isItemRemoved() {
+            return this.mViewHolder.isRemoved();
+        }
+
+        public boolean isItemChanged() {
+            return this.mViewHolder.isUpdated();
+        }
+
+        @Deprecated
+        public int getViewPosition() {
+            return this.mViewHolder.getPosition();
+        }
+
+        public int getViewLayoutPosition() {
+            return this.mViewHolder.getLayoutPosition();
+        }
+
+        public int getViewAdapterPosition() {
+            return this.mViewHolder.getAdapterPosition();
         }
     }
 
@@ -1902,59 +2235,362 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
         }
     }
 
-    public static class LayoutParams extends MarginLayoutParams {
-        final Rect mDecorInsets = new Rect();
-        boolean mInsetsDirty = true;
-        boolean mPendingInvalidate = false;
-        ViewHolder mViewHolder;
+    public static abstract class SmoothScroller {
+        private LayoutManager mLayoutManager;
+        private boolean mPendingInitialRun;
+        private RecyclerView mRecyclerView;
+        private final Action mRecyclingAction = new Action(0, 0);
+        private boolean mRunning;
+        private int mTargetPosition = -1;
+        private View mTargetView;
 
-        public LayoutParams(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
+        public interface ScrollVectorProvider {
+            PointF computeScrollVectorForPosition(int i);
         }
 
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
+        public static class Action {
+            public static final int UNDEFINED_DURATION = Integer.MIN_VALUE;
+            private boolean mChanged;
+            private int mConsecutiveUpdates;
+            private int mDuration;
+            private int mDx;
+            private int mDy;
+            private Interpolator mInterpolator;
+            private int mJumpToPosition;
+
+            public Action(int i, int i2) {
+                this(i, i2, Integer.MIN_VALUE, null);
+            }
+
+            public Action(int i, int i2, int i3) {
+                this(i, i2, i3, null);
+            }
+
+            public Action(int i, int i2, int i3, Interpolator interpolator) {
+                this.mJumpToPosition = -1;
+                this.mChanged = false;
+                this.mConsecutiveUpdates = 0;
+                this.mDx = i;
+                this.mDy = i2;
+                this.mDuration = i3;
+                this.mInterpolator = interpolator;
+            }
+
+            public void jumpTo(int i) {
+                this.mJumpToPosition = i;
+            }
+
+            /* Access modifiers changed, original: 0000 */
+            public boolean hasJumpTarget() {
+                return this.mJumpToPosition >= 0;
+            }
+
+            /* Access modifiers changed, original: 0000 */
+            public void runIfNecessary(RecyclerView recyclerView) {
+                if (this.mJumpToPosition >= 0) {
+                    int i = this.mJumpToPosition;
+                    this.mJumpToPosition = -1;
+                    recyclerView.jumpToPositionForSmoothScroller(i);
+                    this.mChanged = false;
+                    return;
+                }
+                if (this.mChanged) {
+                    validate();
+                    if (this.mInterpolator != null) {
+                        recyclerView.mViewFlinger.smoothScrollBy(this.mDx, this.mDy, this.mDuration, this.mInterpolator);
+                    } else if (this.mDuration == Integer.MIN_VALUE) {
+                        recyclerView.mViewFlinger.smoothScrollBy(this.mDx, this.mDy);
+                    } else {
+                        recyclerView.mViewFlinger.smoothScrollBy(this.mDx, this.mDy, this.mDuration);
+                    }
+                    this.mConsecutiveUpdates++;
+                    if (this.mConsecutiveUpdates > 10) {
+                        Log.e(RecyclerView.TAG, "Smooth Scroll action is being updated too frequently. Make sure you are not changing it unless necessary");
+                    }
+                    this.mChanged = false;
+                } else {
+                    this.mConsecutiveUpdates = 0;
+                }
+            }
+
+            private void validate() {
+                if (this.mInterpolator != null && this.mDuration < 1) {
+                    throw new IllegalStateException("If you provide an interpolator, you must set a positive duration");
+                } else if (this.mDuration < 1) {
+                    throw new IllegalStateException("Scroll duration must be a positive number");
+                }
+            }
+
+            public int getDx() {
+                return this.mDx;
+            }
+
+            public void setDx(int i) {
+                this.mChanged = true;
+                this.mDx = i;
+            }
+
+            public int getDy() {
+                return this.mDy;
+            }
+
+            public void setDy(int i) {
+                this.mChanged = true;
+                this.mDy = i;
+            }
+
+            public int getDuration() {
+                return this.mDuration;
+            }
+
+            public void setDuration(int i) {
+                this.mChanged = true;
+                this.mDuration = i;
+            }
+
+            public Interpolator getInterpolator() {
+                return this.mInterpolator;
+            }
+
+            public void setInterpolator(Interpolator interpolator) {
+                this.mChanged = true;
+                this.mInterpolator = interpolator;
+            }
+
+            public void update(int i, int i2, int i3, Interpolator interpolator) {
+                this.mDx = i;
+                this.mDy = i2;
+                this.mDuration = i3;
+                this.mInterpolator = interpolator;
+                this.mChanged = true;
+            }
         }
 
-        public LayoutParams(MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
+        public abstract void onSeekTargetStep(int i, int i2, State state, Action action);
+
+        public abstract void onStart();
+
+        public abstract void onStop();
+
+        public abstract void onTargetFound(View view, State state, Action action);
+
+        /* Access modifiers changed, original: 0000 */
+        public void start(RecyclerView recyclerView, LayoutManager layoutManager) {
+            this.mRecyclerView = recyclerView;
+            this.mLayoutManager = layoutManager;
+            if (this.mTargetPosition == -1) {
+                throw new IllegalArgumentException("Invalid target position");
+            }
+            this.mRecyclerView.mState.mTargetPosition = this.mTargetPosition;
+            this.mRunning = true;
+            this.mPendingInitialRun = true;
+            this.mTargetView = findViewByPosition(getTargetPosition());
+            onStart();
+            this.mRecyclerView.mViewFlinger.postOnAnimation();
         }
 
-        public LayoutParams(android.view.ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
+        public void setTargetPosition(int i) {
+            this.mTargetPosition = i;
         }
 
-        public LayoutParams(LayoutParams layoutParams) {
-            super(layoutParams);
+        @Nullable
+        public LayoutManager getLayoutManager() {
+            return this.mLayoutManager;
         }
 
-        public boolean viewNeedsUpdate() {
-            return this.mViewHolder.needsUpdate();
+        /* Access modifiers changed, original: protected|final */
+        public final void stop() {
+            if (this.mRunning) {
+                this.mRunning = false;
+                onStop();
+                this.mRecyclerView.mState.mTargetPosition = -1;
+                this.mTargetView = null;
+                this.mTargetPosition = -1;
+                this.mPendingInitialRun = false;
+                this.mLayoutManager.onSmoothScrollerStopped(this);
+                this.mLayoutManager = null;
+                this.mRecyclerView = null;
+            }
         }
 
-        public boolean isViewInvalid() {
-            return this.mViewHolder.isInvalid();
+        public boolean isPendingInitialRun() {
+            return this.mPendingInitialRun;
         }
 
-        public boolean isItemRemoved() {
-            return this.mViewHolder.isRemoved();
+        public boolean isRunning() {
+            return this.mRunning;
         }
 
-        public boolean isItemChanged() {
-            return this.mViewHolder.isUpdated();
+        public int getTargetPosition() {
+            return this.mTargetPosition;
+        }
+
+        private void onAnimation(int i, int i2) {
+            RecyclerView recyclerView = this.mRecyclerView;
+            if (!this.mRunning || this.mTargetPosition == -1 || recyclerView == null) {
+                stop();
+            }
+            this.mPendingInitialRun = false;
+            if (this.mTargetView != null) {
+                if (getChildPosition(this.mTargetView) == this.mTargetPosition) {
+                    onTargetFound(this.mTargetView, recyclerView.mState, this.mRecyclingAction);
+                    this.mRecyclingAction.runIfNecessary(recyclerView);
+                    stop();
+                } else {
+                    Log.e(RecyclerView.TAG, "Passed over target position while smooth scrolling.");
+                    this.mTargetView = null;
+                }
+            }
+            if (this.mRunning) {
+                onSeekTargetStep(i, i2, recyclerView.mState, this.mRecyclingAction);
+                boolean hasJumpTarget = this.mRecyclingAction.hasJumpTarget();
+                this.mRecyclingAction.runIfNecessary(recyclerView);
+                if (!hasJumpTarget) {
+                    return;
+                }
+                if (this.mRunning) {
+                    this.mPendingInitialRun = true;
+                    recyclerView.mViewFlinger.postOnAnimation();
+                    return;
+                }
+                stop();
+            }
+        }
+
+        public int getChildPosition(View view) {
+            return this.mRecyclerView.getChildLayoutPosition(view);
+        }
+
+        public int getChildCount() {
+            return this.mRecyclerView.mLayout.getChildCount();
+        }
+
+        public View findViewByPosition(int i) {
+            return this.mRecyclerView.mLayout.findViewByPosition(i);
         }
 
         @Deprecated
-        public int getViewPosition() {
-            return this.mViewHolder.getPosition();
+        public void instantScrollToPosition(int i) {
+            this.mRecyclerView.scrollToPosition(i);
         }
 
-        public int getViewLayoutPosition() {
-            return this.mViewHolder.getLayoutPosition();
+        /* Access modifiers changed, original: protected */
+        public void onChildAttachedToWindow(View view) {
+            if (getChildPosition(view) == getTargetPosition()) {
+                this.mTargetView = view;
+            }
         }
 
-        public int getViewAdapterPosition() {
-            return this.mViewHolder.getAdapterPosition();
+        /* Access modifiers changed, original: protected */
+        public void normalize(PointF pointF) {
+            float sqrt = (float) Math.sqrt((double) ((pointF.x * pointF.x) + (pointF.y * pointF.y)));
+            pointF.x /= sqrt;
+            pointF.y /= sqrt;
+        }
+    }
+
+    public static abstract class OnFlingListener {
+        public abstract boolean onFling(int i, int i2);
+    }
+
+    static class AdapterDataObservable extends Observable<AdapterDataObserver> {
+        AdapterDataObservable() {
+        }
+
+        public boolean hasObservers() {
+            return this.mObservers.isEmpty() ^ 1;
+        }
+
+        public void notifyChanged() {
+            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
+                ((AdapterDataObserver) this.mObservers.get(size)).onChanged();
+            }
+        }
+
+        public void notifyItemRangeChanged(int i, int i2) {
+            notifyItemRangeChanged(i, i2, null);
+        }
+
+        public void notifyItemRangeChanged(int i, int i2, @Nullable Object obj) {
+            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
+                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeChanged(i, i2, obj);
+            }
+        }
+
+        public void notifyItemRangeInserted(int i, int i2) {
+            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
+                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeInserted(i, i2);
+            }
+        }
+
+        public void notifyItemRangeRemoved(int i, int i2) {
+            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
+                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeRemoved(i, i2);
+            }
+        }
+
+        public void notifyItemMoved(int i, int i2) {
+            for (int size = this.mObservers.size() - 1; size >= 0; size--) {
+                ((AdapterDataObserver) this.mObservers.get(size)).onItemRangeMoved(i, i2, 1);
+            }
+        }
+    }
+
+    public static abstract class AdapterDataObserver {
+        public void onChanged() {
+        }
+
+        public void onItemRangeChanged(int i, int i2) {
+        }
+
+        public void onItemRangeInserted(int i, int i2) {
+        }
+
+        public void onItemRangeMoved(int i, int i2, int i3) {
+        }
+
+        public void onItemRangeRemoved(int i, int i2) {
+        }
+
+        public void onItemRangeChanged(int i, int i2, @Nullable Object obj) {
+            onItemRangeChanged(i, i2);
+        }
+    }
+
+    public interface ChildDrawingOrderCallback {
+        int onGetChildDrawingOrder(int i, int i2);
+    }
+
+    public static class EdgeEffectFactory {
+        public static final int DIRECTION_BOTTOM = 3;
+        public static final int DIRECTION_LEFT = 0;
+        public static final int DIRECTION_RIGHT = 2;
+        public static final int DIRECTION_TOP = 1;
+
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface EdgeDirection {
+        }
+
+        /* Access modifiers changed, original: protected */
+        @NonNull
+        public EdgeEffect createEdgeEffect(RecyclerView recyclerView, int i) {
+            return new EdgeEffect(recyclerView.getContext());
+        }
+    }
+
+    private class ItemAnimatorRestoreListener implements ItemAnimatorListener {
+        ItemAnimatorRestoreListener() {
+        }
+
+        public void onAnimationFinished(ViewHolder viewHolder) {
+            viewHolder.setIsRecyclable(true);
+            if (viewHolder.mShadowedHolder != null && viewHolder.mShadowingHolder == null) {
+                viewHolder.mShadowedHolder = null;
+            }
+            viewHolder.mShadowingHolder = null;
+            if (!viewHolder.shouldBeKeptAsChild() && !RecyclerView.this.removeAnimatingView(viewHolder.itemView) && viewHolder.isTmpDetached()) {
+                RecyclerView.this.removeDetachedView(viewHolder.itemView, false);
+            }
         }
     }
 
@@ -1962,26 +2598,6 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
         void onChildViewAttachedToWindow(View view);
 
         void onChildViewDetachedFromWindow(View view);
-    }
-
-    public static abstract class OnFlingListener {
-        public abstract boolean onFling(int i, int i2);
-    }
-
-    public interface OnItemTouchListener {
-        boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent);
-
-        void onRequestDisallowInterceptTouchEvent(boolean z);
-
-        void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent);
-    }
-
-    public static abstract class OnScrollListener {
-        public void onScrollStateChanged(RecyclerView recyclerView, int i) {
-        }
-
-        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-        }
     }
 
     @RestrictTo({Scope.LIBRARY_GROUP})
@@ -3112,257 +3728,107 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
         void onViewRecycled(ViewHolder viewHolder);
     }
 
-    public static abstract class SmoothScroller {
-        private LayoutManager mLayoutManager;
-        private boolean mPendingInitialRun;
-        private RecyclerView mRecyclerView;
-        private final Action mRecyclingAction = new Action(0, 0);
-        private boolean mRunning;
-        private int mTargetPosition = -1;
-        private View mTargetView;
+    private class RecyclerViewDataObserver extends AdapterDataObserver {
+        RecyclerViewDataObserver() {
+        }
 
-        public static class Action {
-            public static final int UNDEFINED_DURATION = Integer.MIN_VALUE;
-            private boolean mChanged;
-            private int mConsecutiveUpdates;
-            private int mDuration;
-            private int mDx;
-            private int mDy;
-            private Interpolator mInterpolator;
-            private int mJumpToPosition;
-
-            public Action(int i, int i2) {
-                this(i, i2, Integer.MIN_VALUE, null);
-            }
-
-            public Action(int i, int i2, int i3) {
-                this(i, i2, i3, null);
-            }
-
-            public Action(int i, int i2, int i3, Interpolator interpolator) {
-                this.mJumpToPosition = -1;
-                this.mChanged = false;
-                this.mConsecutiveUpdates = 0;
-                this.mDx = i;
-                this.mDy = i2;
-                this.mDuration = i3;
-                this.mInterpolator = interpolator;
-            }
-
-            public void jumpTo(int i) {
-                this.mJumpToPosition = i;
-            }
-
-            /* Access modifiers changed, original: 0000 */
-            public boolean hasJumpTarget() {
-                return this.mJumpToPosition >= 0;
-            }
-
-            /* Access modifiers changed, original: 0000 */
-            public void runIfNecessary(RecyclerView recyclerView) {
-                if (this.mJumpToPosition >= 0) {
-                    int i = this.mJumpToPosition;
-                    this.mJumpToPosition = -1;
-                    recyclerView.jumpToPositionForSmoothScroller(i);
-                    this.mChanged = false;
-                    return;
-                }
-                if (this.mChanged) {
-                    validate();
-                    if (this.mInterpolator != null) {
-                        recyclerView.mViewFlinger.smoothScrollBy(this.mDx, this.mDy, this.mDuration, this.mInterpolator);
-                    } else if (this.mDuration == Integer.MIN_VALUE) {
-                        recyclerView.mViewFlinger.smoothScrollBy(this.mDx, this.mDy);
-                    } else {
-                        recyclerView.mViewFlinger.smoothScrollBy(this.mDx, this.mDy, this.mDuration);
-                    }
-                    this.mConsecutiveUpdates++;
-                    if (this.mConsecutiveUpdates > 10) {
-                        Log.e(RecyclerView.TAG, "Smooth Scroll action is being updated too frequently. Make sure you are not changing it unless necessary");
-                    }
-                    this.mChanged = false;
-                } else {
-                    this.mConsecutiveUpdates = 0;
-                }
-            }
-
-            private void validate() {
-                if (this.mInterpolator != null && this.mDuration < 1) {
-                    throw new IllegalStateException("If you provide an interpolator, you must set a positive duration");
-                } else if (this.mDuration < 1) {
-                    throw new IllegalStateException("Scroll duration must be a positive number");
-                }
-            }
-
-            public int getDx() {
-                return this.mDx;
-            }
-
-            public void setDx(int i) {
-                this.mChanged = true;
-                this.mDx = i;
-            }
-
-            public int getDy() {
-                return this.mDy;
-            }
-
-            public void setDy(int i) {
-                this.mChanged = true;
-                this.mDy = i;
-            }
-
-            public int getDuration() {
-                return this.mDuration;
-            }
-
-            public void setDuration(int i) {
-                this.mChanged = true;
-                this.mDuration = i;
-            }
-
-            public Interpolator getInterpolator() {
-                return this.mInterpolator;
-            }
-
-            public void setInterpolator(Interpolator interpolator) {
-                this.mChanged = true;
-                this.mInterpolator = interpolator;
-            }
-
-            public void update(int i, int i2, int i3, Interpolator interpolator) {
-                this.mDx = i;
-                this.mDy = i2;
-                this.mDuration = i3;
-                this.mInterpolator = interpolator;
-                this.mChanged = true;
+        public void onChanged() {
+            RecyclerView.this.assertNotInLayoutOrScroll(null);
+            RecyclerView.this.mState.mStructureChanged = true;
+            RecyclerView.this.processDataSetCompletelyChanged(true);
+            if (!RecyclerView.this.mAdapterHelper.hasPendingUpdates()) {
+                RecyclerView.this.requestLayout();
             }
         }
 
-        public interface ScrollVectorProvider {
-            PointF computeScrollVectorForPosition(int i);
+        public void onItemRangeChanged(int i, int i2, Object obj) {
+            RecyclerView.this.assertNotInLayoutOrScroll(null);
+            if (RecyclerView.this.mAdapterHelper.onItemRangeChanged(i, i2, obj)) {
+                triggerUpdateProcessor();
+            }
         }
 
-        public abstract void onSeekTargetStep(int i, int i2, State state, Action action);
+        public void onItemRangeInserted(int i, int i2) {
+            RecyclerView.this.assertNotInLayoutOrScroll(null);
+            if (RecyclerView.this.mAdapterHelper.onItemRangeInserted(i, i2)) {
+                triggerUpdateProcessor();
+            }
+        }
 
-        public abstract void onStart();
+        public void onItemRangeRemoved(int i, int i2) {
+            RecyclerView.this.assertNotInLayoutOrScroll(null);
+            if (RecyclerView.this.mAdapterHelper.onItemRangeRemoved(i, i2)) {
+                triggerUpdateProcessor();
+            }
+        }
 
-        public abstract void onStop();
-
-        public abstract void onTargetFound(View view, State state, Action action);
+        public void onItemRangeMoved(int i, int i2, int i3) {
+            RecyclerView.this.assertNotInLayoutOrScroll(null);
+            if (RecyclerView.this.mAdapterHelper.onItemRangeMoved(i, i2, i3)) {
+                triggerUpdateProcessor();
+            }
+        }
 
         /* Access modifiers changed, original: 0000 */
-        public void start(RecyclerView recyclerView, LayoutManager layoutManager) {
-            this.mRecyclerView = recyclerView;
-            this.mLayoutManager = layoutManager;
-            if (this.mTargetPosition == -1) {
-                throw new IllegalArgumentException("Invalid target position");
+        public void triggerUpdateProcessor() {
+            if (RecyclerView.POST_UPDATES_ON_ANIMATION && RecyclerView.this.mHasFixedSize && RecyclerView.this.mIsAttached) {
+                ViewCompat.postOnAnimation(RecyclerView.this, RecyclerView.this.mUpdateChildViewsRunnable);
+                return;
             }
-            this.mRecyclerView.mState.mTargetPosition = this.mTargetPosition;
-            this.mRunning = true;
-            this.mPendingInitialRun = true;
-            this.mTargetView = findViewByPosition(getTargetPosition());
-            onStart();
-            this.mRecyclerView.mViewFlinger.postOnAnimation();
+            RecyclerView.this.mAdapterUpdateDuringMeasure = true;
+            RecyclerView.this.requestLayout();
         }
+    }
 
-        public void setTargetPosition(int i) {
-            this.mTargetPosition = i;
-        }
-
-        @Nullable
-        public LayoutManager getLayoutManager() {
-            return this.mLayoutManager;
-        }
-
-        /* Access modifiers changed, original: protected|final */
-        public final void stop() {
-            if (this.mRunning) {
-                this.mRunning = false;
-                onStop();
-                this.mRecyclerView.mState.mTargetPosition = -1;
-                this.mTargetView = null;
-                this.mTargetPosition = -1;
-                this.mPendingInitialRun = false;
-                this.mLayoutManager.onSmoothScrollerStopped(this);
-                this.mLayoutManager = null;
-                this.mRecyclerView = null;
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public static class SavedState extends AbsSavedState {
+        public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
+            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                return new SavedState(parcel, classLoader);
             }
-        }
 
-        public boolean isPendingInitialRun() {
-            return this.mPendingInitialRun;
-        }
-
-        public boolean isRunning() {
-            return this.mRunning;
-        }
-
-        public int getTargetPosition() {
-            return this.mTargetPosition;
-        }
-
-        private void onAnimation(int i, int i2) {
-            RecyclerView recyclerView = this.mRecyclerView;
-            if (!this.mRunning || this.mTargetPosition == -1 || recyclerView == null) {
-                stop();
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel, null);
             }
-            this.mPendingInitialRun = false;
-            if (this.mTargetView != null) {
-                if (getChildPosition(this.mTargetView) == this.mTargetPosition) {
-                    onTargetFound(this.mTargetView, recyclerView.mState, this.mRecyclingAction);
-                    this.mRecyclingAction.runIfNecessary(recyclerView);
-                    stop();
-                } else {
-                    Log.e(RecyclerView.TAG, "Passed over target position while smooth scrolling.");
-                    this.mTargetView = null;
-                }
+
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
             }
-            if (this.mRunning) {
-                onSeekTargetStep(i, i2, recyclerView.mState, this.mRecyclingAction);
-                boolean hasJumpTarget = this.mRecyclingAction.hasJumpTarget();
-                this.mRecyclingAction.runIfNecessary(recyclerView);
-                if (!hasJumpTarget) {
-                    return;
-                }
-                if (this.mRunning) {
-                    this.mPendingInitialRun = true;
-                    recyclerView.mViewFlinger.postOnAnimation();
-                    return;
-                }
-                stop();
+        };
+        Parcelable mLayoutState;
+
+        SavedState(Parcel parcel, ClassLoader classLoader) {
+            super(parcel, classLoader);
+            if (classLoader == null) {
+                classLoader = LayoutManager.class.getClassLoader();
             }
+            this.mLayoutState = parcel.readParcelable(classLoader);
         }
 
-        public int getChildPosition(View view) {
-            return this.mRecyclerView.getChildLayoutPosition(view);
+        SavedState(Parcelable parcelable) {
+            super(parcelable);
         }
 
-        public int getChildCount() {
-            return this.mRecyclerView.mLayout.getChildCount();
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeParcelable(this.mLayoutState, 0);
         }
 
-        public View findViewByPosition(int i) {
-            return this.mRecyclerView.mLayout.findViewByPosition(i);
+        /* Access modifiers changed, original: 0000 */
+        public void copyFrom(SavedState savedState) {
+            this.mLayoutState = savedState.mLayoutState;
+        }
+    }
+
+    public static class SimpleOnItemTouchListener implements OnItemTouchListener {
+        public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
+            return false;
         }
 
-        @Deprecated
-        public void instantScrollToPosition(int i) {
-            this.mRecyclerView.scrollToPosition(i);
+        public void onRequestDisallowInterceptTouchEvent(boolean z) {
         }
 
-        /* Access modifiers changed, original: protected */
-        public void onChildAttachedToWindow(View view) {
-            if (getChildPosition(view) == getTargetPosition()) {
-                this.mTargetView = view;
-            }
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void normalize(PointF pointF) {
-            float sqrt = (float) Math.sqrt((double) ((pointF.x * pointF.x) + (pointF.y * pointF.y)));
-            pointF.x /= sqrt;
-            pointF.y /= sqrt;
+        public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
         }
     }
 
@@ -3955,472 +4421,6 @@ public class RecyclerView extends ViewGroup implements NestedScrollingChild2, Sc
         public void stop() {
             RecyclerView.this.removeCallbacks(this);
             this.mScroller.abortAnimation();
-        }
-    }
-
-    public static abstract class ViewHolder {
-        static final int FLAG_ADAPTER_FULLUPDATE = 1024;
-        static final int FLAG_ADAPTER_POSITION_UNKNOWN = 512;
-        static final int FLAG_APPEARED_IN_PRE_LAYOUT = 4096;
-        static final int FLAG_BOUNCED_FROM_HIDDEN_LIST = 8192;
-        static final int FLAG_BOUND = 1;
-        static final int FLAG_IGNORE = 128;
-        static final int FLAG_INVALID = 4;
-        static final int FLAG_MOVED = 2048;
-        static final int FLAG_NOT_RECYCLABLE = 16;
-        static final int FLAG_REMOVED = 8;
-        static final int FLAG_RETURNED_FROM_SCRAP = 32;
-        static final int FLAG_SET_A11Y_ITEM_DELEGATE = 16384;
-        static final int FLAG_TMP_DETACHED = 256;
-        static final int FLAG_UPDATE = 2;
-        private static final List<Object> FULLUPDATE_PAYLOADS = Collections.EMPTY_LIST;
-        static final int PENDING_ACCESSIBILITY_STATE_NOT_SET = -1;
-        public final View itemView;
-        private int mFlags;
-        private boolean mInChangeScrap = false;
-        private int mIsRecyclableCount = 0;
-        long mItemId = -1;
-        int mItemViewType = -1;
-        WeakReference<RecyclerView> mNestedRecyclerView;
-        int mOldPosition = -1;
-        RecyclerView mOwnerRecyclerView;
-        List<Object> mPayloads = null;
-        @VisibleForTesting
-        int mPendingAccessibilityState = -1;
-        int mPosition = -1;
-        int mPreLayoutPosition = -1;
-        private Recycler mScrapContainer = null;
-        ViewHolder mShadowedHolder = null;
-        ViewHolder mShadowingHolder = null;
-        List<Object> mUnmodifiedPayloads = null;
-        private int mWasImportantForAccessibilityBeforeHidden = 0;
-
-        public ViewHolder(View view) {
-            if (view == null) {
-                throw new IllegalArgumentException("itemView may not be null");
-            }
-            this.itemView = view;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void flagRemovedAndOffsetPosition(int i, int i2, boolean z) {
-            addFlags(8);
-            offsetPosition(i2, z);
-            this.mPosition = i;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void offsetPosition(int i, boolean z) {
-            if (this.mOldPosition == -1) {
-                this.mOldPosition = this.mPosition;
-            }
-            if (this.mPreLayoutPosition == -1) {
-                this.mPreLayoutPosition = this.mPosition;
-            }
-            if (z) {
-                this.mPreLayoutPosition += i;
-            }
-            this.mPosition += i;
-            if (this.itemView.getLayoutParams() != null) {
-                ((LayoutParams) this.itemView.getLayoutParams()).mInsetsDirty = true;
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void clearOldPosition() {
-            this.mOldPosition = -1;
-            this.mPreLayoutPosition = -1;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void saveOldPosition() {
-            if (this.mOldPosition == -1) {
-                this.mOldPosition = this.mPosition;
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean shouldIgnore() {
-            return (this.mFlags & 128) != 0;
-        }
-
-        @Deprecated
-        public final int getPosition() {
-            return this.mPreLayoutPosition == -1 ? this.mPosition : this.mPreLayoutPosition;
-        }
-
-        public final int getLayoutPosition() {
-            return this.mPreLayoutPosition == -1 ? this.mPosition : this.mPreLayoutPosition;
-        }
-
-        public final int getAdapterPosition() {
-            if (this.mOwnerRecyclerView == null) {
-                return -1;
-            }
-            return this.mOwnerRecyclerView.getAdapterPositionFor(this);
-        }
-
-        public final int getOldPosition() {
-            return this.mOldPosition;
-        }
-
-        public final long getItemId() {
-            return this.mItemId;
-        }
-
-        public final int getItemViewType() {
-            return this.mItemViewType;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isScrap() {
-            return this.mScrapContainer != null;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void unScrap() {
-            this.mScrapContainer.unscrapView(this);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean wasReturnedFromScrap() {
-            return (this.mFlags & 32) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void clearReturnedFromScrapFlag() {
-            this.mFlags &= -33;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void clearTmpDetachFlag() {
-            this.mFlags &= -257;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void stopIgnoring() {
-            this.mFlags &= -129;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setScrapContainer(Recycler recycler, boolean z) {
-            this.mScrapContainer = recycler;
-            this.mInChangeScrap = z;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isInvalid() {
-            return (this.mFlags & 4) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean needsUpdate() {
-            return (this.mFlags & 2) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isBound() {
-            return (this.mFlags & 1) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isRemoved() {
-            return (this.mFlags & 8) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean hasAnyOfTheFlags(int i) {
-            return (i & this.mFlags) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isTmpDetached() {
-            return (this.mFlags & 256) != 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isAdapterPositionUnknown() {
-            return (this.mFlags & 512) != 0 || isInvalid();
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setFlags(int i, int i2) {
-            this.mFlags = (i & i2) | (this.mFlags & (i2 ^ -1));
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void addFlags(int i) {
-            this.mFlags = i | this.mFlags;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void addChangePayload(Object obj) {
-            if (obj == null) {
-                addFlags(1024);
-            } else if ((1024 & this.mFlags) == 0) {
-                createPayloadsIfNeeded();
-                this.mPayloads.add(obj);
-            }
-        }
-
-        private void createPayloadsIfNeeded() {
-            if (this.mPayloads == null) {
-                this.mPayloads = new ArrayList();
-                this.mUnmodifiedPayloads = Collections.unmodifiableList(this.mPayloads);
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void clearPayload() {
-            if (this.mPayloads != null) {
-                this.mPayloads.clear();
-            }
-            this.mFlags &= -1025;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public List<Object> getUnmodifiedPayloads() {
-            if ((this.mFlags & 1024) != 0) {
-                return FULLUPDATE_PAYLOADS;
-            }
-            if (this.mPayloads == null || this.mPayloads.size() == 0) {
-                return FULLUPDATE_PAYLOADS;
-            }
-            return this.mUnmodifiedPayloads;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void resetInternal() {
-            this.mFlags = 0;
-            this.mPosition = -1;
-            this.mOldPosition = -1;
-            this.mItemId = -1;
-            this.mPreLayoutPosition = -1;
-            this.mIsRecyclableCount = 0;
-            this.mShadowedHolder = null;
-            this.mShadowingHolder = null;
-            clearPayload();
-            this.mWasImportantForAccessibilityBeforeHidden = 0;
-            this.mPendingAccessibilityState = -1;
-            RecyclerView.clearNestedRecyclerViewIfNotNested(this);
-        }
-
-        private void onEnteredHiddenState(RecyclerView recyclerView) {
-            if (this.mPendingAccessibilityState != -1) {
-                this.mWasImportantForAccessibilityBeforeHidden = this.mPendingAccessibilityState;
-            } else {
-                this.mWasImportantForAccessibilityBeforeHidden = ViewCompat.getImportantForAccessibility(this.itemView);
-            }
-            recyclerView.setChildImportantForAccessibilityInternal(this, 4);
-        }
-
-        private void onLeftHiddenState(RecyclerView recyclerView) {
-            recyclerView.setChildImportantForAccessibilityInternal(this, this.mWasImportantForAccessibilityBeforeHidden);
-            this.mWasImportantForAccessibilityBeforeHidden = 0;
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("ViewHolder{");
-            stringBuilder.append(Integer.toHexString(hashCode()));
-            stringBuilder.append(" position=");
-            stringBuilder.append(this.mPosition);
-            stringBuilder.append(" id=");
-            stringBuilder.append(this.mItemId);
-            stringBuilder.append(", oldPos=");
-            stringBuilder.append(this.mOldPosition);
-            stringBuilder.append(", pLpos:");
-            stringBuilder.append(this.mPreLayoutPosition);
-            StringBuilder stringBuilder2 = new StringBuilder(stringBuilder.toString());
-            if (isScrap()) {
-                stringBuilder2.append(" scrap ");
-                stringBuilder2.append(this.mInChangeScrap ? "[changeScrap]" : "[attachedScrap]");
-            }
-            if (isInvalid()) {
-                stringBuilder2.append(" invalid");
-            }
-            if (!isBound()) {
-                stringBuilder2.append(" unbound");
-            }
-            if (needsUpdate()) {
-                stringBuilder2.append(" update");
-            }
-            if (isRemoved()) {
-                stringBuilder2.append(" removed");
-            }
-            if (shouldIgnore()) {
-                stringBuilder2.append(" ignored");
-            }
-            if (isTmpDetached()) {
-                stringBuilder2.append(" tmpDetached");
-            }
-            if (!isRecyclable()) {
-                stringBuilder = new StringBuilder();
-                stringBuilder.append(" not recyclable(");
-                stringBuilder.append(this.mIsRecyclableCount);
-                stringBuilder.append(")");
-                stringBuilder2.append(stringBuilder.toString());
-            }
-            if (isAdapterPositionUnknown()) {
-                stringBuilder2.append(" undefined adapter position");
-            }
-            if (this.itemView.getParent() == null) {
-                stringBuilder2.append(" no parent");
-            }
-            stringBuilder2.append("}");
-            return stringBuilder2.toString();
-        }
-
-        public final void setIsRecyclable(boolean z) {
-            this.mIsRecyclableCount = z ? this.mIsRecyclableCount - 1 : this.mIsRecyclableCount + 1;
-            if (this.mIsRecyclableCount < 0) {
-                this.mIsRecyclableCount = 0;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("isRecyclable decremented below 0: unmatched pair of setIsRecyable() calls for ");
-                stringBuilder.append(this);
-                Log.e("View", stringBuilder.toString());
-            } else if (!z && this.mIsRecyclableCount == 1) {
-                this.mFlags |= 16;
-            } else if (z && this.mIsRecyclableCount == 0) {
-                this.mFlags &= -17;
-            }
-        }
-
-        public final boolean isRecyclable() {
-            return (this.mFlags & 16) == 0 && !ViewCompat.hasTransientState(this.itemView);
-        }
-
-        private boolean shouldBeKeptAsChild() {
-            return (this.mFlags & 16) != 0;
-        }
-
-        private boolean doesTransientStatePreventRecycling() {
-            return (this.mFlags & 16) == 0 && ViewCompat.hasTransientState(this.itemView);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isUpdated() {
-            return (this.mFlags & 2) != 0;
-        }
-    }
-
-    private class ItemAnimatorRestoreListener implements ItemAnimatorListener {
-        ItemAnimatorRestoreListener() {
-        }
-
-        public void onAnimationFinished(ViewHolder viewHolder) {
-            viewHolder.setIsRecyclable(true);
-            if (viewHolder.mShadowedHolder != null && viewHolder.mShadowingHolder == null) {
-                viewHolder.mShadowedHolder = null;
-            }
-            viewHolder.mShadowingHolder = null;
-            if (!viewHolder.shouldBeKeptAsChild() && !RecyclerView.this.removeAnimatingView(viewHolder.itemView) && viewHolder.isTmpDetached()) {
-                RecyclerView.this.removeDetachedView(viewHolder.itemView, false);
-            }
-        }
-    }
-
-    private class RecyclerViewDataObserver extends AdapterDataObserver {
-        RecyclerViewDataObserver() {
-        }
-
-        public void onChanged() {
-            RecyclerView.this.assertNotInLayoutOrScroll(null);
-            RecyclerView.this.mState.mStructureChanged = true;
-            RecyclerView.this.processDataSetCompletelyChanged(true);
-            if (!RecyclerView.this.mAdapterHelper.hasPendingUpdates()) {
-                RecyclerView.this.requestLayout();
-            }
-        }
-
-        public void onItemRangeChanged(int i, int i2, Object obj) {
-            RecyclerView.this.assertNotInLayoutOrScroll(null);
-            if (RecyclerView.this.mAdapterHelper.onItemRangeChanged(i, i2, obj)) {
-                triggerUpdateProcessor();
-            }
-        }
-
-        public void onItemRangeInserted(int i, int i2) {
-            RecyclerView.this.assertNotInLayoutOrScroll(null);
-            if (RecyclerView.this.mAdapterHelper.onItemRangeInserted(i, i2)) {
-                triggerUpdateProcessor();
-            }
-        }
-
-        public void onItemRangeRemoved(int i, int i2) {
-            RecyclerView.this.assertNotInLayoutOrScroll(null);
-            if (RecyclerView.this.mAdapterHelper.onItemRangeRemoved(i, i2)) {
-                triggerUpdateProcessor();
-            }
-        }
-
-        public void onItemRangeMoved(int i, int i2, int i3) {
-            RecyclerView.this.assertNotInLayoutOrScroll(null);
-            if (RecyclerView.this.mAdapterHelper.onItemRangeMoved(i, i2, i3)) {
-                triggerUpdateProcessor();
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void triggerUpdateProcessor() {
-            if (RecyclerView.POST_UPDATES_ON_ANIMATION && RecyclerView.this.mHasFixedSize && RecyclerView.this.mIsAttached) {
-                ViewCompat.postOnAnimation(RecyclerView.this, RecyclerView.this.mUpdateChildViewsRunnable);
-                return;
-            }
-            RecyclerView.this.mAdapterUpdateDuringMeasure = true;
-            RecyclerView.this.requestLayout();
-        }
-    }
-
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    public static class SavedState extends AbsSavedState {
-        public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
-            public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
-                return new SavedState(parcel, classLoader);
-            }
-
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel, null);
-            }
-
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        Parcelable mLayoutState;
-
-        SavedState(Parcel parcel, ClassLoader classLoader) {
-            super(parcel, classLoader);
-            if (classLoader == null) {
-                classLoader = LayoutManager.class.getClassLoader();
-            }
-            this.mLayoutState = parcel.readParcelable(classLoader);
-        }
-
-        SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeParcelable(this.mLayoutState, 0);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void copyFrom(SavedState savedState) {
-            this.mLayoutState = savedState.mLayoutState;
-        }
-    }
-
-    public static class SimpleOnItemTouchListener implements OnItemTouchListener {
-        public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-            return false;
-        }
-
-        public void onRequestDisallowInterceptTouchEvent(boolean z) {
-        }
-
-        public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
         }
     }
 

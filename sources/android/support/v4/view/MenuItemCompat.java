@@ -51,13 +51,6 @@ public final class MenuItemCompat {
         void setTooltipText(MenuItem menuItem, CharSequence charSequence);
     }
 
-    @Deprecated
-    public interface OnActionExpandListener {
-        boolean onMenuItemActionCollapse(MenuItem menuItem);
-
-        boolean onMenuItemActionExpand(MenuItem menuItem);
-    }
-
     static class MenuItemCompatBaseImpl implements MenuVersionImpl {
         public int getAlphabeticModifiers(MenuItem menuItem) {
             return 0;
@@ -164,6 +157,13 @@ public final class MenuItemCompat {
         public Mode getIconTintMode(MenuItem menuItem) {
             return menuItem.getIconTintMode();
         }
+    }
+
+    @Deprecated
+    public interface OnActionExpandListener {
+        boolean onMenuItemActionCollapse(MenuItem menuItem);
+
+        boolean onMenuItemActionExpand(MenuItem menuItem);
     }
 
     static {

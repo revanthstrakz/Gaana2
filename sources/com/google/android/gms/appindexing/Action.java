@@ -79,7 +79,7 @@ public final class Action extends Thing {
             Bundle bundle = (Bundle) this.zzay.getParcelable("object");
             Preconditions.checkNotNull(bundle.get("name"), "Must call setObject() with a valid name. Example: setObject(new Thing.Builder().setName(name).setUrl(url))");
             Preconditions.checkNotNull(bundle.get("url"), "Must call setObject() with a valid app URI. Example: setObject(new Thing.Builder().setName(name).setUrl(url))");
-            return new Action(this.zzay);
+            return new Action(this.zzay, null);
         }
     }
 
@@ -100,5 +100,9 @@ public final class Action extends Thing {
 
     public static Action newAction(String str, String str2, Uri uri) {
         return newAction(str, str2, null, uri);
+    }
+
+    /* synthetic */ Action(Bundle bundle, zza zza) {
+        this(bundle);
     }
 }

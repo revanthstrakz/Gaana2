@@ -157,12 +157,6 @@ public class VideoSlidingUpPanelLayout extends ViewGroup {
         }
     }
 
-    public interface b {
-        void a(View view, float f);
-
-        void a(View view, PanelState panelState, PanelState panelState2);
-    }
-
     private class a extends com.views.j.a {
         private a() {
         }
@@ -246,6 +240,12 @@ public class VideoSlidingUpPanelLayout extends ViewGroup {
             }
             return Math.min(Math.max(i, b), i2);
         }
+    }
+
+    public interface b {
+        void a(View view, float f);
+
+        void a(View view, PanelState panelState, PanelState panelState2);
     }
 
     public void setmSlideState(PanelState panelState) {

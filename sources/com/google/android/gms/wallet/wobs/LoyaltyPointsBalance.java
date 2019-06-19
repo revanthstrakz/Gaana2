@@ -59,6 +59,10 @@ public final class LoyaltyPointsBalance extends AbstractSafeParcelable {
         public final LoyaltyPointsBalance build() {
             return LoyaltyPointsBalance.this;
         }
+
+        /* synthetic */ Builder(LoyaltyPointsBalance loyaltyPointsBalance, zzg zzg) {
+            this();
+        }
     }
 
     public interface Type {
@@ -70,7 +74,7 @@ public final class LoyaltyPointsBalance extends AbstractSafeParcelable {
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new LoyaltyPointsBalance(), null);
     }
 
     public final void writeToParcel(Parcel parcel, int i) {

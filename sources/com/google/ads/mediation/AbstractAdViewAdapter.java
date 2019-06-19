@@ -65,6 +65,70 @@ public abstract class AbstractAdViewAdapter implements MediationBannerAdapter, M
     @VisibleForTesting
     private final RewardedVideoAdListener zzhy = new zza(this);
 
+    static class zza extends NativeAppInstallAdMapper {
+        private final NativeAppInstallAd zzia;
+
+        public zza(NativeAppInstallAd nativeAppInstallAd) {
+            this.zzia = nativeAppInstallAd;
+            setHeadline(nativeAppInstallAd.getHeadline().toString());
+            setImages(nativeAppInstallAd.getImages());
+            setBody(nativeAppInstallAd.getBody().toString());
+            setIcon(nativeAppInstallAd.getIcon());
+            setCallToAction(nativeAppInstallAd.getCallToAction().toString());
+            if (nativeAppInstallAd.getStarRating() != null) {
+                setStarRating(nativeAppInstallAd.getStarRating().doubleValue());
+            }
+            if (nativeAppInstallAd.getStore() != null) {
+                setStore(nativeAppInstallAd.getStore().toString());
+            }
+            if (nativeAppInstallAd.getPrice() != null) {
+                setPrice(nativeAppInstallAd.getPrice().toString());
+            }
+            setOverrideImpressionRecording(true);
+            setOverrideClickHandling(true);
+            zza(nativeAppInstallAd.getVideoController());
+        }
+
+        public final void trackView(View view) {
+            if (view instanceof NativeAdView) {
+                ((NativeAdView) view).setNativeAd(this.zzia);
+            }
+            NativeAdViewHolder nativeAdViewHolder = (NativeAdViewHolder) NativeAdViewHolder.zzblg.get(view);
+            if (nativeAdViewHolder != null) {
+                nativeAdViewHolder.setNativeAd(this.zzia);
+            }
+        }
+    }
+
+    static class zzb extends NativeContentAdMapper {
+        private final NativeContentAd zzib;
+
+        public zzb(NativeContentAd nativeContentAd) {
+            this.zzib = nativeContentAd;
+            setHeadline(nativeContentAd.getHeadline().toString());
+            setImages(nativeContentAd.getImages());
+            setBody(nativeContentAd.getBody().toString());
+            if (nativeContentAd.getLogo() != null) {
+                setLogo(nativeContentAd.getLogo());
+            }
+            setCallToAction(nativeContentAd.getCallToAction().toString());
+            setAdvertiser(nativeContentAd.getAdvertiser().toString());
+            setOverrideImpressionRecording(true);
+            setOverrideClickHandling(true);
+            zza(nativeContentAd.getVideoController());
+        }
+
+        public final void trackView(View view) {
+            if (view instanceof NativeAdView) {
+                ((NativeAdView) view).setNativeAd(this.zzib);
+            }
+            NativeAdViewHolder nativeAdViewHolder = (NativeAdViewHolder) NativeAdViewHolder.zzblg.get(view);
+            if (nativeAdViewHolder != null) {
+                nativeAdViewHolder.setNativeAd(this.zzib);
+            }
+        }
+    }
+
     static class zzc extends UnifiedNativeAdMapper {
         private final UnifiedNativeAd zzic;
 
@@ -232,70 +296,6 @@ public abstract class AbstractAdViewAdapter implements MediationBannerAdapter, M
 
         public final void onCustomClick(NativeCustomTemplateAd nativeCustomTemplateAd, String str) {
             this.zzig.zza(this.zzid, nativeCustomTemplateAd, str);
-        }
-    }
-
-    static class zza extends NativeAppInstallAdMapper {
-        private final NativeAppInstallAd zzia;
-
-        public zza(NativeAppInstallAd nativeAppInstallAd) {
-            this.zzia = nativeAppInstallAd;
-            setHeadline(nativeAppInstallAd.getHeadline().toString());
-            setImages(nativeAppInstallAd.getImages());
-            setBody(nativeAppInstallAd.getBody().toString());
-            setIcon(nativeAppInstallAd.getIcon());
-            setCallToAction(nativeAppInstallAd.getCallToAction().toString());
-            if (nativeAppInstallAd.getStarRating() != null) {
-                setStarRating(nativeAppInstallAd.getStarRating().doubleValue());
-            }
-            if (nativeAppInstallAd.getStore() != null) {
-                setStore(nativeAppInstallAd.getStore().toString());
-            }
-            if (nativeAppInstallAd.getPrice() != null) {
-                setPrice(nativeAppInstallAd.getPrice().toString());
-            }
-            setOverrideImpressionRecording(true);
-            setOverrideClickHandling(true);
-            zza(nativeAppInstallAd.getVideoController());
-        }
-
-        public final void trackView(View view) {
-            if (view instanceof NativeAdView) {
-                ((NativeAdView) view).setNativeAd(this.zzia);
-            }
-            NativeAdViewHolder nativeAdViewHolder = (NativeAdViewHolder) NativeAdViewHolder.zzblg.get(view);
-            if (nativeAdViewHolder != null) {
-                nativeAdViewHolder.setNativeAd(this.zzia);
-            }
-        }
-    }
-
-    static class zzb extends NativeContentAdMapper {
-        private final NativeContentAd zzib;
-
-        public zzb(NativeContentAd nativeContentAd) {
-            this.zzib = nativeContentAd;
-            setHeadline(nativeContentAd.getHeadline().toString());
-            setImages(nativeContentAd.getImages());
-            setBody(nativeContentAd.getBody().toString());
-            if (nativeContentAd.getLogo() != null) {
-                setLogo(nativeContentAd.getLogo());
-            }
-            setCallToAction(nativeContentAd.getCallToAction().toString());
-            setAdvertiser(nativeContentAd.getAdvertiser().toString());
-            setOverrideImpressionRecording(true);
-            setOverrideClickHandling(true);
-            zza(nativeContentAd.getVideoController());
-        }
-
-        public final void trackView(View view) {
-            if (view instanceof NativeAdView) {
-                ((NativeAdView) view).setNativeAd(this.zzib);
-            }
-            NativeAdViewHolder nativeAdViewHolder = (NativeAdViewHolder) NativeAdViewHolder.zzblg.get(view);
-            if (nativeAdViewHolder != null) {
-                nativeAdViewHolder.setNativeAd(this.zzib);
-            }
         }
     }
 

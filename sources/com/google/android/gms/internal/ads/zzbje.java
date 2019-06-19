@@ -56,7 +56,7 @@ final class zzbje implements BaseConnectionCallbacks, BaseOnConnectionFailedList
     }
 
     /* JADX WARNING: Missing exception handler attribute for start block: B:7:0x0027 */
-    /* JADX WARNING: Removed duplicated region for block: B:6:0x0025 A:{Splitter:B:2:0x0006, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:6:0x0025 A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:2:0x0006} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:8:?, code skipped:
             r3.zzfct.put(zzafl());

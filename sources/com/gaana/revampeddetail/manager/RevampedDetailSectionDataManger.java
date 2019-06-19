@@ -17,16 +17,16 @@ import java.util.HashMap;
 public class RevampedDetailSectionDataManger {
     HashMap<Integer, SectionResponse> responseHashMap = new HashMap();
 
+    public interface SectionDataResponseListener {
+        void onResponse(SectionResponse sectionResponse);
+    }
+
     public enum SECTION_RESPONSE_STATE {
         IDLE,
         REQUESTED,
         SUCCESS,
         FAIL,
         DONE
-    }
-
-    public interface SectionDataResponseListener {
-        void onResponse(SectionResponse sectionResponse);
     }
 
     public static class SectionResponse {

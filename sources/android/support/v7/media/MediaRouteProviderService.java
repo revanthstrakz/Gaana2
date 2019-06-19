@@ -127,6 +127,15 @@ public abstract class MediaRouteProviderService extends Service {
         }
     }
 
+    private final class ProviderCallback extends Callback {
+        ProviderCallback() {
+        }
+
+        public void onDescriptorChanged(MediaRouteProvider mediaRouteProvider, MediaRouteProviderDescriptor mediaRouteProviderDescriptor) {
+            MediaRouteProviderService.this.sendDescriptorChanged(mediaRouteProviderDescriptor);
+        }
+    }
+
     private static final class ReceiveHandler extends Handler {
         private final WeakReference<MediaRouteProviderService> mServiceRef;
 
@@ -219,15 +228,6 @@ public abstract class MediaRouteProviderService extends Service {
                 }
             }
             return false;
-        }
-    }
-
-    private final class ProviderCallback extends Callback {
-        ProviderCallback() {
-        }
-
-        public void onDescriptorChanged(MediaRouteProvider mediaRouteProvider, MediaRouteProviderDescriptor mediaRouteProviderDescriptor) {
-            MediaRouteProviderService.this.sendDescriptorChanged(mediaRouteProviderDescriptor);
         }
     }
 

@@ -3,7 +3,7 @@ package com.google.android.gms.internal.clearcut;
 import java.io.IOException;
 
 public abstract class zzas<MessageType extends zzas<MessageType, BuilderType>, BuilderType extends zzat<MessageType, BuilderType>> implements zzdo {
-    private static boolean zzey = false;
+    private static boolean zzey;
     protected int zzex = 0;
 
     /* Access modifiers changed, original: 0000 */

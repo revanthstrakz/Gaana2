@@ -11,42 +11,6 @@ public abstract class zzuo<MessageType extends zzuo<MessageType, BuilderType>, B
     protected zzxe zzbyd = zzxe.zzyl();
     private int zzbye = -1;
 
-    public enum zze {
-        public static final int zzbyk = 1;
-        public static final int zzbyl = 2;
-        public static final int zzbym = 3;
-        public static final int zzbyn = 4;
-        public static final int zzbyo = 5;
-        public static final int zzbyp = 6;
-        public static final int zzbyq = 7;
-        private static final /* synthetic */ int[] zzbyr = new int[]{zzbyk, zzbyl, zzbym, zzbyn, zzbyo, zzbyp, zzbyq};
-        public static final int zzbys = 1;
-        public static final int zzbyt = 2;
-        private static final /* synthetic */ int[] zzbyu = new int[]{zzbys, zzbyt};
-        public static final int zzbyv = 1;
-        public static final int zzbyw = 2;
-        private static final /* synthetic */ int[] zzbyx = new int[]{zzbyv, zzbyw};
-
-        public static int[] zzwp() {
-            return (int[]) zzbyr.clone();
-        }
-    }
-
-    public static class zzd<ContainingType extends zzvv, Type> extends zztz<ContainingType, Type> {
-    }
-
-    public static class zzb<T extends zzuo<T, ?>> extends zzsz<T> {
-        private final T zzbyg;
-
-        public zzb(T t) {
-            this.zzbyg = t;
-        }
-
-        public final /* synthetic */ Object zza(zztq zztq, zzub zzub) throws zzuv {
-            return zzuo.zza(this.zzbyg, zztq, zzub);
-        }
-    }
-
     public static abstract class zza<MessageType extends zzuo<MessageType, BuilderType>, BuilderType extends zza<MessageType, BuilderType>> extends zzsy<MessageType, BuilderType> {
         private final MessageType zzbyg;
         protected MessageType zzbyh;
@@ -129,8 +93,44 @@ public abstract class zzuo<MessageType extends zzuo<MessageType, BuilderType>, B
         }
     }
 
+    public static class zzb<T extends zzuo<T, ?>> extends zzsz<T> {
+        private final T zzbyg;
+
+        public zzb(T t) {
+            this.zzbyg = t;
+        }
+
+        public final /* synthetic */ Object zza(zztq zztq, zzub zzub) throws zzuv {
+            return zzuo.zza(this.zzbyg, zztq, zzub);
+        }
+    }
+
     public static abstract class zzc<MessageType extends zzc<MessageType, BuilderType>, BuilderType> extends zzuo<MessageType, BuilderType> implements zzvx {
         protected zzuf<Object> zzbyj = zzuf.zzvw();
+    }
+
+    public static class zzd<ContainingType extends zzvv, Type> extends zztz<ContainingType, Type> {
+    }
+
+    public enum zze {
+        public static final int zzbyk = 1;
+        public static final int zzbyl = 2;
+        public static final int zzbym = 3;
+        public static final int zzbyn = 4;
+        public static final int zzbyo = 5;
+        public static final int zzbyp = 6;
+        public static final int zzbyq = 7;
+        private static final /* synthetic */ int[] zzbyr = new int[]{zzbyk, zzbyl, zzbym, zzbyn, zzbyo, zzbyp, zzbyq};
+        public static final int zzbys = 1;
+        public static final int zzbyt = 2;
+        private static final /* synthetic */ int[] zzbyu = new int[]{zzbys, zzbyt};
+        public static final int zzbyv = 1;
+        public static final int zzbyw = 2;
+        private static final /* synthetic */ int[] zzbyx = new int[]{zzbyv, zzbyw};
+
+        public static int[] zzwp() {
+            return (int[]) zzbyr.clone();
+        }
     }
 
     public abstract Object zza(int i, Object obj, Object obj2);

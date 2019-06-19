@@ -470,17 +470,17 @@ public final class TypeAdapters {
     public static final TypeAdapterFactory INTEGER_FACTORY = newFactory(Integer.TYPE, Integer.class, INTEGER);
     public static final TypeAdapter<JsonElement> JSON_ELEMENT = new TypeAdapter<JsonElement>() {
         public JsonElement read(JsonReader jsonReader) throws IOException {
-            switch (jsonReader.peek()) {
-                case NUMBER:
+            switch (AnonymousClass36.$SwitchMap$com$google$gson$stream$JsonToken[jsonReader.peek().ordinal()]) {
+                case 1:
                     return new JsonPrimitive(new LazilyParsedNumber(jsonReader.nextString()));
-                case BOOLEAN:
+                case 2:
                     return new JsonPrimitive(Boolean.valueOf(jsonReader.nextBoolean()));
-                case STRING:
+                case 3:
                     return new JsonPrimitive(jsonReader.nextString());
-                case NULL:
+                case 4:
                     jsonReader.nextNull();
                     return JsonNull.INSTANCE;
-                case BEGIN_ARRAY:
+                case 5:
                     JsonArray jsonArray = new JsonArray();
                     jsonReader.beginArray();
                     while (jsonReader.hasNext()) {
@@ -488,7 +488,7 @@ public final class TypeAdapters {
                     }
                     jsonReader.endArray();
                     return jsonArray;
-                case BEGIN_OBJECT:
+                case 6:
                     JsonObject jsonObject = new JsonObject();
                     jsonReader.beginObject();
                     while (jsonReader.hasNext()) {
@@ -741,6 +741,100 @@ public final class TypeAdapters {
         }
     };
     public static final TypeAdapterFactory UUID_FACTORY = newFactory(UUID.class, UUID);
+
+    /* renamed from: com.google.gson.internal.bind.TypeAdapters$36 */
+    static /* synthetic */ class AnonymousClass36 {
+        static final /* synthetic */ int[] $SwitchMap$com$google$gson$stream$JsonToken = new int[JsonToken.values().length];
+
+        /* JADX WARNING: Missing exception handler attribute for start block: B:19:0x006e */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:5:0x001f */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:11:0x0040 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:7:0x002a */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:13:0x004b */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:15:0x0056 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:17:0x0062 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:3:0x0014 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:9:0x0035 */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|22) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(20:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|(3:19|20|22)) */
+        static {
+            /*
+            r0 = com.google.gson.stream.JsonToken.values();
+            r0 = r0.length;
+            r0 = new int[r0];
+            $SwitchMap$com$google$gson$stream$JsonToken = r0;
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1 = com.google.gson.stream.JsonToken.NUMBER;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = 1;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0014 }
+        L_0x0014:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r1 = com.google.gson.stream.JsonToken.BOOLEAN;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x001f }
+            r2 = 2;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x001f }
+        L_0x001f:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r1 = com.google.gson.stream.JsonToken.STRING;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x002a }
+            r2 = 3;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x002a }
+        L_0x002a:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r1 = com.google.gson.stream.JsonToken.NULL;	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r2 = 4;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0035 }
+        L_0x0035:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r1 = com.google.gson.stream.JsonToken.BEGIN_ARRAY;	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r2 = 5;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0040 }
+        L_0x0040:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x004b }
+            r1 = com.google.gson.stream.JsonToken.BEGIN_OBJECT;	 Catch:{ NoSuchFieldError -> 0x004b }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x004b }
+            r2 = 6;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x004b }
+        L_0x004b:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r1 = com.google.gson.stream.JsonToken.END_DOCUMENT;	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r2 = 7;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0056 }
+        L_0x0056:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x0062 }
+            r1 = com.google.gson.stream.JsonToken.NAME;	 Catch:{ NoSuchFieldError -> 0x0062 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0062 }
+            r2 = 8;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0062 }
+        L_0x0062:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x006e }
+            r1 = com.google.gson.stream.JsonToken.END_OBJECT;	 Catch:{ NoSuchFieldError -> 0x006e }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x006e }
+            r2 = 9;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x006e }
+        L_0x006e:
+            r0 = $SwitchMap$com$google$gson$stream$JsonToken;	 Catch:{ NoSuchFieldError -> 0x007a }
+            r1 = com.google.gson.stream.JsonToken.END_ARRAY;	 Catch:{ NoSuchFieldError -> 0x007a }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x007a }
+            r2 = 10;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x007a }
+        L_0x007a:
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.google.gson.internal.bind.TypeAdapters$AnonymousClass36.<clinit>():void");
+        }
+    }
 
     private static final class EnumTypeAdapter<T extends Enum<T>> extends TypeAdapter<T> {
         private final Map<T, String> constantToName = new HashMap();

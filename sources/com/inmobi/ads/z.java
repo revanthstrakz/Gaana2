@@ -18,7 +18,7 @@ import java.util.Map;
 class z {
     private static final String a = "z";
     private static final boolean b = false;
-    private static boolean c = false;
+    private static boolean c;
 
     z() {
     }

@@ -9,11 +9,6 @@ import java.util.List;
 public abstract class ShareMedia implements ShareModel {
     private final Bundle params;
 
-    public enum Type {
-        PHOTO,
-        VIDEO
-    }
-
     public static abstract class Builder<M extends ShareMedia, B extends Builder> implements ShareModelBuilder<M, B> {
         private Bundle params = new Bundle();
 
@@ -45,6 +40,11 @@ public abstract class ShareMedia implements ShareModel {
             }
             return arrayList;
         }
+    }
+
+    public enum Type {
+        PHOTO,
+        VIDEO
     }
 
     public int describeContents() {

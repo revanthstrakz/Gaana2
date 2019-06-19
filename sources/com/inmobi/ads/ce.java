@@ -35,6 +35,10 @@ abstract class ce {
         boolean a(@Nullable View view, @Nullable View view2, int i, Object obj);
     }
 
+    interface c {
+        void a(List<View> list, List<View> list2);
+    }
+
     static class b implements Runnable {
         @NonNull
         private final ArrayList<View> a = new ArrayList();
@@ -72,10 +76,6 @@ abstract class ce {
                 ceVar.b();
             }
         }
-    }
-
-    interface c {
-        void a(List<View> list, List<View> list2);
     }
 
     static class d {

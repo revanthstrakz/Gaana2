@@ -15,7 +15,7 @@ public class IdHelperAndroid {
     public static final String NO_ID_AVAILABLE = "none";
     private static final String a = "com.google.android.gms";
     private static final String b = "com.google.android.gms.ads.identifier.service.START";
-    private static boolean c = false;
+    private static boolean c;
     private static final boolean d = false;
 
     private static String a(Context context) {

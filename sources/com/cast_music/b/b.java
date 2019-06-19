@@ -5,7 +5,7 @@ import com.cast_music.a;
 
 public class b {
     private static final int a = "ccl_".length();
-    private static boolean b = false;
+    private static boolean b;
 
     public static String a(String str) {
         StringBuilder stringBuilder;

@@ -110,6 +110,10 @@ public class LikeActionController {
         }
     }
 
+    public interface CreationCallback {
+        void onComplete(LikeActionController likeActionController, FacebookException facebookException);
+    }
+
     /* renamed from: com.facebook.share.internal.LikeActionController$2 */
     static class AnonymousClass2 implements Runnable {
         final /* synthetic */ LikeActionController val$controllerToRefresh;
@@ -123,49 +127,6 @@ public class LikeActionController {
         }
     }
 
-    private static class CreateLikeActionControllerWorkItem implements Runnable {
-        private CreationCallback callback;
-        private String objectId;
-        private ObjectType objectType;
-
-        CreateLikeActionControllerWorkItem(String str, ObjectType objectType, CreationCallback creationCallback) {
-            this.objectId = str;
-            this.objectType = objectType;
-            this.callback = creationCallback;
-        }
-
-        public void run() {
-            LikeActionController.createControllerForObjectIdAndType(this.objectId, this.objectType, this.callback);
-        }
-    }
-
-    public interface CreationCallback {
-        void onComplete(LikeActionController likeActionController, FacebookException facebookException);
-    }
-
-    private static class MRUCacheWorkItem implements Runnable {
-        private static ArrayList<String> mruCachedItems = new ArrayList();
-        private String cacheItem;
-        private boolean shouldTrim;
-
-        MRUCacheWorkItem(String str, boolean z) {
-            this.cacheItem = str;
-            this.shouldTrim = z;
-        }
-
-        public void run() {
-            if (this.cacheItem != null) {
-                mruCachedItems.remove(this.cacheItem);
-                mruCachedItems.add(0, this.cacheItem);
-            }
-            if (this.shouldTrim && mruCachedItems.size() >= 128) {
-                while (64 < mruCachedItems.size()) {
-                    LikeActionController.cache.remove((String) mruCachedItems.remove(mruCachedItems.size() - 1));
-                }
-            }
-        }
-    }
-
     private interface RequestCompletionCallback {
         void onComplete();
     }
@@ -174,20 +135,6 @@ public class LikeActionController {
         void addToBatch(GraphRequestBatch graphRequestBatch);
 
         FacebookRequestError getError();
-    }
-
-    private static class SerializeToDiskWorkItem implements Runnable {
-        private String cacheKey;
-        private String controllerJson;
-
-        SerializeToDiskWorkItem(String str, String str2) {
-            this.cacheKey = str;
-            this.controllerJson = str2;
-        }
-
-        public void run() {
-            LikeActionController.serializeToDiskSynchronously(this.cacheKey, this.controllerJson);
-        }
     }
 
     private abstract class AbstractRequestWrapper implements RequestWrapper {
@@ -233,10 +180,20 @@ public class LikeActionController {
         }
     }
 
-    private interface LikeRequestWrapper extends RequestWrapper {
-        String getUnlikeToken();
+    private static class CreateLikeActionControllerWorkItem implements Runnable {
+        private CreationCallback callback;
+        private String objectId;
+        private ObjectType objectType;
 
-        boolean isObjectLiked();
+        CreateLikeActionControllerWorkItem(String str, ObjectType objectType, CreationCallback creationCallback) {
+            this.objectId = str;
+            this.objectType = objectType;
+            this.callback = creationCallback;
+        }
+
+        public void run() {
+            LikeActionController.createControllerForObjectIdAndType(this.objectId, this.objectType, this.callback);
+        }
     }
 
     private class GetEngagementRequestWrapper extends AbstractRequestWrapper {
@@ -301,6 +258,12 @@ public class LikeActionController {
                 }
             }
         }
+    }
+
+    private interface LikeRequestWrapper extends RequestWrapper {
+        String getUnlikeToken();
+
+        boolean isObjectLiked();
     }
 
     private class GetOGObjectLikesRequestWrapper extends AbstractRequestWrapper implements LikeRequestWrapper {
@@ -418,6 +381,29 @@ public class LikeActionController {
         }
     }
 
+    private static class MRUCacheWorkItem implements Runnable {
+        private static ArrayList<String> mruCachedItems = new ArrayList();
+        private String cacheItem;
+        private boolean shouldTrim;
+
+        MRUCacheWorkItem(String str, boolean z) {
+            this.cacheItem = str;
+            this.shouldTrim = z;
+        }
+
+        public void run() {
+            if (this.cacheItem != null) {
+                mruCachedItems.remove(this.cacheItem);
+                mruCachedItems.add(0, this.cacheItem);
+            }
+            if (this.shouldTrim && mruCachedItems.size() >= 128) {
+                while (64 < mruCachedItems.size()) {
+                    LikeActionController.cache.remove((String) mruCachedItems.remove(mruCachedItems.size() - 1));
+                }
+            }
+        }
+    }
+
     private class PublishLikeRequestWrapper extends AbstractRequestWrapper {
         String unlikeToken;
 
@@ -461,6 +447,20 @@ public class LikeActionController {
         public void processError(FacebookRequestError facebookRequestError) {
             Logger.log(LoggingBehavior.REQUESTS, LikeActionController.TAG, "Error unliking object with unlike token '%s' : %s", this.unlikeToken, facebookRequestError);
             LikeActionController.this.logAppEventForError("publish_unlike", facebookRequestError);
+        }
+    }
+
+    private static class SerializeToDiskWorkItem implements Runnable {
+        private String cacheKey;
+        private String controllerJson;
+
+        SerializeToDiskWorkItem(String str, String str2) {
+            this.cacheKey = str;
+            this.controllerJson = str2;
+        }
+
+        public void run() {
+            LikeActionController.serializeToDiskSynchronously(this.cacheKey, this.controllerJson);
         }
     }
 

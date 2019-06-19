@@ -28,7 +28,7 @@ public final class zzatd extends zzaxv {
     @VisibleForTesting
     private static final long zzdzr = TimeUnit.SECONDS.toMillis(10);
     @VisibleForTesting
-    private static boolean zzdzs = false;
+    private static boolean zzdzs;
     private static zzait zzdzt;
     private static HttpClient zzdzu;
     private static zzz zzdzv;

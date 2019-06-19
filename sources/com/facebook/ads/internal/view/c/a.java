@@ -47,6 +47,35 @@ public class a extends com.facebook.ads.internal.s.c.a {
     private boolean l;
     private float m;
 
+    public interface b {
+        void a();
+
+        void a(int i);
+
+        void a(@Nullable WebResourceError webResourceError);
+
+        void a(String str, Map<String, String> map);
+
+        void b();
+    }
+
+    public static class c implements b {
+        public void a() {
+        }
+
+        public void a(int i) {
+        }
+
+        public void a(@Nullable WebResourceError webResourceError) {
+        }
+
+        public void a(String str, Map<String, String> map) {
+        }
+
+        public void b() {
+        }
+    }
+
     static class a {
         private final String a = a.class.getSimpleName();
         private final WeakReference<a> b;
@@ -98,18 +127,6 @@ public class a extends com.facebook.ads.internal.s.c.a {
                 }
             }
         }
-    }
-
-    public interface b {
-        void a();
-
-        void a(int i);
-
-        void a(@Nullable WebResourceError webResourceError);
-
-        void a(String str, Map<String, String> map);
-
-        void b();
     }
 
     public interface d {
@@ -205,23 +222,6 @@ public class a extends com.facebook.ads.internal.s.c.a {
                 ((b) this.a.get()).a(str, hashMap);
             }
             return true;
-        }
-    }
-
-    public static class c implements b {
-        public void a() {
-        }
-
-        public void a(int i) {
-        }
-
-        public void a(@Nullable WebResourceError webResourceError) {
-        }
-
-        public void a(String str, Map<String, String> map) {
-        }
-
-        public void b() {
         }
     }
 

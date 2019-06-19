@@ -128,7 +128,7 @@ public class g extends o implements r<Bundle> {
             this.m = new com.facebook.ads.internal.view.g.b(context2, cVar2, this.b, (List) arrayList, this.n);
         }
         this.j.a(this, this.b);
-        String str = (u.a(context) == u.a.MOBILE_INTERNET && jSONObject3.has("videoHDURL") && !jSONObject3.isNull("videoHDURL")) ? "videoHDURL" : AudienceNetworkActivity.VIDEO_URL;
+        String str = (u.a(context) == u.a.c && jSONObject3.has("videoHDURL") && !jSONObject3.isNull("videoHDURL")) ? "videoHDURL" : AudienceNetworkActivity.VIDEO_URL;
         this.k = jSONObject3.getString(str);
         if (enumSet.contains(CacheFlag.VIDEO)) {
             this.p = new com.facebook.ads.internal.f.b(context2);

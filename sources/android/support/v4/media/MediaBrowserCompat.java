@@ -173,410 +173,6 @@ public final class MediaBrowserCompat {
         }
     }
 
-    public static abstract class ItemCallback {
-        final Object mItemCallbackObj;
-
-        private class StubApi23 implements ItemCallback {
-            StubApi23() {
-            }
-
-            public void onItemLoaded(Parcel parcel) {
-                if (parcel == null) {
-                    ItemCallback.this.onItemLoaded(null);
-                    return;
-                }
-                parcel.setDataPosition(0);
-                MediaItem mediaItem = (MediaItem) MediaItem.CREATOR.createFromParcel(parcel);
-                parcel.recycle();
-                ItemCallback.this.onItemLoaded(mediaItem);
-            }
-
-            public void onError(@NonNull String str) {
-                ItemCallback.this.onError(str);
-            }
-        }
-
-        public void onError(@NonNull String str) {
-        }
-
-        public void onItemLoaded(MediaItem mediaItem) {
-        }
-
-        public ItemCallback() {
-            if (VERSION.SDK_INT >= 23) {
-                this.mItemCallbackObj = MediaBrowserCompatApi23.createItemCallback(new StubApi23());
-            } else {
-                this.mItemCallbackObj = null;
-            }
-        }
-    }
-
-    interface MediaBrowserImpl {
-        void connect();
-
-        void disconnect();
-
-        @Nullable
-        Bundle getExtras();
-
-        void getItem(@NonNull String str, @NonNull ItemCallback itemCallback);
-
-        @NonNull
-        String getRoot();
-
-        ComponentName getServiceComponent();
-
-        @NonNull
-        Token getSessionToken();
-
-        boolean isConnected();
-
-        void search(@NonNull String str, Bundle bundle, @NonNull SearchCallback searchCallback);
-
-        void sendCustomAction(@NonNull String str, Bundle bundle, @Nullable CustomActionCallback customActionCallback);
-
-        void subscribe(@NonNull String str, @Nullable Bundle bundle, @NonNull SubscriptionCallback subscriptionCallback);
-
-        void unsubscribe(@NonNull String str, SubscriptionCallback subscriptionCallback);
-    }
-
-    interface MediaBrowserServiceCallbackImpl {
-        void onConnectionFailed(Messenger messenger);
-
-        void onLoadChildren(Messenger messenger, String str, List list, Bundle bundle);
-
-        void onServiceConnected(Messenger messenger, String str, Token token, Bundle bundle);
-    }
-
-    public static class MediaItem implements Parcelable {
-        public static final Creator<MediaItem> CREATOR = new Creator<MediaItem>() {
-            public MediaItem createFromParcel(Parcel parcel) {
-                return new MediaItem(parcel);
-            }
-
-            public MediaItem[] newArray(int i) {
-                return new MediaItem[i];
-            }
-        };
-        public static final int FLAG_BROWSABLE = 1;
-        public static final int FLAG_PLAYABLE = 2;
-        private final MediaDescriptionCompat mDescription;
-        private final int mFlags;
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        @Retention(RetentionPolicy.SOURCE)
-        public @interface Flags {
-        }
-
-        public int describeContents() {
-            return 0;
-        }
-
-        public static MediaItem fromMediaItem(Object obj) {
-            if (obj == null || VERSION.SDK_INT < 21) {
-                return null;
-            }
-            return new MediaItem(MediaDescriptionCompat.fromMediaDescription(MediaItem.getDescription(obj)), MediaItem.getFlags(obj));
-        }
-
-        public static List<MediaItem> fromMediaItemList(List<?> list) {
-            if (list == null || VERSION.SDK_INT < 21) {
-                return null;
-            }
-            ArrayList arrayList = new ArrayList(list.size());
-            for (Object fromMediaItem : list) {
-                arrayList.add(fromMediaItem(fromMediaItem));
-            }
-            return arrayList;
-        }
-
-        public MediaItem(@NonNull MediaDescriptionCompat mediaDescriptionCompat, int i) {
-            if (mediaDescriptionCompat == null) {
-                throw new IllegalArgumentException("description cannot be null");
-            } else if (TextUtils.isEmpty(mediaDescriptionCompat.getMediaId())) {
-                throw new IllegalArgumentException("description must have a non-empty media id");
-            } else {
-                this.mFlags = i;
-                this.mDescription = mediaDescriptionCompat;
-            }
-        }
-
-        MediaItem(Parcel parcel) {
-            this.mFlags = parcel.readInt();
-            this.mDescription = (MediaDescriptionCompat) MediaDescriptionCompat.CREATOR.createFromParcel(parcel);
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeInt(this.mFlags);
-            this.mDescription.writeToParcel(parcel, i);
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder("MediaItem{");
-            stringBuilder.append("mFlags=");
-            stringBuilder.append(this.mFlags);
-            stringBuilder.append(", mDescription=");
-            stringBuilder.append(this.mDescription);
-            stringBuilder.append('}');
-            return stringBuilder.toString();
-        }
-
-        public int getFlags() {
-            return this.mFlags;
-        }
-
-        public boolean isBrowsable() {
-            return (this.mFlags & 1) != 0;
-        }
-
-        public boolean isPlayable() {
-            return (this.mFlags & 2) != 0;
-        }
-
-        @NonNull
-        public MediaDescriptionCompat getDescription() {
-            return this.mDescription;
-        }
-
-        @Nullable
-        public String getMediaId() {
-            return this.mDescription.getMediaId();
-        }
-    }
-
-    public static abstract class SearchCallback {
-        public void onError(@NonNull String str, Bundle bundle) {
-        }
-
-        public void onSearchResult(@NonNull String str, Bundle bundle, @NonNull List<MediaItem> list) {
-        }
-    }
-
-    private static class ServiceBinderWrapper {
-        private Messenger mMessenger;
-        private Bundle mRootHints;
-
-        public ServiceBinderWrapper(IBinder iBinder, Bundle bundle) {
-            this.mMessenger = new Messenger(iBinder);
-            this.mRootHints = bundle;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void connect(Context context, Messenger messenger) throws RemoteException {
-            Bundle bundle = new Bundle();
-            bundle.putString(MediaBrowserProtocol.DATA_PACKAGE_NAME, context.getPackageName());
-            bundle.putBundle(MediaBrowserProtocol.DATA_ROOT_HINTS, this.mRootHints);
-            sendRequest(1, bundle, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void disconnect(Messenger messenger) throws RemoteException {
-            sendRequest(2, null, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void addSubscription(String str, IBinder iBinder, Bundle bundle, Messenger messenger) throws RemoteException {
-            Bundle bundle2 = new Bundle();
-            bundle2.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
-            BundleCompat.putBinder(bundle2, MediaBrowserProtocol.DATA_CALLBACK_TOKEN, iBinder);
-            bundle2.putBundle(MediaBrowserProtocol.DATA_OPTIONS, bundle);
-            sendRequest(3, bundle2, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void removeSubscription(String str, IBinder iBinder, Messenger messenger) throws RemoteException {
-            Bundle bundle = new Bundle();
-            bundle.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
-            BundleCompat.putBinder(bundle, MediaBrowserProtocol.DATA_CALLBACK_TOKEN, iBinder);
-            sendRequest(4, bundle, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void getMediaItem(String str, ResultReceiver resultReceiver, Messenger messenger) throws RemoteException {
-            Bundle bundle = new Bundle();
-            bundle.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
-            bundle.putParcelable(MediaBrowserProtocol.DATA_RESULT_RECEIVER, resultReceiver);
-            sendRequest(5, bundle, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void registerCallbackMessenger(Messenger messenger) throws RemoteException {
-            Bundle bundle = new Bundle();
-            bundle.putBundle(MediaBrowserProtocol.DATA_ROOT_HINTS, this.mRootHints);
-            sendRequest(6, bundle, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void unregisterCallbackMessenger(Messenger messenger) throws RemoteException {
-            sendRequest(7, null, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void search(String str, Bundle bundle, ResultReceiver resultReceiver, Messenger messenger) throws RemoteException {
-            Bundle bundle2 = new Bundle();
-            bundle2.putString(MediaBrowserProtocol.DATA_SEARCH_QUERY, str);
-            bundle2.putBundle(MediaBrowserProtocol.DATA_SEARCH_EXTRAS, bundle);
-            bundle2.putParcelable(MediaBrowserProtocol.DATA_RESULT_RECEIVER, resultReceiver);
-            sendRequest(8, bundle2, messenger);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void sendCustomAction(String str, Bundle bundle, ResultReceiver resultReceiver, Messenger messenger) throws RemoteException {
-            Bundle bundle2 = new Bundle();
-            bundle2.putString(MediaBrowserProtocol.DATA_CUSTOM_ACTION, str);
-            bundle2.putBundle(MediaBrowserProtocol.DATA_CUSTOM_ACTION_EXTRAS, bundle);
-            bundle2.putParcelable(MediaBrowserProtocol.DATA_RESULT_RECEIVER, resultReceiver);
-            sendRequest(9, bundle2, messenger);
-        }
-
-        private void sendRequest(int i, Bundle bundle, Messenger messenger) throws RemoteException {
-            Message obtain = Message.obtain();
-            obtain.what = i;
-            obtain.arg1 = 1;
-            obtain.setData(bundle);
-            obtain.replyTo = messenger;
-            this.mMessenger.send(obtain);
-        }
-    }
-
-    private static class Subscription {
-        private final List<SubscriptionCallback> mCallbacks = new ArrayList();
-        private final List<Bundle> mOptionsList = new ArrayList();
-
-        public boolean isEmpty() {
-            return this.mCallbacks.isEmpty();
-        }
-
-        public List<Bundle> getOptionsList() {
-            return this.mOptionsList;
-        }
-
-        public List<SubscriptionCallback> getCallbacks() {
-            return this.mCallbacks;
-        }
-
-        public SubscriptionCallback getCallback(Context context, Bundle bundle) {
-            if (bundle != null) {
-                bundle.setClassLoader(context.getClassLoader());
-            }
-            for (int i = 0; i < this.mOptionsList.size(); i++) {
-                if (MediaBrowserCompatUtils.areSameOptions((Bundle) this.mOptionsList.get(i), bundle)) {
-                    return (SubscriptionCallback) this.mCallbacks.get(i);
-                }
-            }
-            return null;
-        }
-
-        public void putCallback(Context context, Bundle bundle, SubscriptionCallback subscriptionCallback) {
-            if (bundle != null) {
-                bundle.setClassLoader(context.getClassLoader());
-            }
-            for (int i = 0; i < this.mOptionsList.size(); i++) {
-                if (MediaBrowserCompatUtils.areSameOptions((Bundle) this.mOptionsList.get(i), bundle)) {
-                    this.mCallbacks.set(i, subscriptionCallback);
-                    return;
-                }
-            }
-            this.mCallbacks.add(subscriptionCallback);
-            this.mOptionsList.add(bundle);
-        }
-    }
-
-    public static abstract class SubscriptionCallback {
-        private final Object mSubscriptionCallbackObj;
-        WeakReference<Subscription> mSubscriptionRef;
-        private final IBinder mToken = new Binder();
-
-        private class StubApi21 implements SubscriptionCallback {
-            StubApi21() {
-            }
-
-            public void onChildrenLoaded(@NonNull String str, List<?> list) {
-                Subscription subscription = SubscriptionCallback.this.mSubscriptionRef == null ? null : (Subscription) SubscriptionCallback.this.mSubscriptionRef.get();
-                if (subscription == null) {
-                    SubscriptionCallback.this.onChildrenLoaded(str, MediaItem.fromMediaItemList(list));
-                    return;
-                }
-                List fromMediaItemList = MediaItem.fromMediaItemList(list);
-                List callbacks = subscription.getCallbacks();
-                List optionsList = subscription.getOptionsList();
-                for (int i = 0; i < callbacks.size(); i++) {
-                    Bundle bundle = (Bundle) optionsList.get(i);
-                    if (bundle == null) {
-                        SubscriptionCallback.this.onChildrenLoaded(str, fromMediaItemList);
-                    } else {
-                        SubscriptionCallback.this.onChildrenLoaded(str, applyOptions(fromMediaItemList, bundle), bundle);
-                    }
-                }
-            }
-
-            public void onError(@NonNull String str) {
-                SubscriptionCallback.this.onError(str);
-            }
-
-            /* Access modifiers changed, original: 0000 */
-            public List<MediaItem> applyOptions(List<MediaItem> list, Bundle bundle) {
-                if (list == null) {
-                    return null;
-                }
-                int i = bundle.getInt(MediaBrowserCompat.EXTRA_PAGE, -1);
-                int i2 = bundle.getInt(MediaBrowserCompat.EXTRA_PAGE_SIZE, -1);
-                if (i == -1 && i2 == -1) {
-                    return list;
-                }
-                int i3 = i2 * i;
-                int i4 = i3 + i2;
-                if (i < 0 || i2 < 1 || i3 >= list.size()) {
-                    return Collections.EMPTY_LIST;
-                }
-                if (i4 > list.size()) {
-                    i4 = list.size();
-                }
-                return list.subList(i3, i4);
-            }
-        }
-
-        private class StubApi26 extends StubApi21 implements SubscriptionCallback {
-            StubApi26() {
-                super();
-            }
-
-            public void onChildrenLoaded(@NonNull String str, List<?> list, @NonNull Bundle bundle) {
-                SubscriptionCallback.this.onChildrenLoaded(str, MediaItem.fromMediaItemList(list), bundle);
-            }
-
-            public void onError(@NonNull String str, @NonNull Bundle bundle) {
-                SubscriptionCallback.this.onError(str, bundle);
-            }
-        }
-
-        public void onChildrenLoaded(@NonNull String str, @NonNull List<MediaItem> list) {
-        }
-
-        public void onChildrenLoaded(@NonNull String str, @NonNull List<MediaItem> list, @NonNull Bundle bundle) {
-        }
-
-        public void onError(@NonNull String str) {
-        }
-
-        public void onError(@NonNull String str, @NonNull Bundle bundle) {
-        }
-
-        public SubscriptionCallback() {
-            if (VERSION.SDK_INT >= 26) {
-                this.mSubscriptionCallbackObj = MediaBrowserCompatApi26.createSubscriptionCallback(new StubApi26());
-            } else if (VERSION.SDK_INT >= 21) {
-                this.mSubscriptionCallbackObj = MediaBrowserCompatApi21.createSubscriptionCallback(new StubApi21());
-            } else {
-                this.mSubscriptionCallbackObj = null;
-            }
-        }
-
-        private void setSubscription(Subscription subscription) {
-            this.mSubscriptionRef = new WeakReference(subscription);
-        }
-    }
-
     private static class CustomActionResultReceiver extends ResultReceiver {
         private final String mAction;
         private final CustomActionCallback mCallback;
@@ -619,6 +215,44 @@ public final class MediaBrowserCompat {
         }
     }
 
+    public static abstract class ItemCallback {
+        final Object mItemCallbackObj;
+
+        private class StubApi23 implements ItemCallback {
+            StubApi23() {
+            }
+
+            public void onItemLoaded(Parcel parcel) {
+                if (parcel == null) {
+                    ItemCallback.this.onItemLoaded(null);
+                    return;
+                }
+                parcel.setDataPosition(0);
+                MediaItem mediaItem = (MediaItem) MediaItem.CREATOR.createFromParcel(parcel);
+                parcel.recycle();
+                ItemCallback.this.onItemLoaded(mediaItem);
+            }
+
+            public void onError(@NonNull String str) {
+                ItemCallback.this.onError(str);
+            }
+        }
+
+        public void onError(@NonNull String str) {
+        }
+
+        public void onItemLoaded(MediaItem mediaItem) {
+        }
+
+        public ItemCallback() {
+            if (VERSION.SDK_INT >= 23) {
+                this.mItemCallbackObj = MediaBrowserCompatApi23.createItemCallback(new StubApi23());
+            } else {
+                this.mItemCallbackObj = null;
+            }
+        }
+    }
+
     private static class ItemReceiver extends ResultReceiver {
         private final ItemCallback mCallback;
         private final String mMediaId;
@@ -645,6 +279,43 @@ public final class MediaBrowserCompat {
             }
             this.mCallback.onError(this.mMediaId);
         }
+    }
+
+    interface MediaBrowserImpl {
+        void connect();
+
+        void disconnect();
+
+        @Nullable
+        Bundle getExtras();
+
+        void getItem(@NonNull String str, @NonNull ItemCallback itemCallback);
+
+        @NonNull
+        String getRoot();
+
+        ComponentName getServiceComponent();
+
+        @NonNull
+        Token getSessionToken();
+
+        boolean isConnected();
+
+        void search(@NonNull String str, Bundle bundle, @NonNull SearchCallback searchCallback);
+
+        void sendCustomAction(@NonNull String str, Bundle bundle, @Nullable CustomActionCallback customActionCallback);
+
+        void subscribe(@NonNull String str, @Nullable Bundle bundle, @NonNull SubscriptionCallback subscriptionCallback);
+
+        void unsubscribe(@NonNull String str, SubscriptionCallback subscriptionCallback);
+    }
+
+    interface MediaBrowserServiceCallbackImpl {
+        void onConnectionFailed(Messenger messenger);
+
+        void onLoadChildren(Messenger messenger, String str, List list, Bundle bundle);
+
+        void onServiceConnected(Messenger messenger, String str, Token token, Bundle bundle);
     }
 
     @RequiresApi(21)
@@ -962,6 +633,48 @@ public final class MediaBrowserCompat {
                         callback.onChildrenLoaded(str, list, bundle);
                     }
                 }
+            }
+        }
+    }
+
+    @RequiresApi(23)
+    static class MediaBrowserImplApi23 extends MediaBrowserImplApi21 {
+        MediaBrowserImplApi23(Context context, ComponentName componentName, ConnectionCallback connectionCallback, Bundle bundle) {
+            super(context, componentName, connectionCallback, bundle);
+        }
+
+        public void getItem(@NonNull String str, @NonNull ItemCallback itemCallback) {
+            if (this.mServiceBinderWrapper == null) {
+                MediaBrowserCompatApi23.getItem(this.mBrowserObj, str, itemCallback.mItemCallbackObj);
+            } else {
+                super.getItem(str, itemCallback);
+            }
+        }
+    }
+
+    @RequiresApi(26)
+    static class MediaBrowserImplApi26 extends MediaBrowserImplApi23 {
+        MediaBrowserImplApi26(Context context, ComponentName componentName, ConnectionCallback connectionCallback, Bundle bundle) {
+            super(context, componentName, connectionCallback, bundle);
+        }
+
+        public void subscribe(@NonNull String str, @Nullable Bundle bundle, @NonNull SubscriptionCallback subscriptionCallback) {
+            if (this.mServiceBinderWrapper != null && this.mServiceVersion >= 2) {
+                super.subscribe(str, bundle, subscriptionCallback);
+            } else if (bundle == null) {
+                MediaBrowserCompatApi21.subscribe(this.mBrowserObj, str, subscriptionCallback.mSubscriptionCallbackObj);
+            } else {
+                MediaBrowserCompatApi26.subscribe(this.mBrowserObj, str, bundle, subscriptionCallback.mSubscriptionCallbackObj);
+            }
+        }
+
+        public void unsubscribe(@NonNull String str, SubscriptionCallback subscriptionCallback) {
+            if (this.mServiceBinderWrapper != null && this.mServiceVersion >= 2) {
+                super.unsubscribe(str, subscriptionCallback);
+            } else if (subscriptionCallback == null) {
+                MediaBrowserCompatApi21.unsubscribe(this.mBrowserObj, str);
+            } else {
+                MediaBrowserCompatApi26.unsubscribe(this.mBrowserObj, str, subscriptionCallback.mSubscriptionCallbackObj);
             }
         }
     }
@@ -1600,6 +1313,110 @@ public final class MediaBrowserCompat {
         }
     }
 
+    public static class MediaItem implements Parcelable {
+        public static final Creator<MediaItem> CREATOR = new Creator<MediaItem>() {
+            public MediaItem createFromParcel(Parcel parcel) {
+                return new MediaItem(parcel);
+            }
+
+            public MediaItem[] newArray(int i) {
+                return new MediaItem[i];
+            }
+        };
+        public static final int FLAG_BROWSABLE = 1;
+        public static final int FLAG_PLAYABLE = 2;
+        private final MediaDescriptionCompat mDescription;
+        private final int mFlags;
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface Flags {
+        }
+
+        public int describeContents() {
+            return 0;
+        }
+
+        public static MediaItem fromMediaItem(Object obj) {
+            if (obj == null || VERSION.SDK_INT < 21) {
+                return null;
+            }
+            return new MediaItem(MediaDescriptionCompat.fromMediaDescription(MediaItem.getDescription(obj)), MediaItem.getFlags(obj));
+        }
+
+        public static List<MediaItem> fromMediaItemList(List<?> list) {
+            if (list == null || VERSION.SDK_INT < 21) {
+                return null;
+            }
+            ArrayList arrayList = new ArrayList(list.size());
+            for (Object fromMediaItem : list) {
+                arrayList.add(fromMediaItem(fromMediaItem));
+            }
+            return arrayList;
+        }
+
+        public MediaItem(@NonNull MediaDescriptionCompat mediaDescriptionCompat, int i) {
+            if (mediaDescriptionCompat == null) {
+                throw new IllegalArgumentException("description cannot be null");
+            } else if (TextUtils.isEmpty(mediaDescriptionCompat.getMediaId())) {
+                throw new IllegalArgumentException("description must have a non-empty media id");
+            } else {
+                this.mFlags = i;
+                this.mDescription = mediaDescriptionCompat;
+            }
+        }
+
+        MediaItem(Parcel parcel) {
+            this.mFlags = parcel.readInt();
+            this.mDescription = (MediaDescriptionCompat) MediaDescriptionCompat.CREATOR.createFromParcel(parcel);
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeInt(this.mFlags);
+            this.mDescription.writeToParcel(parcel, i);
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder("MediaItem{");
+            stringBuilder.append("mFlags=");
+            stringBuilder.append(this.mFlags);
+            stringBuilder.append(", mDescription=");
+            stringBuilder.append(this.mDescription);
+            stringBuilder.append('}');
+            return stringBuilder.toString();
+        }
+
+        public int getFlags() {
+            return this.mFlags;
+        }
+
+        public boolean isBrowsable() {
+            return (this.mFlags & 1) != 0;
+        }
+
+        public boolean isPlayable() {
+            return (this.mFlags & 2) != 0;
+        }
+
+        @NonNull
+        public MediaDescriptionCompat getDescription() {
+            return this.mDescription;
+        }
+
+        @Nullable
+        public String getMediaId() {
+            return this.mDescription.getMediaId();
+        }
+    }
+
+    public static abstract class SearchCallback {
+        public void onError(@NonNull String str, Bundle bundle) {
+        }
+
+        public void onSearchResult(@NonNull String str, Bundle bundle, @NonNull List<MediaItem> list) {
+        }
+    }
+
     private static class SearchResultReceiver extends ResultReceiver {
         private final SearchCallback mCallback;
         private final Bundle mExtras;
@@ -1633,45 +1450,228 @@ public final class MediaBrowserCompat {
         }
     }
 
-    @RequiresApi(23)
-    static class MediaBrowserImplApi23 extends MediaBrowserImplApi21 {
-        MediaBrowserImplApi23(Context context, ComponentName componentName, ConnectionCallback connectionCallback, Bundle bundle) {
-            super(context, componentName, connectionCallback, bundle);
+    private static class ServiceBinderWrapper {
+        private Messenger mMessenger;
+        private Bundle mRootHints;
+
+        public ServiceBinderWrapper(IBinder iBinder, Bundle bundle) {
+            this.mMessenger = new Messenger(iBinder);
+            this.mRootHints = bundle;
         }
 
-        public void getItem(@NonNull String str, @NonNull ItemCallback itemCallback) {
-            if (this.mServiceBinderWrapper == null) {
-                MediaBrowserCompatApi23.getItem(this.mBrowserObj, str, itemCallback.mItemCallbackObj);
-            } else {
-                super.getItem(str, itemCallback);
-            }
+        /* Access modifiers changed, original: 0000 */
+        public void connect(Context context, Messenger messenger) throws RemoteException {
+            Bundle bundle = new Bundle();
+            bundle.putString(MediaBrowserProtocol.DATA_PACKAGE_NAME, context.getPackageName());
+            bundle.putBundle(MediaBrowserProtocol.DATA_ROOT_HINTS, this.mRootHints);
+            sendRequest(1, bundle, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void disconnect(Messenger messenger) throws RemoteException {
+            sendRequest(2, null, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void addSubscription(String str, IBinder iBinder, Bundle bundle, Messenger messenger) throws RemoteException {
+            Bundle bundle2 = new Bundle();
+            bundle2.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
+            BundleCompat.putBinder(bundle2, MediaBrowserProtocol.DATA_CALLBACK_TOKEN, iBinder);
+            bundle2.putBundle(MediaBrowserProtocol.DATA_OPTIONS, bundle);
+            sendRequest(3, bundle2, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void removeSubscription(String str, IBinder iBinder, Messenger messenger) throws RemoteException {
+            Bundle bundle = new Bundle();
+            bundle.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
+            BundleCompat.putBinder(bundle, MediaBrowserProtocol.DATA_CALLBACK_TOKEN, iBinder);
+            sendRequest(4, bundle, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void getMediaItem(String str, ResultReceiver resultReceiver, Messenger messenger) throws RemoteException {
+            Bundle bundle = new Bundle();
+            bundle.putString(MediaBrowserProtocol.DATA_MEDIA_ITEM_ID, str);
+            bundle.putParcelable(MediaBrowserProtocol.DATA_RESULT_RECEIVER, resultReceiver);
+            sendRequest(5, bundle, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void registerCallbackMessenger(Messenger messenger) throws RemoteException {
+            Bundle bundle = new Bundle();
+            bundle.putBundle(MediaBrowserProtocol.DATA_ROOT_HINTS, this.mRootHints);
+            sendRequest(6, bundle, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void unregisterCallbackMessenger(Messenger messenger) throws RemoteException {
+            sendRequest(7, null, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void search(String str, Bundle bundle, ResultReceiver resultReceiver, Messenger messenger) throws RemoteException {
+            Bundle bundle2 = new Bundle();
+            bundle2.putString(MediaBrowserProtocol.DATA_SEARCH_QUERY, str);
+            bundle2.putBundle(MediaBrowserProtocol.DATA_SEARCH_EXTRAS, bundle);
+            bundle2.putParcelable(MediaBrowserProtocol.DATA_RESULT_RECEIVER, resultReceiver);
+            sendRequest(8, bundle2, messenger);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void sendCustomAction(String str, Bundle bundle, ResultReceiver resultReceiver, Messenger messenger) throws RemoteException {
+            Bundle bundle2 = new Bundle();
+            bundle2.putString(MediaBrowserProtocol.DATA_CUSTOM_ACTION, str);
+            bundle2.putBundle(MediaBrowserProtocol.DATA_CUSTOM_ACTION_EXTRAS, bundle);
+            bundle2.putParcelable(MediaBrowserProtocol.DATA_RESULT_RECEIVER, resultReceiver);
+            sendRequest(9, bundle2, messenger);
+        }
+
+        private void sendRequest(int i, Bundle bundle, Messenger messenger) throws RemoteException {
+            Message obtain = Message.obtain();
+            obtain.what = i;
+            obtain.arg1 = 1;
+            obtain.setData(bundle);
+            obtain.replyTo = messenger;
+            this.mMessenger.send(obtain);
         }
     }
 
-    @RequiresApi(26)
-    static class MediaBrowserImplApi26 extends MediaBrowserImplApi23 {
-        MediaBrowserImplApi26(Context context, ComponentName componentName, ConnectionCallback connectionCallback, Bundle bundle) {
-            super(context, componentName, connectionCallback, bundle);
+    private static class Subscription {
+        private final List<SubscriptionCallback> mCallbacks = new ArrayList();
+        private final List<Bundle> mOptionsList = new ArrayList();
+
+        public boolean isEmpty() {
+            return this.mCallbacks.isEmpty();
         }
 
-        public void subscribe(@NonNull String str, @Nullable Bundle bundle, @NonNull SubscriptionCallback subscriptionCallback) {
-            if (this.mServiceBinderWrapper != null && this.mServiceVersion >= 2) {
-                super.subscribe(str, bundle, subscriptionCallback);
-            } else if (bundle == null) {
-                MediaBrowserCompatApi21.subscribe(this.mBrowserObj, str, subscriptionCallback.mSubscriptionCallbackObj);
-            } else {
-                MediaBrowserCompatApi26.subscribe(this.mBrowserObj, str, bundle, subscriptionCallback.mSubscriptionCallbackObj);
+        public List<Bundle> getOptionsList() {
+            return this.mOptionsList;
+        }
+
+        public List<SubscriptionCallback> getCallbacks() {
+            return this.mCallbacks;
+        }
+
+        public SubscriptionCallback getCallback(Context context, Bundle bundle) {
+            if (bundle != null) {
+                bundle.setClassLoader(context.getClassLoader());
+            }
+            for (int i = 0; i < this.mOptionsList.size(); i++) {
+                if (MediaBrowserCompatUtils.areSameOptions((Bundle) this.mOptionsList.get(i), bundle)) {
+                    return (SubscriptionCallback) this.mCallbacks.get(i);
+                }
+            }
+            return null;
+        }
+
+        public void putCallback(Context context, Bundle bundle, SubscriptionCallback subscriptionCallback) {
+            if (bundle != null) {
+                bundle.setClassLoader(context.getClassLoader());
+            }
+            for (int i = 0; i < this.mOptionsList.size(); i++) {
+                if (MediaBrowserCompatUtils.areSameOptions((Bundle) this.mOptionsList.get(i), bundle)) {
+                    this.mCallbacks.set(i, subscriptionCallback);
+                    return;
+                }
+            }
+            this.mCallbacks.add(subscriptionCallback);
+            this.mOptionsList.add(bundle);
+        }
+    }
+
+    public static abstract class SubscriptionCallback {
+        private final Object mSubscriptionCallbackObj;
+        WeakReference<Subscription> mSubscriptionRef;
+        private final IBinder mToken = new Binder();
+
+        private class StubApi21 implements SubscriptionCallback {
+            StubApi21() {
+            }
+
+            public void onChildrenLoaded(@NonNull String str, List<?> list) {
+                Subscription subscription = SubscriptionCallback.this.mSubscriptionRef == null ? null : (Subscription) SubscriptionCallback.this.mSubscriptionRef.get();
+                if (subscription == null) {
+                    SubscriptionCallback.this.onChildrenLoaded(str, MediaItem.fromMediaItemList(list));
+                    return;
+                }
+                List fromMediaItemList = MediaItem.fromMediaItemList(list);
+                List callbacks = subscription.getCallbacks();
+                List optionsList = subscription.getOptionsList();
+                for (int i = 0; i < callbacks.size(); i++) {
+                    Bundle bundle = (Bundle) optionsList.get(i);
+                    if (bundle == null) {
+                        SubscriptionCallback.this.onChildrenLoaded(str, fromMediaItemList);
+                    } else {
+                        SubscriptionCallback.this.onChildrenLoaded(str, applyOptions(fromMediaItemList, bundle), bundle);
+                    }
+                }
+            }
+
+            public void onError(@NonNull String str) {
+                SubscriptionCallback.this.onError(str);
+            }
+
+            /* Access modifiers changed, original: 0000 */
+            public List<MediaItem> applyOptions(List<MediaItem> list, Bundle bundle) {
+                if (list == null) {
+                    return null;
+                }
+                int i = bundle.getInt(MediaBrowserCompat.EXTRA_PAGE, -1);
+                int i2 = bundle.getInt(MediaBrowserCompat.EXTRA_PAGE_SIZE, -1);
+                if (i == -1 && i2 == -1) {
+                    return list;
+                }
+                int i3 = i2 * i;
+                int i4 = i3 + i2;
+                if (i < 0 || i2 < 1 || i3 >= list.size()) {
+                    return Collections.EMPTY_LIST;
+                }
+                if (i4 > list.size()) {
+                    i4 = list.size();
+                }
+                return list.subList(i3, i4);
             }
         }
 
-        public void unsubscribe(@NonNull String str, SubscriptionCallback subscriptionCallback) {
-            if (this.mServiceBinderWrapper != null && this.mServiceVersion >= 2) {
-                super.unsubscribe(str, subscriptionCallback);
-            } else if (subscriptionCallback == null) {
-                MediaBrowserCompatApi21.unsubscribe(this.mBrowserObj, str);
-            } else {
-                MediaBrowserCompatApi26.unsubscribe(this.mBrowserObj, str, subscriptionCallback.mSubscriptionCallbackObj);
+        private class StubApi26 extends StubApi21 implements SubscriptionCallback {
+            StubApi26() {
+                super();
             }
+
+            public void onChildrenLoaded(@NonNull String str, List<?> list, @NonNull Bundle bundle) {
+                SubscriptionCallback.this.onChildrenLoaded(str, MediaItem.fromMediaItemList(list), bundle);
+            }
+
+            public void onError(@NonNull String str, @NonNull Bundle bundle) {
+                SubscriptionCallback.this.onError(str, bundle);
+            }
+        }
+
+        public void onChildrenLoaded(@NonNull String str, @NonNull List<MediaItem> list) {
+        }
+
+        public void onChildrenLoaded(@NonNull String str, @NonNull List<MediaItem> list, @NonNull Bundle bundle) {
+        }
+
+        public void onError(@NonNull String str) {
+        }
+
+        public void onError(@NonNull String str, @NonNull Bundle bundle) {
+        }
+
+        public SubscriptionCallback() {
+            if (VERSION.SDK_INT >= 26) {
+                this.mSubscriptionCallbackObj = MediaBrowserCompatApi26.createSubscriptionCallback(new StubApi26());
+            } else if (VERSION.SDK_INT >= 21) {
+                this.mSubscriptionCallbackObj = MediaBrowserCompatApi21.createSubscriptionCallback(new StubApi21());
+            } else {
+                this.mSubscriptionCallbackObj = null;
+            }
+        }
+
+        private void setSubscription(Subscription subscription) {
+            this.mSubscriptionRef = new WeakReference(subscription);
         }
     }
 

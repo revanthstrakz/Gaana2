@@ -46,29 +46,6 @@ public class LoginManager {
     private DefaultAudience defaultAudience = DefaultAudience.FRIENDS;
     private LoginBehavior loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK;
 
-    private static class LoginLoggerHolder {
-        private static volatile LoginLogger logger;
-
-        private LoginLoggerHolder() {
-        }
-
-        private static synchronized LoginLogger getLogger(Context context) {
-            synchronized (LoginLoggerHolder.class) {
-                if (context == null) {
-                    context = FacebookSdk.getApplicationContext();
-                }
-                if (context == null) {
-                    return null;
-                }
-                if (logger == null) {
-                    logger = new LoginLogger(context, FacebookSdk.getApplicationId());
-                }
-                LoginLogger loginLogger = logger;
-                return loginLogger;
-            }
-        }
-    }
-
     private static class ActivityStartActivityDelegate implements StartActivityDelegate {
         private final Activity activity;
 
@@ -100,6 +77,29 @@ public class LoginManager {
 
         public Activity getActivityContext() {
             return this.fragment.getActivity();
+        }
+    }
+
+    private static class LoginLoggerHolder {
+        private static volatile LoginLogger logger;
+
+        private LoginLoggerHolder() {
+        }
+
+        private static synchronized LoginLogger getLogger(Context context) {
+            synchronized (LoginLoggerHolder.class) {
+                if (context == null) {
+                    context = FacebookSdk.getApplicationContext();
+                }
+                if (context == null) {
+                    return null;
+                }
+                if (logger == null) {
+                    logger = new LoginLogger(context, FacebookSdk.getApplicationId());
+                }
+                LoginLogger loginLogger = logger;
+                return loginLogger;
+            }
         }
     }
 

@@ -12,6 +12,16 @@ public final class zzc {
         private int zznt;
         private int zznu;
 
+        public static final class zza extends com.google.android.gms.internal.measurement.zzuo.zza<zza, zza> implements zzvx {
+            private zza() {
+                super(zza.zznv);
+            }
+
+            /* synthetic */ zza(zzd zzd) {
+                this();
+            }
+        }
+
         public enum zzb implements zzur {
             NO_CACHE(1),
             PRIVATE(2),
@@ -47,16 +57,6 @@ public final class zzc {
 
             static {
                 zzoa = new zze();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.measurement.zzuo.zza<zza, zza> implements zzvx {
-            private zza() {
-                super(zza.zznv);
-            }
-
-            /* synthetic */ zza(zzd zzd) {
-                this();
             }
         }
 

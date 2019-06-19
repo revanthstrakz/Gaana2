@@ -11,42 +11,6 @@ public abstract class zzbrd<MessageType extends zzbrd<MessageType, BuilderType>,
     protected zzbtv zzfpu = zzbtv.zzaoz();
     private int zzfpv = -1;
 
-    public enum zze {
-        public static final int zzfqb = 1;
-        public static final int zzfqc = 2;
-        public static final int zzfqd = 3;
-        public static final int zzfqe = 4;
-        public static final int zzfqf = 5;
-        public static final int zzfqg = 6;
-        public static final int zzfqh = 7;
-        private static final /* synthetic */ int[] zzfqi = new int[]{zzfqb, zzfqc, zzfqd, zzfqe, zzfqf, zzfqg, zzfqh};
-        public static final int zzfqj = 1;
-        public static final int zzfqk = 2;
-        private static final /* synthetic */ int[] zzfql = new int[]{zzfqj, zzfqk};
-        public static final int zzfqm = 1;
-        public static final int zzfqn = 2;
-        private static final /* synthetic */ int[] zzfqo = new int[]{zzfqm, zzfqn};
-
-        public static int[] values$50KLMJ33DTMIUPRFDTJMOP9FE1P6UT3FC9QMCBQ7CLN6ASJ1EHIM8JB5EDPM2PR59HKN8P949LIN8Q3FCHA6UIBEEPNMMP9R0() {
-            return (int[]) zzfqi.clone();
-        }
-    }
-
-    public static class zzd<ContainingType extends zzbsl, Type> extends zzbqo<ContainingType, Type> {
-    }
-
-    public static class zzb<T extends zzbrd<T, ?>> extends zzbpn<T> {
-        private final T zzfpx;
-
-        public zzb(T t) {
-            this.zzfpx = t;
-        }
-
-        public final /* synthetic */ Object zza(zzbqf zzbqf, zzbqq zzbqq) throws zzbrl {
-            return zzbrd.zza(this.zzfpx, zzbqf, zzbqq);
-        }
-    }
-
     public static abstract class zza<MessageType extends zzbrd<MessageType, BuilderType>, BuilderType extends zza<MessageType, BuilderType>> extends zzbpm<MessageType, BuilderType> {
         private final MessageType zzfpx;
         protected MessageType zzfpy;
@@ -129,8 +93,44 @@ public abstract class zzbrd<MessageType extends zzbrd<MessageType, BuilderType>,
         }
     }
 
+    public static class zzb<T extends zzbrd<T, ?>> extends zzbpn<T> {
+        private final T zzfpx;
+
+        public zzb(T t) {
+            this.zzfpx = t;
+        }
+
+        public final /* synthetic */ Object zza(zzbqf zzbqf, zzbqq zzbqq) throws zzbrl {
+            return zzbrd.zza(this.zzfpx, zzbqf, zzbqq);
+        }
+    }
+
     public static abstract class zzc<MessageType extends zzc<MessageType, BuilderType>, BuilderType> extends zzbrd<MessageType, BuilderType> implements zzbsn {
         protected zzbqu<Object> zzfqa = zzbqu.zzami();
+    }
+
+    public static class zzd<ContainingType extends zzbsl, Type> extends zzbqo<ContainingType, Type> {
+    }
+
+    public enum zze {
+        public static final int zzfqb = 1;
+        public static final int zzfqc = 2;
+        public static final int zzfqd = 3;
+        public static final int zzfqe = 4;
+        public static final int zzfqf = 5;
+        public static final int zzfqg = 6;
+        public static final int zzfqh = 7;
+        private static final /* synthetic */ int[] zzfqi = new int[]{zzfqb, zzfqc, zzfqd, zzfqe, zzfqf, zzfqg, zzfqh};
+        public static final int zzfqj = 1;
+        public static final int zzfqk = 2;
+        private static final /* synthetic */ int[] zzfql = new int[]{zzfqj, zzfqk};
+        public static final int zzfqm = 1;
+        public static final int zzfqn = 2;
+        private static final /* synthetic */ int[] zzfqo = new int[]{zzfqm, zzfqn};
+
+        public static int[] values$50KLMJ33DTMIUPRFDTJMOP9FE1P6UT3FC9QMCBQ7CLN6ASJ1EHIM8JB5EDPM2PR59HKN8P949LIN8Q3FCHA6UIBEEPNMMP9R0() {
+            return (int[]) zzfqi.clone();
+        }
     }
 
     public abstract Object zza(int i, Object obj, Object obj2);

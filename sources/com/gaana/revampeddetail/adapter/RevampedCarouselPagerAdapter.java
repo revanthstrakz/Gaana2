@@ -83,24 +83,6 @@ public class RevampedCarouselPagerAdapter extends Adapter<ViewHolder> implements
     private RevampedDetailObjectManager mRevampDetailObjManager;
     private String songString = "";
 
-    public class TagObject {
-        CarouselCardData item;
-        int position;
-
-        public TagObject(CarouselCardData carouselCardData, int i) {
-            this.item = carouselCardData;
-            this.position = i;
-        }
-
-        public int getPosition() {
-            return this.position;
-        }
-
-        public CarouselCardData getItem() {
-            return this.item;
-        }
-    }
-
     public static class CarouselAdsItemHolder extends ViewHolder {
         TextView tvDesc;
         TextView tvTitle;
@@ -230,6 +212,24 @@ public class RevampedCarouselPagerAdapter extends Adapter<ViewHolder> implements
             super(view);
             this.videoImage = (CrossFadeImageView) view.findViewById(R.id.video_thumbnail);
             this.playImage = (ImageView) view.findViewById(R.id.play_video);
+        }
+    }
+
+    public class TagObject {
+        CarouselCardData item;
+        int position;
+
+        public TagObject(CarouselCardData carouselCardData, int i) {
+            this.item = carouselCardData;
+            this.position = i;
+        }
+
+        public int getPosition() {
+            return this.position;
+        }
+
+        public CarouselCardData getItem() {
+            return this.item;
         }
     }
 

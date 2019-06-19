@@ -21,11 +21,11 @@ import net.hockeyapp.android.d.i;
 import net.hockeyapp.android.objects.CrashManagerUserInput;
 
 public class b {
-    private static String a = null;
-    private static String b = null;
-    private static boolean c = false;
-    private static long d = 0;
-    private static boolean e = false;
+    private static String a;
+    private static String b;
+    private static boolean c;
+    private static long d;
+    private static boolean e;
 
     public static void a(Context context, String str, c cVar) {
         a(context, "https://sdk.hockeyapp.net/", str, cVar);

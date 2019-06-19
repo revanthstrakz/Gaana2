@@ -548,7 +548,7 @@ public class FontsContractCompat {
         	at jadx.api.JadxDecompiler.lambda$appendSourcesSave$0(JadxDecompiler.java:200)
         */
     /* JADX WARNING: Removed duplicated region for block: B:36:0x0135 A:{REMOVE} */
-    /* JADX WARNING: Removed duplicated region for block: B:37:0x0144 A:{Splitter:B:1:0x0034, ExcHandler:  FINALLY} */
+    /* JADX WARNING: Removed duplicated region for block: B:37:0x0144 A:{ExcHandler:  FINALLY, Splitter:B:1:0x0034} */
     /* JADX WARNING: Missing block: B:39:0x0146, code skipped:
             if (r11 == null) goto L_0x014b;
      */

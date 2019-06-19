@@ -12,7 +12,7 @@ import android.util.Log;
 
 public abstract class zzae<T> {
     private static final Object zzdn = new Object();
-    private static boolean zzdo = false;
+    private static boolean zzdo;
     private static volatile Boolean zzdp;
     private static volatile Boolean zzdq;
     @SuppressLint({"StaticFieldLeak"})

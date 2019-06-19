@@ -43,6 +43,12 @@ public final class AudioFocusManager {
     public @interface PlayerCommand {
     }
 
+    public interface PlayerControl {
+        void executePlayerCommand(int i);
+
+        void setVolumeMultiplier(float f);
+    }
+
     private class AudioFocusListener implements OnAudioFocusChangeListener {
         private AudioFocusListener() {
         }
@@ -100,12 +106,6 @@ public final class AudioFocusManager {
                 AudioFocusManager.this.playerControl.setVolumeMultiplier(f);
             }
         }
-    }
-
-    public interface PlayerControl {
-        void executePlayerCommand(int i);
-
-        void setVolumeMultiplier(float f);
     }
 
     private int handleIdle(boolean z) {

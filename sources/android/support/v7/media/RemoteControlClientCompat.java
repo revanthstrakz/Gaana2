@@ -11,14 +11,6 @@ abstract class RemoteControlClientCompat {
     protected final Object mRcc;
     protected VolumeCallback mVolumeCallback;
 
-    public static final class PlaybackInfo {
-        public int playbackStream = 3;
-        public int playbackType = 1;
-        public int volume;
-        public int volumeHandling = 0;
-        public int volumeMax;
-    }
-
     public interface VolumeCallback {
         void onVolumeSetRequest(int i);
 
@@ -77,6 +69,14 @@ abstract class RemoteControlClientCompat {
         public LegacyImpl(Context context, Object obj) {
             super(context, obj);
         }
+    }
+
+    public static final class PlaybackInfo {
+        public int playbackStream = 3;
+        public int playbackType = 1;
+        public int volume;
+        public int volumeHandling = 0;
+        public int volumeMax;
     }
 
     public void setPlaybackInfo(PlaybackInfo playbackInfo) {

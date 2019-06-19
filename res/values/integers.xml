@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="abc_config_activityDefaultDur">220</integer>
+    <integer name="abc_config_activityShortDur">150</integer>
+    <integer name="app_bar_elevation_anim_duration">150</integer>
+    <integer name="bottom_sheet_slide_duration">150</integer>
+    <integer name="cancel_button_image_alpha">127</integer>
+    <integer name="config_tooltipAnimTime">150</integer>
+    <integer name="cpv_default_anim_duration">4000</integer>
+    <integer name="cpv_default_anim_steps">3</integer>
+    <integer name="cpv_default_anim_swoop_duration">5000</integer>
+    <integer name="cpv_default_anim_sync_duration">500</integer>
+    <integer name="cpv_default_max_progress">100</integer>
+    <integer name="cpv_default_progress">0</integer>
+    <integer name="cpv_default_start_angle">-90</integer>
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <integer name="design_snackbar_text_max_lines">2</integer>
+    <integer name="ga_dispatchPeriod">30</integer>
+    <integer name="ga_sessionTimeout">1800</integer>
+    <integer name="google_play_services_version">12451000</integer>
+    <integer name="hide_password_duration">320</integer>
+    <integer name="hs__chat_max_lines">4</integer>
+    <integer name="hs__conversation_detail_lines">1</integer>
+    <integer name="hs__faqs_list_item_max_lines">3</integer>
+    <integer name="hs__issue_description_max_lines">12</integer>
+    <integer name="hs__issue_description_min_chars">1</integer>
+    <item type="integer" name="hs_animation_duration">@android:integer/config_shortAnimTime</item>
+    <integer name="int_1">1</integer>
+    <integer name="mr_controller_volume_group_list_animation_duration_ms">400</integer>
+    <integer name="mr_controller_volume_group_list_fade_in_duration_ms">400</integer>
+    <integer name="mr_controller_volume_group_list_fade_out_duration_ms">200</integer>
+    <integer name="notification_type_multiple">2</integer>
+    <integer name="notification_type_single">1</integer>
+    <integer name="num_artists_grid">3</integer>
+    <integer name="num_artists_grid_space">5</integer>
+    <integer name="num_empty_views">4</integer>
+    <integer name="screen_transition_anim_time">200</integer>
+    <integer name="show_password_duration">200</integer>
+    <integer name="status_bar_notification_info_maxnum">999</integer>
+</resources>

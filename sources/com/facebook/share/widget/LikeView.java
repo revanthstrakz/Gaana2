@@ -122,6 +122,37 @@ public class LikeView extends FrameLayout {
         }
     }
 
+    private class LikeActionControllerCreationCallback implements CreationCallback {
+        private boolean isCancelled;
+
+        private LikeActionControllerCreationCallback() {
+        }
+
+        /* synthetic */ LikeActionControllerCreationCallback(LikeView likeView, AnonymousClass1 anonymousClass1) {
+            this();
+        }
+
+        public void cancel() {
+            this.isCancelled = true;
+        }
+
+        public void onComplete(LikeActionController likeActionController, FacebookException facebookException) {
+            if (!this.isCancelled) {
+                if (likeActionController != null) {
+                    if (!likeActionController.shouldEnableView()) {
+                        facebookException = new FacebookException("Cannot use LikeView. The device may not be supported.");
+                    }
+                    LikeView.this.associateWithLikeActionController(likeActionController);
+                    LikeView.this.updateLikeStateAndLayout();
+                }
+                if (!(facebookException == null || LikeView.this.onErrorListener == null)) {
+                    LikeView.this.onErrorListener.onError(facebookException);
+                }
+                LikeView.this.creationCallback = null;
+            }
+        }
+    }
+
     private class LikeControllerBroadcastReceiver extends BroadcastReceiver {
         private LikeControllerBroadcastReceiver() {
         }
@@ -228,37 +259,6 @@ public class LikeView extends FrameLayout {
 
         private int getValue() {
             return this.intValue;
-        }
-    }
-
-    private class LikeActionControllerCreationCallback implements CreationCallback {
-        private boolean isCancelled;
-
-        private LikeActionControllerCreationCallback() {
-        }
-
-        /* synthetic */ LikeActionControllerCreationCallback(LikeView likeView, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        public void cancel() {
-            this.isCancelled = true;
-        }
-
-        public void onComplete(LikeActionController likeActionController, FacebookException facebookException) {
-            if (!this.isCancelled) {
-                if (likeActionController != null) {
-                    if (!likeActionController.shouldEnableView()) {
-                        facebookException = new FacebookException("Cannot use LikeView. The device may not be supported.");
-                    }
-                    LikeView.this.associateWithLikeActionController(likeActionController);
-                    LikeView.this.updateLikeStateAndLayout();
-                }
-                if (!(facebookException == null || LikeView.this.onErrorListener == null)) {
-                    LikeView.this.onErrorListener.onError(facebookException);
-                }
-                LikeView.this.creationCallback = null;
-            }
         }
     }
 

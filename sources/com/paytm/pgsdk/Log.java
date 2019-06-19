@@ -1,7 +1,7 @@
 package com.paytm.pgsdk;
 
 public class Log {
-    private static boolean ENABLE_DEBUG_LOG = false;
+    private static boolean ENABLE_DEBUG_LOG;
 
     public static void i(String str, String str2) {
         android.util.Log.i(str, str2);

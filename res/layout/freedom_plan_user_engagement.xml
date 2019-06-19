@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="?freedom_plan_user_bg" android:paddingBottom="@dimen/dimen_20dp" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/divider" android:background="@drawable/freedom_plan_user_divider" android:layout_width="25.0dip" android:layout_height="2.0dip" android:layout_marginTop="@dimen/dimen_20dp" android:layout_centerHorizontal="true" />
+    <ImageView android:id="@id/img" android:layout_width="72.0dip" android:layout_height="72.0dip" android:layout_marginTop="@dimen/dimen_12dp" android:src="@drawable/freedom_plan_user_engagement" android:layout_below="@id/divider" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="18.0sp" android:textColor="?first_line_color" android:id="@id/textHeading" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="22.0dip" android:layout_below="@id/img" />
+    <TextView android:textSize="16.0sp" android:textColor="?freedom_plan_user_below_text" android:id="@id/textSubHeading" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="6.0dip" android:layout_below="@id/textHeading" />
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dimen_20dp" android:layout_below="@id/textSubHeading" android:layout_centerHorizontal="true">
+        <FrameLayout android:orientation="vertical" android:padding="@dimen/dimen_15dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <View android:layout_gravity="top" android:background="?freedom_plan_user_days_shadow" android:padding="10.0dip" android:layout_width="@dimen/dimen_80dp" android:layout_height="@dimen/dimen_70dp" android:layout_marginTop="@dimen/dimen_25dp" />
+            <LinearLayout android:gravity="center" android:layout_gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textSize="42.0sp" android:textColor="?freedom_plan_user_days_text_color" android:id="@id/textSongs" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="0" android:includeFontPadding="false" android:layout_below="@id/textSubHeading" android:lineSpacingExtra="0.0dip" />
+                <TextView android:textSize="14.0sp" android:textColor="?freedom_plan_user_days_below_text_color" android:id="@id/songs" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Songs" android:layout_below="@id/textSubHeading" />
+            </LinearLayout>
+        </FrameLayout>
+        <TextView android:textSize="@dimen/dimen_20sp" android:textColor="?freedom_plan_user_days_below_text_color" android:gravity="center" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_margin="@dimen/dimen_12dp" android:text="in" />
+        <FrameLayout android:orientation="vertical" android:padding="@dimen/dimen_15dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <View android:layout_gravity="top" android:background="?freedom_plan_user_days_shadow" android:padding="10.0dip" android:layout_width="@dimen/dimen_80dp" android:layout_height="@dimen/dimen_70dp" android:layout_marginTop="@dimen/dimen_25dp" />
+            <LinearLayout android:gravity="center" android:layout_gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textSize="42.0sp" android:textColor="?freedom_plan_user_days_text_color" android:id="@id/textDays" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="0" android:includeFontPadding="false" android:layout_below="@id/textSubHeading" android:lineSpacingExtra="0.0dip" />
+                <TextView android:textSize="14.0sp" android:textColor="?freedom_plan_user_days_below_text_color" android:id="@id/days" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="2.0dip" android:layout_marginRight="2.0dip" android:text="Days" android:layout_below="@id/textSubHeading" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

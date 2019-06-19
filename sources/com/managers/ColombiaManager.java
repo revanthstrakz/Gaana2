@@ -53,17 +53,17 @@ public class ColombiaManager {
         void e();
     }
 
+    public interface a {
+        void onItemLoaded(Item item);
+
+        void onItemRequestFailed(Exception exception);
+    }
+
     public enum ADSTATUS {
         LOADING,
         FAILED,
         LOADED,
         REFRESH
-    }
-
-    public interface a {
-        void onItemLoaded(Item item);
-
-        void onItemRequestFailed(Exception exception);
     }
 
     public void a(String str, String str2) {

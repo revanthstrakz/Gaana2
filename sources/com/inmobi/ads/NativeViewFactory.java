@@ -49,6 +49,56 @@ class NativeViewFactory {
     @NonNull
     private Map<Integer, c> d = new HashMap();
 
+    private abstract class c {
+        private int a = 0;
+        @NonNull
+        LinkedList<View> b = new LinkedList();
+        private int d = 0;
+
+        public abstract View a(@NonNull Context context);
+
+        public boolean a(@NonNull View view) {
+            NativeViewFactory.b(view);
+            view.setOnClickListener(null);
+            this.b.addLast(view);
+            view.setScaleX(1.0f);
+            view.setScaleY(1.0f);
+            NativeViewFactory.this.b = NativeViewFactory.this.b + 1;
+            return true;
+        }
+
+        public final View a(@NonNull Context context, ak akVar, c cVar) {
+            View a;
+            NativeViewFactory.f = new WeakReference(context);
+            if (this.b.isEmpty()) {
+                this.a++;
+                a = a(context);
+            } else {
+                this.d++;
+                a = (View) this.b.removeFirst();
+                NativeViewFactory.this.b = NativeViewFactory.this.b - 1;
+            }
+            a(a, akVar, cVar);
+            return a;
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder("Size:");
+            stringBuilder.append(this.b.size());
+            stringBuilder.append(" Miss Count:");
+            stringBuilder.append(this.a);
+            stringBuilder.append(" Hit Count:");
+            stringBuilder.append(this.d);
+            return stringBuilder.toString();
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void a(@NonNull View view, @NonNull ak akVar, @NonNull c cVar) {
+            view.setVisibility(akVar.x);
+            view.setOnClickListener(null);
+        }
+    }
+
     static class PicassoCallback implements Callback {
         private WeakReference<Context> a;
         private WeakReference<ImageView> b;
@@ -107,56 +157,6 @@ class NativeViewFactory {
             if (i == 1) {
                 setSingleLine();
             }
-        }
-    }
-
-    private abstract class c {
-        private int a = 0;
-        @NonNull
-        LinkedList<View> b = new LinkedList();
-        private int d = 0;
-
-        public abstract View a(@NonNull Context context);
-
-        public boolean a(@NonNull View view) {
-            NativeViewFactory.b(view);
-            view.setOnClickListener(null);
-            this.b.addLast(view);
-            view.setScaleX(1.0f);
-            view.setScaleY(1.0f);
-            NativeViewFactory.this.b = NativeViewFactory.this.b + 1;
-            return true;
-        }
-
-        public final View a(@NonNull Context context, ak akVar, c cVar) {
-            View a;
-            NativeViewFactory.f = new WeakReference(context);
-            if (this.b.isEmpty()) {
-                this.a++;
-                a = a(context);
-            } else {
-                this.d++;
-                a = (View) this.b.removeFirst();
-                NativeViewFactory.this.b = NativeViewFactory.this.b - 1;
-            }
-            a(a, akVar, cVar);
-            return a;
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder("Size:");
-            stringBuilder.append(this.b.size());
-            stringBuilder.append(" Miss Count:");
-            stringBuilder.append(this.a);
-            stringBuilder.append(" Hit Count:");
-            stringBuilder.append(this.d);
-            return stringBuilder.toString();
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void a(@NonNull View view, @NonNull ak akVar, @NonNull c cVar) {
-            view.setVisibility(akVar.x);
-            view.setOnClickListener(null);
         }
     }
 

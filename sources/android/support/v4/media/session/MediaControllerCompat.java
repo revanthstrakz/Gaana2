@@ -353,6 +353,19 @@ public final class MediaControllerCompat {
         }
     }
 
+    private static class MediaControllerExtraData extends ExtraData {
+        private final MediaControllerCompat mMediaController;
+
+        MediaControllerExtraData(MediaControllerCompat mediaControllerCompat) {
+            this.mMediaController = mediaControllerCompat;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public MediaControllerCompat getMediaController() {
+            return this.mMediaController;
+        }
+    }
+
     interface MediaControllerImpl {
         void addQueueItem(MediaDescriptionCompat mediaDescriptionCompat);
 
@@ -403,110 +416,6 @@ public final class MediaControllerCompat {
         void setVolumeTo(int i, int i2);
 
         void unregisterCallback(Callback callback);
-    }
-
-    public static final class PlaybackInfo {
-        public static final int PLAYBACK_TYPE_LOCAL = 1;
-        public static final int PLAYBACK_TYPE_REMOTE = 2;
-        private final int mAudioStream;
-        private final int mCurrentVolume;
-        private final int mMaxVolume;
-        private final int mPlaybackType;
-        private final int mVolumeControl;
-
-        PlaybackInfo(int i, int i2, int i3, int i4, int i5) {
-            this.mPlaybackType = i;
-            this.mAudioStream = i2;
-            this.mVolumeControl = i3;
-            this.mMaxVolume = i4;
-            this.mCurrentVolume = i5;
-        }
-
-        public int getPlaybackType() {
-            return this.mPlaybackType;
-        }
-
-        public int getAudioStream() {
-            return this.mAudioStream;
-        }
-
-        public int getVolumeControl() {
-            return this.mVolumeControl;
-        }
-
-        public int getMaxVolume() {
-            return this.mMaxVolume;
-        }
-
-        public int getCurrentVolume() {
-            return this.mCurrentVolume;
-        }
-    }
-
-    public static abstract class TransportControls {
-        public static final String EXTRA_LEGACY_STREAM_TYPE = "android.media.session.extra.LEGACY_STREAM_TYPE";
-
-        public abstract void fastForward();
-
-        public abstract void pause();
-
-        public abstract void play();
-
-        public abstract void playFromMediaId(String str, Bundle bundle);
-
-        public abstract void playFromSearch(String str, Bundle bundle);
-
-        public abstract void playFromUri(Uri uri, Bundle bundle);
-
-        public abstract void prepare();
-
-        public abstract void prepareFromMediaId(String str, Bundle bundle);
-
-        public abstract void prepareFromSearch(String str, Bundle bundle);
-
-        public abstract void prepareFromUri(Uri uri, Bundle bundle);
-
-        public abstract void rewind();
-
-        public abstract void seekTo(long j);
-
-        public abstract void sendCustomAction(CustomAction customAction, Bundle bundle);
-
-        public abstract void sendCustomAction(String str, Bundle bundle);
-
-        public abstract void setCaptioningEnabled(boolean z);
-
-        public abstract void setRating(RatingCompat ratingCompat);
-
-        public abstract void setRating(RatingCompat ratingCompat, Bundle bundle);
-
-        public abstract void setRepeatMode(int i);
-
-        public abstract void setShuffleMode(int i);
-
-        public abstract void skipToNext();
-
-        public abstract void skipToPrevious();
-
-        public abstract void skipToQueueItem(long j);
-
-        public abstract void stop();
-
-        TransportControls() {
-        }
-    }
-
-    private static class MediaControllerExtraData extends ExtraData {
-        private final MediaControllerCompat mMediaController;
-
-        MediaControllerExtraData(MediaControllerCompat mediaControllerCompat) {
-            this.mMediaController = mediaControllerCompat;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public MediaControllerCompat getMediaController() {
-            return this.mMediaController;
-        }
     }
 
     @RequiresApi(21)
@@ -840,6 +749,38 @@ public final class MediaControllerCompat {
         }
     }
 
+    @RequiresApi(23)
+    static class MediaControllerImplApi23 extends MediaControllerImplApi21 {
+        public MediaControllerImplApi23(Context context, MediaSessionCompat mediaSessionCompat) {
+            super(context, mediaSessionCompat);
+        }
+
+        public MediaControllerImplApi23(Context context, Token token) throws RemoteException {
+            super(context, token);
+        }
+
+        public TransportControls getTransportControls() {
+            Object transportControls = MediaControllerCompatApi21.getTransportControls(this.mControllerObj);
+            return transportControls != null ? new TransportControlsApi23(transportControls) : null;
+        }
+    }
+
+    @RequiresApi(24)
+    static class MediaControllerImplApi24 extends MediaControllerImplApi23 {
+        public MediaControllerImplApi24(Context context, MediaSessionCompat mediaSessionCompat) {
+            super(context, mediaSessionCompat);
+        }
+
+        public MediaControllerImplApi24(Context context, Token token) throws RemoteException {
+            super(context, token);
+        }
+
+        public TransportControls getTransportControls() {
+            Object transportControls = MediaControllerCompatApi21.getTransportControls(this.mControllerObj);
+            return transportControls != null ? new TransportControlsApi24(transportControls) : null;
+        }
+    }
+
     static class MediaControllerImplBase implements MediaControllerImpl {
         private IMediaSession mBinder;
         private TransportControls mTransportControls;
@@ -1076,6 +1017,97 @@ public final class MediaControllerCompat {
         }
     }
 
+    public static final class PlaybackInfo {
+        public static final int PLAYBACK_TYPE_LOCAL = 1;
+        public static final int PLAYBACK_TYPE_REMOTE = 2;
+        private final int mAudioStream;
+        private final int mCurrentVolume;
+        private final int mMaxVolume;
+        private final int mPlaybackType;
+        private final int mVolumeControl;
+
+        PlaybackInfo(int i, int i2, int i3, int i4, int i5) {
+            this.mPlaybackType = i;
+            this.mAudioStream = i2;
+            this.mVolumeControl = i3;
+            this.mMaxVolume = i4;
+            this.mCurrentVolume = i5;
+        }
+
+        public int getPlaybackType() {
+            return this.mPlaybackType;
+        }
+
+        public int getAudioStream() {
+            return this.mAudioStream;
+        }
+
+        public int getVolumeControl() {
+            return this.mVolumeControl;
+        }
+
+        public int getMaxVolume() {
+            return this.mMaxVolume;
+        }
+
+        public int getCurrentVolume() {
+            return this.mCurrentVolume;
+        }
+    }
+
+    public static abstract class TransportControls {
+        public static final String EXTRA_LEGACY_STREAM_TYPE = "android.media.session.extra.LEGACY_STREAM_TYPE";
+
+        public abstract void fastForward();
+
+        public abstract void pause();
+
+        public abstract void play();
+
+        public abstract void playFromMediaId(String str, Bundle bundle);
+
+        public abstract void playFromSearch(String str, Bundle bundle);
+
+        public abstract void playFromUri(Uri uri, Bundle bundle);
+
+        public abstract void prepare();
+
+        public abstract void prepareFromMediaId(String str, Bundle bundle);
+
+        public abstract void prepareFromSearch(String str, Bundle bundle);
+
+        public abstract void prepareFromUri(Uri uri, Bundle bundle);
+
+        public abstract void rewind();
+
+        public abstract void seekTo(long j);
+
+        public abstract void sendCustomAction(CustomAction customAction, Bundle bundle);
+
+        public abstract void sendCustomAction(String str, Bundle bundle);
+
+        public abstract void setCaptioningEnabled(boolean z);
+
+        public abstract void setRating(RatingCompat ratingCompat);
+
+        public abstract void setRating(RatingCompat ratingCompat, Bundle bundle);
+
+        public abstract void setRepeatMode(int i);
+
+        public abstract void setShuffleMode(int i);
+
+        public abstract void skipToNext();
+
+        public abstract void skipToPrevious();
+
+        public abstract void skipToQueueItem(long j);
+
+        public abstract void stop();
+
+        TransportControls() {
+        }
+    }
+
     static class TransportControlsApi21 extends TransportControls {
         protected final Object mControlsObj;
 
@@ -1199,6 +1231,40 @@ public final class MediaControllerCompat {
         public void sendCustomAction(String str, Bundle bundle) {
             MediaControllerCompat.validateCustomAction(str, bundle);
             android.support.v4.media.session.MediaControllerCompatApi21.TransportControls.sendCustomAction(this.mControlsObj, str, bundle);
+        }
+    }
+
+    @RequiresApi(23)
+    static class TransportControlsApi23 extends TransportControlsApi21 {
+        public TransportControlsApi23(Object obj) {
+            super(obj);
+        }
+
+        public void playFromUri(Uri uri, Bundle bundle) {
+            android.support.v4.media.session.MediaControllerCompatApi23.TransportControls.playFromUri(this.mControlsObj, uri, bundle);
+        }
+    }
+
+    @RequiresApi(24)
+    static class TransportControlsApi24 extends TransportControlsApi23 {
+        public TransportControlsApi24(Object obj) {
+            super(obj);
+        }
+
+        public void prepare() {
+            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepare(this.mControlsObj);
+        }
+
+        public void prepareFromMediaId(String str, Bundle bundle) {
+            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepareFromMediaId(this.mControlsObj, str, bundle);
+        }
+
+        public void prepareFromSearch(String str, Bundle bundle) {
+            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepareFromSearch(this.mControlsObj, str, bundle);
+        }
+
+        public void prepareFromUri(Uri uri, Bundle bundle) {
+            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepareFromUri(this.mControlsObj, uri, bundle);
         }
     }
 
@@ -1388,72 +1454,6 @@ public final class MediaControllerCompat {
             } catch (RemoteException e) {
                 Log.e(MediaControllerCompat.TAG, "Dead object in sendCustomAction.", e);
             }
-        }
-    }
-
-    @RequiresApi(23)
-    static class MediaControllerImplApi23 extends MediaControllerImplApi21 {
-        public MediaControllerImplApi23(Context context, MediaSessionCompat mediaSessionCompat) {
-            super(context, mediaSessionCompat);
-        }
-
-        public MediaControllerImplApi23(Context context, Token token) throws RemoteException {
-            super(context, token);
-        }
-
-        public TransportControls getTransportControls() {
-            Object transportControls = MediaControllerCompatApi21.getTransportControls(this.mControllerObj);
-            return transportControls != null ? new TransportControlsApi23(transportControls) : null;
-        }
-    }
-
-    @RequiresApi(23)
-    static class TransportControlsApi23 extends TransportControlsApi21 {
-        public TransportControlsApi23(Object obj) {
-            super(obj);
-        }
-
-        public void playFromUri(Uri uri, Bundle bundle) {
-            android.support.v4.media.session.MediaControllerCompatApi23.TransportControls.playFromUri(this.mControlsObj, uri, bundle);
-        }
-    }
-
-    @RequiresApi(24)
-    static class MediaControllerImplApi24 extends MediaControllerImplApi23 {
-        public MediaControllerImplApi24(Context context, MediaSessionCompat mediaSessionCompat) {
-            super(context, mediaSessionCompat);
-        }
-
-        public MediaControllerImplApi24(Context context, Token token) throws RemoteException {
-            super(context, token);
-        }
-
-        public TransportControls getTransportControls() {
-            Object transportControls = MediaControllerCompatApi21.getTransportControls(this.mControllerObj);
-            return transportControls != null ? new TransportControlsApi24(transportControls) : null;
-        }
-    }
-
-    @RequiresApi(24)
-    static class TransportControlsApi24 extends TransportControlsApi23 {
-        public TransportControlsApi24(Object obj) {
-            super(obj);
-        }
-
-        public void prepare() {
-            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepare(this.mControlsObj);
-        }
-
-        public void prepareFromMediaId(String str, Bundle bundle) {
-            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepareFromMediaId(this.mControlsObj, str, bundle);
-        }
-
-        public void prepareFromSearch(String str, Bundle bundle) {
-            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepareFromSearch(this.mControlsObj, str, bundle);
-        }
-
-        public void prepareFromUri(Uri uri, Bundle bundle) {
-            android.support.v4.media.session.MediaControllerCompatApi24.TransportControls.prepareFromUri(this.mControlsObj, uri, bundle);
         }
     }
 

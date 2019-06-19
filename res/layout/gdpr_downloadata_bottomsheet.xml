@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_margin="@dimen/dp16" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="14.0sp" android:textColor="?second_line_color" android:gravity="center" android:id="@id/explaination_text" android:background="@color/transparent_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="24.0dip" android:layout_marginTop="@dimen/dp30" android:layout_marginRight="24.0dip" android:text="@string/email_explain_text" android:layout_centerHorizontal="true" />
+    <TextView android:textSize="14.0sp" android:textColor="?first_line_color" android:gravity="center" android:id="@id/emailId_text" android:background="@color/transparent_color" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="24.0dip" android:layout_marginRight="24.0dip" android:text="@string/night_mode_explaination" android:layout_below="@id/explaination_text" android:layout_centerHorizontal="true" />
+    <LinearLayout android:orientation="horizontal" android:id="@id/tnc_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/dp30" android:layout_below="@id/emailId_text" android:layout_centerHorizontal="true">
+        <CheckBox android:theme="?my_check_box" android:id="@id/agreeTnC" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" android:text="@string/tnc_part_1" />
+        <TextView android:id="@id/tnc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/string_tnc" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/string_and" />
+        <TextView android:id="@id/privacy_policy" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/privacy_policy" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/tnc_part_2" />
+    </LinearLayout>
+    <Button android:textSize="14.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:gravity="center" android:id="@id/button_agree" android:background="@drawable/bottom_button_background" android:layout_width="160.0dip" android:layout_height="40.0dip" android:layout_marginTop="20.0dip" android:text="@string/continue_button" android:layout_below="@id/tnc_layout" android:layout_centerHorizontal="true" />
+</RelativeLayout>

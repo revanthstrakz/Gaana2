@@ -39,10 +39,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Branch implements a, io.branch.referral.i.b {
-    private static boolean d = false;
-    private static Branch f = null;
-    private static boolean t = false;
-    private static boolean u = false;
+    private static boolean d;
+    private static Branch f;
+    private static boolean t;
+    private static boolean u;
     private static CUSTOM_REFERRABLE_SETTINGS x = CUSTOM_REFERRABLE_SETTINGS.USE_DEFAULT;
     private boolean A = false;
     final Object a;
@@ -157,45 +157,6 @@ public class Branch implements a, io.branch.referral.i.b {
 
     public interface c {
         void a(JSONArray jSONArray, e eVar);
-    }
-
-    public interface e {
-        void onInitFinished(JSONObject jSONObject, e eVar);
-    }
-
-    public interface f {
-        void a(boolean z, e eVar);
-    }
-
-    public interface g {
-        boolean a();
-    }
-
-    public interface h {
-        void a(boolean z, e eVar);
-    }
-
-    public static class i {
-        private Drawable a;
-        private String b;
-        private Drawable c;
-        private String d;
-
-        public Drawable a() {
-            return this.a;
-        }
-
-        public String b() {
-            return this.b;
-        }
-
-        public Drawable c() {
-            return this.c;
-        }
-
-        public String d() {
-            return this.d;
-        }
     }
 
     private class d extends d<Void, Void, af> {
@@ -332,6 +293,45 @@ public class Branch implements a, io.branch.referral.i.b {
                     ThrowableExtension.printStackTrace(e);
                 }
             }
+        }
+    }
+
+    public interface e {
+        void onInitFinished(JSONObject jSONObject, e eVar);
+    }
+
+    public interface f {
+        void a(boolean z, e eVar);
+    }
+
+    public interface g {
+        boolean a();
+    }
+
+    public interface h {
+        void a(boolean z, e eVar);
+    }
+
+    public static class i {
+        private Drawable a;
+        private String b;
+        private Drawable c;
+        private String d;
+
+        public Drawable a() {
+            return this.a;
+        }
+
+        public String b() {
+            return this.b;
+        }
+
+        public Drawable c() {
+            return this.c;
+        }
+
+        public String d() {
+            return this.d;
         }
     }
 
@@ -887,8 +887,8 @@ public class Branch implements a, io.branch.referral.i.b {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:53:? A:{SYNTHETIC, Splitter:B:1:0x0005, ExcHandler: NameNotFoundException (unused android.content.pm.PackageManager$NameNotFoundException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:55:? A:{SYNTHETIC, Splitter:B:1:0x0005, ExcHandler: JSONException (unused org.json.JSONException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:53:? A:{SYNTHETIC, ExcHandler: NameNotFoundException (unused android.content.pm.PackageManager$NameNotFoundException), Splitter:B:1:0x0005} */
+    /* JADX WARNING: Removed duplicated region for block: B:55:? A:{SYNTHETIC, ExcHandler: JSONException (unused org.json.JSONException), Splitter:B:1:0x0005} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:52:0x0104, code skipped:
             android.util.Log.i("BranchSDK", "Branch Warning: Please make sure Activity names set for auto deep link are correct!");

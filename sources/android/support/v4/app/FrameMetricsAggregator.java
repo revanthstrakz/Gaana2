@@ -68,11 +68,6 @@ public class FrameMetricsAggregator {
         }
     }
 
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface MetricType {
-    }
-
     @RequiresApi(24)
     private static class FrameMetricsApi24Impl extends FrameMetricsBaseImpl {
         private static final int NANOS_PER_MS = 1000000;
@@ -180,6 +175,11 @@ public class FrameMetricsAggregator {
             this.mMetrics = new SparseIntArray[9];
             return sparseIntArrayArr;
         }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface MetricType {
     }
 
     public FrameMetricsAggregator() {

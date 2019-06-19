@@ -10,14 +10,14 @@ public abstract class AvidAsyncTask extends AsyncTask<Object, Void, String> {
     private AvidAsyncTaskListener listener;
     protected final StateProvider stateProvider;
 
-    public interface AvidAsyncTaskListener {
-        void onTaskCompleted(AvidAsyncTask avidAsyncTask);
-    }
-
     public interface StateProvider {
         JSONObject getPreviousState();
 
         void setPreviousState(JSONObject jSONObject);
+    }
+
+    public interface AvidAsyncTaskListener {
+        void onTaskCompleted(AvidAsyncTask avidAsyncTask);
     }
 
     public AvidAsyncTask(StateProvider stateProvider) {

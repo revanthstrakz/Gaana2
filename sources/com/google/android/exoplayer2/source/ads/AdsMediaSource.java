@@ -52,6 +52,12 @@ public final class AdsMediaSource extends CompositeMediaSource<MediaPeriodId> {
     private final Handler mainHandler;
     private final Period period;
 
+    public interface MediaSourceFactory {
+        MediaSource createMediaSource(Uri uri);
+
+        int[] getSupportedTypes();
+    }
+
     public static final class AdLoadException extends IOException {
         public static final int TYPE_AD = 0;
         public static final int TYPE_AD_GROUP = 1;
@@ -92,23 +98,6 @@ public final class AdsMediaSource extends CompositeMediaSource<MediaPeriodId> {
             Assertions.checkState(this.type == 3);
             return (RuntimeException) getCause();
         }
-    }
-
-    @Deprecated
-    public interface EventListener {
-        void onAdClicked();
-
-        void onAdLoadError(IOException iOException);
-
-        void onAdTapped();
-
-        void onInternalAdLoadError(RuntimeException runtimeException);
-    }
-
-    public interface MediaSourceFactory {
-        MediaSource createMediaSource(Uri uri);
-
-        int[] getSupportedTypes();
     }
 
     private final class AdPrepareErrorListener implements PrepareErrorListener {
@@ -201,6 +190,17 @@ public final class AdsMediaSource extends CompositeMediaSource<MediaPeriodId> {
                 }
             }
         }
+    }
+
+    @Deprecated
+    public interface EventListener {
+        void onAdClicked();
+
+        void onAdLoadError(IOException iOException);
+
+        void onAdTapped();
+
+        void onInternalAdLoadError(RuntimeException runtimeException);
     }
 
     public AdsMediaSource(MediaSource mediaSource, Factory factory, AdsLoader adsLoader, ViewGroup viewGroup) {

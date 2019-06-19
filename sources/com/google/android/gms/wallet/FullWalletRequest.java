@@ -44,10 +44,14 @@ public final class FullWalletRequest extends AbstractSafeParcelable implements R
         public final FullWalletRequest build() {
             return FullWalletRequest.this;
         }
+
+        /* synthetic */ Builder(FullWalletRequest fullWalletRequest, zzl zzl) {
+            this();
+        }
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new FullWalletRequest(), null);
     }
 
     public final void writeToParcel(Parcel parcel, int i) {

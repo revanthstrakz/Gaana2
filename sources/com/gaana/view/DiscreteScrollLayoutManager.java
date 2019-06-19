@@ -55,6 +55,30 @@ public class DiscreteScrollLayoutManager extends LayoutManager {
     private int timeForItemSettle = 300;
     private Point viewCenterIterator = new Point();
 
+    private class DiscreteLinearSmoothScroller extends LinearSmoothScroller {
+        public DiscreteLinearSmoothScroller(Context context) {
+            super(context);
+        }
+
+        public int calculateDxToMakeVisible(View view, int i) {
+            return DiscreteScrollLayoutManager.this.orientationHelper.getPendingDx(-DiscreteScrollLayoutManager.this.pendingScroll);
+        }
+
+        public int calculateDyToMakeVisible(View view, int i) {
+            return DiscreteScrollLayoutManager.this.orientationHelper.getPendingDy(-DiscreteScrollLayoutManager.this.pendingScroll);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public int calculateTimeForScrolling(int i) {
+            return (int) (Math.max(0.01f, ((float) Math.min(Math.abs(i), DiscreteScrollLayoutManager.this.scrollToChangeCurrent)) / ((float) DiscreteScrollLayoutManager.this.scrollToChangeCurrent)) * ((float) DiscreteScrollLayoutManager.this.timeForItemSettle));
+        }
+
+        @Nullable
+        public PointF computeScrollVectorForPosition(int i) {
+            return new PointF((float) DiscreteScrollLayoutManager.this.orientationHelper.getPendingDx(DiscreteScrollLayoutManager.this.pendingScroll), (float) DiscreteScrollLayoutManager.this.orientationHelper.getPendingDy(DiscreteScrollLayoutManager.this.pendingScroll));
+        }
+    }
+
     protected static class HorizontalHelper {
         public boolean canScrollHorizontally() {
             return true;
@@ -132,30 +156,6 @@ public class DiscreteScrollLayoutManager extends LayoutManager {
         void onScrollEnd();
 
         void onScrollStart();
-    }
-
-    private class DiscreteLinearSmoothScroller extends LinearSmoothScroller {
-        public DiscreteLinearSmoothScroller(Context context) {
-            super(context);
-        }
-
-        public int calculateDxToMakeVisible(View view, int i) {
-            return DiscreteScrollLayoutManager.this.orientationHelper.getPendingDx(-DiscreteScrollLayoutManager.this.pendingScroll);
-        }
-
-        public int calculateDyToMakeVisible(View view, int i) {
-            return DiscreteScrollLayoutManager.this.orientationHelper.getPendingDy(-DiscreteScrollLayoutManager.this.pendingScroll);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public int calculateTimeForScrolling(int i) {
-            return (int) (Math.max(0.01f, ((float) Math.min(Math.abs(i), DiscreteScrollLayoutManager.this.scrollToChangeCurrent)) / ((float) DiscreteScrollLayoutManager.this.scrollToChangeCurrent)) * ((float) DiscreteScrollLayoutManager.this.timeForItemSettle));
-        }
-
-        @Nullable
-        public PointF computeScrollVectorForPosition(int i) {
-            return new PointF((float) DiscreteScrollLayoutManager.this.orientationHelper.getPendingDx(DiscreteScrollLayoutManager.this.pendingScroll), (float) DiscreteScrollLayoutManager.this.orientationHelper.getPendingDy(DiscreteScrollLayoutManager.this.pendingScroll));
-        }
     }
 
     public boolean canScrollHorizontally() {

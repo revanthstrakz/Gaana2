@@ -25,7 +25,7 @@ public final class a {
     private static String d = "";
     private static String e = "";
     private static AtomicBoolean f = new AtomicBoolean();
-    private static boolean g = false;
+    private static boolean g;
 
     static {
         "row".contains("staging");

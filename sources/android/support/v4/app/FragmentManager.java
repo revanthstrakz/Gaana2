@@ -15,22 +15,6 @@ import java.util.List;
 public abstract class FragmentManager {
     public static final int POP_BACK_STACK_INCLUSIVE = 1;
 
-    public interface BackStackEntry {
-        CharSequence getBreadCrumbShortTitle();
-
-        @StringRes
-        int getBreadCrumbShortTitleRes();
-
-        CharSequence getBreadCrumbTitle();
-
-        @StringRes
-        int getBreadCrumbTitleRes();
-
-        int getId();
-
-        String getName();
-    }
-
     public static abstract class FragmentLifecycleCallbacks {
         public void onFragmentActivityCreated(FragmentManager fragmentManager, Fragment fragment, Bundle bundle) {
         }
@@ -73,6 +57,22 @@ public abstract class FragmentManager {
 
         public void onFragmentViewDestroyed(FragmentManager fragmentManager, Fragment fragment) {
         }
+    }
+
+    public interface BackStackEntry {
+        CharSequence getBreadCrumbShortTitle();
+
+        @StringRes
+        int getBreadCrumbShortTitleRes();
+
+        CharSequence getBreadCrumbTitle();
+
+        @StringRes
+        int getBreadCrumbTitleRes();
+
+        int getId();
+
+        String getName();
     }
 
     public interface OnBackStackChangedListener {

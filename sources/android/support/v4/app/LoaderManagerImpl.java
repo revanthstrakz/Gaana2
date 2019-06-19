@@ -31,145 +31,6 @@ class LoaderManagerImpl extends LoaderManager {
     @NonNull
     private final LoaderViewModel mLoaderViewModel;
 
-    static class LoaderObserver<D> implements l<D> {
-        @NonNull
-        private final LoaderCallbacks<D> mCallback;
-        private boolean mDeliveredData = false;
-        @NonNull
-        private final Loader<D> mLoader;
-
-        LoaderObserver(@NonNull Loader<D> loader, @NonNull LoaderCallbacks<D> loaderCallbacks) {
-            this.mLoader = loader;
-            this.mCallback = loaderCallbacks;
-        }
-
-        public void onChanged(@Nullable D d) {
-            if (LoaderManagerImpl.DEBUG) {
-                String str = LoaderManagerImpl.TAG;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("  onLoadFinished in ");
-                stringBuilder.append(this.mLoader);
-                stringBuilder.append(": ");
-                stringBuilder.append(this.mLoader.dataToString(d));
-                Log.v(str, stringBuilder.toString());
-            }
-            this.mCallback.onLoadFinished(this.mLoader, d);
-            this.mDeliveredData = true;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean hasDeliveredData() {
-            return this.mDeliveredData;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        @MainThread
-        public void reset() {
-            if (this.mDeliveredData) {
-                if (LoaderManagerImpl.DEBUG) {
-                    String str = LoaderManagerImpl.TAG;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("  Resetting: ");
-                    stringBuilder.append(this.mLoader);
-                    Log.v(str, stringBuilder.toString());
-                }
-                this.mCallback.onLoaderReset(this.mLoader);
-            }
-        }
-
-        public String toString() {
-            return this.mCallback.toString();
-        }
-
-        public void dump(String str, PrintWriter printWriter) {
-            printWriter.print(str);
-            printWriter.print("mDeliveredData=");
-            printWriter.println(this.mDeliveredData);
-        }
-    }
-
-    static class LoaderViewModel extends p {
-        private static final a FACTORY = new a() {
-            @NonNull
-            public <T extends p> T create(@NonNull Class<T> cls) {
-                return new LoaderViewModel();
-            }
-        };
-        private SparseArrayCompat<LoaderInfo> mLoaders = new SparseArrayCompat();
-
-        LoaderViewModel() {
-        }
-
-        @NonNull
-        static LoaderViewModel getInstance(r rVar) {
-            return (LoaderViewModel) new q(rVar, FACTORY).a(LoaderViewModel.class);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void putLoader(int i, @NonNull LoaderInfo loaderInfo) {
-            this.mLoaders.put(i, loaderInfo);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public <D> LoaderInfo<D> getLoader(int i) {
-            return (LoaderInfo) this.mLoaders.get(i);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void removeLoader(int i) {
-            this.mLoaders.remove(i);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean hasRunningLoaders() {
-            int size = this.mLoaders.size();
-            for (int i = 0; i < size; i++) {
-                if (((LoaderInfo) this.mLoaders.valueAt(i)).isCallbackWaitingForData()) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void markForRedelivery() {
-            int size = this.mLoaders.size();
-            for (int i = 0; i < size; i++) {
-                ((LoaderInfo) this.mLoaders.valueAt(i)).markForRedelivery();
-            }
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void onCleared() {
-            super.onCleared();
-            int size = this.mLoaders.size();
-            for (int i = 0; i < size; i++) {
-                ((LoaderInfo) this.mLoaders.valueAt(i)).destroy(true);
-            }
-            this.mLoaders.clear();
-        }
-
-        public void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
-            if (this.mLoaders.size() > 0) {
-                printWriter.print(str);
-                printWriter.println("Loaders:");
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(str);
-                stringBuilder.append("    ");
-                String stringBuilder2 = stringBuilder.toString();
-                for (int i = 0; i < this.mLoaders.size(); i++) {
-                    LoaderInfo loaderInfo = (LoaderInfo) this.mLoaders.valueAt(i);
-                    printWriter.print(str);
-                    printWriter.print("  #");
-                    printWriter.print(this.mLoaders.keyAt(i));
-                    printWriter.print(": ");
-                    printWriter.println(loaderInfo.toString());
-                    loaderInfo.dump(stringBuilder2, fileDescriptor, printWriter, strArr);
-                }
-            }
-        }
-    }
-
     public static class LoaderInfo<D> extends k<D> implements OnLoadCompleteListener<D> {
         @Nullable
         private final Bundle mArgs;
@@ -355,6 +216,145 @@ class LoaderManagerImpl extends LoaderManager {
             printWriter.print(str);
             printWriter.print("mStarted=");
             printWriter.println(hasActiveObservers());
+        }
+    }
+
+    static class LoaderObserver<D> implements l<D> {
+        @NonNull
+        private final LoaderCallbacks<D> mCallback;
+        private boolean mDeliveredData = false;
+        @NonNull
+        private final Loader<D> mLoader;
+
+        LoaderObserver(@NonNull Loader<D> loader, @NonNull LoaderCallbacks<D> loaderCallbacks) {
+            this.mLoader = loader;
+            this.mCallback = loaderCallbacks;
+        }
+
+        public void onChanged(@Nullable D d) {
+            if (LoaderManagerImpl.DEBUG) {
+                String str = LoaderManagerImpl.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("  onLoadFinished in ");
+                stringBuilder.append(this.mLoader);
+                stringBuilder.append(": ");
+                stringBuilder.append(this.mLoader.dataToString(d));
+                Log.v(str, stringBuilder.toString());
+            }
+            this.mCallback.onLoadFinished(this.mLoader, d);
+            this.mDeliveredData = true;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean hasDeliveredData() {
+            return this.mDeliveredData;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        @MainThread
+        public void reset() {
+            if (this.mDeliveredData) {
+                if (LoaderManagerImpl.DEBUG) {
+                    String str = LoaderManagerImpl.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("  Resetting: ");
+                    stringBuilder.append(this.mLoader);
+                    Log.v(str, stringBuilder.toString());
+                }
+                this.mCallback.onLoaderReset(this.mLoader);
+            }
+        }
+
+        public String toString() {
+            return this.mCallback.toString();
+        }
+
+        public void dump(String str, PrintWriter printWriter) {
+            printWriter.print(str);
+            printWriter.print("mDeliveredData=");
+            printWriter.println(this.mDeliveredData);
+        }
+    }
+
+    static class LoaderViewModel extends p {
+        private static final a FACTORY = new a() {
+            @NonNull
+            public <T extends p> T create(@NonNull Class<T> cls) {
+                return new LoaderViewModel();
+            }
+        };
+        private SparseArrayCompat<LoaderInfo> mLoaders = new SparseArrayCompat();
+
+        LoaderViewModel() {
+        }
+
+        @NonNull
+        static LoaderViewModel getInstance(r rVar) {
+            return (LoaderViewModel) new q(rVar, FACTORY).a(LoaderViewModel.class);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void putLoader(int i, @NonNull LoaderInfo loaderInfo) {
+            this.mLoaders.put(i, loaderInfo);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public <D> LoaderInfo<D> getLoader(int i) {
+            return (LoaderInfo) this.mLoaders.get(i);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void removeLoader(int i) {
+            this.mLoaders.remove(i);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean hasRunningLoaders() {
+            int size = this.mLoaders.size();
+            for (int i = 0; i < size; i++) {
+                if (((LoaderInfo) this.mLoaders.valueAt(i)).isCallbackWaitingForData()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void markForRedelivery() {
+            int size = this.mLoaders.size();
+            for (int i = 0; i < size; i++) {
+                ((LoaderInfo) this.mLoaders.valueAt(i)).markForRedelivery();
+            }
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void onCleared() {
+            super.onCleared();
+            int size = this.mLoaders.size();
+            for (int i = 0; i < size; i++) {
+                ((LoaderInfo) this.mLoaders.valueAt(i)).destroy(true);
+            }
+            this.mLoaders.clear();
+        }
+
+        public void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+            if (this.mLoaders.size() > 0) {
+                printWriter.print(str);
+                printWriter.println("Loaders:");
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(str);
+                stringBuilder.append("    ");
+                String stringBuilder2 = stringBuilder.toString();
+                for (int i = 0; i < this.mLoaders.size(); i++) {
+                    LoaderInfo loaderInfo = (LoaderInfo) this.mLoaders.valueAt(i);
+                    printWriter.print(str);
+                    printWriter.print("  #");
+                    printWriter.print(this.mLoaders.keyAt(i));
+                    printWriter.print(": ");
+                    printWriter.println(loaderInfo.toString());
+                    loaderInfo.dump(stringBuilder2, fileDescriptor, printWriter, strArr);
+                }
+            }
         }
     }
 

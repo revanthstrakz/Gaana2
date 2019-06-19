@@ -52,10 +52,10 @@ public class LocalMediaManager {
     public static final String PLYALIST_MOST_HEARD_ID = "PLYALIST_MOST_HEARD_ID";
     public static final String PLYALIST_RECENTLY_ADDED_ID = "PLYALIST_RECENTLY_ADDED_ID";
     private static String TAG = "LocalMediaManager";
-    private static LocalMediaManager mLocalMediaManager = null;
-    private static HashMap<String, String> mediaIdAndHashMapping = null;
-    public static boolean setAlbumFlagIsDirty = false;
-    public static boolean setArtistFlagIsDirty = false;
+    private static LocalMediaManager mLocalMediaManager;
+    private static HashMap<String, String> mediaIdAndHashMapping;
+    public static boolean setAlbumFlagIsDirty;
+    public static boolean setArtistFlagIsDirty;
     public static boolean setPlaylistFlagIsDirty;
     public static boolean setSongFlagIsDirty;
     private ContentResolver mContentResolver = null;
@@ -372,7 +372,7 @@ public class LocalMediaManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:21:0x0091  */
-    /* JADX WARNING: Removed duplicated region for block: B:17:0x008b A:{Splitter:B:6:0x0024, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x008b A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:6:0x0024} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:15:0x0085, code skipped:
             if (r10 != null) goto L_0x0087;
@@ -1422,7 +1422,7 @@ public class LocalMediaManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:21:0x00fc  */
-    /* JADX WARNING: Removed duplicated region for block: B:17:0x00f6 A:{Splitter:B:6:0x005b, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x00f6 A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:6:0x005b} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:15:0x00f0, code skipped:
             if (r12 != null) goto L_0x00f2;
@@ -1576,7 +1576,7 @@ public class LocalMediaManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:21:0x00ed  */
-    /* JADX WARNING: Removed duplicated region for block: B:17:0x00e7 A:{Splitter:B:6:0x004f, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x00e7 A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:6:0x004f} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:15:0x00e1, code skipped:
             if (r12 != null) goto L_0x00e3;
@@ -1725,7 +1725,7 @@ public class LocalMediaManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:30:0x00a9  */
-    /* JADX WARNING: Removed duplicated region for block: B:26:0x00a3 A:{Splitter:B:6:0x0024, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:26:0x00a3 A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:6:0x0024} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:24:0x009d, code skipped:
             if (r10 != null) goto L_0x009f;
@@ -2792,7 +2792,7 @@ public class LocalMediaManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:24:0x0074  */
-    /* JADX WARNING: Removed duplicated region for block: B:20:0x006c A:{Splitter:B:7:0x0041, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:20:0x006c A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:7:0x0041} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:16:0x0064, code skipped:
             r9 = r1;
@@ -3280,7 +3280,7 @@ public class LocalMediaManager {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:18:0x00fb  */
-    /* JADX WARNING: Removed duplicated region for block: B:14:0x00f3 A:{Splitter:B:3:0x0059, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:14:0x00f3 A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:3:0x0059} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:10:0x00eb, code skipped:
             r12 = r9;

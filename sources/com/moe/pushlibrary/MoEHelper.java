@@ -29,9 +29,9 @@ import java.util.Set;
 import org.json.JSONObject;
 
 public class MoEHelper {
-    private static MoEHelper _INSTANCE = null;
-    private static int activityCounter = 0;
-    private static boolean isAutoIntegration = false;
+    private static MoEHelper _INSTANCE;
+    private static int activityCounter;
+    private static boolean isAutoIntegration;
     private String BUNDLE_EXTRA_RESTORING = "EXTRA_RESTORING";
     private long flushInterval = -1;
     private boolean isActivityBeingRestored = false;

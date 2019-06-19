@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class zzfk {
-    private static volatile boolean zztf = false;
+    private static volatile boolean zztf;
     private static final Class<?> zztg = zzei();
     private static volatile zzfk zzth;
     static final zzfk zzti = new zzfk(true);

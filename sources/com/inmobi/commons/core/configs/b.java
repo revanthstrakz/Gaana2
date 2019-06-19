@@ -25,12 +25,12 @@ public class b {
     private b f;
     private boolean g;
 
-    private static class a {
-        private static final b a = new b();
-    }
-
     public interface c {
         void a(a aVar);
+    }
+
+    private static class a {
+        private static final b a = new b();
     }
 
     static final class b extends Handler implements com.inmobi.commons.core.configs.e.a {

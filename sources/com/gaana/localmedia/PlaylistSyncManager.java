@@ -64,8 +64,8 @@ import org.json.JSONObject;
 
 public class PlaylistSyncManager {
     private static final String TAG = "PlaylistSyncManager";
-    private static PlaylistSyncManager mPlaylistSyncManager = null;
-    public static boolean refreshFragment = false;
+    private static PlaylistSyncManager mPlaylistSyncManager;
+    public static boolean refreshFragment;
     private boolean isSyncingInProgress = false;
     private GaanaApplication mAppState = ((GaanaApplication) GaanaApplication.getContext());
     protected d mDeviceResManager = d.a();

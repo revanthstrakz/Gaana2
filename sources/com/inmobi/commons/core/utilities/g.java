@@ -21,6 +21,10 @@ public class g {
     private static final Object e = new Object();
     private static volatile g f;
 
+    public interface b {
+        void a(boolean z);
+    }
+
     static final class a extends BroadcastReceiver {
         private static final String a = "g$a";
 
@@ -108,10 +112,6 @@ public class g {
             */
             throw new UnsupportedOperationException("Method not decompiled: com.inmobi.commons.core.utilities.g$a.onReceive(android.content.Context, android.content.Intent):void");
         }
-    }
-
-    public interface b {
-        void a(boolean z);
     }
 
     public static g a() {

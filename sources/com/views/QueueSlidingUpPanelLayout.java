@@ -143,12 +143,6 @@ public class QueueSlidingUpPanelLayout extends ViewGroup {
         }
     }
 
-    public interface b {
-        void a(View view, float f);
-
-        void a(View view, int i, int i2);
-    }
-
     private class a extends com.views.j.a {
         private a() {
         }
@@ -232,6 +226,12 @@ public class QueueSlidingUpPanelLayout extends ViewGroup {
             }
             return Math.min(Math.max(i, b), i2);
         }
+    }
+
+    public interface b {
+        void a(View view, float f);
+
+        void a(View view, int i, int i2);
     }
 
     public void setEnableDragViewTouchEvents(boolean z) {

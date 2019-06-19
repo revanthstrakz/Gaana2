@@ -39,6 +39,19 @@ public final class ExtractorMediaSource extends BaseMediaSource implements Liste
         void onLoadError(IOException iOException);
     }
 
+    @Deprecated
+    private static final class EventListenerWrapper extends DefaultMediaSourceEventListener {
+        private final EventListener eventListener;
+
+        public EventListenerWrapper(EventListener eventListener) {
+            this.eventListener = (EventListener) Assertions.checkNotNull(eventListener);
+        }
+
+        public void onLoadError(int i, @Nullable MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException iOException, boolean z) {
+            this.eventListener.onLoadError(iOException);
+        }
+    }
+
     public static final class Factory implements MediaSourceFactory {
         private int continueLoadingCheckIntervalBytes = 1048576;
         @Nullable
@@ -109,19 +122,6 @@ public final class ExtractorMediaSource extends BaseMediaSource implements Liste
 
         public int[] getSupportedTypes() {
             return new int[]{3};
-        }
-    }
-
-    @Deprecated
-    private static final class EventListenerWrapper extends DefaultMediaSourceEventListener {
-        private final EventListener eventListener;
-
-        public EventListenerWrapper(EventListener eventListener) {
-            this.eventListener = (EventListener) Assertions.checkNotNull(eventListener);
-        }
-
-        public void onLoadError(int i, @Nullable MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException iOException, boolean z) {
-            this.eventListener.onLoadError(iOException);
         }
     }
 

@@ -113,9 +113,9 @@ public class DefaultRenderersFactory implements RenderersFactory {
 
     /* Access modifiers changed, original: protected */
     /* JADX WARNING: Missing exception handler attribute for start block: B:17:0x0069 */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x005e A:{Splitter:B:7:0x002b, ExcHandler: Exception (r0_0 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x005e A:{ExcHandler: Exception (r0_0 'e' java.lang.Throwable), Splitter:B:7:0x002b} */
     /* JADX WARNING: Missing exception handler attribute for start block: B:27:0x00a7 */
-    /* JADX WARNING: Removed duplicated region for block: B:22:0x009c A:{Splitter:B:17:0x0069, ExcHandler: Exception (r0_1 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:22:0x009c A:{ExcHandler: Exception (r0_1 'e' java.lang.Throwable), Splitter:B:17:0x0069} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:12:0x005e, code skipped:

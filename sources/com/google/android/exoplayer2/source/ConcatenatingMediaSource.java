@@ -51,84 +51,6 @@ public class ConcatenatingMediaSource extends CompositeMediaSource<MediaSourceHo
     private final Window window;
     private int windowCount;
 
-    static final class MediaSourceHolder implements Comparable<MediaSourceHolder> {
-        public List<DeferredMediaPeriod> activeMediaPeriods = new ArrayList();
-        public int childIndex;
-        public int firstPeriodIndexInChild;
-        public int firstWindowIndexInChild;
-        public boolean hasStartedPreparing;
-        public boolean isPrepared;
-        public boolean isRemoved;
-        public final MediaSource mediaSource;
-        public DeferredTimeline timeline;
-        public final Object uid = new Object();
-
-        public MediaSourceHolder(MediaSource mediaSource) {
-            this.mediaSource = mediaSource;
-            this.timeline = DeferredTimeline.createWithDummyTimeline(mediaSource.getTag());
-        }
-
-        public void reset(int i, int i2, int i3) {
-            this.childIndex = i;
-            this.firstWindowIndexInChild = i2;
-            this.firstPeriodIndexInChild = i3;
-            this.hasStartedPreparing = false;
-            this.isPrepared = false;
-            this.isRemoved = false;
-            this.activeMediaPeriods.clear();
-        }
-
-        public int compareTo(@NonNull MediaSourceHolder mediaSourceHolder) {
-            return this.firstPeriodIndexInChild - mediaSourceHolder.firstPeriodIndexInChild;
-        }
-    }
-
-    private static final class MessageData<T> {
-        @Nullable
-        public final Runnable actionOnCompletion;
-        public final T customData;
-        public final int index;
-
-        public MessageData(int i, T t, @Nullable Runnable runnable) {
-            this.index = i;
-            this.actionOnCompletion = runnable;
-            this.customData = t;
-        }
-    }
-
-    private static final class DummyTimeline extends Timeline {
-        @Nullable
-        private final Object tag;
-
-        public int getPeriodCount() {
-            return 1;
-        }
-
-        public int getWindowCount() {
-            return 1;
-        }
-
-        public DummyTimeline(@Nullable Object obj) {
-            this.tag = obj;
-        }
-
-        public Window getWindow(int i, Window window, boolean z, long j) {
-            return window.set(this.tag, C.TIME_UNSET, C.TIME_UNSET, false, true, 0, C.TIME_UNSET, 0, 0, 0);
-        }
-
-        public Period getPeriod(int i, Period period, boolean z) {
-            return period.set(Integer.valueOf(0), DeferredTimeline.DUMMY_ID, 0, C.TIME_UNSET, 0);
-        }
-
-        public int getIndexOfPeriod(Object obj) {
-            return obj == DeferredTimeline.DUMMY_ID ? 0 : -1;
-        }
-
-        public Object getUidOfPeriod(int i) {
-            return DeferredTimeline.DUMMY_ID;
-        }
-    }
-
     private static final class ConcatenatedTimeline extends AbstractConcatenatedTimeline {
         private final HashMap<Object, Integer> childIndexByUid = new HashMap();
         private final int[] firstPeriodInChildIndices;
@@ -279,6 +201,84 @@ public class ConcatenatingMediaSource extends CompositeMediaSource<MediaSourceHo
 
         public MediaPeriod createPeriod(MediaPeriodId mediaPeriodId, Allocator allocator) {
             throw new UnsupportedOperationException();
+        }
+    }
+
+    private static final class DummyTimeline extends Timeline {
+        @Nullable
+        private final Object tag;
+
+        public int getPeriodCount() {
+            return 1;
+        }
+
+        public int getWindowCount() {
+            return 1;
+        }
+
+        public DummyTimeline(@Nullable Object obj) {
+            this.tag = obj;
+        }
+
+        public Window getWindow(int i, Window window, boolean z, long j) {
+            return window.set(this.tag, C.TIME_UNSET, C.TIME_UNSET, false, true, 0, C.TIME_UNSET, 0, 0, 0);
+        }
+
+        public Period getPeriod(int i, Period period, boolean z) {
+            return period.set(Integer.valueOf(0), DeferredTimeline.DUMMY_ID, 0, C.TIME_UNSET, 0);
+        }
+
+        public int getIndexOfPeriod(Object obj) {
+            return obj == DeferredTimeline.DUMMY_ID ? 0 : -1;
+        }
+
+        public Object getUidOfPeriod(int i) {
+            return DeferredTimeline.DUMMY_ID;
+        }
+    }
+
+    static final class MediaSourceHolder implements Comparable<MediaSourceHolder> {
+        public List<DeferredMediaPeriod> activeMediaPeriods = new ArrayList();
+        public int childIndex;
+        public int firstPeriodIndexInChild;
+        public int firstWindowIndexInChild;
+        public boolean hasStartedPreparing;
+        public boolean isPrepared;
+        public boolean isRemoved;
+        public final MediaSource mediaSource;
+        public DeferredTimeline timeline;
+        public final Object uid = new Object();
+
+        public MediaSourceHolder(MediaSource mediaSource) {
+            this.mediaSource = mediaSource;
+            this.timeline = DeferredTimeline.createWithDummyTimeline(mediaSource.getTag());
+        }
+
+        public void reset(int i, int i2, int i3) {
+            this.childIndex = i;
+            this.firstWindowIndexInChild = i2;
+            this.firstPeriodIndexInChild = i3;
+            this.hasStartedPreparing = false;
+            this.isPrepared = false;
+            this.isRemoved = false;
+            this.activeMediaPeriods.clear();
+        }
+
+        public int compareTo(@NonNull MediaSourceHolder mediaSourceHolder) {
+            return this.firstPeriodIndexInChild - mediaSourceHolder.firstPeriodIndexInChild;
+        }
+    }
+
+    private static final class MessageData<T> {
+        @Nullable
+        public final Runnable actionOnCompletion;
+        public final T customData;
+        public final int index;
+
+        public MessageData(int i, T t, @Nullable Runnable runnable) {
+            this.index = i;
+            this.actionOnCompletion = runnable;
+            this.customData = t;
         }
     }
 

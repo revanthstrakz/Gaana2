@@ -9,6 +9,34 @@ public final class zzbmv extends zzbrd<zzbmv, zza> implements zzbsn {
     private zzbpu zzfgl = zzbpu.zzfli;
     private int zzfgm;
 
+    public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzbmv, zza> implements zzbsn {
+        private zza() {
+            super(zzbmv.zzfgn);
+        }
+
+        public final zza zzfl(String str) {
+            zzamw();
+            ((zzbmv) this.zzfpy).zzfk(str);
+            return this;
+        }
+
+        public final zza zzai(zzbpu zzbpu) {
+            zzamw();
+            ((zzbmv) this.zzfpy).zzah(zzbpu);
+            return this;
+        }
+
+        public final zza zzb(zzb zzb) {
+            zzamw();
+            ((zzbmv) this.zzfpy).zza(zzb);
+            return this;
+        }
+
+        /* synthetic */ zza(zzbmw zzbmw) {
+            this();
+        }
+    }
+
     public enum zzb implements zzbrg {
         UNKNOWN_KEYMATERIAL(0),
         SYMMETRIC(1),
@@ -50,34 +78,6 @@ public final class zzbmv extends zzbrd<zzbmv, zza> implements zzbsn {
 
         static {
             zzcbx = new zzbmx();
-        }
-    }
-
-    public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzbmv, zza> implements zzbsn {
-        private zza() {
-            super(zzbmv.zzfgn);
-        }
-
-        public final zza zzfl(String str) {
-            zzamw();
-            ((zzbmv) this.zzfpy).zzfk(str);
-            return this;
-        }
-
-        public final zza zzai(zzbpu zzbpu) {
-            zzamw();
-            ((zzbmv) this.zzfpy).zzah(zzbpu);
-            return this;
-        }
-
-        public final zza zzb(zzb zzb) {
-            zzamw();
-            ((zzbmv) this.zzfpy).zza(zzb);
-            return this;
-        }
-
-        /* synthetic */ zza(zzbmw zzbmw) {
-            this();
         }
     }
 

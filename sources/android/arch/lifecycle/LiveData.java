@@ -75,17 +75,6 @@ public abstract class LiveData<T> {
         }
     }
 
-    private class a extends b {
-        /* Access modifiers changed, original: 0000 */
-        public boolean a() {
-            return true;
-        }
-
-        a(l<T> lVar) {
-            super(lVar);
-        }
-    }
-
     class LifecycleBoundObserver extends b implements GenericLifecycleObserver {
         @NonNull
         final e a;
@@ -116,6 +105,17 @@ public abstract class LiveData<T> {
         /* Access modifiers changed, original: 0000 */
         public void b() {
             this.a.getLifecycle().b(this);
+        }
+    }
+
+    private class a extends b {
+        /* Access modifiers changed, original: 0000 */
+        public boolean a() {
+            return true;
+        }
+
+        a(l<T> lVar) {
+            super(lVar);
         }
     }
 

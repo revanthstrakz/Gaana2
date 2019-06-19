@@ -14,100 +14,8 @@ public class b<K, V> implements Iterable<Entry<K, V>> {
     private WeakHashMap<f<K, V>, Boolean> c = new WeakHashMap();
     private int d = 0;
 
-    static class c<K, V> implements Entry<K, V> {
-        @NonNull
-        final K a;
-        @NonNull
-        final V b;
-        c<K, V> c;
-        c<K, V> d;
-
-        c(@NonNull K k, @NonNull V v) {
-            this.a = k;
-            this.b = v;
-        }
-
-        @NonNull
-        public K getKey() {
-            return this.a;
-        }
-
-        @NonNull
-        public V getValue() {
-            return this.b;
-        }
-
-        public V setValue(V v) {
-            throw new UnsupportedOperationException("An entry modification is not supported");
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(this.a);
-            stringBuilder.append("=");
-            stringBuilder.append(this.b);
-            return stringBuilder.toString();
-        }
-
-        public boolean equals(Object obj) {
-            boolean z = true;
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof c)) {
-                return false;
-            }
-            c cVar = (c) obj;
-            if (!(this.a.equals(cVar.a) && this.b.equals(cVar.b))) {
-                z = false;
-            }
-            return z;
-        }
-    }
-
     interface f<K, V> {
         void a_(@NonNull c<K, V> cVar);
-    }
-
-    private class d implements f<K, V>, Iterator<Entry<K, V>> {
-        private c<K, V> b;
-        private boolean c;
-
-        private d() {
-            this.c = true;
-        }
-
-        public void a_(@NonNull c<K, V> cVar) {
-            if (cVar == this.b) {
-                this.b = this.b.d;
-                this.c = this.b == null;
-            }
-        }
-
-        public boolean hasNext() {
-            boolean z = false;
-            if (this.c) {
-                if (b.this.a != null) {
-                    z = true;
-                }
-                return z;
-            }
-            if (!(this.b == null || this.b.c == null)) {
-                z = true;
-            }
-            return z;
-        }
-
-        /* renamed from: a */
-        public Entry<K, V> next() {
-            if (this.c) {
-                this.c = false;
-                this.b = b.this.a;
-            } else {
-                this.b = this.b != null ? this.b.c : null;
-            }
-            return this.b;
-        }
     }
 
     private static abstract class e<K, V> implements f<K, V>, Iterator<Entry<K, V>> {
@@ -181,6 +89,98 @@ public class b<K, V> implements Iterable<Entry<K, V>> {
         /* Access modifiers changed, original: 0000 */
         public c<K, V> b(c<K, V> cVar) {
             return cVar.c;
+        }
+    }
+
+    static class c<K, V> implements Entry<K, V> {
+        @NonNull
+        final K a;
+        @NonNull
+        final V b;
+        c<K, V> c;
+        c<K, V> d;
+
+        c(@NonNull K k, @NonNull V v) {
+            this.a = k;
+            this.b = v;
+        }
+
+        @NonNull
+        public K getKey() {
+            return this.a;
+        }
+
+        @NonNull
+        public V getValue() {
+            return this.b;
+        }
+
+        public V setValue(V v) {
+            throw new UnsupportedOperationException("An entry modification is not supported");
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(this.a);
+            stringBuilder.append("=");
+            stringBuilder.append(this.b);
+            return stringBuilder.toString();
+        }
+
+        public boolean equals(Object obj) {
+            boolean z = true;
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof c)) {
+                return false;
+            }
+            c cVar = (c) obj;
+            if (!(this.a.equals(cVar.a) && this.b.equals(cVar.b))) {
+                z = false;
+            }
+            return z;
+        }
+    }
+
+    private class d implements f<K, V>, Iterator<Entry<K, V>> {
+        private c<K, V> b;
+        private boolean c;
+
+        private d() {
+            this.c = true;
+        }
+
+        public void a_(@NonNull c<K, V> cVar) {
+            if (cVar == this.b) {
+                this.b = this.b.d;
+                this.c = this.b == null;
+            }
+        }
+
+        public boolean hasNext() {
+            boolean z = false;
+            if (this.c) {
+                if (b.this.a != null) {
+                    z = true;
+                }
+                return z;
+            }
+            if (!(this.b == null || this.b.c == null)) {
+                z = true;
+            }
+            return z;
+        }
+
+        /* renamed from: a */
+        public Entry<K, V> next() {
+            if (this.c) {
+                this.c = false;
+                this.b = b.this.a;
+            } else {
+                this.b = this.b != null ? this.b.c : null;
+            }
+            return this.b;
         }
     }
 

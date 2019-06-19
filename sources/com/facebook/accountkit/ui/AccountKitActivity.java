@@ -53,17 +53,17 @@ public final class AccountKitActivity extends AppCompatActivity {
                 String stringExtra;
                 PhoneLoginFlowManager phoneLoginFlowManager;
                 PhoneLoginFlowManager phoneLoginFlowManager2;
-                switch (event) {
-                    case SENT_CODE_COMPLETE:
+                switch (AnonymousClass4.$SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event[event.ordinal()]) {
+                    case 1:
                         AccountKitActivity.this.loginFlowManager.getActivityHandler().onSentCodeComplete(AccountKitActivity.this);
                         break;
-                    case ACCOUNT_VERIFIED_COMPLETE:
+                    case 2:
                         AccountKitActivity.this.loginFlowManager.getActivityHandler().onAccountVerifiedComplete(AccountKitActivity.this);
                         break;
-                    case CONFIRM_SEAMLESS_LOGIN:
+                    case 3:
                         ((ActivityPhoneHandler) AccountKitActivity.this.loginFlowManager.getActivityHandler()).onConfirmSeamlessLogin(AccountKitActivity.this, (PhoneLoginFlowManager) AccountKitActivity.this.loginFlowManager);
                         break;
-                    case EMAIL_LOGIN_COMPLETE:
+                    case 4:
                         if (contentController instanceof EmailLoginContentController) {
                             stringExtra = intent.getStringExtra(EXTRA_EMAIL);
                             EmailLoginFlowManager emailLoginFlowManager = (EmailLoginFlowManager) AccountKitActivity.this.loginFlowManager;
@@ -71,19 +71,19 @@ public final class AccountKitActivity extends AppCompatActivity {
                             break;
                         }
                         break;
-                    case EMAIL_VERIFY_RETRY:
+                    case 5:
                         if (contentController instanceof EmailVerifyContentController) {
                             ((ActivityEmailHandler) AccountKitActivity.this.loginFlowManager.getActivityHandler()).onEmailVerifyRetry(AccountKitActivity.this);
                             break;
                         }
                         break;
-                    case ERROR_RESTART:
+                    case 6:
                         if (contentController instanceof ErrorContentController) {
                             ActivityErrorHandler.onErrorRestart(AccountKitActivity.this, LoginFlowState.values()[intent.getIntExtra(EXTRA_RETURN_LOGIN_FLOW_STATE, 0)]);
                             break;
                         }
                         break;
-                    case PHONE_LOGIN_COMPLETE:
+                    case 7:
                         if (contentController instanceof PhoneLoginContentController) {
                             PhoneNumber phoneNumber = (PhoneNumber) intent.getParcelableExtra(EXTRA_PHONE_NUMBER);
                             phoneLoginFlowManager = (PhoneLoginFlowManager) AccountKitActivity.this.loginFlowManager;
@@ -91,7 +91,7 @@ public final class AccountKitActivity extends AppCompatActivity {
                             break;
                         }
                         break;
-                    case PHONE_CONFIRMATION_CODE_COMPLETE:
+                    case 8:
                         if (contentController instanceof ConfirmationCodeContentController) {
                             stringExtra = intent.getStringExtra(EXTRA_CONFIRMATION_CODE);
                             phoneLoginFlowManager = (PhoneLoginFlowManager) AccountKitActivity.this.loginFlowManager;
@@ -99,25 +99,25 @@ public final class AccountKitActivity extends AppCompatActivity {
                             break;
                         }
                         break;
-                    case PHONE_CONFIRMATION_CODE_RETRY:
+                    case 9:
                         if (contentController instanceof ConfirmationCodeContentController) {
                             ((ActivityPhoneHandler) AccountKitActivity.this.loginFlowManager.getActivityHandler()).onConfirmationCodeRetry(AccountKitActivity.this);
                             break;
                         }
                         break;
-                    case PHONE_RESEND:
+                    case 10:
                         if ((contentController instanceof ResendContentController) || (contentController instanceof ConfirmationCodeContentController)) {
                             ((ActivityPhoneHandler) AccountKitActivity.this.loginFlowManager.getActivityHandler()).onResend(AccountKitActivity.this);
                             break;
                         }
-                    case PHONE_RESEND_FACEBOOK_NOTIFICATION:
+                    case 11:
                         if (contentController instanceof ResendContentController) {
                             phoneLoginFlowManager2 = (PhoneLoginFlowManager) AccountKitActivity.this.loginFlowManager;
                             ((ActivityPhoneHandler) phoneLoginFlowManager2.getActivityHandler()).onResendFacebookNotification(AccountKitActivity.this, phoneLoginFlowManager2);
                             break;
                         }
                         break;
-                    case PHONE_RESEND_VOICE_CALL_NOTIFICATION:
+                    case 12:
                         if (contentController instanceof ResendContentController) {
                             phoneLoginFlowManager2 = (PhoneLoginFlowManager) AccountKitActivity.this.loginFlowManager;
                             ((ActivityPhoneHandler) phoneLoginFlowManager2.getActivityHandler()).onResendVoiceCallNotification(AccountKitActivity.this, phoneLoginFlowManager2);
@@ -134,6 +134,213 @@ public final class AccountKitActivity extends AppCompatActivity {
     private StateStackManager stateStackManager;
     private long tokenRefreshIntervalInSeconds;
     private final Bundle viewState = new Bundle();
+
+    /* renamed from: com.facebook.accountkit.ui.AccountKitActivity$4 */
+    static /* synthetic */ class AnonymousClass4 {
+        static final /* synthetic */ int[] $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event = new int[Event.values().length];
+
+        /* JADX WARNING: Missing exception handler attribute for start block: B:65:0x00ee */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:77:0x012a */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:67:0x00f8 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:79:0x0134 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:81:0x013e */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:55:0x00bd */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:69:0x0102 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:71:0x010c */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:73:0x0116 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:47:0x0092 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:49:0x009e */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:75:0x0120 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:61:0x00da */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:63:0x00e4 */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Can't wrap try/catch for region: R(70:0|1|2|3|5|6|7|9|10|11|13|14|15|17|18|19|(2:21|22)|23|25|26|27|29|30|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(69:0|(2:1|2)|3|5|6|7|9|10|11|13|14|15|17|18|19|(2:21|22)|23|25|26|27|29|30|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(68:0|(2:1|2)|3|5|6|7|9|10|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|29|30|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(67:0|(2:1|2)|3|(2:5|6)|7|9|10|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|29|30|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(66:0|(2:1|2)|3|(2:5|6)|7|9|10|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(66:0|(2:1|2)|3|(2:5|6)|7|9|10|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(65:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|33|34|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(64:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|(2:33|34)|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(64:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|13|14|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|(2:33|34)|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(63:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|(2:13|14)|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|(2:33|34)|35|37|38|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(62:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|(2:13|14)|15|17|18|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|(2:33|34)|35|(2:37|38)|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(61:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|(2:13|14)|15|(2:17|18)|19|(2:21|22)|23|(2:25|26)|27|(2:29|30)|31|(2:33|34)|35|(2:37|38)|39|41|42|43|45|46|47|48|49|50|51|53|54|55|56|57|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|84) */
+        static {
+            /*
+            r0 = com.facebook.accountkit.ui.LoginFlowState.values();
+            r0 = r0.length;
+            r0 = new int[r0];
+            $SwitchMap$com$facebook$accountkit$ui$LoginFlowState = r0;
+            r0 = 1;
+            r1 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = com.facebook.accountkit.ui.LoginFlowState.NONE;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = r2.ordinal();	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1[r2] = r0;	 Catch:{ NoSuchFieldError -> 0x0014 }
+        L_0x0014:
+            r1 = 2;
+            r2 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r3 = com.facebook.accountkit.ui.LoginFlowState.PHONE_NUMBER_INPUT;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x001f }
+            r2[r3] = r1;	 Catch:{ NoSuchFieldError -> 0x001f }
+        L_0x001f:
+            r2 = 3;
+            r3 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r4 = com.facebook.accountkit.ui.LoginFlowState.EMAIL_INPUT;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r4 = r4.ordinal();	 Catch:{ NoSuchFieldError -> 0x002a }
+            r3[r4] = r2;	 Catch:{ NoSuchFieldError -> 0x002a }
+        L_0x002a:
+            r3 = 4;
+            r4 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r5 = com.facebook.accountkit.ui.LoginFlowState.SENDING_CODE;	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r5 = r5.ordinal();	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r4[r5] = r3;	 Catch:{ NoSuchFieldError -> 0x0035 }
+        L_0x0035:
+            r4 = 5;
+            r5 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r6 = com.facebook.accountkit.ui.LoginFlowState.SENT_CODE;	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r6 = r6.ordinal();	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r5[r6] = r4;	 Catch:{ NoSuchFieldError -> 0x0040 }
+        L_0x0040:
+            r5 = 6;
+            r6 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x004b }
+            r7 = com.facebook.accountkit.ui.LoginFlowState.CODE_INPUT;	 Catch:{ NoSuchFieldError -> 0x004b }
+            r7 = r7.ordinal();	 Catch:{ NoSuchFieldError -> 0x004b }
+            r6[r7] = r5;	 Catch:{ NoSuchFieldError -> 0x004b }
+        L_0x004b:
+            r6 = 7;
+            r7 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r8 = com.facebook.accountkit.ui.LoginFlowState.ACCOUNT_VERIFIED;	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r8 = r8.ordinal();	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r7[r8] = r6;	 Catch:{ NoSuchFieldError -> 0x0056 }
+        L_0x0056:
+            r7 = 8;
+            r8 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0062 }
+            r9 = com.facebook.accountkit.ui.LoginFlowState.CONFIRM_ACCOUNT_VERIFIED;	 Catch:{ NoSuchFieldError -> 0x0062 }
+            r9 = r9.ordinal();	 Catch:{ NoSuchFieldError -> 0x0062 }
+            r8[r9] = r7;	 Catch:{ NoSuchFieldError -> 0x0062 }
+        L_0x0062:
+            r8 = 9;
+            r9 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x006e }
+            r10 = com.facebook.accountkit.ui.LoginFlowState.CONFIRM_INSTANT_VERIFICATION_LOGIN;	 Catch:{ NoSuchFieldError -> 0x006e }
+            r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -> 0x006e }
+            r9[r10] = r8;	 Catch:{ NoSuchFieldError -> 0x006e }
+        L_0x006e:
+            r9 = 10;
+            r10 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x007a }
+            r11 = com.facebook.accountkit.ui.LoginFlowState.EMAIL_VERIFY;	 Catch:{ NoSuchFieldError -> 0x007a }
+            r11 = r11.ordinal();	 Catch:{ NoSuchFieldError -> 0x007a }
+            r10[r11] = r9;	 Catch:{ NoSuchFieldError -> 0x007a }
+        L_0x007a:
+            r10 = 11;
+            r11 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0086 }
+            r12 = com.facebook.accountkit.ui.LoginFlowState.VERIFYING_CODE;	 Catch:{ NoSuchFieldError -> 0x0086 }
+            r12 = r12.ordinal();	 Catch:{ NoSuchFieldError -> 0x0086 }
+            r11[r12] = r10;	 Catch:{ NoSuchFieldError -> 0x0086 }
+        L_0x0086:
+            r11 = 12;
+            r12 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x0092 }
+            r13 = com.facebook.accountkit.ui.LoginFlowState.RESEND;	 Catch:{ NoSuchFieldError -> 0x0092 }
+            r13 = r13.ordinal();	 Catch:{ NoSuchFieldError -> 0x0092 }
+            r12[r13] = r11;	 Catch:{ NoSuchFieldError -> 0x0092 }
+        L_0x0092:
+            r12 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x009e }
+            r13 = com.facebook.accountkit.ui.LoginFlowState.ERROR;	 Catch:{ NoSuchFieldError -> 0x009e }
+            r13 = r13.ordinal();	 Catch:{ NoSuchFieldError -> 0x009e }
+            r14 = 13;
+            r12[r13] = r14;	 Catch:{ NoSuchFieldError -> 0x009e }
+        L_0x009e:
+            r12 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowState;	 Catch:{ NoSuchFieldError -> 0x00aa }
+            r13 = com.facebook.accountkit.ui.LoginFlowState.VERIFIED;	 Catch:{ NoSuchFieldError -> 0x00aa }
+            r13 = r13.ordinal();	 Catch:{ NoSuchFieldError -> 0x00aa }
+            r14 = 14;
+            r12[r13] = r14;	 Catch:{ NoSuchFieldError -> 0x00aa }
+        L_0x00aa:
+            r12 = com.facebook.accountkit.ui.LoginType.values();
+            r12 = r12.length;
+            r12 = new int[r12];
+            $SwitchMap$com$facebook$accountkit$ui$LoginType = r12;
+            r12 = $SwitchMap$com$facebook$accountkit$ui$LoginType;	 Catch:{ NoSuchFieldError -> 0x00bd }
+            r13 = com.facebook.accountkit.ui.LoginType.PHONE;	 Catch:{ NoSuchFieldError -> 0x00bd }
+            r13 = r13.ordinal();	 Catch:{ NoSuchFieldError -> 0x00bd }
+            r12[r13] = r0;	 Catch:{ NoSuchFieldError -> 0x00bd }
+        L_0x00bd:
+            r12 = $SwitchMap$com$facebook$accountkit$ui$LoginType;	 Catch:{ NoSuchFieldError -> 0x00c7 }
+            r13 = com.facebook.accountkit.ui.LoginType.EMAIL;	 Catch:{ NoSuchFieldError -> 0x00c7 }
+            r13 = r13.ordinal();	 Catch:{ NoSuchFieldError -> 0x00c7 }
+            r12[r13] = r1;	 Catch:{ NoSuchFieldError -> 0x00c7 }
+        L_0x00c7:
+            r12 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.values();
+            r12 = r12.length;
+            r12 = new int[r12];
+            $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event = r12;
+            r12 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x00da }
+            r13 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.SENT_CODE_COMPLETE;	 Catch:{ NoSuchFieldError -> 0x00da }
+            r13 = r13.ordinal();	 Catch:{ NoSuchFieldError -> 0x00da }
+            r12[r13] = r0;	 Catch:{ NoSuchFieldError -> 0x00da }
+        L_0x00da:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x00e4 }
+            r12 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.ACCOUNT_VERIFIED_COMPLETE;	 Catch:{ NoSuchFieldError -> 0x00e4 }
+            r12 = r12.ordinal();	 Catch:{ NoSuchFieldError -> 0x00e4 }
+            r0[r12] = r1;	 Catch:{ NoSuchFieldError -> 0x00e4 }
+        L_0x00e4:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x00ee }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.CONFIRM_SEAMLESS_LOGIN;	 Catch:{ NoSuchFieldError -> 0x00ee }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x00ee }
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x00ee }
+        L_0x00ee:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x00f8 }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.EMAIL_LOGIN_COMPLETE;	 Catch:{ NoSuchFieldError -> 0x00f8 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x00f8 }
+            r0[r1] = r3;	 Catch:{ NoSuchFieldError -> 0x00f8 }
+        L_0x00f8:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x0102 }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.EMAIL_VERIFY_RETRY;	 Catch:{ NoSuchFieldError -> 0x0102 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0102 }
+            r0[r1] = r4;	 Catch:{ NoSuchFieldError -> 0x0102 }
+        L_0x0102:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x010c }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.ERROR_RESTART;	 Catch:{ NoSuchFieldError -> 0x010c }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x010c }
+            r0[r1] = r5;	 Catch:{ NoSuchFieldError -> 0x010c }
+        L_0x010c:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x0116 }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.PHONE_LOGIN_COMPLETE;	 Catch:{ NoSuchFieldError -> 0x0116 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0116 }
+            r0[r1] = r6;	 Catch:{ NoSuchFieldError -> 0x0116 }
+        L_0x0116:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x0120 }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.PHONE_CONFIRMATION_CODE_COMPLETE;	 Catch:{ NoSuchFieldError -> 0x0120 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0120 }
+            r0[r1] = r7;	 Catch:{ NoSuchFieldError -> 0x0120 }
+        L_0x0120:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x012a }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.PHONE_CONFIRMATION_CODE_RETRY;	 Catch:{ NoSuchFieldError -> 0x012a }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x012a }
+            r0[r1] = r8;	 Catch:{ NoSuchFieldError -> 0x012a }
+        L_0x012a:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x0134 }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.PHONE_RESEND;	 Catch:{ NoSuchFieldError -> 0x0134 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0134 }
+            r0[r1] = r9;	 Catch:{ NoSuchFieldError -> 0x0134 }
+        L_0x0134:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x013e }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.PHONE_RESEND_FACEBOOK_NOTIFICATION;	 Catch:{ NoSuchFieldError -> 0x013e }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x013e }
+            r0[r1] = r10;	 Catch:{ NoSuchFieldError -> 0x013e }
+        L_0x013e:
+            r0 = $SwitchMap$com$facebook$accountkit$ui$LoginFlowBroadcastReceiver$Event;	 Catch:{ NoSuchFieldError -> 0x0148 }
+            r1 = com.facebook.accountkit.ui.LoginFlowBroadcastReceiver.Event.PHONE_RESEND_VOICE_CALL_NOTIFICATION;	 Catch:{ NoSuchFieldError -> 0x0148 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0148 }
+            r0[r1] = r11;	 Catch:{ NoSuchFieldError -> 0x0148 }
+        L_0x0148:
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.facebook.accountkit.ui.AccountKitActivity$AnonymousClass4.<clinit>():void");
+        }
+    }
 
     public enum ResponseType {
         CODE("code"),

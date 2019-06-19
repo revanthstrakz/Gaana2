@@ -27,59 +27,6 @@ public class JsonWebSignature extends JsonWebToken {
     private final byte[] signatureBytes;
     private final byte[] signedContentBytes;
 
-    public static final class Parser {
-        private Class<? extends Header> headerClass = Header.class;
-        private final JsonFactory jsonFactory;
-        private Class<? extends Payload> payloadClass = Payload.class;
-
-        public Parser(JsonFactory jsonFactory) {
-            this.jsonFactory = (JsonFactory) Preconditions.checkNotNull(jsonFactory);
-        }
-
-        public Class<? extends Header> getHeaderClass() {
-            return this.headerClass;
-        }
-
-        public Parser setHeaderClass(Class<? extends Header> cls) {
-            this.headerClass = cls;
-            return this;
-        }
-
-        public Class<? extends Payload> getPayloadClass() {
-            return this.payloadClass;
-        }
-
-        public Parser setPayloadClass(Class<? extends Payload> cls) {
-            this.payloadClass = cls;
-            return this;
-        }
-
-        public JsonFactory getJsonFactory() {
-            return this.jsonFactory;
-        }
-
-        public JsonWebSignature parse(String str) throws IOException {
-            int indexOf = str.indexOf(46);
-            boolean z = false;
-            Preconditions.checkArgument(indexOf != -1);
-            byte[] decodeBase64 = Base64.decodeBase64(str.substring(0, indexOf));
-            indexOf++;
-            int indexOf2 = str.indexOf(46, indexOf);
-            Preconditions.checkArgument(indexOf2 != -1);
-            int i = indexOf2 + 1;
-            Preconditions.checkArgument(str.indexOf(46, i) == -1);
-            byte[] decodeBase642 = Base64.decodeBase64(str.substring(indexOf, indexOf2));
-            byte[] decodeBase643 = Base64.decodeBase64(str.substring(i));
-            byte[] bytesUtf8 = StringUtils.getBytesUtf8(str.substring(0, indexOf2));
-            Header header = (Header) this.jsonFactory.fromInputStream(new ByteArrayInputStream(decodeBase64), this.headerClass);
-            if (header.getAlgorithm() != null) {
-                z = true;
-            }
-            Preconditions.checkArgument(z);
-            return new JsonWebSignature(header, (Payload) this.jsonFactory.fromInputStream(new ByteArrayInputStream(decodeBase642), this.payloadClass), decodeBase643, bytesUtf8);
-        }
-    }
-
     public static class Header extends com.google.api.client.json.webtoken.JsonWebToken.Header {
         @Key("alg")
         private String algorithm;
@@ -194,6 +141,59 @@ public class JsonWebSignature extends JsonWebToken {
 
         public Header clone() {
             return (Header) super.clone();
+        }
+    }
+
+    public static final class Parser {
+        private Class<? extends Header> headerClass = Header.class;
+        private final JsonFactory jsonFactory;
+        private Class<? extends Payload> payloadClass = Payload.class;
+
+        public Parser(JsonFactory jsonFactory) {
+            this.jsonFactory = (JsonFactory) Preconditions.checkNotNull(jsonFactory);
+        }
+
+        public Class<? extends Header> getHeaderClass() {
+            return this.headerClass;
+        }
+
+        public Parser setHeaderClass(Class<? extends Header> cls) {
+            this.headerClass = cls;
+            return this;
+        }
+
+        public Class<? extends Payload> getPayloadClass() {
+            return this.payloadClass;
+        }
+
+        public Parser setPayloadClass(Class<? extends Payload> cls) {
+            this.payloadClass = cls;
+            return this;
+        }
+
+        public JsonFactory getJsonFactory() {
+            return this.jsonFactory;
+        }
+
+        public JsonWebSignature parse(String str) throws IOException {
+            int indexOf = str.indexOf(46);
+            boolean z = false;
+            Preconditions.checkArgument(indexOf != -1);
+            byte[] decodeBase64 = Base64.decodeBase64(str.substring(0, indexOf));
+            indexOf++;
+            int indexOf2 = str.indexOf(46, indexOf);
+            Preconditions.checkArgument(indexOf2 != -1);
+            int i = indexOf2 + 1;
+            Preconditions.checkArgument(str.indexOf(46, i) == -1);
+            byte[] decodeBase642 = Base64.decodeBase64(str.substring(indexOf, indexOf2));
+            byte[] decodeBase643 = Base64.decodeBase64(str.substring(i));
+            byte[] bytesUtf8 = StringUtils.getBytesUtf8(str.substring(0, indexOf2));
+            Header header = (Header) this.jsonFactory.fromInputStream(new ByteArrayInputStream(decodeBase64), this.headerClass);
+            if (header.getAlgorithm() != null) {
+                z = true;
+            }
+            Preconditions.checkArgument(z);
+            return new JsonWebSignature(header, (Payload) this.jsonFactory.fromInputStream(new ByteArrayInputStream(decodeBase642), this.payloadClass), decodeBase643, bytesUtf8);
         }
     }
 

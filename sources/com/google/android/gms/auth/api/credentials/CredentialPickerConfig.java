@@ -61,7 +61,7 @@ public final class CredentialPickerConfig extends AbstractSafeParcelable impleme
         }
 
         public CredentialPickerConfig build() {
-            return new CredentialPickerConfig(this);
+            return new CredentialPickerConfig(this, null);
         }
     }
 
@@ -112,5 +112,9 @@ public final class CredentialPickerConfig extends AbstractSafeParcelable impleme
         SafeParcelWriter.writeInt(parcel, 4, this.zzx);
         SafeParcelWriter.writeInt(parcel, 1000, this.zzu);
         SafeParcelWriter.finishObjectHeader(parcel, i);
+    }
+
+    /* synthetic */ CredentialPickerConfig(Builder builder, zzd zzd) {
+        this(builder);
     }
 }

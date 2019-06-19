@@ -3,7 +3,7 @@ package com.google.android.gms.internal.ads;
 import java.io.IOException;
 
 public abstract class zzbpl<MessageType extends zzbpl<MessageType, BuilderType>, BuilderType extends zzbpm<MessageType, BuilderType>> implements zzbsl {
-    private static boolean zzfky = false;
+    private static boolean zzfky;
     protected int zzfkx = 0;
 
     public final zzbpu zzakf() {

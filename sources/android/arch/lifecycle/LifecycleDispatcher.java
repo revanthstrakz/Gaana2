@@ -17,6 +17,28 @@ import java.util.concurrent.atomic.AtomicBoolean;
 class LifecycleDispatcher {
     private static AtomicBoolean a = new AtomicBoolean(false);
 
+    public static class DestructionReportFragment extends Fragment {
+        public void onPause() {
+            super.onPause();
+            a(Event.ON_PAUSE);
+        }
+
+        public void onStop() {
+            super.onStop();
+            a(Event.ON_STOP);
+        }
+
+        public void onDestroy() {
+            super.onDestroy();
+            a(Event.ON_DESTROY);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void a(Event event) {
+            LifecycleDispatcher.b(getParentFragment(), event);
+        }
+    }
+
     @VisibleForTesting
     static class a extends b {
         private final b a = new b();
@@ -62,28 +84,6 @@ class LifecycleDispatcher {
 
         public void onFragmentResumed(FragmentManager fragmentManager, Fragment fragment) {
             LifecycleDispatcher.b(fragment, Event.ON_RESUME);
-        }
-    }
-
-    public static class DestructionReportFragment extends Fragment {
-        public void onPause() {
-            super.onPause();
-            a(Event.ON_PAUSE);
-        }
-
-        public void onStop() {
-            super.onStop();
-            a(Event.ON_STOP);
-        }
-
-        public void onDestroy() {
-            super.onDestroy();
-            a(Event.ON_DESTROY);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void a(Event event) {
-            LifecycleDispatcher.b(getParentFragment(), event);
         }
     }
 

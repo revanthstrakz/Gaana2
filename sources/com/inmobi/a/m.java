@@ -30,9 +30,9 @@ import java.util.Map.Entry;
 public class m implements LocationListener {
     static boolean a = false;
     private static final String e = "m";
-    private static m f = null;
+    private static m f;
     private static final Object g = new Object();
-    private static boolean h = false;
+    private static boolean h;
     LocationManager b;
     HandlerThread c = new HandlerThread("LThread");
     GoogleApiClient d;

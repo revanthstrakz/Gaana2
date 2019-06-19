@@ -9,22 +9,6 @@ public abstract class zzct extends zzcd {
     private static final boolean zzgn = zzgd.zzdr();
     zzcv zzgo = this;
 
-    public static class zzb extends IOException {
-        zzb() {
-            super("CodedOutputStream was writing to a flat byte array and ran out of space.");
-        }
-
-        zzb(Throwable th) {
-            super("CodedOutputStream was writing to a flat byte array and ran out of space.", th);
-        }
-
-        zzb(String str, Throwable th) {
-            String valueOf = String.valueOf("CodedOutputStream was writing to a flat byte array and ran out of space.: ");
-            str = String.valueOf(str);
-            super(str.length() != 0 ? valueOf.concat(str) : new String(valueOf), th);
-        }
-    }
-
     static class zza extends zzct {
         private final byte[] buffer;
         private final int limit;
@@ -321,6 +305,22 @@ public abstract class zzct extends zzcd {
 
         public final int zzav() {
             return this.limit - this.position;
+        }
+    }
+
+    public static class zzb extends IOException {
+        zzb() {
+            super("CodedOutputStream was writing to a flat byte array and ran out of space.");
+        }
+
+        zzb(Throwable th) {
+            super("CodedOutputStream was writing to a flat byte array and ran out of space.", th);
+        }
+
+        zzb(String str, Throwable th) {
+            String valueOf = String.valueOf("CodedOutputStream was writing to a flat byte array and ran out of space.: ");
+            str = String.valueOf(str);
+            super(str.length() != 0 ? valueOf.concat(str) : new String(valueOf), th);
         }
     }
 

@@ -17,11 +17,11 @@ final class a {
     private static String a = "production";
     private static String b = "unknown";
     private static String c = "unknown";
-    private static Map<String, String> d = null;
-    private static String e = null;
-    private static boolean f = false;
-    private static String g = null;
-    private static boolean h = false;
+    private static Map<String, String> d;
+    private static String e;
+    private static boolean f;
+    private static String g;
+    private static boolean h;
 
     static class a implements UncaughtExceptionHandler {
         private UncaughtExceptionHandler a;

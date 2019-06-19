@@ -79,6 +79,19 @@ public final class ImageManager {
         void onImageLoaded(Uri uri, Drawable drawable, boolean z);
     }
 
+    private static final class zaa extends LruCache<zab, Bitmap> {
+        /* Access modifiers changed, original: protected|final|synthetic */
+        public final /* synthetic */ int sizeOf(Object obj, Object obj2) {
+            Bitmap bitmap = (Bitmap) obj2;
+            return bitmap.getHeight() * bitmap.getRowBytes();
+        }
+
+        /* Access modifiers changed, original: protected|final|synthetic */
+        public final /* synthetic */ void entryRemoved(boolean z, Object obj, Object obj2, Object obj3) {
+            super.entryRemoved(z, (zab) obj, (Bitmap) obj2, (Bitmap) obj3);
+        }
+    }
+
     private final class zab implements Runnable {
         private final Uri mUri;
         private final ParcelFileDescriptor zamr;
@@ -224,19 +237,6 @@ public final class ImageManager {
             synchronized (ImageManager.zamg) {
                 ImageManager.zamh.remove(this.mUri);
             }
-        }
-    }
-
-    private static final class zaa extends LruCache<zab, Bitmap> {
-        /* Access modifiers changed, original: protected|final|synthetic */
-        public final /* synthetic */ int sizeOf(Object obj, Object obj2) {
-            Bitmap bitmap = (Bitmap) obj2;
-            return bitmap.getHeight() * bitmap.getRowBytes();
-        }
-
-        /* Access modifiers changed, original: protected|final|synthetic */
-        public final /* synthetic */ void entryRemoved(boolean z, Object obj, Object obj2, Object obj3) {
-            super.entryRemoved(z, (zab) obj, (Bitmap) obj2, (Bitmap) obj3);
         }
     }
 

@@ -23,19 +23,6 @@ public class GoogleSignInClient extends GoogleApi<GoogleSignInOptions> {
     @VisibleForTesting
     private static int zzas = zzd.zzau;
 
-    @VisibleForTesting
-    enum zzd {
-        public static final int zzau = 1;
-        public static final int zzav = 2;
-        public static final int zzaw = 3;
-        public static final int zzax = 4;
-        private static final /* synthetic */ int[] zzay = new int[]{zzau, zzav, zzaw, zzax};
-
-        public static int[] values$50KLMJ33DTMIUPRFDTJMOP9FC5N68SJFD5I2UPRDECNM2TBKD0NM2S395TPMIPRED5N2UHRFDTJMOPAJD5JMSIBE8DM6IPBEEGI4IRBGDHIMQPBEEHGN8QBFDOTG____0() {
-            return (int[]) zzay.clone();
-        }
-    }
-
     private static class zzc implements ResultConverter<GoogleSignInResult, GoogleSignInAccount> {
         private zzc() {
         }
@@ -46,6 +33,19 @@ public class GoogleSignInClient extends GoogleApi<GoogleSignInOptions> {
 
         /* synthetic */ zzc(zzc zzc) {
             this();
+        }
+    }
+
+    @VisibleForTesting
+    enum zzd {
+        public static final int zzau = 1;
+        public static final int zzav = 2;
+        public static final int zzaw = 3;
+        public static final int zzax = 4;
+        private static final /* synthetic */ int[] zzay = new int[]{zzau, zzav, zzaw, zzax};
+
+        public static int[] values$50KLMJ33DTMIUPRFDTJMOP9FC5N68SJFD5I2UPRDECNM2TBKD0NM2S395TPMIPRED5N2UHRFDTJMOPAJD5JMSIBE8DM6IPBEEGI4IRBGDHIMQPBEEHGN8QBFDOTG____0() {
+            return (int[]) zzay.clone();
         }
     }
 

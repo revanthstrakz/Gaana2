@@ -18,6 +18,10 @@ public interface ExoMediaDrm<T extends ExoMediaCrypto> {
     public static final int KEY_TYPE_RELEASE = 3;
     public static final int KEY_TYPE_STREAMING = 1;
 
+    public interface OnEventListener<T extends ExoMediaCrypto> {
+        void onEvent(ExoMediaDrm<? extends T> exoMediaDrm, byte[] bArr, int i, int i2, @Nullable byte[] bArr2);
+    }
+
     public static final class KeyRequest {
         private final byte[] data;
         private final String licenseServerUrl;
@@ -52,10 +56,6 @@ public interface ExoMediaDrm<T extends ExoMediaCrypto> {
         public byte[] getKeyId() {
             return this.keyId;
         }
-    }
-
-    public interface OnEventListener<T extends ExoMediaCrypto> {
-        void onEvent(ExoMediaDrm<? extends T> exoMediaDrm, byte[] bArr, int i, int i2, @Nullable byte[] bArr2);
     }
 
     public interface OnKeyStatusChangeListener<T extends ExoMediaCrypto> {

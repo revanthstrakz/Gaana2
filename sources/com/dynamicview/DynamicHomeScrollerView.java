@@ -113,24 +113,6 @@ public class DynamicHomeScrollerView extends BaseItemView implements w {
     private b p;
     private int q = -1;
 
-    public static class b {
-        com.dynamicview.f.a a;
-        int b;
-
-        public b(com.dynamicview.f.a aVar, int i) {
-            this.a = aVar;
-            this.b = i;
-        }
-
-        public com.dynamicview.f.a a() {
-            return this.a;
-        }
-
-        public int b() {
-            return this.b;
-        }
-    }
-
     public static class a extends ViewHolder {
         public ConstraintLayout a;
         public FrameLayout b;
@@ -153,6 +135,24 @@ public class DynamicHomeScrollerView extends BaseItemView implements w {
             this.g = (ImageView) view.findViewById(R.id.logoImage);
             this.h = (ImageView) view.findViewById(R.id.img_indicator);
             this.i = (ImageView) view.findViewById(R.id.seeallImg);
+        }
+    }
+
+    public static class b {
+        com.dynamicview.f.a a;
+        int b;
+
+        public b(com.dynamicview.f.a aVar, int i) {
+            this.a = aVar;
+            this.b = i;
+        }
+
+        public com.dynamicview.f.a a() {
+            return this.a;
+        }
+
+        public int b() {
+            return this.b;
         }
     }
 

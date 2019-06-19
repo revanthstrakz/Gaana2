@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 public class b {
-    private static boolean a = false;
-    private static boolean b = false;
+    private static boolean a;
+    private static boolean b;
 
     @Nullable
     public static synchronized String a(String str) {

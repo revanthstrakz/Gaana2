@@ -67,11 +67,11 @@ public enum zzbqx {
         this.id = i;
         this.zzfpc = zzbqz;
         this.zzfpb = zzbrn;
-        switch (zzbqy.zzfpi[zzbqz.ordinal()]) {
-            case 1:
+        switch (zzbqz) {
+            case MAP:
                 this.zzfpd = zzbrn.zzanl();
                 break;
-            case 2:
+            case VECTOR:
                 this.zzfpd = zzbrn.zzanl();
                 break;
             default:
@@ -80,10 +80,10 @@ public enum zzbqx {
         }
         boolean z = false;
         if (zzbqz == zzbqz.SCALAR) {
-            switch (zzbqy.zzfpj[zzbrn.ordinal()]) {
-                case 1:
-                case 2:
-                case 3:
+            switch (zzbrn) {
+                case BYTE_STRING:
+                case MESSAGE:
+                case STRING:
                     break;
                 default:
                     z = true;

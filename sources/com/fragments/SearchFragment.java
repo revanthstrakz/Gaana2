@@ -37,7 +37,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class SearchFragment extends BaseGaanaFragment implements OnPageChangeListener, OnClickListener, OnDataLoadedListener {
-    public static boolean a = false;
+    public static boolean a;
     private long b;
     private int c = 0;
     private String d = "Track";

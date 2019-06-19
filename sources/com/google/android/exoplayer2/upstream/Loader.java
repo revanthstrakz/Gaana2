@@ -27,12 +27,22 @@ public final class Loader implements LoaderErrorThrower {
     private final ExecutorService downloadExecutorService;
     private IOException fatalError;
 
+    public interface Loadable {
+        void cancelLoad();
+
+        void load() throws IOException, InterruptedException;
+    }
+
     public interface Callback<T extends Loadable> {
         void onLoadCanceled(T t, long j, long j2, boolean z);
 
         void onLoadCompleted(T t, long j, long j2);
 
         LoadErrorAction onLoadError(T t, long j, long j2, IOException iOException, int i);
+    }
+
+    public interface ReleaseCallback {
+        void onLoaderReleased();
     }
 
     public static final class LoadErrorAction {
@@ -225,16 +235,6 @@ public final class Loader implements LoaderErrorThrower {
         private long getRetryDelayMillis() {
             return (long) Math.min((this.errorCount - 1) * 1000, 5000);
         }
-    }
-
-    public interface Loadable {
-        void cancelLoad();
-
-        void load() throws IOException, InterruptedException;
-    }
-
-    public interface ReleaseCallback {
-        void onLoaderReleased();
     }
 
     private static final class ReleaseTask implements Runnable {

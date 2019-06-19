@@ -21,6 +21,12 @@ public interface TsPayloadReader {
     public @interface Flags {
     }
 
+    public interface Factory {
+        SparseArray<TsPayloadReader> createInitialPayloadReaders();
+
+        TsPayloadReader createPayloadReader(int i, EsInfo esInfo);
+    }
+
     public static final class DvbSubtitleInfo {
         public final byte[] initializationData;
         public final String language;
@@ -51,12 +57,6 @@ public interface TsPayloadReader {
             this.dvbSubtitleInfos = emptyList;
             this.descriptorBytes = bArr;
         }
-    }
-
-    public interface Factory {
-        SparseArray<TsPayloadReader> createInitialPayloadReaders();
-
-        TsPayloadReader createPayloadReader(int i, EsInfo esInfo);
     }
 
     public static final class TrackIdGenerator {

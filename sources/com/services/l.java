@@ -20,14 +20,18 @@ import java.util.ArrayList;
 
 public class l {
 
-    public interface aa {
-        void onError(String str);
-
-        void onFontRetrieved(Typeface typeface);
+    public interface p {
+        void onAdRefresh();
     }
 
     public interface ak {
         void a(Boolean bool);
+    }
+
+    public interface aa {
+        void onError(String str);
+
+        void onFontRetrieved(Typeface typeface);
     }
 
     public interface b {
@@ -36,8 +40,64 @@ public class l {
         void onAdConfigLoaded();
     }
 
-    public interface p {
-        void onAdRefresh();
+    public interface af {
+        void onErrorResponse(BusinessObject businessObject);
+
+        void onRetreivalComplete(Object obj);
+    }
+
+    public interface au {
+        void onUserStatusUpdated();
+    }
+
+    public interface ad {
+        void onLoginSuccess();
+    }
+
+    public interface s {
+        void onErrorResponse(BusinessObject businessObject);
+
+        void onRetreivalComplete(BusinessObject businessObject);
+    }
+
+    public interface r {
+        void onErrorResponse(VolleyError volleyError);
+
+        void onSuccessfulResponse(Bitmap bitmap);
+    }
+
+    public interface as {
+        void onTrialSuccess();
+    }
+
+    public interface y {
+        void OnDynamicViewDataFetched();
+    }
+
+    public interface g {
+        void favouriteSyncCompleted();
+    }
+
+    public interface bc {
+        void a(PLAYOUT_SOURCE playout_source, boolean z);
+    }
+
+    public interface ac {
+        void a(String str);
+    }
+
+    public interface ae {
+        void OnNetworkChangeListener(boolean z);
+    }
+
+    public interface ag {
+        void onOccasionError();
+
+        void onOccasionResponse();
+    }
+
+    public interface ba {
+        void onPlaySong(View view, Track track);
     }
 
     public interface a {
@@ -48,30 +108,6 @@ public class l {
 
     public interface ab {
         void a(String str);
-    }
-
-    public interface ac {
-        void a(String str);
-    }
-
-    public interface ad {
-        void onLoginSuccess();
-    }
-
-    public interface ae {
-        void OnNetworkChangeListener(boolean z);
-    }
-
-    public interface af {
-        void onErrorResponse(BusinessObject businessObject);
-
-        void onRetreivalComplete(Object obj);
-    }
-
-    public interface ag {
-        void onOccasionError();
-
-        void onOccasionResponse();
     }
 
     public interface ah {
@@ -118,16 +154,8 @@ public class l {
         void onTrackSelectionChanged(int i);
     }
 
-    public interface as {
-        void onTrialSuccess();
-    }
-
     public interface at {
         void onUserRefreshed();
-    }
-
-    public interface au {
-        void onUserStatusUpdated();
     }
 
     public interface av {
@@ -167,15 +195,7 @@ public class l {
         void onItemSelected();
     }
 
-    public interface ba {
-        void onPlaySong(View view, Track track);
-    }
-
     public interface bb {
-    }
-
-    public interface bc {
-        void a(PLAYOUT_SOURCE playout_source, boolean z);
     }
 
     public interface bd {
@@ -201,10 +221,6 @@ public class l {
     public interface f {
     }
 
-    public interface g {
-        void favouriteSyncCompleted();
-    }
-
     public interface h {
         void a(String str, ArrayList<SiEnabledBankName> arrayList);
     }
@@ -218,6 +234,14 @@ public class l {
         void onItemDelete(int i, int i2);
 
         boolean onItemMove(int i, int i2);
+    }
+
+    public interface k extends j {
+        float getSwipeThreshold(ViewHolder viewHolder);
+
+        float getSwipeVelocityThreshold(float f);
+
+        void onChildDraw(Canvas canvas, RecyclerView recyclerView, ViewHolder viewHolder, float f, float f2, int i, boolean z);
     }
 
     public interface l {
@@ -242,18 +266,6 @@ public class l {
 
     public interface q {
         void b();
-    }
-
-    public interface r {
-        void onErrorResponse(VolleyError volleyError);
-
-        void onSuccessfulResponse(Bitmap bitmap);
-    }
-
-    public interface s {
-        void onErrorResponse(BusinessObject businessObject);
-
-        void onRetreivalComplete(BusinessObject businessObject);
     }
 
     public interface t {
@@ -282,23 +294,11 @@ public class l {
         void onDeviceLinkingSuccessful(LinkDeviceResponse linkDeviceResponse);
     }
 
-    public interface y {
-        void OnDynamicViewDataFetched();
-    }
-
     public interface z {
         void a(int i);
 
         void a(BusinessObject businessObject, int i);
 
         void a(BusinessObject businessObject, int i, int i2);
-    }
-
-    public interface k extends j {
-        float getSwipeThreshold(ViewHolder viewHolder);
-
-        float getSwipeVelocityThreshold(float f);
-
-        void onChildDraw(Canvas canvas, RecyclerView recyclerView, ViewHolder viewHolder, float f, float f2, int i, boolean z);
     }
 }

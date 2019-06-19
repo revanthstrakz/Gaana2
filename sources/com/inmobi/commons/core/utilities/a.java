@@ -18,8 +18,8 @@ import java.util.List;
 public class a {
     private static final String a = "a";
     private static List<b> b = new ArrayList();
-    private static Object c = null;
-    private static boolean d = false;
+    private static Object c;
+    private static boolean d;
     private static HandlerThread e;
     private static final Object f = new Object();
     private static volatile a g;

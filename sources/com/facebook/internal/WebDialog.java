@@ -74,6 +74,10 @@ public class WebDialog extends Dialog {
     private String url;
     private WebView webView;
 
+    public interface OnCompleteListener {
+        void onComplete(Bundle bundle, FacebookException facebookException);
+    }
+
     public static class Builder {
         private AccessToken accessToken;
         private String action;
@@ -319,10 +323,6 @@ public class WebDialog extends Dialog {
             WebDialog.this.crossImageView.setVisibility(0);
             WebDialog.this.isPageFinished = true;
         }
-    }
-
-    public interface OnCompleteListener {
-        void onComplete(Bundle bundle, FacebookException facebookException);
     }
 
     private class UploadStagingResourcesTask extends AsyncTask<Void, Void, String[]> {

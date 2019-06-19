@@ -15,9 +15,9 @@ import java.util.List;
 @KeepForSdk
 public class ConnectionTracker {
     private static final Object zzdp = new Object();
-    private static volatile ConnectionTracker zzfa = null;
+    private static volatile ConnectionTracker zzfa;
     @VisibleForTesting
-    private static boolean zzfb = false;
+    private static boolean zzfb;
     private final List<String> zzfc = Collections.EMPTY_LIST;
     private final List<String> zzfd = Collections.EMPTY_LIST;
     private final List<String> zzfe = Collections.EMPTY_LIST;

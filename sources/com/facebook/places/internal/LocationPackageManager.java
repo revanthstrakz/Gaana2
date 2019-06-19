@@ -15,10 +15,10 @@ public class LocationPackageManager {
 
     public static void requestLocationPackage(final LocationPackageRequestParams locationPackageRequestParams, final Listener listener) {
         FacebookSdk.getExecutor().execute(new Runnable() {
-            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{Splitter:B:1:0x0005, ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{Splitter:B:1:0x0005, ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{Splitter:B:1:0x0005, ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{Splitter:B:1:0x0005, ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException)} */
+            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException), Splitter:B:1:0x0005} */
+            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException), Splitter:B:1:0x0005} */
+            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException), Splitter:B:1:0x0005} */
+            /* JADX WARNING: Removed duplicated region for block: B:33:0x00a7 A:{ExcHandler: ScannerException (r1_12 'e' com.facebook.places.internal.ScannerException), Splitter:B:1:0x0005} */
             /* JADX WARNING: Failed to process nested try/catch */
             /* JADX WARNING: Failed to process nested try/catch */
             /* JADX WARNING: Failed to process nested try/catch */

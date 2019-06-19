@@ -105,6 +105,24 @@ public class TabLayout extends HorizontalScrollView {
     private final ArrayList<Tab> mTabs;
     ViewPager mViewPager;
 
+    private class AdapterChangeListener implements OnAdapterChangeListener {
+        private boolean mAutoRefresh;
+
+        AdapterChangeListener() {
+        }
+
+        public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter2) {
+            if (TabLayout.this.mViewPager == viewPager) {
+                TabLayout.this.setPagerAdapter(pagerAdapter2, this.mAutoRefresh);
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setAutoRefresh(boolean z) {
+            this.mAutoRefresh = z;
+        }
+    }
+
     @RestrictTo({Scope.LIBRARY_GROUP})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Mode {
@@ -498,6 +516,47 @@ public class TabLayout extends HorizontalScrollView {
     public @interface TabGravity {
     }
 
+    public static class TabLayoutOnPageChangeListener implements OnPageChangeListener {
+        private int mPreviousScrollState;
+        private int mScrollState;
+        private final WeakReference<TabLayout> mTabLayoutRef;
+
+        public TabLayoutOnPageChangeListener(TabLayout tabLayout) {
+            this.mTabLayoutRef = new WeakReference(tabLayout);
+        }
+
+        public void onPageScrollStateChanged(int i) {
+            this.mPreviousScrollState = this.mScrollState;
+            this.mScrollState = i;
+        }
+
+        public void onPageScrolled(int i, float f, int i2) {
+            TabLayout tabLayout = (TabLayout) this.mTabLayoutRef.get();
+            if (tabLayout != null) {
+                boolean z = false;
+                boolean z2 = this.mScrollState != 2 || this.mPreviousScrollState == 1;
+                if (!(this.mScrollState == 2 && this.mPreviousScrollState == 0)) {
+                    z = true;
+                }
+                tabLayout.setScrollPosition(i, f, z2, z);
+            }
+        }
+
+        public void onPageSelected(int i) {
+            TabLayout tabLayout = (TabLayout) this.mTabLayoutRef.get();
+            if (tabLayout != null && tabLayout.getSelectedTabPosition() != i && i < tabLayout.getTabCount()) {
+                boolean z = this.mScrollState == 0 || (this.mScrollState == 2 && this.mPreviousScrollState == 0);
+                tabLayout.selectTab(tabLayout.getTabAt(i), z);
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void reset() {
+            this.mScrollState = 0;
+            this.mPreviousScrollState = 0;
+        }
+    }
+
     class TabView extends LinearLayout {
         private ImageView mCustomIconView;
         private TextView mCustomTextView;
@@ -720,65 +779,6 @@ public class TabLayout extends HorizontalScrollView {
 
         private float approximateLineWidth(Layout layout, int i, float f) {
             return layout.getLineWidth(i) * (f / layout.getPaint().getTextSize());
-        }
-    }
-
-    private class AdapterChangeListener implements OnAdapterChangeListener {
-        private boolean mAutoRefresh;
-
-        AdapterChangeListener() {
-        }
-
-        public void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter2) {
-            if (TabLayout.this.mViewPager == viewPager) {
-                TabLayout.this.setPagerAdapter(pagerAdapter2, this.mAutoRefresh);
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setAutoRefresh(boolean z) {
-            this.mAutoRefresh = z;
-        }
-    }
-
-    public static class TabLayoutOnPageChangeListener implements OnPageChangeListener {
-        private int mPreviousScrollState;
-        private int mScrollState;
-        private final WeakReference<TabLayout> mTabLayoutRef;
-
-        public TabLayoutOnPageChangeListener(TabLayout tabLayout) {
-            this.mTabLayoutRef = new WeakReference(tabLayout);
-        }
-
-        public void onPageScrollStateChanged(int i) {
-            this.mPreviousScrollState = this.mScrollState;
-            this.mScrollState = i;
-        }
-
-        public void onPageScrolled(int i, float f, int i2) {
-            TabLayout tabLayout = (TabLayout) this.mTabLayoutRef.get();
-            if (tabLayout != null) {
-                boolean z = false;
-                boolean z2 = this.mScrollState != 2 || this.mPreviousScrollState == 1;
-                if (!(this.mScrollState == 2 && this.mPreviousScrollState == 0)) {
-                    z = true;
-                }
-                tabLayout.setScrollPosition(i, f, z2, z);
-            }
-        }
-
-        public void onPageSelected(int i) {
-            TabLayout tabLayout = (TabLayout) this.mTabLayoutRef.get();
-            if (tabLayout != null && tabLayout.getSelectedTabPosition() != i && i < tabLayout.getTabCount()) {
-                boolean z = this.mScrollState == 0 || (this.mScrollState == 2 && this.mPreviousScrollState == 0);
-                tabLayout.selectTab(tabLayout.getTabAt(i), z);
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void reset() {
-            this.mScrollState = 0;
-            this.mPreviousScrollState = 0;
         }
     }
 

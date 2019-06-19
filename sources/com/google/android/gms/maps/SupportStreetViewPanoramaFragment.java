@@ -30,54 +30,6 @@ public class SupportStreetViewPanoramaFragment extends Fragment {
     private final zzb zzch = new zzb(this);
 
     @VisibleForTesting
-    static class zzb extends DeferredLifecycleHelper<zza> {
-        private final Fragment fragment;
-        private OnDelegateCreatedListener<zza> zzbc;
-        private Activity zzbd;
-        private final List<OnStreetViewPanoramaReadyCallback> zzbv = new ArrayList();
-
-        @VisibleForTesting
-        zzb(Fragment fragment) {
-            this.fragment = fragment;
-        }
-
-        private final void setActivity(Activity activity) {
-            this.zzbd = activity;
-            zzc();
-        }
-
-        private final void zzc() {
-            if (!(this.zzbd == null || this.zzbc == null || getDelegate() != null)) {
-                try {
-                    MapsInitializer.initialize(this.zzbd);
-                    this.zzbc.onDelegateCreated(new zza(this.fragment, zzbz.zza(this.zzbd).zzd(ObjectWrapper.wrap(this.zzbd))));
-                    for (OnStreetViewPanoramaReadyCallback streetViewPanoramaAsync : this.zzbv) {
-                        ((zza) getDelegate()).getStreetViewPanoramaAsync(streetViewPanoramaAsync);
-                    }
-                    this.zzbv.clear();
-                } catch (RemoteException e) {
-                    throw new RuntimeRemoteException(e);
-                } catch (GooglePlayServicesNotAvailableException unused) {
-                }
-            }
-        }
-
-        /* Access modifiers changed, original: protected|final */
-        public final void createDelegate(OnDelegateCreatedListener<zza> onDelegateCreatedListener) {
-            this.zzbc = onDelegateCreatedListener;
-            zzc();
-        }
-
-        public final void getStreetViewPanoramaAsync(OnStreetViewPanoramaReadyCallback onStreetViewPanoramaReadyCallback) {
-            if (getDelegate() != null) {
-                ((zza) getDelegate()).getStreetViewPanoramaAsync(onStreetViewPanoramaReadyCallback);
-            } else {
-                this.zzbv.add(onStreetViewPanoramaReadyCallback);
-            }
-        }
-    }
-
-    @VisibleForTesting
     static class zza implements StreetViewLifecycleDelegate {
         private final Fragment fragment;
         private final IStreetViewPanoramaFragmentDelegate zzbt;
@@ -197,6 +149,54 @@ public class SupportStreetViewPanoramaFragment extends Fragment {
                 this.zzbt.onStop();
             } catch (RemoteException e) {
                 throw new RuntimeRemoteException(e);
+            }
+        }
+    }
+
+    @VisibleForTesting
+    static class zzb extends DeferredLifecycleHelper<zza> {
+        private final Fragment fragment;
+        private OnDelegateCreatedListener<zza> zzbc;
+        private Activity zzbd;
+        private final List<OnStreetViewPanoramaReadyCallback> zzbv = new ArrayList();
+
+        @VisibleForTesting
+        zzb(Fragment fragment) {
+            this.fragment = fragment;
+        }
+
+        private final void setActivity(Activity activity) {
+            this.zzbd = activity;
+            zzc();
+        }
+
+        private final void zzc() {
+            if (!(this.zzbd == null || this.zzbc == null || getDelegate() != null)) {
+                try {
+                    MapsInitializer.initialize(this.zzbd);
+                    this.zzbc.onDelegateCreated(new zza(this.fragment, zzbz.zza(this.zzbd).zzd(ObjectWrapper.wrap(this.zzbd))));
+                    for (OnStreetViewPanoramaReadyCallback streetViewPanoramaAsync : this.zzbv) {
+                        ((zza) getDelegate()).getStreetViewPanoramaAsync(streetViewPanoramaAsync);
+                    }
+                    this.zzbv.clear();
+                } catch (RemoteException e) {
+                    throw new RuntimeRemoteException(e);
+                } catch (GooglePlayServicesNotAvailableException unused) {
+                }
+            }
+        }
+
+        /* Access modifiers changed, original: protected|final */
+        public final void createDelegate(OnDelegateCreatedListener<zza> onDelegateCreatedListener) {
+            this.zzbc = onDelegateCreatedListener;
+            zzc();
+        }
+
+        public final void getStreetViewPanoramaAsync(OnStreetViewPanoramaReadyCallback onStreetViewPanoramaReadyCallback) {
+            if (getDelegate() != null) {
+                ((zza) getDelegate()).getStreetViewPanoramaAsync(onStreetViewPanoramaReadyCallback);
+            } else {
+                this.zzbv.add(onStreetViewPanoramaReadyCallback);
             }
         }
     }

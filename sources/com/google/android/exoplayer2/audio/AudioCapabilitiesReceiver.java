@@ -19,6 +19,10 @@ public final class AudioCapabilitiesReceiver {
     @Nullable
     private final BroadcastReceiver receiver;
 
+    public interface Listener {
+        void onAudioCapabilitiesChanged(AudioCapabilities audioCapabilities);
+    }
+
     private final class HdmiAudioPlugBroadcastReceiver extends BroadcastReceiver {
         private HdmiAudioPlugBroadcastReceiver() {
         }
@@ -32,10 +36,6 @@ public final class AudioCapabilitiesReceiver {
                 }
             }
         }
-    }
-
-    public interface Listener {
-        void onAudioCapabilitiesChanged(AudioCapabilities audioCapabilities);
     }
 
     public AudioCapabilitiesReceiver(Context context, Listener listener) {

@@ -17,6 +17,16 @@ class ViewInfoStore {
     @VisibleForTesting
     final LongSparseArray<ViewHolder> mOldChangedHolders = new LongSparseArray();
 
+    interface ProcessCallback {
+        void processAppeared(ViewHolder viewHolder, @Nullable ItemHolderInfo itemHolderInfo, ItemHolderInfo itemHolderInfo2);
+
+        void processDisappeared(ViewHolder viewHolder, @NonNull ItemHolderInfo itemHolderInfo, @Nullable ItemHolderInfo itemHolderInfo2);
+
+        void processPersistent(ViewHolder viewHolder, @NonNull ItemHolderInfo itemHolderInfo, @NonNull ItemHolderInfo itemHolderInfo2);
+
+        void unused(ViewHolder viewHolder);
+    }
+
     static class InfoRecord {
         static final int FLAG_APPEAR = 2;
         static final int FLAG_APPEAR_AND_DISAPPEAR = 3;
@@ -51,16 +61,6 @@ class ViewInfoStore {
             while (sPool.acquire() != null) {
             }
         }
-    }
-
-    interface ProcessCallback {
-        void processAppeared(ViewHolder viewHolder, @Nullable ItemHolderInfo itemHolderInfo, ItemHolderInfo itemHolderInfo2);
-
-        void processDisappeared(ViewHolder viewHolder, @NonNull ItemHolderInfo itemHolderInfo, @Nullable ItemHolderInfo itemHolderInfo2);
-
-        void processPersistent(ViewHolder viewHolder, @NonNull ItemHolderInfo itemHolderInfo, @NonNull ItemHolderInfo itemHolderInfo2);
-
-        void unused(ViewHolder viewHolder);
     }
 
     ViewInfoStore() {

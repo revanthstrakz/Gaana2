@@ -77,13 +77,13 @@ public class f extends LinearLayout implements com.facebook.ads.internal.view.g.
     private boolean v = false;
     private OnDismissListener w;
 
+    public interface b {
+        void a();
+    }
+
     public enum a {
         CROSS,
         ARROWS
-    }
-
-    public interface b {
-        void a();
     }
 
     public f(Context context, com.facebook.ads.internal.view.a.a aVar, a aVar2) {

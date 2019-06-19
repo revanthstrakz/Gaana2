@@ -30,13 +30,6 @@ public final class GameManagerClient {
     private final zzcb zzvu;
 
     @Deprecated
-    public interface Listener {
-        void onGameMessageReceived(String str, JSONObject jSONObject);
-
-        void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState2);
-    }
-
-    @Deprecated
     public interface GameManagerInstanceResult extends Result {
         GameManagerClient getGameManagerClient();
     }
@@ -48,6 +41,13 @@ public final class GameManagerClient {
         String getPlayerId();
 
         long getRequestId();
+    }
+
+    @Deprecated
+    public interface Listener {
+        void onGameMessageReceived(String str, JSONObject jSONObject);
+
+        void onStateChanged(GameManagerState gameManagerState, GameManagerState gameManagerState2);
     }
 
     @VisibleForTesting

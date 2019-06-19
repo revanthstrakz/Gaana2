@@ -34,6 +34,58 @@ public class AutoResolveHelper {
     @VisibleForTesting
     static long zzq = SystemClock.elapsedRealtime();
 
+    @VisibleForTesting
+    static class zza<TResult extends AutoResolvableResult> implements OnCompleteListener<TResult>, Runnable {
+        @VisibleForTesting
+        private static final Handler zzr = new zze(Looper.getMainLooper());
+        @VisibleForTesting
+        static final SparseArray<zza<?>> zzs = new SparseArray(2);
+        private static final AtomicInteger zzt = new AtomicInteger();
+        int zzu;
+        private zzb zzv;
+        private Task<TResult> zzw;
+
+        zza() {
+        }
+
+        public static <TResult extends AutoResolvableResult> zza<TResult> zza(Task<TResult> task) {
+            zza zza = new zza();
+            zza.zzu = zzt.incrementAndGet();
+            zzs.put(zza.zzu, zza);
+            zzr.postDelayed(zza, AutoResolveHelper.zzp);
+            task.addOnCompleteListener(zza);
+            return zza;
+        }
+
+        public final void zza(zzb zzb) {
+            this.zzv = zzb;
+            zzb();
+        }
+
+        public final void zzb(zzb zzb) {
+            if (this.zzv == zzb) {
+                this.zzv = null;
+            }
+        }
+
+        public final void onComplete(@NonNull Task<TResult> task) {
+            this.zzw = task;
+            zzb();
+        }
+
+        public final void run() {
+            zzs.delete(this.zzu);
+        }
+
+        private final void zzb() {
+            if (this.zzw != null && this.zzv != null) {
+                zzs.delete(this.zzu);
+                zzr.removeCallbacks(this);
+                this.zzv.zzb(this.zzw);
+            }
+        }
+    }
+
     public static class zzb extends Fragment {
         private static String zzaa = "delivered";
         private static String zzx = "resolveCallId";
@@ -105,58 +157,6 @@ public class AutoResolveHelper {
                     return;
                 }
                 AutoResolveHelper.zza(activity, this.zzab, 0, new Intent());
-            }
-        }
-    }
-
-    @VisibleForTesting
-    static class zza<TResult extends AutoResolvableResult> implements OnCompleteListener<TResult>, Runnable {
-        @VisibleForTesting
-        private static final Handler zzr = new zze(Looper.getMainLooper());
-        @VisibleForTesting
-        static final SparseArray<zza<?>> zzs = new SparseArray(2);
-        private static final AtomicInteger zzt = new AtomicInteger();
-        int zzu;
-        private zzb zzv;
-        private Task<TResult> zzw;
-
-        zza() {
-        }
-
-        public static <TResult extends AutoResolvableResult> zza<TResult> zza(Task<TResult> task) {
-            zza zza = new zza();
-            zza.zzu = zzt.incrementAndGet();
-            zzs.put(zza.zzu, zza);
-            zzr.postDelayed(zza, AutoResolveHelper.zzp);
-            task.addOnCompleteListener(zza);
-            return zza;
-        }
-
-        public final void zza(zzb zzb) {
-            this.zzv = zzb;
-            zzb();
-        }
-
-        public final void zzb(zzb zzb) {
-            if (this.zzv == zzb) {
-                this.zzv = null;
-            }
-        }
-
-        public final void onComplete(@NonNull Task<TResult> task) {
-            this.zzw = task;
-            zzb();
-        }
-
-        public final void run() {
-            zzs.delete(this.zzu);
-        }
-
-        private final void zzb() {
-            if (this.zzw != null && this.zzv != null) {
-                zzs.delete(this.zzu);
-                zzr.removeCallbacks(this);
-                this.zzv.zzb(this.zzw);
             }
         }
     }

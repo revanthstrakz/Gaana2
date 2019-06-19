@@ -79,76 +79,6 @@ final class ExtractorMediaPeriod implements ExtractorOutput, MediaPeriod, Upstre
     private boolean seenFirstTrackSelection;
     private final Uri uri;
 
-    private static final class ExtractorHolder {
-        @Nullable
-        private Extractor extractor;
-        private final Extractor[] extractors;
-
-        public ExtractorHolder(Extractor[] extractorArr) {
-            this.extractors = extractorArr;
-        }
-
-        public Extractor selectExtractor(ExtractorInput extractorInput, ExtractorOutput extractorOutput, Uri uri) throws IOException, InterruptedException {
-            if (this.extractor != null) {
-                return this.extractor;
-            }
-            Extractor[] extractorArr = this.extractors;
-            int length = extractorArr.length;
-            int i = 0;
-            while (i < length) {
-                Extractor extractor = extractorArr[i];
-                try {
-                    if (extractor.sniff(extractorInput)) {
-                        this.extractor = extractor;
-                        extractorInput.resetPeekPosition();
-                        break;
-                    }
-                    extractorInput.resetPeekPosition();
-                    i++;
-                } catch (EOFException unused) {
-                } catch (Throwable th) {
-                    extractorInput.resetPeekPosition();
-                }
-            }
-            if (this.extractor == null) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("None of the available extractors (");
-                stringBuilder.append(Util.getCommaDelimitedSimpleClassNames(this.extractors));
-                stringBuilder.append(") could read the stream.");
-                throw new UnrecognizedInputFormatException(stringBuilder.toString(), uri);
-            }
-            this.extractor.init(extractorOutput);
-            return this.extractor;
-        }
-
-        public void release() {
-            if (this.extractor != null) {
-                this.extractor.release();
-                this.extractor = null;
-            }
-        }
-    }
-
-    interface Listener {
-        void onSourceInfoRefreshed(long j, boolean z);
-    }
-
-    private static final class PreparedState {
-        public final SeekMap seekMap;
-        public final boolean[] trackEnabledStates;
-        public final boolean[] trackIsAudioVideoFlags;
-        public final boolean[] trackNotifiedDownstreamFormats;
-        public final TrackGroupArray tracks;
-
-        public PreparedState(SeekMap seekMap, TrackGroupArray trackGroupArray, boolean[] zArr) {
-            this.seekMap = seekMap;
-            this.tracks = trackGroupArray;
-            this.trackIsAudioVideoFlags = zArr;
-            this.trackEnabledStates = new boolean[trackGroupArray.length];
-            this.trackNotifiedDownstreamFormats = new boolean[trackGroupArray.length];
-        }
-    }
-
     final class ExtractingLoadable implements Loadable {
         private final StatsDataSource dataSource;
         private DataSpec dataSpec;
@@ -242,6 +172,76 @@ final class ExtractorMediaPeriod implements ExtractorOutput, MediaPeriod, Upstre
             this.positionHolder.position = j;
             this.seekTimeUs = j2;
             this.pendingExtractorSeek = true;
+        }
+    }
+
+    private static final class ExtractorHolder {
+        @Nullable
+        private Extractor extractor;
+        private final Extractor[] extractors;
+
+        public ExtractorHolder(Extractor[] extractorArr) {
+            this.extractors = extractorArr;
+        }
+
+        public Extractor selectExtractor(ExtractorInput extractorInput, ExtractorOutput extractorOutput, Uri uri) throws IOException, InterruptedException {
+            if (this.extractor != null) {
+                return this.extractor;
+            }
+            Extractor[] extractorArr = this.extractors;
+            int length = extractorArr.length;
+            int i = 0;
+            while (i < length) {
+                Extractor extractor = extractorArr[i];
+                try {
+                    if (extractor.sniff(extractorInput)) {
+                        this.extractor = extractor;
+                        extractorInput.resetPeekPosition();
+                        break;
+                    }
+                    extractorInput.resetPeekPosition();
+                    i++;
+                } catch (EOFException unused) {
+                } catch (Throwable th) {
+                    extractorInput.resetPeekPosition();
+                }
+            }
+            if (this.extractor == null) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("None of the available extractors (");
+                stringBuilder.append(Util.getCommaDelimitedSimpleClassNames(this.extractors));
+                stringBuilder.append(") could read the stream.");
+                throw new UnrecognizedInputFormatException(stringBuilder.toString(), uri);
+            }
+            this.extractor.init(extractorOutput);
+            return this.extractor;
+        }
+
+        public void release() {
+            if (this.extractor != null) {
+                this.extractor.release();
+                this.extractor = null;
+            }
+        }
+    }
+
+    interface Listener {
+        void onSourceInfoRefreshed(long j, boolean z);
+    }
+
+    private static final class PreparedState {
+        public final SeekMap seekMap;
+        public final boolean[] trackEnabledStates;
+        public final boolean[] trackIsAudioVideoFlags;
+        public final boolean[] trackNotifiedDownstreamFormats;
+        public final TrackGroupArray tracks;
+
+        public PreparedState(SeekMap seekMap, TrackGroupArray trackGroupArray, boolean[] zArr) {
+            this.seekMap = seekMap;
+            this.tracks = trackGroupArray;
+            this.trackIsAudioVideoFlags = zArr;
+            this.trackEnabledStates = new boolean[trackGroupArray.length];
+            this.trackNotifiedDownstreamFormats = new boolean[trackGroupArray.length];
         }
     }
 

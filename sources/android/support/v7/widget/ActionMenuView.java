@@ -46,10 +46,6 @@ public class ActionMenuView extends LinearLayoutCompat implements ItemInvoker, M
         boolean needsDividerBefore();
     }
 
-    public interface OnMenuItemClickListener {
-        boolean onMenuItemClick(MenuItem menuItem);
-    }
-
     private static class ActionMenuPresenterCallback implements Callback {
         public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
         }
@@ -112,6 +108,10 @@ public class ActionMenuView extends LinearLayoutCompat implements ItemInvoker, M
                 ActionMenuView.this.mMenuBuilderCallback.onMenuModeChange(menuBuilder);
             }
         }
+    }
+
+    public interface OnMenuItemClickListener {
+        boolean onMenuItemClick(MenuItem menuItem);
     }
 
     public boolean dispatchPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
@@ -198,7 +198,7 @@ public class ActionMenuView extends LinearLayoutCompat implements ItemInvoker, M
         onMeasureExactFormat(i, i2);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:133:0x025b A:{LOOP_START, PHI: r3 r34 , LOOP:5: B:133:0x025b->B:138:0x027d} */
+    /* JADX WARNING: Removed duplicated region for block: B:133:0x025b A:{LOOP_START, LOOP:5: B:133:0x025b->B:138:0x027d, PHI: r3 r34 } */
     /* JADX WARNING: Removed duplicated region for block: B:141:0x0289  */
     /* JADX WARNING: Removed duplicated region for block: B:140:0x0284  */
     private void onMeasureExactFormat(int r37, int r38) {

@@ -523,14 +523,14 @@ public class GaanaActivity extends BaseActivityWithVerticalYoutube implements On
     public String title;
     String track_id_sd_repeat = null;
 
+    public interface OnDropDownListener {
+        void itemSelected(int i);
+    }
+
     public interface ISleepTimerListener {
         void SleepTimerCompleted();
 
         void SleepTimerTick(int i, int i2);
-    }
-
-    public interface OnDropDownListener {
-        void itemSelected(int i);
     }
 
     public Location getLocation() {

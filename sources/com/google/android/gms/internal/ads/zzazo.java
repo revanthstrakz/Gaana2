@@ -51,4 +51,8 @@ public final class zzazo {
         }
         return arrayList;
     }
+
+    /* synthetic */ zzazo(zzazr zzazr, zzazp zzazp) {
+        this(zzazr);
+    }
 }

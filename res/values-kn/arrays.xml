@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="auto_night_mode_array">
+        <item>ಆನ್</item>
+        <item>ಆಫ್</item>
+        <item>ಸೂರ್ಯಾಸ್ತದಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತ</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_color_names">
+        <item>ಬಿಳಿ</item>
+        <item>ಕಪ್ಪು</item>
+        <item>ಕೆಂಪು</item>
+        <item>ಹಳದಿ</item>
+        <item>ಹಸಿರು</item>
+        <item>ಸಿಯಾನ್</item>
+        <item>ನೀಲಿ</item>
+        <item>ಕೆನ್ನೇರಳೆ</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_color_values">
+        <item>\#FFFFFF</item>
+        <item>\#000000</item>
+        <item>\#FF0000</item>
+        <item>\#FFFF00</item>
+        <item>\#00FF00</item>
+        <item>\#00FFFF</item>
+        <item>\#0000FF</item>
+        <item>\#FF00FF</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_edge_type_names">
+        <item>ಯಾವುದೂ ಅಲ್ಲ</item>
+        <item>ಔಟ್‌ಲೈನ್‌</item>
+        <item>ಡ್ರಾಪ್ ಶ್ಯಾಡೋ</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_edge_type_values">
+        <item>EDGE_TYPE_NONE</item>
+        <item>EDGE_TYPE_OUTLINE</item>
+        <item>EDGE_TYPE_DROP_SHADOW</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_font_family_names">
+        <item>San-serif</item>
+        <item>ಸೆರಿಫ್‌</item>
+        <item>ಮಾನೋಸ್ಪೇಸ್‌</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_font_family_values">
+        <item>FONT_FAMILY_SANS_SERIF</item>
+        <item>FONT_FAMILY_SERIF</item>
+        <item>FONT_FAMILY_MONOSPACED_SANS_SERIF</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_font_scale_names">
+        <item>ಅತ್ಯಂತ ಚಿಕ್ಕ</item>
+        <item>ಚಿಕ್ಕ</item>
+        <item>ಸಾಮಾನ್ಯ</item>
+        <item>ದೊಡ್ಡ</item>
+        <item>ಅತ್ಯಂತ ದೊಡ್ಡ</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_font_scale_values">
+        <item>0.5</item>
+        <item>0.75</item>
+        <item>1.0</item>
+        <item>1.5</item>
+        <item>2.0</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_opacity_names">
+        <item>25%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>100%</item>
+    </string-array>
+    <string-array name="ccl_prefs_caption_opacity_values">
+        <item>3F</item>
+        <item>80</item>
+        <item>ಬೀಏಫ್</item>
+        <item>ಏಫ್‌ಏಫ್</item>
+    </string-array>
+    <string-array name="download_image_array">
+        <item>ವೈಫೈ ಮಾತ್ರ</item>
+        <item>3G ಮತ್ತು ಅದಕ್ಕಿಂತ ಮೇಲ್ಪಟ್ಟು</item>
+        <item>2G ಮತ್ತು ಅದಕ್ಕಿಂತ ಮೇಲ್ಪಟ್ಟು</item>
+    </string-array>
+    <string-array name="download_quality_array">
+        <item>ನಿಯಮಿತ</item>
+        <item>ಅಧಿಕ</item>
+        <item>ಅತಿಯಾದ</item>
+    </string-array>
+    <string-array name="filter_type">
+        <item>@string/default_filter</item>
+        <item>@string/filter_by_name</item>
+        <item>@string/filter_by_artist</item>
+        <item>@string/filter_by_popularity</item>
+    </string-array>
+    <string-array name="filter_type_local">
+        <item>@string/default_filter</item>
+        <item>@string/filter_by_name</item>
+        <item>@string/filter_by_artist</item>
+    </string-array>
+    <string-array name="mo_popup_not_ok">
+        <item>ಇಲ್ಲ</item>
+        <item>ಬೇಡ, ಧನ್ಯವಾದಗಳು</item>
+        <item>ಬೇಡ, ಧನ್ಯವಾದಗಳು</item>
+        <item>ಅಷ್ಟೇನೂ ಇಲ್ಲ</item>
+    </string-array>
+    <string-array name="mo_popup_ok">
+        <item>ಹೌದು</item>
+        <item>ಓಕೆ, ಖಂಡಿತ</item>
+        <item>ಓಕೆ, ಖಂಡಿತ</item>
+        <item>ಹೌದು!</item>
+    </string-array>
+    <string-array name="mo_popup_question">
+        <item>Gaana ಇಷ್ಟವಾಯಿತೆ?</item>
+        <item>ಹಾಗಾದರೆ Play Store ನಲ್ಲಿ 5-ಸ್ಟಾರ್ ರೇಟಿಂಗ್ ಮಾಡಿದರೆ ಹೇಗಿರುತ್ತದೆ?</item>
+        <item>ನಾವು ಹೇಗೆ ಸುಧಾರಿಸಬಹುದೆಂದು ನಮಗೆ ತಿಳಿಸಬಹುದೇ?</item>
+        <item>Gaana ವನ್ನು ಆನಂದಿಸುತ್ತಿದ್ದೀರಾ?</item>
+    </string-array>
+    <string-array name="month_array">
+        <item>ಜನವರಿ</item>
+        <item>ಫೆಬ್ರವರಿ</item>
+        <item>ಮಾರ್ಚ್</item>
+        <item>ಏಪ್ರಿಲ್</item>
+        <item>ಮೇ</item>
+        <item>ಜೂನ್</item>
+        <item>ಜುಲೈ</item>
+        <item>ಆಗಸ್ಟ್</item>
+        <item>ಸೆಪ್ಟೆಂಬರ್</item>
+        <item>ಅಕ್ಟೋಬರ್</item>
+        <item>ನವೆಂಬರ್</item>
+        <item>ಡಿಸೆಂಬರ್</item>
+    </string-array>
+    <string-array name="voice_support_commands">
+        <item>ಪ್ಲೇ ಪದ್ಮಾವತಿ</item>
+        <item>ಚಲ್ತಿ ಹೈ ಕ್ಯಾ 9 ಸೇ 12</item>
+        <item>ಪ್ಲೇ ಶೇಪ್ ಆಫ್ ಯು</item>
+        <item>ಜಸ್ಟಿನ್ ಬೈಬರ್</item>
+        <item>ಪ್ಲೇ ನೇಹಾ ಕಕ್ಕರ್</item>
+        <item>ಮೇರೇ ರಶ್ಕೆ ಕಮರ್</item>
+        <item>ಪ್ಲೇ ಟೈಗರ್ ಜಿಂದಾ ಹೈ</item>
+        <item>ಪ್ಲೇ ಪಂಜಾಬಿ ಟಾಪ್ 50</item>
+    </string-array>
+</resources>

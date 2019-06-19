@@ -78,6 +78,10 @@ public final class IsReadyToPayRequest extends AbstractSafeParcelable {
         public final IsReadyToPayRequest build() {
             return IsReadyToPayRequest.this;
         }
+
+        /* synthetic */ Builder(IsReadyToPayRequest isReadyToPayRequest, zzq zzq) {
+            this();
+        }
     }
 
     IsReadyToPayRequest() {
@@ -127,6 +131,6 @@ public final class IsReadyToPayRequest extends AbstractSafeParcelable {
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new IsReadyToPayRequest(), null);
     }
 }

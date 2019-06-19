@@ -80,47 +80,6 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingChil
     private VelocityTracker mVelocityTracker;
     private float mVerticalScrollFactor;
 
-    public interface OnScrollChangeListener {
-        void onScrollChange(NestedScrollView nestedScrollView, int i, int i2, int i3, int i4);
-    }
-
-    static class SavedState extends BaseSavedState {
-        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public int scrollPosition;
-
-        SavedState(Parcelable parcelable) {
-            super(parcelable);
-        }
-
-        SavedState(Parcel parcel) {
-            super(parcel);
-            this.scrollPosition = parcel.readInt();
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            super.writeToParcel(parcel, i);
-            parcel.writeInt(this.scrollPosition);
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("HorizontalScrollView.SavedState{");
-            stringBuilder.append(Integer.toHexString(System.identityHashCode(this)));
-            stringBuilder.append(" scrollPosition=");
-            stringBuilder.append(this.scrollPosition);
-            stringBuilder.append("}");
-            return stringBuilder.toString();
-        }
-    }
-
     static class AccessibilityDelegate extends AccessibilityDelegateCompat {
         AccessibilityDelegate() {
         }
@@ -179,6 +138,47 @@ public class NestedScrollView extends FrameLayout implements NestedScrollingChil
             accessibilityEvent.setScrollY(nestedScrollView.getScrollY());
             AccessibilityRecordCompat.setMaxScrollX(accessibilityEvent, nestedScrollView.getScrollX());
             AccessibilityRecordCompat.setMaxScrollY(accessibilityEvent, nestedScrollView.getScrollRange());
+        }
+    }
+
+    public interface OnScrollChangeListener {
+        void onScrollChange(NestedScrollView nestedScrollView, int i, int i2, int i3, int i4);
+    }
+
+    static class SavedState extends BaseSavedState {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+        public int scrollPosition;
+
+        SavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+
+        SavedState(Parcel parcel) {
+            super(parcel);
+            this.scrollPosition = parcel.readInt();
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.scrollPosition);
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("HorizontalScrollView.SavedState{");
+            stringBuilder.append(Integer.toHexString(System.identityHashCode(this)));
+            stringBuilder.append(" scrollPosition=");
+            stringBuilder.append(this.scrollPosition);
+            stringBuilder.append("}");
+            return stringBuilder.toString();
         }
     }
 

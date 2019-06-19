@@ -132,9 +132,9 @@ public class LoginManager {
     public static final String TAG_TYPE = "type";
     public static final String TAG_TYPE_VALUE = "nxtgen_authenticate";
     public static final String TAG_USER_NAME = "username";
-    public static boolean isSimplInitialized = false;
-    private static LoginManager mLoginManager = null;
-    private static boolean userStatusUpdateInProgress = false;
+    public static boolean isSimplInitialized;
+    private static LoginManager mLoginManager;
+    private static boolean userStatusUpdateInProgress;
     private final int SSO_SDK_INITIALIZED = 1;
     private final int SSO_SDK_INITIALIZING = 2;
     private final int SSO_SDK_NOT_INITIALIZED = 0;
@@ -312,25 +312,6 @@ public class LoginManager {
         void onLoginCompleted(LOGIN_STATUS login_status, UserInfo userInfo, Bundle bundle);
     }
 
-    public enum LOGIN_STATUS {
-        LOGIN_SUCCEDED,
-        NOT_LOGGEDIN,
-        LOGGED_OUT,
-        LOGIN_ERROR_AUTHENTICATION_FAILED,
-        LOGIN_ERROR_LAUNCH_TRAP_PAGE,
-        LOGIN_ERROR_NETWORK,
-        LOGIN_ERROR_UNKNOWN,
-        LOGIN_REGISTRATION_FAILED,
-        LOGIN_FAILURE_SSO,
-        LOGIN_FAILURE_SDK_NOT_INITIALIZED,
-        LOGIN_REGISTRATION_VERIFY,
-        ALREADY_REGISTERED_USER,
-        LOGIN_VERIFY_USER,
-        LOGIN_MANDATORY_FIELD_MISSING,
-        LOGIN_EMAIL_MISSING_FB,
-        LAUNCH_GDPR_DELETE_PROGRESS
-    }
-
     public interface SsoSdkInitialized {
         void onError();
 
@@ -414,6 +395,25 @@ public class LoginManager {
                 LoginManager.getInstance().loginCompleted(LOGIN_STATUS.LOGIN_ERROR_UNKNOWN, GaanaApplication.getInstance().getCurrentUser(), null);
             }
         }
+    }
+
+    public enum LOGIN_STATUS {
+        LOGIN_SUCCEDED,
+        NOT_LOGGEDIN,
+        LOGGED_OUT,
+        LOGIN_ERROR_AUTHENTICATION_FAILED,
+        LOGIN_ERROR_LAUNCH_TRAP_PAGE,
+        LOGIN_ERROR_NETWORK,
+        LOGIN_ERROR_UNKNOWN,
+        LOGIN_REGISTRATION_FAILED,
+        LOGIN_FAILURE_SSO,
+        LOGIN_FAILURE_SDK_NOT_INITIALIZED,
+        LOGIN_REGISTRATION_VERIFY,
+        ALREADY_REGISTERED_USER,
+        LOGIN_VERIFY_USER,
+        LOGIN_MANDATORY_FIELD_MISSING,
+        LOGIN_EMAIL_MISSING_FB,
+        LAUNCH_GDPR_DELETE_PROGRESS
     }
 
     public LoginClient getLoginClient(LoginType loginType) {

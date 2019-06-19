@@ -77,9 +77,9 @@ public class AppEventsLogger {
                 PersistedAppSessionInfo.saveAppSessionInformation(FacebookSdk.getApplicationContext());
             }
         };
-        private static Map<AccessTokenAppIdPair, FacebookTimeSpentData> appSessionInfoMap = null;
-        private static boolean hasChanges = false;
-        private static boolean isLoaded = false;
+        private static Map<AccessTokenAppIdPair, FacebookTimeSpentData> appSessionInfoMap;
+        private static boolean hasChanges;
+        private static boolean isLoaded;
         private static final Object staticLock = new Object();
 
         PersistedAppSessionInfo() {

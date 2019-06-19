@@ -477,6 +477,31 @@ public class h implements s {
         }
     }
 
+    class d extends b {
+        public d(Context context, String str, ScheduledExecutorService scheduledExecutorService) {
+            super(context, str, scheduledExecutorService);
+        }
+
+        public final String a() {
+            return q.b("https://api.%s/install_data/v3/");
+        }
+
+        /* Access modifiers changed, original: protected|final */
+        public final void a(Map<String, String> map) {
+            map.put("is_first_launch", Boolean.toString(true));
+            h.o.onInstallConversionDataLoaded(map);
+            h.b((Context) this.a.get(), "appsflyerConversionDataRequestRetries", 0);
+        }
+
+        /* Access modifiers changed, original: protected|final */
+        public final void a(String str, int i) {
+            h.o.onInstallConversionFailure(str);
+            if (i >= 400 && i < 500) {
+                h.b((Context) this.a.get(), "appsflyerConversionDataRequestRetries", h.b((Context) this.a.get()).getInt("appsflyerConversionDataRequestRetries", 0) + 1);
+            }
+        }
+    }
+
     class e implements Runnable {
         private String a;
         private WeakReference<Context> b;
@@ -497,7 +522,7 @@ public class h implements s {
             this.e = i;
         }
 
-        /* JADX WARNING: Removed duplicated region for block: B:17:0x0050 A:{Splitter:B:10:0x0028, ExcHandler: Throwable (r0_5 'th' java.lang.Throwable)} */
+        /* JADX WARNING: Removed duplicated region for block: B:17:0x0050 A:{ExcHandler: Throwable (r0_5 'th' java.lang.Throwable), Splitter:B:10:0x0028} */
         /* JADX WARNING: Failed to process nested try/catch */
         /* JADX WARNING: Missing block: B:15:0x004b, code skipped:
             r0 = move-exception;
@@ -600,31 +625,6 @@ public class h implements s {
             return;
             */
             throw new UnsupportedOperationException("Method not decompiled: com.appsflyer.h$e.run():void");
-        }
-    }
-
-    class d extends b {
-        public d(Context context, String str, ScheduledExecutorService scheduledExecutorService) {
-            super(context, str, scheduledExecutorService);
-        }
-
-        public final String a() {
-            return q.b("https://api.%s/install_data/v3/");
-        }
-
-        /* Access modifiers changed, original: protected|final */
-        public final void a(Map<String, String> map) {
-            map.put("is_first_launch", Boolean.toString(true));
-            h.o.onInstallConversionDataLoaded(map);
-            h.b((Context) this.a.get(), "appsflyerConversionDataRequestRetries", 0);
-        }
-
-        /* Access modifiers changed, original: protected|final */
-        public final void a(String str, int i) {
-            h.o.onInstallConversionFailure(str);
-            if (i >= 400 && i < 500) {
-                h.b((Context) this.a.get(), "appsflyerConversionDataRequestRetries", h.b((Context) this.a.get()).getInt("appsflyerConversionDataRequestRetries", 0) + 1);
-            }
         }
     }
 

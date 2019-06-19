@@ -92,11 +92,6 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
     private final int[] mTempIntPair;
     private final List<View> mTempList1;
 
-    public interface AttachedBehavior {
-        @NonNull
-        Behavior getBehavior();
-    }
-
     public static abstract class Behavior<V extends View> {
         public boolean getInsetDodgeRect(@NonNull CoordinatorLayout coordinatorLayout, @NonNull V v, @NonNull Rect rect) {
             return false;
@@ -232,6 +227,11 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
         public Parcelable onSaveInstanceState(CoordinatorLayout coordinatorLayout, V v) {
             return BaseSavedState.EMPTY_STATE;
         }
+    }
+
+    public interface AttachedBehavior {
+        @NonNull
+        Behavior getBehavior();
     }
 
     @Deprecated
@@ -532,20 +532,6 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
         }
     }
 
-    static class ViewElevationComparator implements Comparator<View> {
-        ViewElevationComparator() {
-        }
-
-        public int compare(View view, View view2) {
-            float z = ViewCompat.getZ(view);
-            float z2 = ViewCompat.getZ(view2);
-            if (z > z2) {
-                return -1;
-            }
-            return z < z2 ? 1 : 0;
-        }
-    }
-
     protected static class SavedState extends AbsSavedState {
         public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
             public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
@@ -592,6 +578,20 @@ public class CoordinatorLayout extends ViewGroup implements NestedScrollingParen
             }
             parcel.writeIntArray(iArr);
             parcel.writeParcelableArray(parcelableArr, i);
+        }
+    }
+
+    static class ViewElevationComparator implements Comparator<View> {
+        ViewElevationComparator() {
+        }
+
+        public int compare(View view, View view2) {
+            float z = ViewCompat.getZ(view);
+            float z2 = ViewCompat.getZ(view2);
+            if (z > z2) {
+                return -1;
+            }
+            return z < z2 ? 1 : 0;
         }
     }
 

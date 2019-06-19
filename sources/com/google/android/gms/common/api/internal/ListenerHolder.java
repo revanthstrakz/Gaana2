@@ -14,6 +14,15 @@ public final class ListenerHolder<L> {
     private final ListenerKey<L> zajk;
 
     @KeepForSdk
+    public interface Notifier<L> {
+        @KeepForSdk
+        void notifyListener(L l);
+
+        @KeepForSdk
+        void onNotifyListenerFailed();
+    }
+
+    @KeepForSdk
     public static final class ListenerKey<L> {
         private final L zajj;
         private final String zajm;
@@ -38,15 +47,6 @@ public final class ListenerHolder<L> {
         public final int hashCode() {
             return (System.identityHashCode(this.zajj) * 31) + this.zajm.hashCode();
         }
-    }
-
-    @KeepForSdk
-    public interface Notifier<L> {
-        @KeepForSdk
-        void notifyListener(L l);
-
-        @KeepForSdk
-        void onNotifyListenerFailed();
     }
 
     private final class zaa extends zal {

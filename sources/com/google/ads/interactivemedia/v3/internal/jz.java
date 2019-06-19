@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 public abstract class jz extends jy {
-    static boolean d = false;
+    static boolean d;
     private static Method e;
     private static Method f;
     private static Method g;
@@ -61,7 +61,7 @@ public abstract class jz extends jy {
     }
 
     /* Access modifiers changed, original: protected */
-    /* JADX WARNING: Removed duplicated region for block: B:41:? A:{SYNTHETIC, Splitter:B:39:0x00ab, ExcHandler: IOException (unused java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:41:? A:{SYNTHETIC, ExcHandler: IOException (unused java.io.IOException), Splitter:B:39:0x00ab} */
     /* JADX WARNING: Missing exception handler attribute for start block: B:31:0x0097 */
     /* JADX WARNING: Missing exception handler attribute for start block: B:29:0x008d */
     /* JADX WARNING: Missing exception handler attribute for start block: B:27:0x007b */
@@ -166,7 +166,7 @@ public abstract class jz extends jy {
     }
 
     /* Access modifiers changed, original: protected */
-    /* JADX WARNING: Removed duplicated region for block: B:23:? A:{SYNTHETIC, Splitter:B:21:0x0065, ExcHandler: IOException (unused java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:23:? A:{SYNTHETIC, ExcHandler: IOException (unused java.io.IOException), Splitter:B:21:0x0065} */
     /* JADX WARNING: Removed duplicated region for block: B:14:0x004b A:{Catch:{ a -> 0x005a }} */
     /* JADX WARNING: Missing exception handler attribute for start block: B:11:0x001d */
     /* JADX WARNING: Failed to process nested try/catch */

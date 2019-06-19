@@ -91,93 +91,6 @@ public final class FacebookAdapter implements MediationBannerAdapter, MediationI
     private RewardedVideoAd mRewardedVideoAd;
     private RelativeLayout mWrappedAdView;
 
-    public static class FacebookExtrasBundleBuilder {
-        private static final String KEY_EXPANDABLE_ICON = "expandable_icon";
-        private boolean mIsExpandableIcon;
-
-        public FacebookExtrasBundleBuilder setNativeAdChoicesIconExpandable(boolean z) {
-            this.mIsExpandableIcon = z;
-            return this;
-        }
-
-        public Bundle build() {
-            Bundle bundle = new Bundle();
-            bundle.putBoolean(KEY_EXPANDABLE_ICON, this.mIsExpandableIcon);
-            return bundle;
-        }
-    }
-
-    private interface NativeAdMapperListener {
-        void onMappingFailed();
-
-        void onMappingSuccess();
-    }
-
-    private class BannerListener implements AdListener {
-        public void onLoggingImpression(Ad ad) {
-        }
-
-        private BannerListener() {
-        }
-
-        public void onAdClicked(Ad ad) {
-            FacebookAdapter.this.mBannerListener.onAdClicked(FacebookAdapter.this);
-            FacebookAdapter.this.mBannerListener.onAdOpened(FacebookAdapter.this);
-            FacebookAdapter.this.mBannerListener.onAdLeftApplication(FacebookAdapter.this);
-        }
-
-        public void onAdLoaded(Ad ad) {
-            FacebookAdapter.this.mBannerListener.onAdLoaded(FacebookAdapter.this);
-        }
-
-        public void onError(Ad ad, AdError adError) {
-            String errorMessage = adError.getErrorMessage();
-            if (!TextUtils.isEmpty(errorMessage)) {
-                Log.w(FacebookAdapter.TAG, errorMessage);
-            }
-            FacebookAdapter.this.mBannerListener.onAdFailedToLoad(FacebookAdapter.this, FacebookAdapter.this.convertErrorCode(adError));
-        }
-    }
-
-    private class FacebookAdapterNativeAdImage extends Image {
-        private Drawable mDrawable;
-        private Uri mUri;
-
-        public double getScale() {
-            return 1.0d;
-        }
-
-        public FacebookAdapterNativeAdImage(Uri uri) {
-            this.mUri = uri;
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void setDrawable(Drawable drawable) {
-            this.mDrawable = drawable;
-        }
-
-        public Drawable getDrawable() {
-            return this.mDrawable;
-        }
-
-        public Uri getUri() {
-            return this.mUri;
-        }
-    }
-
-    private class FacebookReward implements RewardItem {
-        public int getAmount() {
-            return 1;
-        }
-
-        public String getType() {
-            return "";
-        }
-
-        private FacebookReward() {
-        }
-    }
-
     class AppInstallMapper extends NativeAppInstallAdMapper {
         private NativeAd mNativeAd;
         private NativeAdOptions mNativeAdOptions;
@@ -325,6 +238,87 @@ public final class FacebookAdapter implements MediationBannerAdapter, MediationI
         }
     }
 
+    private class BannerListener implements AdListener {
+        public void onLoggingImpression(Ad ad) {
+        }
+
+        private BannerListener() {
+        }
+
+        public void onAdClicked(Ad ad) {
+            FacebookAdapter.this.mBannerListener.onAdClicked(FacebookAdapter.this);
+            FacebookAdapter.this.mBannerListener.onAdOpened(FacebookAdapter.this);
+            FacebookAdapter.this.mBannerListener.onAdLeftApplication(FacebookAdapter.this);
+        }
+
+        public void onAdLoaded(Ad ad) {
+            FacebookAdapter.this.mBannerListener.onAdLoaded(FacebookAdapter.this);
+        }
+
+        public void onError(Ad ad, AdError adError) {
+            String errorMessage = adError.getErrorMessage();
+            if (!TextUtils.isEmpty(errorMessage)) {
+                Log.w(FacebookAdapter.TAG, errorMessage);
+            }
+            FacebookAdapter.this.mBannerListener.onAdFailedToLoad(FacebookAdapter.this, FacebookAdapter.this.convertErrorCode(adError));
+        }
+    }
+
+    private class FacebookAdapterNativeAdImage extends Image {
+        private Drawable mDrawable;
+        private Uri mUri;
+
+        public double getScale() {
+            return 1.0d;
+        }
+
+        public FacebookAdapterNativeAdImage(Uri uri) {
+            this.mUri = uri;
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void setDrawable(Drawable drawable) {
+            this.mDrawable = drawable;
+        }
+
+        public Drawable getDrawable() {
+            return this.mDrawable;
+        }
+
+        public Uri getUri() {
+            return this.mUri;
+        }
+    }
+
+    public static class FacebookExtrasBundleBuilder {
+        private static final String KEY_EXPANDABLE_ICON = "expandable_icon";
+        private boolean mIsExpandableIcon;
+
+        public FacebookExtrasBundleBuilder setNativeAdChoicesIconExpandable(boolean z) {
+            this.mIsExpandableIcon = z;
+            return this;
+        }
+
+        public Bundle build() {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean(KEY_EXPANDABLE_ICON, this.mIsExpandableIcon);
+            return bundle;
+        }
+    }
+
+    private class FacebookReward implements RewardItem {
+        public int getAmount() {
+            return 1;
+        }
+
+        public String getType() {
+            return "";
+        }
+
+        private FacebookReward() {
+        }
+    }
+
     private class InterstitialListener implements InterstitialAdListener {
         public void onLoggingImpression(Ad ad) {
         }
@@ -356,6 +350,12 @@ public final class FacebookAdapter implements MediationBannerAdapter, MediationI
         public void onInterstitialDisplayed(Ad ad) {
             FacebookAdapter.this.mInterstitialListener.onAdOpened(FacebookAdapter.this);
         }
+    }
+
+    private interface NativeAdMapperListener {
+        void onMappingFailed();
+
+        void onMappingSuccess();
     }
 
     private class NativeListener implements AdListener, NativeAdListener {

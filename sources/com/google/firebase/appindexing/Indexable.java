@@ -17,6 +17,16 @@ public interface Indexable {
     public static final int MAX_STRING_LENGTH = 20000;
     public static final int MAX_URL_LENGTH = 256;
 
+    public static class Builder extends IndexableBuilder<Builder> {
+        public Builder() {
+            this("Thing");
+        }
+
+        public Builder(@NonNull String str) {
+            super(str);
+        }
+    }
+
     public interface Metadata {
 
         public static final class Builder {
@@ -63,16 +73,6 @@ public interface Indexable {
             public final Thing.zza zzac() {
                 return new Thing.zza(this.zzei, this.score, this.zzej, this.zzax);
             }
-        }
-    }
-
-    public static class Builder extends IndexableBuilder<Builder> {
-        public Builder() {
-            this("Thing");
-        }
-
-        public Builder(@NonNull String str) {
-            super(str);
         }
     }
 }

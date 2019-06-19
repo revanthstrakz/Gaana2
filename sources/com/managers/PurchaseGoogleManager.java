@@ -244,6 +244,14 @@ public class PurchaseGoogleManager {
         }
     };
 
+    interface b {
+        void a(GoogleIntroductoryPriceConfig googleIntroductoryPriceConfig);
+    }
+
+    public interface e {
+        void a(UpdatePaymentResponse updatePaymentResponse);
+    }
+
     public enum SubscriptionPurchaseType {
         SUBSCRIBED_GAANAPLUS_PURCHASED,
         SUBSCRIBED_ACCOUNT_LINKED,
@@ -262,10 +270,6 @@ public class PurchaseGoogleManager {
         void onProductsQueryCompleted();
 
         void onPurchaseFinished(SubscriptionPurchaseType subscriptionPurchaseType);
-    }
-
-    interface b {
-        void a(GoogleIntroductoryPriceConfig googleIntroductoryPriceConfig);
     }
 
     public class c {
@@ -318,10 +322,6 @@ public class PurchaseGoogleManager {
 
     public interface d {
         void onGoolgeProductPriceQueryConpleted(c cVar);
-    }
-
-    public interface e {
-        void a(UpdatePaymentResponse updatePaymentResponse);
     }
 
     public static class f {

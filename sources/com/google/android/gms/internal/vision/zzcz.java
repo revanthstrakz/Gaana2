@@ -129,6 +129,16 @@ public final class zzcz {
         private long zzmi;
         private String zzmj = "";
 
+        public static final class zza extends com.google.android.gms.internal.vision.zzfy.zza<zzc, zza> implements zzhh {
+            private zza() {
+                super(zzc.zzmk);
+            }
+
+            /* synthetic */ zza(zzda zzda) {
+                this();
+            }
+        }
+
         public enum zzb implements zzgb {
             REASON_UNKNOWN(0),
             REASON_MISSING(1),
@@ -167,16 +177,6 @@ public final class zzcz {
 
             static {
                 zzdv = new zzdb();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.vision.zzfy.zza<zzc, zza> implements zzhh {
-            private zza() {
-                super(zzc.zzmk);
-            }
-
-            /* synthetic */ zza(zzda zzda) {
-                this();
             }
         }
 
@@ -234,6 +234,16 @@ public final class zzcz {
         private long zzmw;
         private zzge<zzi> zzmx = zzfy.zzey();
 
+        public static final class zza extends com.google.android.gms.internal.vision.zzfy.zza<zzd, zza> implements zzhh {
+            private zza() {
+                super(zzd.zzmy);
+            }
+
+            /* synthetic */ zza(zzda zzda) {
+                this();
+            }
+        }
+
         public enum zzb implements zzgb {
             RESULT_UNKNOWN(0),
             RESULT_SUCCESS(1),
@@ -272,16 +282,6 @@ public final class zzcz {
 
             static {
                 zzdv = new zzdd();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.vision.zzfy.zza<zzd, zza> implements zzhh {
-            private zza() {
-                super(zzd.zzmy);
-            }
-
-            /* synthetic */ zza(zzda zzda) {
-                this();
             }
         }
 
@@ -398,6 +398,16 @@ public final class zzcz {
         private long zznm;
         private long zznn;
 
+        public static final class zza extends com.google.android.gms.internal.vision.zzfy.zza<zzf, zza> implements zzhh {
+            private zza() {
+                super(zzf.zzno);
+            }
+
+            /* synthetic */ zza(zzda zzda) {
+                this();
+            }
+        }
+
         public enum zzb implements zzgb {
             FORMAT_UNKNOWN(0),
             FORMAT_LUMINANCE(1),
@@ -436,16 +446,6 @@ public final class zzcz {
 
             static {
                 zzdv = new zzdf();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.vision.zzfy.zza<zzf, zza> implements zzhh {
-            private zza() {
-                super(zzf.zzno);
-            }
-
-            /* synthetic */ zza(zzda zzda) {
-                this();
             }
         }
 

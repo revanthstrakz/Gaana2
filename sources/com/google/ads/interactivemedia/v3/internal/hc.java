@@ -26,6 +26,42 @@ public final class hc<K, V> extends AbstractMap<K, V> implements Serializable {
     private a h;
     private b i;
 
+    private abstract class c<T> implements Iterator<T> {
+        d<K, V> b = hc.this.e.d;
+        d<K, V> c = null;
+        int d = hc.this.d;
+
+        c() {
+        }
+
+        public final boolean hasNext() {
+            return this.b != hc.this.e;
+        }
+
+        /* Access modifiers changed, original: final */
+        public final d<K, V> b() {
+            d dVar = this.b;
+            if (dVar == hc.this.e) {
+                throw new NoSuchElementException();
+            } else if (hc.this.d != this.d) {
+                throw new ConcurrentModificationException();
+            } else {
+                this.b = dVar.d;
+                this.c = dVar;
+                return dVar;
+            }
+        }
+
+        public final void remove() {
+            if (this.c == null) {
+                throw new IllegalStateException();
+            }
+            hc.this.a(this.c, true);
+            this.c = null;
+            this.d = hc.this.d;
+        }
+    }
+
     class a extends AbstractSet<Entry<K, V>> {
         a() {
         }
@@ -98,42 +134,6 @@ public final class hc<K, V> extends AbstractMap<K, V> implements Serializable {
 
         public void clear() {
             hc.this.clear();
-        }
-    }
-
-    private abstract class c<T> implements Iterator<T> {
-        d<K, V> b = hc.this.e.d;
-        d<K, V> c = null;
-        int d = hc.this.d;
-
-        c() {
-        }
-
-        public final boolean hasNext() {
-            return this.b != hc.this.e;
-        }
-
-        /* Access modifiers changed, original: final */
-        public final d<K, V> b() {
-            d dVar = this.b;
-            if (dVar == hc.this.e) {
-                throw new NoSuchElementException();
-            } else if (hc.this.d != this.d) {
-                throw new ConcurrentModificationException();
-            } else {
-                this.b = dVar.d;
-                this.c = dVar;
-                return dVar;
-            }
-        }
-
-        public final void remove() {
-            if (this.c == null) {
-                throw new IllegalStateException();
-            }
-            hc.this.a(this.c, true);
-            this.c = null;
-            this.d = hc.this.d;
         }
     }
 

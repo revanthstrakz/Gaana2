@@ -50,7 +50,7 @@ import java.util.Iterator;
 
 public class Login extends BaseActivity implements IOnLoginCompleted {
     public static final String LAUNCH_EMAIL_LOGIN_SCREEN = "email_login";
-    public static boolean isSignupFromInside = false;
+    public static boolean isSignupFromInside;
     private final int DO_NOT_SHOW_DIALOG = 1;
     private final int SHOW_DIALOG = 0;
     private int dialogStatus = 0;

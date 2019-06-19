@@ -29,6 +29,18 @@ public class ShareActionProvider extends ActionProvider {
         boolean onShareTargetSelected(ShareActionProvider shareActionProvider, Intent intent);
     }
 
+    private class ShareActivityChooserModelPolicy implements OnChooseActivityListener {
+        ShareActivityChooserModelPolicy() {
+        }
+
+        public boolean onChooseActivity(ActivityChooserModel activityChooserModel, Intent intent) {
+            if (ShareActionProvider.this.mOnShareTargetSelectedListener != null) {
+                ShareActionProvider.this.mOnShareTargetSelectedListener.onShareTargetSelected(ShareActionProvider.this, intent);
+            }
+            return false;
+        }
+    }
+
     private class ShareMenuItemOnMenuItemClickListener implements OnMenuItemClickListener {
         ShareMenuItemOnMenuItemClickListener() {
         }
@@ -43,18 +55,6 @@ public class ShareActionProvider extends ActionProvider {
                 ShareActionProvider.this.mContext.startActivity(chooseActivity);
             }
             return true;
-        }
-    }
-
-    private class ShareActivityChooserModelPolicy implements OnChooseActivityListener {
-        ShareActivityChooserModelPolicy() {
-        }
-
-        public boolean onChooseActivity(ActivityChooserModel activityChooserModel, Intent intent) {
-            if (ShareActionProvider.this.mOnShareTargetSelectedListener != null) {
-                ShareActionProvider.this.mOnShareTargetSelectedListener.onShareTargetSelected(ShareActionProvider.this, intent);
-            }
-            return false;
         }
     }
 

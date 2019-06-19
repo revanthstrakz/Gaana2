@@ -89,6 +89,13 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         }
     };
 
+    private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> {
+        Params[] mParams;
+
+        WorkerRunnable() {
+        }
+    }
+
     private static class AsyncTaskResult<Data> {
         final Data[] mData;
         final ModernAsyncTask mTask;
@@ -123,13 +130,6 @@ abstract class ModernAsyncTask<Params, Progress, Result> {
         PENDING,
         RUNNING,
         FINISHED
-    }
-
-    private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> {
-        Params[] mParams;
-
-        WorkerRunnable() {
-        }
     }
 
     public abstract Result doInBackground(Params... paramsArr);

@@ -236,70 +236,6 @@ final class RegisteredMediaRouteProvider extends MediaRouteProvider implements S
         }
     }
 
-    private static final class PrivateHandler extends Handler {
-        PrivateHandler() {
-        }
-    }
-
-    private static final class ReceiveHandler extends Handler {
-        private final WeakReference<Connection> mConnectionRef;
-
-        public ReceiveHandler(Connection connection) {
-            this.mConnectionRef = new WeakReference(connection);
-        }
-
-        public void dispose() {
-            this.mConnectionRef.clear();
-        }
-
-        public void handleMessage(Message message) {
-            Connection connection = (Connection) this.mConnectionRef.get();
-            if (connection != null) {
-                if (!processMessage(connection, message.what, message.arg1, message.arg2, message.obj, message.peekData()) && RegisteredMediaRouteProvider.DEBUG) {
-                    String str = RegisteredMediaRouteProvider.TAG;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("Unhandled message from server: ");
-                    stringBuilder.append(message);
-                    Log.d(str, stringBuilder.toString());
-                }
-            }
-        }
-
-        private boolean processMessage(Connection connection, int i, int i2, int i3, Object obj, Bundle bundle) {
-            switch (i) {
-                case 0:
-                    connection.onGenericFailure(i2);
-                    return true;
-                case 1:
-                    connection.onGenericSuccess(i2);
-                    return true;
-                case 2:
-                    if (obj == null || (obj instanceof Bundle)) {
-                        return connection.onRegistered(i2, i3, (Bundle) obj);
-                    }
-                case 3:
-                    if (obj == null || (obj instanceof Bundle)) {
-                        return connection.onControlRequestSucceeded(i2, (Bundle) obj);
-                    }
-                case 4:
-                    if (obj == null || (obj instanceof Bundle)) {
-                        String str;
-                        if (bundle == null) {
-                            str = null;
-                        } else {
-                            str = bundle.getString("error");
-                        }
-                        return connection.onControlRequestFailed(i2, str, (Bundle) obj);
-                    }
-                case 5:
-                    if (obj == null || (obj instanceof Bundle)) {
-                        return connection.onDescriptorChanged((Bundle) obj);
-                    }
-            }
-            return false;
-        }
-    }
-
     private final class Controller extends RouteController {
         private Connection mConnection;
         private int mControllerId;
@@ -379,6 +315,70 @@ final class RegisteredMediaRouteProvider extends MediaRouteProvider implements S
 
         public boolean onControlRequest(Intent intent, ControlRequestCallback controlRequestCallback) {
             return this.mConnection != null ? this.mConnection.sendControlRequest(this.mControllerId, intent, controlRequestCallback) : false;
+        }
+    }
+
+    private static final class PrivateHandler extends Handler {
+        PrivateHandler() {
+        }
+    }
+
+    private static final class ReceiveHandler extends Handler {
+        private final WeakReference<Connection> mConnectionRef;
+
+        public ReceiveHandler(Connection connection) {
+            this.mConnectionRef = new WeakReference(connection);
+        }
+
+        public void dispose() {
+            this.mConnectionRef.clear();
+        }
+
+        public void handleMessage(Message message) {
+            Connection connection = (Connection) this.mConnectionRef.get();
+            if (connection != null) {
+                if (!processMessage(connection, message.what, message.arg1, message.arg2, message.obj, message.peekData()) && RegisteredMediaRouteProvider.DEBUG) {
+                    String str = RegisteredMediaRouteProvider.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Unhandled message from server: ");
+                    stringBuilder.append(message);
+                    Log.d(str, stringBuilder.toString());
+                }
+            }
+        }
+
+        private boolean processMessage(Connection connection, int i, int i2, int i3, Object obj, Bundle bundle) {
+            switch (i) {
+                case 0:
+                    connection.onGenericFailure(i2);
+                    return true;
+                case 1:
+                    connection.onGenericSuccess(i2);
+                    return true;
+                case 2:
+                    if (obj == null || (obj instanceof Bundle)) {
+                        return connection.onRegistered(i2, i3, (Bundle) obj);
+                    }
+                case 3:
+                    if (obj == null || (obj instanceof Bundle)) {
+                        return connection.onControlRequestSucceeded(i2, (Bundle) obj);
+                    }
+                case 4:
+                    if (obj == null || (obj instanceof Bundle)) {
+                        String str;
+                        if (bundle == null) {
+                            str = null;
+                        } else {
+                            str = bundle.getString("error");
+                        }
+                        return connection.onControlRequestFailed(i2, str, (Bundle) obj);
+                    }
+                case 5:
+                    if (obj == null || (obj instanceof Bundle)) {
+                        return connection.onDescriptorChanged((Bundle) obj);
+                    }
+            }
+            return false;
         }
     }
 

@@ -10,10 +10,6 @@ import java.util.Map;
 
 public class l implements com.helpshift.a.a {
 
-    private static class b {
-        static final l a = new l();
-    }
-
     /* renamed from: com.helpshift.support.l$1 */
     static class AnonymousClass1 extends com.helpshift.util.a.e.b<Integer> {
         public void run() {
@@ -22,6 +18,10 @@ public class l implements com.helpshift.a.a {
     }
 
     public static class a extends com.helpshift.support.m.a {
+    }
+
+    private static class b {
+        static final l a = new l();
     }
 
     public ActionExecutor a() {

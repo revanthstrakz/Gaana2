@@ -37,6 +37,10 @@ public final class PaymentData extends AbstractSafeParcelable implements AutoRes
     public final class zza {
         private zza() {
         }
+
+        /* synthetic */ zza(PaymentData paymentData, zzac zzac) {
+            this();
+        }
     }
 
     @Constructor
@@ -94,7 +98,7 @@ public final class PaymentData extends AbstractSafeParcelable implements AutoRes
     }
 
     public static PaymentData fromJson(String str) {
-        zza zza = new zza();
+        zza zza = new zza(new PaymentData(), null);
         PaymentData.this.zzbz = (String) Preconditions.checkNotNull(str, "paymentDataJson cannot be null!");
         return PaymentData.this;
     }

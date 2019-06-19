@@ -30,6 +30,26 @@ class AppCompatDelegateImplV14 extends AppCompatDelegateImplV9 {
     private boolean mHandleNativeActionModes = true;
     private int mLocalNightMode = -100;
 
+    class AppCompatWindowCallbackV14 extends AppCompatWindowCallbackBase {
+        AppCompatWindowCallbackV14(Callback callback) {
+            super(callback);
+        }
+
+        public ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
+            if (AppCompatDelegateImplV14.this.isHandleNativeActionModesEnabled()) {
+                return startAsSupportActionMode(callback);
+            }
+            return super.onWindowStartingActionMode(callback);
+        }
+
+        /* Access modifiers changed, original: final */
+        public final ActionMode startAsSupportActionMode(ActionMode.Callback callback) {
+            CallbackWrapper callbackWrapper = new CallbackWrapper(AppCompatDelegateImplV14.this.mContext, callback);
+            android.support.v7.view.ActionMode startSupportActionMode = AppCompatDelegateImplV14.this.startSupportActionMode(callbackWrapper);
+            return startSupportActionMode != null ? callbackWrapper.getActionModeWrapper(startSupportActionMode) : null;
+        }
+    }
+
     @VisibleForTesting
     final class AutoNightModeManager {
         private BroadcastReceiver mAutoTimeChangeReceiver;
@@ -82,26 +102,6 @@ class AppCompatDelegateImplV14 extends AppCompatDelegateImplV9 {
                 AppCompatDelegateImplV14.this.mContext.unregisterReceiver(this.mAutoTimeChangeReceiver);
                 this.mAutoTimeChangeReceiver = null;
             }
-        }
-    }
-
-    class AppCompatWindowCallbackV14 extends AppCompatWindowCallbackBase {
-        AppCompatWindowCallbackV14(Callback callback) {
-            super(callback);
-        }
-
-        public ActionMode onWindowStartingActionMode(ActionMode.Callback callback) {
-            if (AppCompatDelegateImplV14.this.isHandleNativeActionModesEnabled()) {
-                return startAsSupportActionMode(callback);
-            }
-            return super.onWindowStartingActionMode(callback);
-        }
-
-        /* Access modifiers changed, original: final */
-        public final ActionMode startAsSupportActionMode(ActionMode.Callback callback) {
-            CallbackWrapper callbackWrapper = new CallbackWrapper(AppCompatDelegateImplV14.this.mContext, callback);
-            android.support.v7.view.ActionMode startSupportActionMode = AppCompatDelegateImplV14.this.startSupportActionMode(callbackWrapper);
-            return startSupportActionMode != null ? callbackWrapper.getActionModeWrapper(startSupportActionMode) : null;
         }
     }
 

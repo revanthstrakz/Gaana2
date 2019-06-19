@@ -17,6 +17,19 @@ public class RevampedSimilarAlbumEntityInfo {
     @SerializedName("user_token_status")
     private String user_token_status;
 
+    public static class GenericEntity extends Item {
+        @SerializedName("generic_entity_info")
+        private GenericEntityInfo generic_entity_info;
+
+        public GenericEntityInfo getGeneric_entity_info() {
+            return this.generic_entity_info;
+        }
+
+        public void setGeneric_entity_info(GenericEntityInfo genericEntityInfo) {
+            this.generic_entity_info = genericEntityInfo;
+        }
+    }
+
     public static class GenericEntityInfo {
         @SerializedName("parental_warning")
         private int parental_warning;
@@ -47,19 +60,6 @@ public class RevampedSimilarAlbumEntityInfo {
 
         public void setPrimary_artist_count(int i) {
             this.primary_artist_count = i;
-        }
-    }
-
-    public static class GenericEntity extends Item {
-        @SerializedName("generic_entity_info")
-        private GenericEntityInfo generic_entity_info;
-
-        public GenericEntityInfo getGeneric_entity_info() {
-            return this.generic_entity_info;
-        }
-
-        public void setGeneric_entity_info(GenericEntityInfo genericEntityInfo) {
-            this.generic_entity_info = genericEntityInfo;
         }
     }
 

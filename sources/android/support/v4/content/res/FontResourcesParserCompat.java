@@ -36,6 +36,20 @@ public class FontResourcesParserCompat {
     public @interface FetchStrategy {
     }
 
+    public static final class FontFamilyFilesResourceEntry implements FamilyResourceEntry {
+        @NonNull
+        private final FontFileResourceEntry[] mEntries;
+
+        public FontFamilyFilesResourceEntry(@NonNull FontFileResourceEntry[] fontFileResourceEntryArr) {
+            this.mEntries = fontFileResourceEntryArr;
+        }
+
+        @NonNull
+        public FontFileResourceEntry[] getEntries() {
+            return this.mEntries;
+        }
+    }
+
     public static final class FontFileResourceEntry {
         @NonNull
         private final String mFileName;
@@ -65,20 +79,6 @@ public class FontResourcesParserCompat {
 
         public int getResourceId() {
             return this.mResourceId;
-        }
-    }
-
-    public static final class FontFamilyFilesResourceEntry implements FamilyResourceEntry {
-        @NonNull
-        private final FontFileResourceEntry[] mEntries;
-
-        public FontFamilyFilesResourceEntry(@NonNull FontFileResourceEntry[] fontFileResourceEntryArr) {
-            this.mEntries = fontFileResourceEntryArr;
-        }
-
-        @NonNull
-        public FontFileResourceEntry[] getEntries() {
-            return this.mEntries;
         }
     }
 

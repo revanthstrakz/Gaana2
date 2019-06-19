@@ -1124,13 +1124,11 @@ public class ap {
         Date expiryDate = this.d.getCurrentUser().getUserSubscriptionData().getExpiryDate();
         Date expiryDateWithGrace = this.d.getCurrentUser().getUserSubscriptionData().getExpiryDateWithGrace();
         Date date = new Date();
-        CharSequence string = context.getResources().getString(R.string.error_msg_gaana_plus_expiry_in_5_days);
+        String string = context.getResources().getString(R.string.error_msg_gaana_plus_expiry_in_5_days);
         if (!(expiryDate == null || expiryDateWithGrace == null || ((!expiryDate.before(date) || !date.before(expiryDateWithGrace)) && (!date.before(expiryDateWithGrace) || !expiryDate.equals(expiryDateWithGrace))))) {
             string = this.d.getCurrentUser().getUserSubscriptionData().getGaanaPlusGraceMessage();
         }
-        if (((int) ((((double) (this.d.getCurrentUser().getUserSubscriptionData().getExpiryDate().getTime() - new Date().getTime())) / 8.64E7d) + 0.5d)) == 5) {
-            Toast.makeText(context, string, 0).show();
-        }
+        expiryDate = this.d.getCurrentUser().getUserSubscriptionData().getExpiryDate();
     }
 
     public void e(Context context) {

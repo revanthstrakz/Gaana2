@@ -50,10 +50,14 @@ public final class LoyaltyPoints extends AbstractSafeParcelable {
         public final LoyaltyPoints build() {
             return LoyaltyPoints.this;
         }
+
+        /* synthetic */ Builder(LoyaltyPoints loyaltyPoints, zzf zzf) {
+            this();
+        }
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new LoyaltyPoints(), null);
     }
 
     @Deprecated

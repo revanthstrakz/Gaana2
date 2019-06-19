@@ -43,8 +43,8 @@ public final class DefaultAudioSink implements AudioSink {
     private static final String TAG = "AudioTrack";
     @SuppressLint({"InlinedApi"})
     private static final int WRITE_NON_BLOCKING = 1;
-    public static boolean enablePreV21AudioSessionWorkaround = false;
-    public static boolean failOnSpuriousAudioTimestamp = false;
+    public static boolean enablePreV21AudioSessionWorkaround;
+    public static boolean failOnSpuriousAudioTimestamp;
     private AudioProcessor[] activeAudioProcessors;
     @Nullable
     private PlaybackParameters afterDrainPlaybackParameters;
@@ -115,32 +115,6 @@ public final class DefaultAudioSink implements AudioSink {
         long getSkippedOutputFrameCount();
     }
 
-    public static final class InvalidAudioTrackTimestampException extends RuntimeException {
-        /* synthetic */ InvalidAudioTrackTimestampException(String str, AnonymousClass1 anonymousClass1) {
-            this(str);
-        }
-
-        private InvalidAudioTrackTimestampException(String str) {
-            super(str);
-        }
-    }
-
-    private static final class PlaybackParametersCheckpoint {
-        private final long mediaTimeUs;
-        private final PlaybackParameters playbackParameters;
-        private final long positionUs;
-
-        /* synthetic */ PlaybackParametersCheckpoint(PlaybackParameters playbackParameters, long j, long j2, AnonymousClass1 anonymousClass1) {
-            this(playbackParameters, j, j2);
-        }
-
-        private PlaybackParametersCheckpoint(PlaybackParameters playbackParameters, long j, long j2) {
-            this.playbackParameters = playbackParameters;
-            this.mediaTimeUs = j;
-            this.positionUs = j2;
-        }
-    }
-
     public static class DefaultAudioProcessorChain implements AudioProcessorChain {
         private final AudioProcessor[] audioProcessors;
         private final SilenceSkippingAudioProcessor silenceSkippingAudioProcessor = new SilenceSkippingAudioProcessor();
@@ -167,6 +141,32 @@ public final class DefaultAudioSink implements AudioSink {
 
         public long getSkippedOutputFrameCount() {
             return this.silenceSkippingAudioProcessor.getSkippedFrames();
+        }
+    }
+
+    public static final class InvalidAudioTrackTimestampException extends RuntimeException {
+        /* synthetic */ InvalidAudioTrackTimestampException(String str, AnonymousClass1 anonymousClass1) {
+            this(str);
+        }
+
+        private InvalidAudioTrackTimestampException(String str) {
+            super(str);
+        }
+    }
+
+    private static final class PlaybackParametersCheckpoint {
+        private final long mediaTimeUs;
+        private final PlaybackParameters playbackParameters;
+        private final long positionUs;
+
+        /* synthetic */ PlaybackParametersCheckpoint(PlaybackParameters playbackParameters, long j, long j2, AnonymousClass1 anonymousClass1) {
+            this(playbackParameters, j, j2);
+        }
+
+        private PlaybackParametersCheckpoint(PlaybackParameters playbackParameters, long j, long j2) {
+            this.playbackParameters = playbackParameters;
+            this.mediaTimeUs = j;
+            this.positionUs = j2;
         }
     }
 

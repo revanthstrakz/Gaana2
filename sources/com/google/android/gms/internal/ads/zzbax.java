@@ -31,9 +31,9 @@ public final class zzbax {
     private static Object sLock = new Object();
     private static Clock zzbrs = DefaultClock.getInstance();
     @GuardedBy("sLock")
-    private static boolean zzeom = false;
+    private static boolean zzeom;
     @GuardedBy("sLock")
-    private static boolean zzeon = false;
+    private static boolean zzeon;
     private static final Set<String> zzeoo = new HashSet(Arrays.asList(new String[0]));
     private final List<String> zzeop;
 

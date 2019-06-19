@@ -27,6 +27,42 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
     Node<K, V> root;
     int size;
 
+    private abstract class LinkedTreeMapIterator<T> implements Iterator<T> {
+        int expectedModCount = LinkedTreeMap.this.modCount;
+        Node<K, V> lastReturned = null;
+        Node<K, V> next = LinkedTreeMap.this.header.next;
+
+        LinkedTreeMapIterator() {
+        }
+
+        public final boolean hasNext() {
+            return this.next != LinkedTreeMap.this.header;
+        }
+
+        /* Access modifiers changed, original: final */
+        public final Node<K, V> nextNode() {
+            Node node = this.next;
+            if (node == LinkedTreeMap.this.header) {
+                throw new NoSuchElementException();
+            } else if (LinkedTreeMap.this.modCount != this.expectedModCount) {
+                throw new ConcurrentModificationException();
+            } else {
+                this.next = node.next;
+                this.lastReturned = node;
+                return node;
+            }
+        }
+
+        public final void remove() {
+            if (this.lastReturned == null) {
+                throw new IllegalStateException();
+            }
+            LinkedTreeMap.this.removeInternal(this.lastReturned, true);
+            this.lastReturned = null;
+            this.expectedModCount = LinkedTreeMap.this.modCount;
+        }
+    }
+
     class EntrySet extends AbstractSet<Entry<K, V>> {
         EntrySet() {
         }
@@ -98,42 +134,6 @@ public final class LinkedTreeMap<K, V> extends AbstractMap<K, V> implements Seri
 
         public void clear() {
             LinkedTreeMap.this.clear();
-        }
-    }
-
-    private abstract class LinkedTreeMapIterator<T> implements Iterator<T> {
-        int expectedModCount = LinkedTreeMap.this.modCount;
-        Node<K, V> lastReturned = null;
-        Node<K, V> next = LinkedTreeMap.this.header.next;
-
-        LinkedTreeMapIterator() {
-        }
-
-        public final boolean hasNext() {
-            return this.next != LinkedTreeMap.this.header;
-        }
-
-        /* Access modifiers changed, original: final */
-        public final Node<K, V> nextNode() {
-            Node node = this.next;
-            if (node == LinkedTreeMap.this.header) {
-                throw new NoSuchElementException();
-            } else if (LinkedTreeMap.this.modCount != this.expectedModCount) {
-                throw new ConcurrentModificationException();
-            } else {
-                this.next = node.next;
-                this.lastReturned = node;
-                return node;
-            }
-        }
-
-        public final void remove() {
-            if (this.lastReturned == null) {
-                throw new IllegalStateException();
-            }
-            LinkedTreeMap.this.removeInternal(this.lastReturned, true);
-            this.lastReturned = null;
-            this.expectedModCount = LinkedTreeMap.this.modCount;
         }
     }
 

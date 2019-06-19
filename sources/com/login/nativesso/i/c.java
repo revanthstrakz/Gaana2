@@ -602,10 +602,10 @@ public class c {
     /* JADX WARNING: Removed duplicated region for block: B:25:0x0085 A:{Catch:{ ServerException -> 0x00c6, SecurityException -> 0x00b4, Exception -> 0x009b }} */
     /* JADX WARNING: Removed duplicated region for block: B:17:0x0028 A:{Catch:{ ServerException -> 0x00c6, SecurityException -> 0x00b4, Exception -> 0x009b }} */
     /* JADX WARNING: Removed duplicated region for block: B:25:0x0085 A:{Catch:{ ServerException -> 0x00c6, SecurityException -> 0x00b4, Exception -> 0x009b }} */
-    /* JADX WARNING: Removed duplicated region for block: B:38:0x00c6 A:{Splitter:B:0:0x0000, ExcHandler: ServerException (r6_12 'e' com.login.nativesso.exception.ServerException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:34:0x00b4 A:{Splitter:B:0:0x0000, ExcHandler: SecurityException (r6_9 'e' com.login.nativesso.exception.SecurityException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:38:0x00c6 A:{Splitter:B:0:0x0000, ExcHandler: ServerException (r6_12 'e' com.login.nativesso.exception.ServerException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:34:0x00b4 A:{Splitter:B:0:0x0000, ExcHandler: SecurityException (r6_9 'e' com.login.nativesso.exception.SecurityException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:38:0x00c6 A:{ExcHandler: ServerException (r6_12 'e' com.login.nativesso.exception.ServerException), Splitter:B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:34:0x00b4 A:{ExcHandler: SecurityException (r6_9 'e' com.login.nativesso.exception.SecurityException), Splitter:B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:38:0x00c6 A:{ExcHandler: ServerException (r6_12 'e' com.login.nativesso.exception.ServerException), Splitter:B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:34:0x00b4 A:{ExcHandler: SecurityException (r6_9 'e' com.login.nativesso.exception.SecurityException), Splitter:B:0:0x0000} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:10:0x001b, code skipped:

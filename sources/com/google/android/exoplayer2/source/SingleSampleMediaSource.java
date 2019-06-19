@@ -35,6 +35,21 @@ public final class SingleSampleMediaSource extends BaseMediaSource {
         void onLoadError(int i, IOException iOException);
     }
 
+    @Deprecated
+    private static final class EventListenerWrapper extends DefaultMediaSourceEventListener {
+        private final EventListener eventListener;
+        private final int eventSourceId;
+
+        public EventListenerWrapper(EventListener eventListener, int i) {
+            this.eventListener = (EventListener) Assertions.checkNotNull(eventListener);
+            this.eventSourceId = i;
+        }
+
+        public void onLoadError(int i, @Nullable MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException iOException, boolean z) {
+            this.eventListener.onLoadError(this.eventSourceId, iOException);
+        }
+    }
+
     public static final class Factory {
         private final com.google.android.exoplayer2.upstream.DataSource.Factory dataSourceFactory;
         private boolean isCreateCalled;
@@ -82,21 +97,6 @@ public final class SingleSampleMediaSource extends BaseMediaSource {
                 createMediaSource.addEventListener(handler, mediaSourceEventListener);
             }
             return createMediaSource;
-        }
-    }
-
-    @Deprecated
-    private static final class EventListenerWrapper extends DefaultMediaSourceEventListener {
-        private final EventListener eventListener;
-        private final int eventSourceId;
-
-        public EventListenerWrapper(EventListener eventListener, int i) {
-            this.eventListener = (EventListener) Assertions.checkNotNull(eventListener);
-            this.eventSourceId = i;
-        }
-
-        public void onLoadError(int i, @Nullable MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException iOException, boolean z) {
-            this.eventListener.onLoadError(this.eventSourceId, iOException);
         }
     }
 

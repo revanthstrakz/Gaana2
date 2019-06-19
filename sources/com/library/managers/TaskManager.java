@@ -7,6 +7,12 @@ public class TaskManager {
     private static TaskManager mInstanse;
     private final String TAG = "Task_Manager";
 
+    public interface TaskListner {
+        void doBackGroundTask();
+
+        void onBackGroundTaskCompleted();
+    }
+
     static class TaskHandler extends Handler {
         private final TaskListner taskListner;
 
@@ -19,12 +25,6 @@ public class TaskManager {
                 this.taskListner.onBackGroundTaskCompleted();
             }
         }
-    }
-
-    public interface TaskListner {
-        void doBackGroundTask();
-
-        void onBackGroundTaskCompleted();
     }
 
     public static TaskManager getInstanse() {

@@ -208,6 +208,113 @@ public class GaanaVideoPlayerFragment extends BaseGaanaFragment implements OnCli
         }
     }
 
+    private final class b extends Adapter<ViewHolder> {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+        private int b;
+        private boolean c;
+        private ArrayList<Item> d;
+
+        public b(GaanaVideoPlayerFragment gaanaVideoPlayerFragment, ArrayList<Item> arrayList) {
+            kotlin.jvm.internal.c.b(arrayList, "items");
+            this.a = gaanaVideoPlayerFragment;
+            this.d = arrayList;
+        }
+
+        public final void a(int i, boolean z, boolean z2) {
+            this.c = z;
+            int i2 = !z2 ? this.b : -1;
+            this.b = i;
+            if (!this.c) {
+                if (!z2) {
+                    notifyItemChanged(i2);
+                }
+                notifyItemChanged(this.b);
+            }
+        }
+
+        public final void a(ArrayList<Item> arrayList, boolean z) {
+            kotlin.jvm.internal.c.b(arrayList, "itemsList");
+            this.d = arrayList;
+            this.c = z;
+            notifyDataSetChanged();
+        }
+
+        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            kotlin.jvm.internal.c.b(viewGroup, "parent");
+            i = (int) (((float) (Util.U() - (4 * Util.b(8)))) * 0.5625f);
+            Object from = LayoutInflater.from(viewGroup.getContext());
+            kotlin.jvm.internal.c.a(from, "LayoutInflater.from(parent.context)");
+            Object inflate = from.inflate(R.layout.item_playlist_grid_110x150, viewGroup, false);
+            kotlin.jvm.internal.c.a(inflate, "inflater.inflate(R.layou…d_110x150, parent, false)");
+            from = inflate.findViewById(R.id.imgProductIcon);
+            kotlin.jvm.internal.c.a(from, "convertView.findViewById(R.id.imgProductIcon)");
+            RoundedCornerImageView roundedCornerImageView = (RoundedCornerImageView) from;
+            LayoutParams layoutParams = roundedCornerImageView.getLayoutParams();
+            if (layoutParams == null) {
+                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
+            }
+            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
+            layoutParams2.height = i;
+            roundedCornerImageView.setLayoutParams(layoutParams2);
+            from = inflate.findViewById(R.id.selectedBg);
+            kotlin.jvm.internal.c.a(from, "convertView.findViewById<View>(R.id.selectedBg)");
+            layoutParams = from.getLayoutParams();
+            if (layoutParams == null) {
+                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
+            }
+            layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
+            layoutParams2.height = i;
+            from.setLayoutParams(layoutParams2);
+            from = inflate.findViewById(R.id.shadow_layer);
+            kotlin.jvm.internal.c.a(from, "convertView.findViewById(R.id.shadow_layer)");
+            layoutParams = from.getLayoutParams();
+            if (layoutParams == null) {
+                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
+            }
+            layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
+            layoutParams2.height = i;
+            from.setLayoutParams(layoutParams2);
+            from = inflate.findViewById(R.id.tvTopHeadingMix);
+            kotlin.jvm.internal.c.a(from, "convertView.findViewById(R.id.tvTopHeadingMix)");
+            CustomTextView customTextView = (CustomTextView) from;
+            layoutParams = customTextView.getLayoutParams();
+            if (layoutParams == null) {
+                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
+            }
+            layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
+            layoutParams2.topMargin = i;
+            customTextView.setLayoutParams(layoutParams2);
+            return new PlaylistGridHolder(inflate);
+        }
+
+        public void onBindViewHolder(ViewHolder viewHolder, int i) {
+            kotlin.jvm.internal.c.b(viewHolder, "holder");
+            boolean z = viewHolder instanceof GaanaMiniParentViewHolder;
+            GaanaVideoPlayerFragment gaanaVideoPlayerFragment = this.a;
+            Object obj = this.d.get(i);
+            kotlin.jvm.internal.c.a(obj, "items.get(position)");
+            gaanaVideoPlayerFragment.a(i, viewHolder, (BusinessObject) obj, null, "hello", null);
+            Object findViewById;
+            if (this.c) {
+                findViewById = viewHolder.itemView.findViewById(R.id.selectedBg);
+                kotlin.jvm.internal.c.a(findViewById, "holder.itemView.findView…Id<View>(R.id.selectedBg)");
+                findViewById.setVisibility(4);
+            } else if (i == this.b) {
+                findViewById = viewHolder.itemView.findViewById(R.id.selectedBg);
+                kotlin.jvm.internal.c.a(findViewById, "holder.itemView.findView…Id<View>(R.id.selectedBg)");
+                findViewById.setVisibility(0);
+            } else {
+                findViewById = viewHolder.itemView.findViewById(R.id.selectedBg);
+                kotlin.jvm.internal.c.a(findViewById, "holder.itemView.findView…Id<View>(R.id.selectedBg)");
+                findViewById.setVisibility(4);
+            }
+        }
+
+        public int getItemCount() {
+            return this.d.size();
+        }
+    }
+
     public static final class c {
         private BusinessObject a;
         private int b;
@@ -231,6 +338,138 @@ public class GaanaVideoPlayerFragment extends BaseGaanaFragment implements OnCli
 
         public final String c() {
             return this.c;
+        }
+    }
+
+    public static final class d implements af {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+        final /* synthetic */ String b;
+
+        public void onErrorResponse(BusinessObject businessObject) {
+            kotlin.jvm.internal.c.b(businessObject, "businessObject");
+        }
+
+        d(GaanaVideoPlayerFragment gaanaVideoPlayerFragment, String str) {
+            this.a = gaanaVideoPlayerFragment;
+            this.b = str;
+        }
+
+        public void onRetreivalComplete(Object obj) {
+            kotlin.jvm.internal.c.b(obj, "businessObj");
+            ProgressBar m = this.a.y;
+            if (m == null) {
+                kotlin.jvm.internal.c.a();
+            }
+            m.setVisibility(8);
+            ArrayList arrayList = (ArrayList) null;
+            VideoFeedItemData videoFeedItemData = (VideoFeedItemData) obj;
+            ArrayList entities = videoFeedItemData.getEntities();
+            if (entities != null) {
+                ViewPager r;
+                RecyclerView c;
+                if (this.a.e == null) {
+                    this.a.s = entities;
+                    GaanaVideoPlayerFragment gaanaVideoPlayerFragment = this.a;
+                    GaanaVideoPlayerFragment gaanaVideoPlayerFragment2 = this.a;
+                    obj = videoFeedItemData.getEntities();
+                    kotlin.jvm.internal.c.a(obj, "(businessObj).entities");
+                    gaanaVideoPlayerFragment.e = new b(gaanaVideoPlayerFragment2, obj);
+                    c = this.a.b;
+                    if (c == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    c.setLayoutManager(new GridLayoutManager(this.a.mContext, 3));
+                    c = this.a.b;
+                    if (c == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    c.setAdapter(this.a.e);
+                } else {
+                    b n = this.a.e;
+                    if (n == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    obj = videoFeedItemData.getEntities();
+                    kotlin.jvm.internal.c.a(obj, "(businessObj).entities");
+                    n.a(obj, this.a.v.equals(this.a.u) ^ 1);
+                    c = this.a.b;
+                    if (c == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    c.scrollToPosition(0);
+                }
+                if (this.a.F == null) {
+                    GaanaVideoPlayerFragment gaanaVideoPlayerFragment3 = this.a;
+                    Context context = this.a.mContext;
+                    BaseGaanaFragment q = this.a.h;
+                    if (q == null) {
+                        throw new TypeCastException("null cannot be cast to non-null type com.fragments.GaanaVideoPlayerFragment");
+                    }
+                    gaanaVideoPlayerFragment3.F = new VideoCardPagerAdapter(context, (GaanaVideoPlayerFragment) q, this.a.q, entities, this.a.b());
+                }
+                if (this.a.t == null) {
+                    this.a.w = this.b;
+                    r = this.a.q;
+                    if (r == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    r.setAdapter(this.a.F);
+                    r = this.a.q;
+                    if (r == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    r.setOffscreenPageLimit(2);
+                    r = this.a.q;
+                    if (r == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    r.addOnPageChangeListener(this.a.R);
+                    com.logging.e.c().b = this.a.I;
+                    VideoCardPagerAdapter p = this.a.F;
+                    if (p == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    p.playVideoOnItemClick(0, this.a.A);
+                    this.a.A = -1;
+                    this.a.a(0);
+                }
+                this.a.x = this.b;
+                this.a.t = entities;
+                this.a.d();
+                this.a.M = false;
+                this.a.c();
+                r = this.a.q;
+                if (r == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                r.setOnTouchListener(this.a.N);
+                this.a.s();
+            }
+        }
+    }
+
+    public static final class e implements af {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+
+        public void onErrorResponse(BusinessObject businessObject) {
+            kotlin.jvm.internal.c.b(businessObject, "businessObject");
+        }
+
+        e(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
+            this.a = gaanaVideoPlayerFragment;
+        }
+
+        public void onRetreivalComplete(Object obj) {
+            kotlin.jvm.internal.c.b(obj, "businessObj");
+            Context context = this.a.mContext;
+            if (context == null) {
+                throw new TypeCastException("null cannot be cast to non-null type com.gaana.BaseActivity");
+            }
+            ((BaseActivity) context).hideProgressDialog();
+            GaanaVideoPlayerFragment gaanaVideoPlayerFragment = this.a;
+            ArrayList video_feed = ((VideoFeedMetaData) obj).getVideo_feed();
+            kotlin.jvm.internal.c.a((Object) video_feed, "(businessObj as VideoFeedMetaData).video_feed");
+            gaanaVideoPlayerFragment.a(video_feed);
         }
     }
 
@@ -326,6 +565,166 @@ public class GaanaVideoPlayerFragment extends BaseGaanaFragment implements OnCli
                 kotlin.jvm.internal.c.a();
             }
             return A.onTouchEvent(motionEvent);
+        }
+    }
+
+    public static final class h implements com.views.VideoSlidingUpPanelLayout.b {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+
+        public void a(View view, float f) {
+            kotlin.jvm.internal.c.b(view, "panel");
+        }
+
+        h(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
+            this.a = gaanaVideoPlayerFragment;
+        }
+
+        public void a(View view, PanelState panelState, PanelState panelState2) {
+            kotlin.jvm.internal.c.b(view, "panel");
+            kotlin.jvm.internal.c.b(panelState, "previousState");
+            kotlin.jvm.internal.c.b(panelState2, "newState");
+            ImageView a;
+            if (panelState2 == PanelState.EXPANDED) {
+                a = this.a.l;
+                if (a == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                a.setRotation(180.0f);
+            } else if (panelState2 == PanelState.COLLAPSED) {
+                a = this.a.l;
+                if (a == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                a.setRotation(360.0f);
+                this.a.M = false;
+                this.a.c();
+            }
+        }
+    }
+
+    public static final class i implements al {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+
+        public void a(boolean z) {
+        }
+
+        i(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
+            this.a = gaanaVideoPlayerFragment;
+        }
+
+        public void a(ViewHolder viewHolder, int i) {
+            this.a.e();
+            this.a.M = true;
+        }
+    }
+
+    public static final class j implements OnPageChangeListener {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+        private float b;
+        private Boolean c = Boolean.valueOf(false);
+
+        j(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
+            this.a = gaanaVideoPlayerFragment;
+        }
+
+        public void onPageScrollStateChanged(int i) {
+            if (i == 0) {
+                VideoCardPagerAdapter p = this.a.F;
+                if (p == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                p.updatePlayer(0, 0);
+            }
+            this.a.D = Integer.valueOf(i);
+        }
+
+        public void onPageScrolled(int i, float f, int i2) {
+            if (this.a.a() != null) {
+                VideoSlidingUpPanelLayout a = this.a.a();
+                if (a == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                if (a.e()) {
+                    VideoSlidingUpPanelLayout a2 = this.a.a();
+                    if (a2 == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    a2.g();
+                    return;
+                }
+            }
+            float f2 = ((float) i) + f;
+            this.c = Boolean.valueOf(f2 > this.b);
+            Boolean bool = this.c;
+            if (bool == null) {
+                kotlin.jvm.internal.c.a();
+            }
+            VideoCardPagerAdapter p;
+            Integer B;
+            if (bool.booleanValue()) {
+                p = this.a.F;
+                if (p == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                B = this.a.D;
+                if (B == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                p.updatePlayer(B.intValue(), 1);
+            } else if (this.a.t != null) {
+                ArrayList s = this.a.t;
+                if (s == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                if (i < s.size() - 1) {
+                    p = this.a.F;
+                    if (p == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    B = this.a.D;
+                    if (B == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    p.updatePlayer(B.intValue(), -1);
+                }
+            }
+            this.b = f2;
+            this.a.M = false;
+        }
+
+        public void onPageSelected(int i) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(" onPageSelected, position ");
+            stringBuilder.append(i);
+            Log.v("gb103", stringBuilder.toString());
+            Boolean h = this.a.h();
+            if (h == null) {
+                kotlin.jvm.internal.c.a();
+            }
+            if (h.booleanValue()) {
+                this.a.a(Boolean.valueOf(false));
+                return;
+            }
+            h = this.c;
+            if (h == null) {
+                kotlin.jvm.internal.c.a();
+            }
+            if (h.booleanValue()) {
+                u.a().a("VideoFeed", "Swipe", "Left");
+            } else {
+                u.a().a("VideoFeed", "Swipe", "Right");
+            }
+            this.a.a(i);
+            if (this.a.e != null) {
+                b n = this.a.e;
+                if (n == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                n.a(i, this.a.v.equals(this.a.u) ^ 1, false);
+            }
+            this.a.M = false;
+            this.a.d();
+            this.a.c();
         }
     }
 
@@ -525,6 +924,66 @@ public class GaanaVideoPlayerFragment extends BaseGaanaFragment implements OnCli
         }
     }
 
+    static final class m implements bb {
+        public static final m a = new m();
+
+        m() {
+        }
+    }
+
+    public static final class n extends OnScrollListener {
+        final /* synthetic */ GaanaVideoPlayerFragment a;
+
+        n(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
+            this.a = gaanaVideoPlayerFragment;
+        }
+
+        public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+            super.onScrollStateChanged(recyclerView, i);
+            if (i == 0) {
+                if (recyclerView == null) {
+                    kotlin.jvm.internal.c.a();
+                }
+                LayoutManager layoutManager = recyclerView.getLayoutManager();
+                if (layoutManager == null) {
+                    throw new TypeCastException("null cannot be cast to non-null type android.support.v7.widget.GridLayoutManager");
+                }
+                VideoSlidingUpPanelLayout a;
+                if (((GridLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition() == 0) {
+                    a = this.a.a();
+                    if (a == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    a.setScrollingView(null);
+                    a = this.a.a();
+                    if (a == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    a.setScrollableView(null);
+                } else {
+                    a = this.a.a();
+                    if (a == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    a.setScrollingView(this.a.b);
+                    a = this.a.a();
+                    if (a == null) {
+                        kotlin.jvm.internal.c.a();
+                    }
+                    a.setScrollableView(this.a.b);
+                }
+                this.a.B = false;
+            }
+        }
+
+        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+            super.onScrolled(recyclerView, i, i2);
+            if (i != 0) {
+                this.a.B = true;
+            }
+        }
+    }
+
     static final class o implements OnClickListener {
         final /* synthetic */ GaanaVideoPlayerFragment a;
         final /* synthetic */ TextView b;
@@ -604,465 +1063,6 @@ public class GaanaVideoPlayerFragment extends BaseGaanaFragment implements OnCli
 
         public void run() {
             this.b.post(new a(this));
-        }
-    }
-
-    private final class b extends Adapter<ViewHolder> {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-        private int b;
-        private boolean c;
-        private ArrayList<Item> d;
-
-        public b(GaanaVideoPlayerFragment gaanaVideoPlayerFragment, ArrayList<Item> arrayList) {
-            kotlin.jvm.internal.c.b(arrayList, "items");
-            this.a = gaanaVideoPlayerFragment;
-            this.d = arrayList;
-        }
-
-        public final void a(int i, boolean z, boolean z2) {
-            this.c = z;
-            int i2 = !z2 ? this.b : -1;
-            this.b = i;
-            if (!this.c) {
-                if (!z2) {
-                    notifyItemChanged(i2);
-                }
-                notifyItemChanged(this.b);
-            }
-        }
-
-        public final void a(ArrayList<Item> arrayList, boolean z) {
-            kotlin.jvm.internal.c.b(arrayList, "itemsList");
-            this.d = arrayList;
-            this.c = z;
-            notifyDataSetChanged();
-        }
-
-        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            kotlin.jvm.internal.c.b(viewGroup, "parent");
-            i = (int) (((float) (Util.U() - (4 * Util.b(8)))) * 0.5625f);
-            Object from = LayoutInflater.from(viewGroup.getContext());
-            kotlin.jvm.internal.c.a(from, "LayoutInflater.from(parent.context)");
-            Object inflate = from.inflate(R.layout.item_playlist_grid_110x150, viewGroup, false);
-            kotlin.jvm.internal.c.a(inflate, "inflater.inflate(R.layou…d_110x150, parent, false)");
-            from = inflate.findViewById(R.id.imgProductIcon);
-            kotlin.jvm.internal.c.a(from, "convertView.findViewById(R.id.imgProductIcon)");
-            RoundedCornerImageView roundedCornerImageView = (RoundedCornerImageView) from;
-            LayoutParams layoutParams = roundedCornerImageView.getLayoutParams();
-            if (layoutParams == null) {
-                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
-            }
-            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
-            layoutParams2.height = i;
-            roundedCornerImageView.setLayoutParams(layoutParams2);
-            from = inflate.findViewById(R.id.selectedBg);
-            kotlin.jvm.internal.c.a(from, "convertView.findViewById<View>(R.id.selectedBg)");
-            layoutParams = from.getLayoutParams();
-            if (layoutParams == null) {
-                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
-            }
-            layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
-            layoutParams2.height = i;
-            from.setLayoutParams(layoutParams2);
-            from = inflate.findViewById(R.id.shadow_layer);
-            kotlin.jvm.internal.c.a(from, "convertView.findViewById(R.id.shadow_layer)");
-            layoutParams = from.getLayoutParams();
-            if (layoutParams == null) {
-                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
-            }
-            layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
-            layoutParams2.height = i;
-            from.setLayoutParams(layoutParams2);
-            from = inflate.findViewById(R.id.tvTopHeadingMix);
-            kotlin.jvm.internal.c.a(from, "convertView.findViewById(R.id.tvTopHeadingMix)");
-            CustomTextView customTextView = (CustomTextView) from;
-            layoutParams = customTextView.getLayoutParams();
-            if (layoutParams == null) {
-                throw new TypeCastException("null cannot be cast to non-null type android.widget.FrameLayout.LayoutParams");
-            }
-            layoutParams2 = (FrameLayout.LayoutParams) layoutParams;
-            layoutParams2.topMargin = i;
-            customTextView.setLayoutParams(layoutParams2);
-            return new PlaylistGridHolder(inflate);
-        }
-
-        public void onBindViewHolder(ViewHolder viewHolder, int i) {
-            kotlin.jvm.internal.c.b(viewHolder, "holder");
-            boolean z = viewHolder instanceof GaanaMiniParentViewHolder;
-            GaanaVideoPlayerFragment gaanaVideoPlayerFragment = this.a;
-            Object obj = this.d.get(i);
-            kotlin.jvm.internal.c.a(obj, "items.get(position)");
-            gaanaVideoPlayerFragment.a(i, viewHolder, (BusinessObject) obj, null, "hello", null);
-            Object findViewById;
-            if (this.c) {
-                findViewById = viewHolder.itemView.findViewById(R.id.selectedBg);
-                kotlin.jvm.internal.c.a(findViewById, "holder.itemView.findView…Id<View>(R.id.selectedBg)");
-                findViewById.setVisibility(4);
-            } else if (i == this.b) {
-                findViewById = viewHolder.itemView.findViewById(R.id.selectedBg);
-                kotlin.jvm.internal.c.a(findViewById, "holder.itemView.findView…Id<View>(R.id.selectedBg)");
-                findViewById.setVisibility(0);
-            } else {
-                findViewById = viewHolder.itemView.findViewById(R.id.selectedBg);
-                kotlin.jvm.internal.c.a(findViewById, "holder.itemView.findView…Id<View>(R.id.selectedBg)");
-                findViewById.setVisibility(4);
-            }
-        }
-
-        public int getItemCount() {
-            return this.d.size();
-        }
-    }
-
-    public static final class d implements af {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-        final /* synthetic */ String b;
-
-        public void onErrorResponse(BusinessObject businessObject) {
-            kotlin.jvm.internal.c.b(businessObject, "businessObject");
-        }
-
-        d(GaanaVideoPlayerFragment gaanaVideoPlayerFragment, String str) {
-            this.a = gaanaVideoPlayerFragment;
-            this.b = str;
-        }
-
-        public void onRetreivalComplete(Object obj) {
-            kotlin.jvm.internal.c.b(obj, "businessObj");
-            ProgressBar m = this.a.y;
-            if (m == null) {
-                kotlin.jvm.internal.c.a();
-            }
-            m.setVisibility(8);
-            ArrayList arrayList = (ArrayList) null;
-            VideoFeedItemData videoFeedItemData = (VideoFeedItemData) obj;
-            ArrayList entities = videoFeedItemData.getEntities();
-            if (entities != null) {
-                ViewPager r;
-                RecyclerView c;
-                if (this.a.e == null) {
-                    this.a.s = entities;
-                    GaanaVideoPlayerFragment gaanaVideoPlayerFragment = this.a;
-                    GaanaVideoPlayerFragment gaanaVideoPlayerFragment2 = this.a;
-                    obj = videoFeedItemData.getEntities();
-                    kotlin.jvm.internal.c.a(obj, "(businessObj).entities");
-                    gaanaVideoPlayerFragment.e = new b(gaanaVideoPlayerFragment2, obj);
-                    c = this.a.b;
-                    if (c == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    c.setLayoutManager(new GridLayoutManager(this.a.mContext, 3));
-                    c = this.a.b;
-                    if (c == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    c.setAdapter(this.a.e);
-                } else {
-                    b n = this.a.e;
-                    if (n == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    obj = videoFeedItemData.getEntities();
-                    kotlin.jvm.internal.c.a(obj, "(businessObj).entities");
-                    n.a(obj, this.a.v.equals(this.a.u) ^ 1);
-                    c = this.a.b;
-                    if (c == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    c.scrollToPosition(0);
-                }
-                if (this.a.F == null) {
-                    GaanaVideoPlayerFragment gaanaVideoPlayerFragment3 = this.a;
-                    Context context = this.a.mContext;
-                    BaseGaanaFragment q = this.a.h;
-                    if (q == null) {
-                        throw new TypeCastException("null cannot be cast to non-null type com.fragments.GaanaVideoPlayerFragment");
-                    }
-                    gaanaVideoPlayerFragment3.F = new VideoCardPagerAdapter(context, (GaanaVideoPlayerFragment) q, this.a.q, entities, this.a.b());
-                }
-                if (this.a.t == null) {
-                    this.a.w = this.b;
-                    r = this.a.q;
-                    if (r == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    r.setAdapter(this.a.F);
-                    r = this.a.q;
-                    if (r == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    r.setOffscreenPageLimit(2);
-                    r = this.a.q;
-                    if (r == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    r.addOnPageChangeListener(this.a.R);
-                    com.logging.e.c().b = this.a.I;
-                    VideoCardPagerAdapter p = this.a.F;
-                    if (p == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    p.playVideoOnItemClick(0, this.a.A);
-                    this.a.A = -1;
-                    this.a.a(0);
-                }
-                this.a.x = this.b;
-                this.a.t = entities;
-                this.a.d();
-                this.a.M = false;
-                this.a.c();
-                r = this.a.q;
-                if (r == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                r.setOnTouchListener(this.a.N);
-                this.a.s();
-            }
-        }
-    }
-
-    public static final class e implements af {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-
-        public void onErrorResponse(BusinessObject businessObject) {
-            kotlin.jvm.internal.c.b(businessObject, "businessObject");
-        }
-
-        e(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
-            this.a = gaanaVideoPlayerFragment;
-        }
-
-        public void onRetreivalComplete(Object obj) {
-            kotlin.jvm.internal.c.b(obj, "businessObj");
-            Context context = this.a.mContext;
-            if (context == null) {
-                throw new TypeCastException("null cannot be cast to non-null type com.gaana.BaseActivity");
-            }
-            ((BaseActivity) context).hideProgressDialog();
-            GaanaVideoPlayerFragment gaanaVideoPlayerFragment = this.a;
-            ArrayList video_feed = ((VideoFeedMetaData) obj).getVideo_feed();
-            kotlin.jvm.internal.c.a((Object) video_feed, "(businessObj as VideoFeedMetaData).video_feed");
-            gaanaVideoPlayerFragment.a(video_feed);
-        }
-    }
-
-    public static final class h implements com.views.VideoSlidingUpPanelLayout.b {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-
-        public void a(View view, float f) {
-            kotlin.jvm.internal.c.b(view, "panel");
-        }
-
-        h(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
-            this.a = gaanaVideoPlayerFragment;
-        }
-
-        public void a(View view, PanelState panelState, PanelState panelState2) {
-            kotlin.jvm.internal.c.b(view, "panel");
-            kotlin.jvm.internal.c.b(panelState, "previousState");
-            kotlin.jvm.internal.c.b(panelState2, "newState");
-            ImageView a;
-            if (panelState2 == PanelState.EXPANDED) {
-                a = this.a.l;
-                if (a == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                a.setRotation(180.0f);
-            } else if (panelState2 == PanelState.COLLAPSED) {
-                a = this.a.l;
-                if (a == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                a.setRotation(360.0f);
-                this.a.M = false;
-                this.a.c();
-            }
-        }
-    }
-
-    public static final class i implements al {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-
-        public void a(boolean z) {
-        }
-
-        i(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
-            this.a = gaanaVideoPlayerFragment;
-        }
-
-        public void a(ViewHolder viewHolder, int i) {
-            this.a.e();
-            this.a.M = true;
-        }
-    }
-
-    public static final class j implements OnPageChangeListener {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-        private float b;
-        private Boolean c = Boolean.valueOf(false);
-
-        j(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
-            this.a = gaanaVideoPlayerFragment;
-        }
-
-        public void onPageScrollStateChanged(int i) {
-            if (i == 0) {
-                VideoCardPagerAdapter p = this.a.F;
-                if (p == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                p.updatePlayer(0, 0);
-            }
-            this.a.D = Integer.valueOf(i);
-        }
-
-        public void onPageScrolled(int i, float f, int i2) {
-            if (this.a.a() != null) {
-                VideoSlidingUpPanelLayout a = this.a.a();
-                if (a == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                if (a.e()) {
-                    VideoSlidingUpPanelLayout a2 = this.a.a();
-                    if (a2 == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    a2.g();
-                    return;
-                }
-            }
-            float f2 = ((float) i) + f;
-            this.c = Boolean.valueOf(f2 > this.b);
-            Boolean bool = this.c;
-            if (bool == null) {
-                kotlin.jvm.internal.c.a();
-            }
-            VideoCardPagerAdapter p;
-            Integer B;
-            if (bool.booleanValue()) {
-                p = this.a.F;
-                if (p == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                B = this.a.D;
-                if (B == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                p.updatePlayer(B.intValue(), 1);
-            } else if (this.a.t != null) {
-                ArrayList s = this.a.t;
-                if (s == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                if (i < s.size() - 1) {
-                    p = this.a.F;
-                    if (p == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    B = this.a.D;
-                    if (B == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    p.updatePlayer(B.intValue(), -1);
-                }
-            }
-            this.b = f2;
-            this.a.M = false;
-        }
-
-        public void onPageSelected(int i) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(" onPageSelected, position ");
-            stringBuilder.append(i);
-            Log.v("gb103", stringBuilder.toString());
-            Boolean h = this.a.h();
-            if (h == null) {
-                kotlin.jvm.internal.c.a();
-            }
-            if (h.booleanValue()) {
-                this.a.a(Boolean.valueOf(false));
-                return;
-            }
-            h = this.c;
-            if (h == null) {
-                kotlin.jvm.internal.c.a();
-            }
-            if (h.booleanValue()) {
-                u.a().a("VideoFeed", "Swipe", "Left");
-            } else {
-                u.a().a("VideoFeed", "Swipe", "Right");
-            }
-            this.a.a(i);
-            if (this.a.e != null) {
-                b n = this.a.e;
-                if (n == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                n.a(i, this.a.v.equals(this.a.u) ^ 1, false);
-            }
-            this.a.M = false;
-            this.a.d();
-            this.a.c();
-        }
-    }
-
-    static final class m implements bb {
-        public static final m a = new m();
-
-        m() {
-        }
-    }
-
-    public static final class n extends OnScrollListener {
-        final /* synthetic */ GaanaVideoPlayerFragment a;
-
-        n(GaanaVideoPlayerFragment gaanaVideoPlayerFragment) {
-            this.a = gaanaVideoPlayerFragment;
-        }
-
-        public void onScrollStateChanged(RecyclerView recyclerView, int i) {
-            super.onScrollStateChanged(recyclerView, i);
-            if (i == 0) {
-                if (recyclerView == null) {
-                    kotlin.jvm.internal.c.a();
-                }
-                LayoutManager layoutManager = recyclerView.getLayoutManager();
-                if (layoutManager == null) {
-                    throw new TypeCastException("null cannot be cast to non-null type android.support.v7.widget.GridLayoutManager");
-                }
-                VideoSlidingUpPanelLayout a;
-                if (((GridLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition() == 0) {
-                    a = this.a.a();
-                    if (a == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    a.setScrollingView(null);
-                    a = this.a.a();
-                    if (a == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    a.setScrollableView(null);
-                } else {
-                    a = this.a.a();
-                    if (a == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    a.setScrollingView(this.a.b);
-                    a = this.a.a();
-                    if (a == null) {
-                        kotlin.jvm.internal.c.a();
-                    }
-                    a.setScrollableView(this.a.b);
-                }
-                this.a.B = false;
-            }
-        }
-
-        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-            super.onScrolled(recyclerView, i, i2);
-            if (i != 0) {
-                this.a.B = true;
-            }
         }
     }
 

@@ -21,6 +21,10 @@ public class Loader<D> {
     boolean mReset = true;
     boolean mStarted = false;
 
+    public interface OnLoadCompleteListener<D> {
+        void onLoadComplete(@NonNull Loader<D> loader, @Nullable D d);
+    }
+
     public final class ForceLoadContentObserver extends ContentObserver {
         public boolean deliverSelfNotifications() {
             return true;
@@ -37,10 +41,6 @@ public class Loader<D> {
 
     public interface OnLoadCanceledListener<D> {
         void onLoadCanceled(@NonNull Loader<D> loader);
-    }
-
-    public interface OnLoadCompleteListener<D> {
-        void onLoadComplete(@NonNull Loader<D> loader, @Nullable D d);
     }
 
     /* Access modifiers changed, original: protected */

@@ -36,6 +36,12 @@ public final class Plus {
     private static final zzb zze = new zzi();
     private static final zza zzf = new com.google.android.gms.internal.plus.zzh();
 
+    public static abstract class zza<R extends Result> extends ApiMethodImpl<R, zzh> {
+        public zza(GoogleApiClient googleApiClient) {
+            super(Plus.CLIENT_KEY, googleApiClient);
+        }
+    }
+
     @Deprecated
     public static final class PlusOptions implements Optional {
         private final String zzg;
@@ -87,12 +93,6 @@ public final class Plus {
         @VisibleForTesting
         public static Builder builder() {
             return new Builder();
-        }
-    }
-
-    public static abstract class zza<R extends Result> extends ApiMethodImpl<R, zzh> {
-        public zza(GoogleApiClient googleApiClient) {
-            super(Plus.CLIENT_KEY, googleApiClient);
         }
     }
 

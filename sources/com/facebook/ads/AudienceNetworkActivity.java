@@ -99,6 +99,44 @@ public class AudienceNetworkActivity extends Activity {
         }
     }
 
+    private static class a implements com.facebook.ads.internal.view.a.a {
+        final WeakReference<AudienceNetworkActivity> a;
+
+        private a(AudienceNetworkActivity audienceNetworkActivity) {
+            this.a = new WeakReference(audienceNetworkActivity);
+        }
+
+        public void a(View view) {
+            if (this.a.get() != null) {
+                ((AudienceNetworkActivity) this.a.get()).b.addView(view);
+            }
+        }
+
+        public void a(View view, int i) {
+            if (this.a.get() != null) {
+                ((AudienceNetworkActivity) this.a.get()).b.addView(view, i);
+            }
+        }
+
+        public void a(String str) {
+            if (this.a.get() != null) {
+                ((AudienceNetworkActivity) this.a.get()).b(str);
+            }
+        }
+
+        public void a(String str, com.facebook.ads.internal.l.d dVar) {
+            if (this.a.get() != null) {
+                ((AudienceNetworkActivity) this.a.get()).a(str, dVar);
+            }
+        }
+
+        public void b(String str) {
+            if (this.a.get() != null) {
+                ((AudienceNetworkActivity) this.a.get()).a(str);
+            }
+        }
+    }
+
     private static class b {
         private final AudienceNetworkActivity a;
         private final Intent b;
@@ -182,44 +220,6 @@ public class AudienceNetworkActivity extends Activity {
                 AudienceNetworkActivity.this.k.a(AudienceNetworkActivity.this.k.a() ^ 1);
             }
             return true;
-        }
-    }
-
-    private static class a implements com.facebook.ads.internal.view.a.a {
-        final WeakReference<AudienceNetworkActivity> a;
-
-        private a(AudienceNetworkActivity audienceNetworkActivity) {
-            this.a = new WeakReference(audienceNetworkActivity);
-        }
-
-        public void a(View view) {
-            if (this.a.get() != null) {
-                ((AudienceNetworkActivity) this.a.get()).b.addView(view);
-            }
-        }
-
-        public void a(View view, int i) {
-            if (this.a.get() != null) {
-                ((AudienceNetworkActivity) this.a.get()).b.addView(view, i);
-            }
-        }
-
-        public void a(String str) {
-            if (this.a.get() != null) {
-                ((AudienceNetworkActivity) this.a.get()).b(str);
-            }
-        }
-
-        public void a(String str, com.facebook.ads.internal.l.d dVar) {
-            if (this.a.get() != null) {
-                ((AudienceNetworkActivity) this.a.get()).a(str, dVar);
-            }
-        }
-
-        public void b(String str) {
-            if (this.a.get() != null) {
-                ((AudienceNetworkActivity) this.a.get()).a(str);
-            }
         }
     }
 

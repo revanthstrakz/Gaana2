@@ -33,99 +33,58 @@ public class PeopleService extends AbstractGoogleJsonClient {
     public static final String DEFAULT_ROOT_URL = "https://people.googleapis.com/";
     public static final String DEFAULT_SERVICE_PATH = "";
 
-    public class ContactGroups {
-
-        public class Members {
-
-            public class Modify extends PeopleServiceRequest<ModifyContactGroupMembersResponse> {
-                private static final String REST_PATH = "v1/{+resourceName}/members:modify";
-                private final Pattern RESOURCE_NAME_PATTERN = Pattern.compile("^contactGroups/[^/]+$");
-                @Key
-                private String resourceName;
-
-                protected Modify(String str, ModifyContactGroupMembersRequest modifyContactGroupMembersRequest) {
-                    super(PeopleService.this, HttpMethods.POST, REST_PATH, modifyContactGroupMembersRequest, ModifyContactGroupMembersResponse.class);
-                    this.resourceName = (String) Preconditions.checkNotNull(str, "Required parameter resourceName must be specified.");
-                    if (!PeopleService.this.getSuppressPatternChecks()) {
-                        Preconditions.checkArgument(this.RESOURCE_NAME_PATTERN.matcher(str).matches(), "Parameter resourceName must conform to the pattern ^contactGroups/[^/]+$");
-                    }
-                }
-
-                public Modify set$Xgafv(String str) {
-                    return (Modify) super.set$Xgafv(str);
-                }
-
-                public Modify setAccessToken(String str) {
-                    return (Modify) super.setAccessToken(str);
-                }
-
-                public Modify setAlt(String str) {
-                    return (Modify) super.setAlt(str);
-                }
-
-                public Modify setBearerToken(String str) {
-                    return (Modify) super.setBearerToken(str);
-                }
-
-                public Modify setCallback(String str) {
-                    return (Modify) super.setCallback(str);
-                }
-
-                public Modify setFields(String str) {
-                    return (Modify) super.setFields(str);
-                }
-
-                public Modify setKey(String str) {
-                    return (Modify) super.setKey(str);
-                }
-
-                public Modify setOauthToken(String str) {
-                    return (Modify) super.setOauthToken(str);
-                }
-
-                public Modify setPp(Boolean bool) {
-                    return (Modify) super.setPp(bool);
-                }
-
-                public Modify setPrettyPrint(Boolean bool) {
-                    return (Modify) super.setPrettyPrint(bool);
-                }
-
-                public Modify setQuotaUser(String str) {
-                    return (Modify) super.setQuotaUser(str);
-                }
-
-                public Modify setUploadType(String str) {
-                    return (Modify) super.setUploadType(str);
-                }
-
-                public Modify setUploadProtocol(String str) {
-                    return (Modify) super.setUploadProtocol(str);
-                }
-
-                public String getResourceName() {
-                    return this.resourceName;
-                }
-
-                public Modify setResourceName(String str) {
-                    if (!PeopleService.this.getSuppressPatternChecks()) {
-                        Preconditions.checkArgument(this.RESOURCE_NAME_PATTERN.matcher(str).matches(), "Parameter resourceName must conform to the pattern ^contactGroups/[^/]+$");
-                    }
-                    this.resourceName = str;
-                    return this;
-                }
-
-                public Modify set(String str, Object obj) {
-                    return (Modify) super.set(str, obj);
-                }
-            }
-
-            public Modify modify(String str, ModifyContactGroupMembersRequest modifyContactGroupMembersRequest) throws IOException {
-                Modify modify = new Modify(str, modifyContactGroupMembersRequest);
-                PeopleService.this.initialize(modify);
-                return modify;
-            }
+    public static final class Builder extends com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient.Builder {
+        public Builder(HttpTransport httpTransport, JsonFactory jsonFactory, HttpRequestInitializer httpRequestInitializer) {
+            super(httpTransport, jsonFactory, "https://people.googleapis.com/", "", httpRequestInitializer, false);
+            setBatchPath(PeopleService.DEFAULT_BATCH_PATH);
         }
+
+        public PeopleService build() {
+            return new PeopleService(this);
+        }
+
+        public Builder setRootUrl(String str) {
+            return (Builder) super.setRootUrl(str);
+        }
+
+        public Builder setServicePath(String str) {
+            return (Builder) super.setServicePath(str);
+        }
+
+        public Builder setBatchPath(String str) {
+            return (Builder) super.setBatchPath(str);
+        }
+
+        public Builder setHttpRequestInitializer(HttpRequestInitializer httpRequestInitializer) {
+            return (Builder) super.setHttpRequestInitializer(httpRequestInitializer);
+        }
+
+        public Builder setApplicationName(String str) {
+            return (Builder) super.setApplicationName(str);
+        }
+
+        public Builder setSuppressPatternChecks(boolean z) {
+            return (Builder) super.setSuppressPatternChecks(z);
+        }
+
+        public Builder setSuppressRequiredParameterChecks(boolean z) {
+            return (Builder) super.setSuppressRequiredParameterChecks(z);
+        }
+
+        public Builder setSuppressAllChecks(boolean z) {
+            return (Builder) super.setSuppressAllChecks(z);
+        }
+
+        public Builder setPeopleServiceRequestInitializer(PeopleServiceRequestInitializer peopleServiceRequestInitializer) {
+            return (Builder) super.setGoogleClientRequestInitializer((GoogleClientRequestInitializer) peopleServiceRequestInitializer);
+        }
+
+        public Builder setGoogleClientRequestInitializer(GoogleClientRequestInitializer googleClientRequestInitializer) {
+            return (Builder) super.setGoogleClientRequestInitializer(googleClientRequestInitializer);
+        }
+    }
+
+    public class ContactGroups {
 
         public class BatchGet extends PeopleServiceRequest<BatchGetContactGroupsResponse> {
             private static final String REST_PATH = "v1/contactGroups:batchGet";
@@ -583,6 +542,98 @@ public class PeopleService extends AbstractGoogleJsonClient {
 
             public List set(String str, Object obj) {
                 return (List) super.set(str, obj);
+            }
+        }
+
+        public class Members {
+
+            public class Modify extends PeopleServiceRequest<ModifyContactGroupMembersResponse> {
+                private static final String REST_PATH = "v1/{+resourceName}/members:modify";
+                private final Pattern RESOURCE_NAME_PATTERN = Pattern.compile("^contactGroups/[^/]+$");
+                @Key
+                private String resourceName;
+
+                protected Modify(String str, ModifyContactGroupMembersRequest modifyContactGroupMembersRequest) {
+                    super(PeopleService.this, HttpMethods.POST, REST_PATH, modifyContactGroupMembersRequest, ModifyContactGroupMembersResponse.class);
+                    this.resourceName = (String) Preconditions.checkNotNull(str, "Required parameter resourceName must be specified.");
+                    if (!PeopleService.this.getSuppressPatternChecks()) {
+                        Preconditions.checkArgument(this.RESOURCE_NAME_PATTERN.matcher(str).matches(), "Parameter resourceName must conform to the pattern ^contactGroups/[^/]+$");
+                    }
+                }
+
+                public Modify set$Xgafv(String str) {
+                    return (Modify) super.set$Xgafv(str);
+                }
+
+                public Modify setAccessToken(String str) {
+                    return (Modify) super.setAccessToken(str);
+                }
+
+                public Modify setAlt(String str) {
+                    return (Modify) super.setAlt(str);
+                }
+
+                public Modify setBearerToken(String str) {
+                    return (Modify) super.setBearerToken(str);
+                }
+
+                public Modify setCallback(String str) {
+                    return (Modify) super.setCallback(str);
+                }
+
+                public Modify setFields(String str) {
+                    return (Modify) super.setFields(str);
+                }
+
+                public Modify setKey(String str) {
+                    return (Modify) super.setKey(str);
+                }
+
+                public Modify setOauthToken(String str) {
+                    return (Modify) super.setOauthToken(str);
+                }
+
+                public Modify setPp(Boolean bool) {
+                    return (Modify) super.setPp(bool);
+                }
+
+                public Modify setPrettyPrint(Boolean bool) {
+                    return (Modify) super.setPrettyPrint(bool);
+                }
+
+                public Modify setQuotaUser(String str) {
+                    return (Modify) super.setQuotaUser(str);
+                }
+
+                public Modify setUploadType(String str) {
+                    return (Modify) super.setUploadType(str);
+                }
+
+                public Modify setUploadProtocol(String str) {
+                    return (Modify) super.setUploadProtocol(str);
+                }
+
+                public String getResourceName() {
+                    return this.resourceName;
+                }
+
+                public Modify setResourceName(String str) {
+                    if (!PeopleService.this.getSuppressPatternChecks()) {
+                        Preconditions.checkArgument(this.RESOURCE_NAME_PATTERN.matcher(str).matches(), "Parameter resourceName must conform to the pattern ^contactGroups/[^/]+$");
+                    }
+                    this.resourceName = str;
+                    return this;
+                }
+
+                public Modify set(String str, Object obj) {
+                    return (Modify) super.set(str, obj);
+                }
+            }
+
+            public Modify modify(String str, ModifyContactGroupMembersRequest modifyContactGroupMembersRequest) throws IOException {
+                Modify modify = new Modify(str, modifyContactGroupMembersRequest);
+                PeopleService.this.initialize(modify);
+                return modify;
             }
         }
 
@@ -1391,57 +1442,6 @@ public class PeopleService extends AbstractGoogleJsonClient {
 
         public Connections connections() {
             return new Connections();
-        }
-    }
-
-    public static final class Builder extends com.google.api.client.googleapis.services.json.AbstractGoogleJsonClient.Builder {
-        public Builder(HttpTransport httpTransport, JsonFactory jsonFactory, HttpRequestInitializer httpRequestInitializer) {
-            super(httpTransport, jsonFactory, "https://people.googleapis.com/", "", httpRequestInitializer, false);
-            setBatchPath(PeopleService.DEFAULT_BATCH_PATH);
-        }
-
-        public PeopleService build() {
-            return new PeopleService(this);
-        }
-
-        public Builder setRootUrl(String str) {
-            return (Builder) super.setRootUrl(str);
-        }
-
-        public Builder setServicePath(String str) {
-            return (Builder) super.setServicePath(str);
-        }
-
-        public Builder setBatchPath(String str) {
-            return (Builder) super.setBatchPath(str);
-        }
-
-        public Builder setHttpRequestInitializer(HttpRequestInitializer httpRequestInitializer) {
-            return (Builder) super.setHttpRequestInitializer(httpRequestInitializer);
-        }
-
-        public Builder setApplicationName(String str) {
-            return (Builder) super.setApplicationName(str);
-        }
-
-        public Builder setSuppressPatternChecks(boolean z) {
-            return (Builder) super.setSuppressPatternChecks(z);
-        }
-
-        public Builder setSuppressRequiredParameterChecks(boolean z) {
-            return (Builder) super.setSuppressRequiredParameterChecks(z);
-        }
-
-        public Builder setSuppressAllChecks(boolean z) {
-            return (Builder) super.setSuppressAllChecks(z);
-        }
-
-        public Builder setPeopleServiceRequestInitializer(PeopleServiceRequestInitializer peopleServiceRequestInitializer) {
-            return (Builder) super.setGoogleClientRequestInitializer((GoogleClientRequestInitializer) peopleServiceRequestInitializer);
-        }
-
-        public Builder setGoogleClientRequestInitializer(GoogleClientRequestInitializer googleClientRequestInitializer) {
-            return (Builder) super.setGoogleClientRequestInitializer(googleClientRequestInitializer);
         }
     }
 

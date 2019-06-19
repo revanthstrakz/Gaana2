@@ -52,61 +52,6 @@ public class LoginButton extends FacebookButtonBase {
     private ToolTipPopup toolTipPopup;
     private Style toolTipStyle = Style.BLUE;
 
-    static class LoginButtonProperties {
-        private LoginAuthorizationType authorizationType = null;
-        private DefaultAudience defaultAudience = DefaultAudience.FRIENDS;
-        private LoginBehavior loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK;
-        private List<String> permissions = Collections.emptyList();
-
-        LoginButtonProperties() {
-        }
-
-        public void setDefaultAudience(DefaultAudience defaultAudience) {
-            this.defaultAudience = defaultAudience;
-        }
-
-        public DefaultAudience getDefaultAudience() {
-            return this.defaultAudience;
-        }
-
-        public void setReadPermissions(List<String> list) {
-            if (LoginAuthorizationType.PUBLISH.equals(this.authorizationType)) {
-                throw new UnsupportedOperationException("Cannot call setReadPermissions after setPublishPermissions has been called.");
-            }
-            this.permissions = list;
-            this.authorizationType = LoginAuthorizationType.READ;
-        }
-
-        public void setPublishPermissions(List<String> list) {
-            if (LoginAuthorizationType.READ.equals(this.authorizationType)) {
-                throw new UnsupportedOperationException("Cannot call setPublishPermissions after setReadPermissions has been called.");
-            } else if (Utility.isNullOrEmpty((Collection) list)) {
-                throw new IllegalArgumentException("Permissions for publish actions cannot be null or empty.");
-            } else {
-                this.permissions = list;
-                this.authorizationType = LoginAuthorizationType.PUBLISH;
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public List<String> getPermissions() {
-            return this.permissions;
-        }
-
-        public void clearPermissions() {
-            this.permissions = null;
-            this.authorizationType = null;
-        }
-
-        public void setLoginBehavior(LoginBehavior loginBehavior) {
-            this.loginBehavior = loginBehavior;
-        }
-
-        public LoginBehavior getLoginBehavior() {
-            return this.loginBehavior;
-        }
-    }
-
     protected class LoginClickListener implements OnClickListener {
         protected LoginClickListener() {
         }
@@ -176,6 +121,61 @@ public class LoginButton extends FacebookButtonBase {
             instance.setDefaultAudience(LoginButton.this.getDefaultAudience());
             instance.setLoginBehavior(LoginButton.this.getLoginBehavior());
             return instance;
+        }
+    }
+
+    static class LoginButtonProperties {
+        private LoginAuthorizationType authorizationType = null;
+        private DefaultAudience defaultAudience = DefaultAudience.FRIENDS;
+        private LoginBehavior loginBehavior = LoginBehavior.NATIVE_WITH_FALLBACK;
+        private List<String> permissions = Collections.emptyList();
+
+        LoginButtonProperties() {
+        }
+
+        public void setDefaultAudience(DefaultAudience defaultAudience) {
+            this.defaultAudience = defaultAudience;
+        }
+
+        public DefaultAudience getDefaultAudience() {
+            return this.defaultAudience;
+        }
+
+        public void setReadPermissions(List<String> list) {
+            if (LoginAuthorizationType.PUBLISH.equals(this.authorizationType)) {
+                throw new UnsupportedOperationException("Cannot call setReadPermissions after setPublishPermissions has been called.");
+            }
+            this.permissions = list;
+            this.authorizationType = LoginAuthorizationType.READ;
+        }
+
+        public void setPublishPermissions(List<String> list) {
+            if (LoginAuthorizationType.READ.equals(this.authorizationType)) {
+                throw new UnsupportedOperationException("Cannot call setPublishPermissions after setReadPermissions has been called.");
+            } else if (Utility.isNullOrEmpty((Collection) list)) {
+                throw new IllegalArgumentException("Permissions for publish actions cannot be null or empty.");
+            } else {
+                this.permissions = list;
+                this.authorizationType = LoginAuthorizationType.PUBLISH;
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public List<String> getPermissions() {
+            return this.permissions;
+        }
+
+        public void clearPermissions() {
+            this.permissions = null;
+            this.authorizationType = null;
+        }
+
+        public void setLoginBehavior(LoginBehavior loginBehavior) {
+            this.loginBehavior = loginBehavior;
+        }
+
+        public LoginBehavior getLoginBehavior() {
+            return this.loginBehavior;
         }
     }
 

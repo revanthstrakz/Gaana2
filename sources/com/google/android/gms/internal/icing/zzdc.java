@@ -288,38 +288,38 @@ final class zzdc<FieldDescriptorType extends zzde<FieldDescriptorType>> {
             return;
         }
         zzct.zzb(i, zzgl.zzdy());
-        switch (zzgl) {
-            case DOUBLE:
+        switch (zzdd.zzhd[zzgl.ordinal()]) {
+            case 1:
                 zzct.zza(((Double) obj).doubleValue());
                 return;
-            case FLOAT:
+            case 2:
                 zzct.zza(((Float) obj).floatValue());
                 return;
-            case INT64:
+            case 3:
                 zzct.zzb(((Long) obj).longValue());
                 return;
-            case UINT64:
+            case 4:
                 zzct.zzb(((Long) obj).longValue());
                 return;
-            case INT32:
+            case 5:
                 zzct.zzo(((Integer) obj).intValue());
                 return;
-            case FIXED64:
+            case 6:
                 zzct.zzd(((Long) obj).longValue());
                 return;
-            case FIXED32:
+            case 7:
                 zzct.zzr(((Integer) obj).intValue());
                 return;
-            case BOOL:
+            case 8:
                 zzct.zzg(((Boolean) obj).booleanValue());
                 return;
-            case GROUP:
+            case 9:
                 ((zzeq) obj).zzb(zzct);
                 return;
-            case MESSAGE:
+            case 10:
                 zzct.zzb((zzeq) obj);
                 return;
-            case STRING:
+            case 11:
                 if (obj instanceof zzce) {
                     zzct.zza((zzce) obj);
                     return;
@@ -327,7 +327,7 @@ final class zzdc<FieldDescriptorType extends zzde<FieldDescriptorType>> {
                     zzct.zzu((String) obj);
                     return;
                 }
-            case BYTES:
+            case 12:
                 if (obj instanceof zzce) {
                     zzct.zza((zzce) obj);
                     return;
@@ -335,22 +335,22 @@ final class zzdc<FieldDescriptorType extends zzde<FieldDescriptorType>> {
                 byte[] bArr = (byte[]) obj;
                 zzct.zzb(bArr, 0, bArr.length);
                 return;
-            case UINT32:
+            case 13:
                 zzct.zzp(((Integer) obj).intValue());
                 return;
-            case SFIXED32:
+            case 14:
                 zzct.zzr(((Integer) obj).intValue());
                 return;
-            case SFIXED64:
+            case 15:
                 zzct.zzd(((Long) obj).longValue());
                 return;
-            case SINT32:
+            case 16:
                 zzct.zzq(((Integer) obj).intValue());
                 return;
-            case SINT64:
+            case 17:
                 zzct.zzc(((Long) obj).longValue());
                 return;
-            case ENUM:
+            case 18:
                 if (!(obj instanceof zzdo)) {
                     zzct.zzo(((Integer) obj).intValue());
                     break;
@@ -411,51 +411,51 @@ final class zzdc<FieldDescriptorType extends zzde<FieldDescriptorType>> {
     }
 
     private static int zzb(zzgl zzgl, Object obj) {
-        switch (zzgl) {
-            case DOUBLE:
+        switch (zzdd.zzhd[zzgl.ordinal()]) {
+            case 1:
                 return zzct.zzb(((Double) obj).doubleValue());
-            case FLOAT:
+            case 2:
                 return zzct.zzb(((Float) obj).floatValue());
-            case INT64:
+            case 3:
                 return zzct.zze(((Long) obj).longValue());
-            case UINT64:
+            case 4:
                 return zzct.zzf(((Long) obj).longValue());
-            case INT32:
+            case 5:
                 return zzct.zzt(((Integer) obj).intValue());
-            case FIXED64:
+            case 6:
                 return zzct.zzh(((Long) obj).longValue());
-            case FIXED32:
+            case 7:
                 return zzct.zzw(((Integer) obj).intValue());
-            case BOOL:
+            case 8:
                 return zzct.zzh(((Boolean) obj).booleanValue());
-            case GROUP:
+            case 9:
                 return zzct.zzd((zzeq) obj);
-            case MESSAGE:
+            case 10:
                 if (obj instanceof zzdu) {
                     return zzct.zza((zzdu) obj);
                 }
                 return zzct.zzc((zzeq) obj);
-            case STRING:
+            case 11:
                 if (obj instanceof zzce) {
                     return zzct.zzb((zzce) obj);
                 }
                 return zzct.zzv((String) obj);
-            case BYTES:
+            case 12:
                 if (obj instanceof zzce) {
                     return zzct.zzb((zzce) obj);
                 }
                 return zzct.zzc((byte[]) obj);
-            case UINT32:
+            case 13:
                 return zzct.zzu(((Integer) obj).intValue());
-            case SFIXED32:
+            case 14:
                 return zzct.zzx(((Integer) obj).intValue());
-            case SFIXED64:
+            case 15:
                 return zzct.zzi(((Long) obj).longValue());
-            case SINT32:
+            case 16:
                 return zzct.zzv(((Integer) obj).intValue());
-            case SINT64:
+            case 17:
                 return zzct.zzg(((Long) obj).longValue());
-            case ENUM:
+            case 18:
                 if (obj instanceof zzdo) {
                     return zzct.zzy(((zzdo) obj).zzbk());
                 }

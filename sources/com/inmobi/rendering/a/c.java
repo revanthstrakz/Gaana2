@@ -139,6 +139,12 @@ public class c implements com.inmobi.commons.core.configs.b.c {
         }
     }
 
+    interface d {
+        void a(a aVar);
+
+        void b(a aVar);
+    }
+
     final class a extends Handler {
         public a(Looper looper) {
             super(looper);
@@ -536,12 +542,6 @@ public class c implements com.inmobi.commons.core.configs.b.c {
                 dVar.b(aVar);
             }
         }
-    }
-
-    interface d {
-        void a(a aVar);
-
-        void b(a aVar);
     }
 
     public static c a() {

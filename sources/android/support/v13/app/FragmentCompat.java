@@ -25,18 +25,6 @@ public class FragmentCompat {
         boolean shouldShowRequestPermissionRationale(Fragment fragment, String str);
     }
 
-    @Deprecated
-    public interface OnRequestPermissionsResultCallback {
-        @Deprecated
-        void onRequestPermissionsResult(int i, @NonNull String[] strArr, @NonNull int[] iArr);
-    }
-
-    @Deprecated
-    public interface PermissionCompatDelegate {
-        @Deprecated
-        boolean requestPermissions(Fragment fragment, String[] strArr, int i);
-    }
-
     static class FragmentCompatBaseImpl implements FragmentCompatImpl {
         public void setUserVisibleHint(Fragment fragment, boolean z) {
         }
@@ -101,6 +89,18 @@ public class FragmentCompat {
         public void setUserVisibleHint(Fragment fragment, boolean z) {
             fragment.setUserVisibleHint(z);
         }
+    }
+
+    @Deprecated
+    public interface OnRequestPermissionsResultCallback {
+        @Deprecated
+        void onRequestPermissionsResult(int i, @NonNull String[] strArr, @NonNull int[] iArr);
+    }
+
+    @Deprecated
+    public interface PermissionCompatDelegate {
+        @Deprecated
+        boolean requestPermissions(Fragment fragment, String[] strArr, int i);
     }
 
     static {

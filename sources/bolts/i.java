@@ -24,13 +24,13 @@ public class i<TResult> {
     private k k;
     private List<h<TResult, Void>> l = new ArrayList();
 
-    public interface b {
-        void a(i<?> iVar, UnobservedTaskException unobservedTaskException);
-    }
-
     public class a extends j<TResult> {
         a() {
         }
+    }
+
+    public interface b {
+        void a(i<?> iVar, UnobservedTaskException unobservedTaskException);
     }
 
     public static b a() {

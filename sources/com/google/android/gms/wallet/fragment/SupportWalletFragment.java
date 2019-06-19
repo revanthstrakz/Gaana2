@@ -38,7 +38,7 @@ public final class SupportWalletFragment extends Fragment {
     private zzb zzfd;
     private boolean zzfe = false;
     private final SupportFragmentWrapper zzff = SupportFragmentWrapper.wrap(this);
-    private final zzc zzfg = new zzc();
+    private final zzc zzfg = new zzc(this, null);
     private zza zzfh = new zza(this);
     private WalletFragmentOptions zzfi;
     private WalletFragmentInitParams zzfj;
@@ -48,6 +48,25 @@ public final class SupportWalletFragment extends Fragment {
 
     public interface OnStateChangedListener {
         void onStateChanged(SupportWalletFragment supportWalletFragment, int i, int i2, Bundle bundle);
+    }
+
+    static class zza extends zzr {
+        private OnStateChangedListener zzfn;
+        private final SupportWalletFragment zzfo;
+
+        zza(SupportWalletFragment supportWalletFragment) {
+            this.zzfo = supportWalletFragment;
+        }
+
+        public final void zza(int i, int i2, Bundle bundle) {
+            if (this.zzfn != null) {
+                this.zzfn.onStateChanged(this.zzfo, i, i2, bundle);
+            }
+        }
+
+        public final void zza(OnStateChangedListener onStateChangedListener) {
+            this.zzfn = onStateChangedListener;
+        }
     }
 
     private static class zzb implements LifecycleDelegate {
@@ -177,6 +196,10 @@ public final class SupportWalletFragment extends Fragment {
                 throw new RuntimeException(e);
             }
         }
+
+        /* synthetic */ zzb(zzn zzn, zza zza) {
+            this(zzn);
+        }
     }
 
     private class zzc extends DeferredLifecycleHelper<zzb> implements OnClickListener {
@@ -188,7 +211,7 @@ public final class SupportWalletFragment extends Fragment {
             FragmentActivity activity = SupportWalletFragment.this.fragment.getActivity();
             if (SupportWalletFragment.this.zzfd == null && SupportWalletFragment.this.zzfe && activity != null) {
                 try {
-                    SupportWalletFragment.this.zzfd = new zzb(zzam.zza(activity, SupportWalletFragment.this.zzff, SupportWalletFragment.this.zzfi, SupportWalletFragment.this.zzfh));
+                    SupportWalletFragment.this.zzfd = new zzb(zzam.zza(activity, SupportWalletFragment.this.zzff, SupportWalletFragment.this.zzfi, SupportWalletFragment.this.zzfh), null);
                     SupportWalletFragment.this.zzfi = null;
                     onDelegateCreatedListener.onDelegateCreated(SupportWalletFragment.this.zzfd);
                     if (SupportWalletFragment.this.zzfj != null) {
@@ -235,24 +258,9 @@ public final class SupportWalletFragment extends Fragment {
             FragmentActivity activity = SupportWalletFragment.this.fragment.getActivity();
             GooglePlayServicesUtil.showErrorDialogFragment(GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity, GooglePlayServicesUtilLight.GOOGLE_PLAY_SERVICES_VERSION_CODE), activity, -1);
         }
-    }
 
-    static class zza extends zzr {
-        private OnStateChangedListener zzfn;
-        private final SupportWalletFragment zzfo;
-
-        zza(SupportWalletFragment supportWalletFragment) {
-            this.zzfo = supportWalletFragment;
-        }
-
-        public final void zza(int i, int i2, Bundle bundle) {
-            if (this.zzfn != null) {
-                this.zzfn.onStateChanged(this.zzfo, i, i2, bundle);
-            }
-        }
-
-        public final void zza(OnStateChangedListener onStateChangedListener) {
-            this.zzfn = onStateChangedListener;
+        /* synthetic */ zzc(SupportWalletFragment supportWalletFragment, zza zza) {
+            this();
         }
     }
 

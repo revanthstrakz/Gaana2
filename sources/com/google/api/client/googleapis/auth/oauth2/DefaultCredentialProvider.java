@@ -28,15 +28,6 @@ class DefaultCredentialProvider extends SystemEnvironmentProvider {
     private GoogleCredential cachedCredential = null;
     private Environment detectedEnvironment = null;
 
-    private enum Environment {
-        UNKNOWN,
-        ENVIRONMENT_VARIABLE,
-        WELL_KNOWN_FILE,
-        CLOUD_SHELL,
-        APP_ENGINE,
-        COMPUTE_ENGINE
-    }
-
     private static class ComputeGoogleCredential extends GoogleCredential {
         private static final String TOKEN_SERVER_ENCODED_URL = String.valueOf(OAuth2Utils.getMetadataServerUrl()).concat("/computeMetadata/v1/instance/service-accounts/default/token");
 
@@ -65,6 +56,15 @@ class DefaultCredentialProvider extends SystemEnvironmentProvider {
                 throw new IOException(String.format("Unexpected Error code %s trying to get security access token from Compute Engine metadata for the default service account: %s", new Object[]{Integer.valueOf(statusCode), execute.parseAsString()}));
             }
         }
+    }
+
+    private enum Environment {
+        UNKNOWN,
+        ENVIRONMENT_VARIABLE,
+        WELL_KNOWN_FILE,
+        CLOUD_SHELL,
+        APP_ENGINE,
+        COMPUTE_ENGINE
     }
 
     DefaultCredentialProvider() {

@@ -13,6 +13,10 @@ public abstract class ji implements Callback {
     protected boolean c;
     private List<b> d;
 
+    public interface b {
+        void a(VideoProgressUpdate videoProgressUpdate);
+    }
+
     protected static class a {
         private final Handler a;
 
@@ -39,10 +43,6 @@ public abstract class ji implements Callback {
         public boolean c(int i) {
             return this.a.sendMessageAtFrontOfQueue(Message.obtain(this.a, i));
         }
-    }
-
-    public interface b {
-        void a(VideoProgressUpdate videoProgressUpdate);
     }
 
     ji(long j) {

@@ -47,6 +47,10 @@ public class MultiProcessor<T> implements Processor<T> {
         private zza(MultiProcessor multiProcessor) {
             this.zzao = 0;
         }
+
+        /* synthetic */ zza(MultiProcessor multiProcessor, zze zze) {
+            this(multiProcessor);
+        }
     }
 
     public void release() {
@@ -66,7 +70,7 @@ public class MultiProcessor<T> implements Processor<T> {
             keyAt = detectedItems.keyAt(i);
             valueAt = detectedItems.valueAt(i);
             if (this.zzba.get(keyAt) == null) {
-                zza = new zza();
+                zza = new zza(this, null);
                 zza.zzak = this.zzaz.create(valueAt);
                 zza.zzak.onNewItem(keyAt, valueAt);
                 this.zzba.append(keyAt, zza);
@@ -103,5 +107,9 @@ public class MultiProcessor<T> implements Processor<T> {
     private MultiProcessor() {
         this.zzba = new SparseArray();
         this.zzal = 3;
+    }
+
+    /* synthetic */ MultiProcessor(zze zze) {
+        this();
     }
 }

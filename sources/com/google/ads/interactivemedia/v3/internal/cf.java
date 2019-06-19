@@ -52,54 +52,6 @@ public final class cf implements bn, com.google.ads.interactivemedia.v3.internal
         void a(int i, IOException iOException);
     }
 
-    private static final class c {
-        private final cc[] a;
-        private final ce b;
-        private cc c;
-
-        public c(cc[] ccVarArr, ce ceVar) {
-            this.a = ccVarArr;
-            this.b = ceVar;
-        }
-
-        public cc a(cd cdVar) throws e, IOException, InterruptedException {
-            if (this.c != null) {
-                return this.c;
-            }
-            cc[] ccVarArr = this.a;
-            int length = ccVarArr.length;
-            int i = 0;
-            loop0:
-            while (i < length) {
-                cc ccVar = ccVarArr[i];
-                try {
-                    if (ccVar.a(cdVar)) {
-                        this.c = ccVar;
-                        cdVar.a();
-                        break loop0;
-                    }
-                    i++;
-                } catch (EOFException unused) {
-                    i++;
-                } finally {
-                    cdVar.a();
-                }
-            }
-            if (this.c == null) {
-                throw new e(this.a);
-            }
-            this.c.a(this.b);
-            return this.c;
-        }
-
-        public void a() {
-            if (this.c != null) {
-                this.c.c();
-                this.c = null;
-            }
-        }
-    }
-
     private static class b implements com.google.ads.interactivemedia.v3.internal.fa.c {
         private final Uri a;
         private final et b;
@@ -172,14 +124,51 @@ public final class cf implements bn, com.google.ads.interactivemedia.v3.internal
         }
     }
 
-    public static final class e extends bl {
-        public e(cc[] ccVarArr) {
-            String a = ft.a((Object[]) ccVarArr);
-            StringBuilder stringBuilder = new StringBuilder(58 + String.valueOf(a).length());
-            stringBuilder.append("None of the available extractors (");
-            stringBuilder.append(a);
-            stringBuilder.append(") could read the stream.");
-            super(stringBuilder.toString());
+    private static final class c {
+        private final cc[] a;
+        private final ce b;
+        private cc c;
+
+        public c(cc[] ccVarArr, ce ceVar) {
+            this.a = ccVarArr;
+            this.b = ceVar;
+        }
+
+        public cc a(cd cdVar) throws e, IOException, InterruptedException {
+            if (this.c != null) {
+                return this.c;
+            }
+            cc[] ccVarArr = this.a;
+            int length = ccVarArr.length;
+            int i = 0;
+            loop0:
+            while (i < length) {
+                cc ccVar = ccVarArr[i];
+                try {
+                    if (ccVar.a(cdVar)) {
+                        this.c = ccVar;
+                        cdVar.a();
+                        break loop0;
+                    }
+                    i++;
+                } catch (EOFException unused) {
+                    i++;
+                } finally {
+                    cdVar.a();
+                }
+            }
+            if (this.c == null) {
+                throw new e(this.a);
+            }
+            this.c.a(this.b);
+            return this.c;
+        }
+
+        public void a() {
+            if (this.c != null) {
+                this.c.c();
+                this.c = null;
+            }
         }
     }
 
@@ -191,6 +180,17 @@ public final class cf implements bn, com.google.ads.interactivemedia.v3.internal
         public void a(long j, int i, int i2, int i3, byte[] bArr) {
             super.a(j, i, i2, i3, bArr);
             cf.this.I = cf.this.I + 1;
+        }
+    }
+
+    public static final class e extends bl {
+        public e(cc[] ccVarArr) {
+            String a = ft.a((Object[]) ccVarArr);
+            StringBuilder stringBuilder = new StringBuilder(58 + String.valueOf(a).length());
+            stringBuilder.append("None of the available extractors (");
+            stringBuilder.append(a);
+            stringBuilder.append(") could read the stream.");
+            super(stringBuilder.toString());
         }
     }
 

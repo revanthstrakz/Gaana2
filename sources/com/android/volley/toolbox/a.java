@@ -32,29 +32,29 @@ public class a implements e {
         this.c = bVar;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{Splitter:B:2:0x0012, ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable), Splitter:B:2:0x0012} */
     /* JADX WARNING: Removed duplicated region for block: B:89:0x017b A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:59:0x0101  */
-    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{Splitter:B:2:0x0012, ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable), Splitter:B:2:0x0012} */
     /* JADX WARNING: Removed duplicated region for block: B:59:0x0101  */
     /* JADX WARNING: Removed duplicated region for block: B:89:0x017b A:{SYNTHETIC} */
-    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{Splitter:B:2:0x0012, ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable), Splitter:B:2:0x0012} */
     /* JADX WARNING: Removed duplicated region for block: B:89:0x017b A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:59:0x0101  */
-    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{Splitter:B:2:0x0012, ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable), Splitter:B:2:0x0012} */
     /* JADX WARNING: Removed duplicated region for block: B:59:0x0101  */
     /* JADX WARNING: Removed duplicated region for block: B:89:0x017b A:{SYNTHETIC} */
-    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, Splitter:B:2:0x0012, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{Splitter:B:2:0x0012, ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:85:? A:{SYNTHETIC, ExcHandler: SocketTimeoutException (unused java.net.SocketTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:83:? A:{SYNTHETIC, ExcHandler: ConnectTimeoutException (unused org.apache.http.conn.ConnectTimeoutException), Splitter:B:2:0x0012} */
+    /* JADX WARNING: Removed duplicated region for block: B:79:0x0181 A:{ExcHandler: MalformedURLException (r0_8 'e' java.lang.Throwable), Splitter:B:2:0x0012} */
     /* JADX WARNING: Removed duplicated region for block: B:89:0x017b A:{SYNTHETIC} */
     /* JADX WARNING: Removed duplicated region for block: B:59:0x0101  */
     /* JADX WARNING: Failed to process nested try/catch */

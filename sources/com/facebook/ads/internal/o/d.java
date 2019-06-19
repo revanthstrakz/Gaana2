@@ -15,9 +15,9 @@ import java.util.Map;
 @UiThread
 public class d implements c {
     private static final String a = "d";
-    private static double b = 0.0d;
-    private static String c = null;
-    private static volatile boolean d = false;
+    private static double b;
+    private static String c;
+    private static volatile boolean d;
     @Nullable
     @SuppressLint({"StaticFieldLeak"})
     private static c h;

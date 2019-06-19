@@ -471,6 +471,57 @@ public class MediaRouteControllerDialog extends AlertDialog {
         }
     }
 
+    private final class MediaControllerCallback extends Callback {
+        MediaControllerCallback() {
+        }
+
+        public void onSessionDestroyed() {
+            if (MediaRouteControllerDialog.this.mMediaController != null) {
+                MediaRouteControllerDialog.this.mMediaController.unregisterCallback(MediaRouteControllerDialog.this.mControllerCallback);
+                MediaRouteControllerDialog.this.mMediaController = null;
+            }
+        }
+
+        public void onPlaybackStateChanged(PlaybackStateCompat playbackStateCompat) {
+            MediaRouteControllerDialog.this.mState = playbackStateCompat;
+            MediaRouteControllerDialog.this.update(false);
+        }
+
+        public void onMetadataChanged(MediaMetadataCompat mediaMetadataCompat) {
+            MediaRouteControllerDialog.this.mDescription = mediaMetadataCompat == null ? null : mediaMetadataCompat.getDescription();
+            MediaRouteControllerDialog.this.updateArtIconIfNeeded();
+            MediaRouteControllerDialog.this.update(false);
+        }
+    }
+
+    private final class MediaRouterCallback extends MediaRouter.Callback {
+        MediaRouterCallback() {
+        }
+
+        public void onRouteUnselected(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            MediaRouteControllerDialog.this.update(false);
+        }
+
+        public void onRouteChanged(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            MediaRouteControllerDialog.this.update(true);
+        }
+
+        public void onRouteVolumeChanged(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            SeekBar seekBar = (SeekBar) MediaRouteControllerDialog.this.mVolumeSliderMap.get(routeInfo);
+            int volume = routeInfo.getVolume();
+            if (MediaRouteControllerDialog.DEBUG) {
+                String str = MediaRouteControllerDialog.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onRouteVolumeChanged(), route.getVolume:");
+                stringBuilder.append(volume);
+                Log.d(str, stringBuilder.toString());
+            }
+            if (seekBar != null && MediaRouteControllerDialog.this.mRouteInVolumeSliderTouched != routeInfo) {
+                seekBar.setProgress(volume);
+            }
+        }
+    }
+
     private class VolumeChangeListener implements OnSeekBarChangeListener {
         private final Runnable mStopTrackingTouch = new Runnable() {
             public void run() {
@@ -578,57 +629,6 @@ public class MediaRouteControllerDialog extends AlertDialog {
                 }
             }
             return view;
-        }
-    }
-
-    private final class MediaControllerCallback extends Callback {
-        MediaControllerCallback() {
-        }
-
-        public void onSessionDestroyed() {
-            if (MediaRouteControllerDialog.this.mMediaController != null) {
-                MediaRouteControllerDialog.this.mMediaController.unregisterCallback(MediaRouteControllerDialog.this.mControllerCallback);
-                MediaRouteControllerDialog.this.mMediaController = null;
-            }
-        }
-
-        public void onPlaybackStateChanged(PlaybackStateCompat playbackStateCompat) {
-            MediaRouteControllerDialog.this.mState = playbackStateCompat;
-            MediaRouteControllerDialog.this.update(false);
-        }
-
-        public void onMetadataChanged(MediaMetadataCompat mediaMetadataCompat) {
-            MediaRouteControllerDialog.this.mDescription = mediaMetadataCompat == null ? null : mediaMetadataCompat.getDescription();
-            MediaRouteControllerDialog.this.updateArtIconIfNeeded();
-            MediaRouteControllerDialog.this.update(false);
-        }
-    }
-
-    private final class MediaRouterCallback extends MediaRouter.Callback {
-        MediaRouterCallback() {
-        }
-
-        public void onRouteUnselected(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            MediaRouteControllerDialog.this.update(false);
-        }
-
-        public void onRouteChanged(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            MediaRouteControllerDialog.this.update(true);
-        }
-
-        public void onRouteVolumeChanged(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            SeekBar seekBar = (SeekBar) MediaRouteControllerDialog.this.mVolumeSliderMap.get(routeInfo);
-            int volume = routeInfo.getVolume();
-            if (MediaRouteControllerDialog.DEBUG) {
-                String str = MediaRouteControllerDialog.TAG;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("onRouteVolumeChanged(), route.getVolume:");
-                stringBuilder.append(volume);
-                Log.d(str, stringBuilder.toString());
-            }
-            if (seekBar != null && MediaRouteControllerDialog.this.mRouteInVolumeSliderTouched != routeInfo) {
-                seekBar.setProgress(volume);
-            }
         }
     }
 

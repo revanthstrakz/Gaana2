@@ -12,9 +12,9 @@ public final class zzahv extends zzaig<zzajr> implements zzaic, zzaii {
 
     public zzahv(Context context, zzbbi zzbbi) throws zzbgq {
         try {
-            this.zzdid = new zzbig(context, new zzaib(this));
+            this.zzdid = new zzbig(context, new zzaib(this, null));
             this.zzdid.setWillNotDraw(true);
-            this.zzdid.addJavascriptInterface(new zzaia(this), "GoogleJsInterface");
+            this.zzdid.addJavascriptInterface(new zzaia(this, null), "GoogleJsInterface");
             zzbv.zzlf().zza(context, zzbbi.zzdp, this.zzdid.getSettings());
             super.zzi(this);
         } catch (Throwable th) {

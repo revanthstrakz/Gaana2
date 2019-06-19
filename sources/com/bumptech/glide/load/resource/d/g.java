@@ -39,27 +39,6 @@ class g {
         void f();
     }
 
-    private class c implements Callback {
-        c() {
-        }
-
-        public boolean handleMessage(Message message) {
-            if (message.what == 1) {
-                g.this.a((a) message.obj);
-                return true;
-            }
-            if (message.what == 2) {
-                g.this.a.clear((a) message.obj);
-            }
-            return false;
-        }
-    }
-
-    @VisibleForTesting
-    interface d {
-        void a();
-    }
-
     static class a extends com.bumptech.glide.request.a.g<Bitmap> {
         final int a;
         private final Handler b;
@@ -82,6 +61,27 @@ class g {
             this.d = bitmap;
             this.b.sendMessageAtTime(this.b.obtainMessage(1, this), this.c);
         }
+    }
+
+    private class c implements Callback {
+        c() {
+        }
+
+        public boolean handleMessage(Message message) {
+            if (message.what == 1) {
+                g.this.a((a) message.obj);
+                return true;
+            }
+            if (message.what == 2) {
+                g.this.a.clear((a) message.obj);
+            }
+            return false;
+        }
+    }
+
+    @VisibleForTesting
+    interface d {
+        void a();
     }
 
     public g(com.bumptech.glide.e eVar, com.bumptech.glide.b.a aVar, int i, int i2, com.bumptech.glide.load.i<Bitmap> iVar, Bitmap bitmap) {

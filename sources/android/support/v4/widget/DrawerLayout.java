@@ -114,62 +114,6 @@ public class DrawerLayout extends ViewGroup {
         void onDrawerStateChanged(int i);
     }
 
-    @Retention(RetentionPolicy.SOURCE)
-    private @interface EdgeGravity {
-    }
-
-    public static class LayoutParams extends MarginLayoutParams {
-        private static final int FLAG_IS_CLOSING = 4;
-        private static final int FLAG_IS_OPENED = 1;
-        private static final int FLAG_IS_OPENING = 2;
-        public int gravity;
-        boolean isPeeking;
-        float onScreen;
-        int openState;
-
-        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-            super(context, attributeSet);
-            this.gravity = 0;
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, DrawerLayout.LAYOUT_ATTRS);
-            this.gravity = obtainStyledAttributes.getInt(0, 0);
-            obtainStyledAttributes.recycle();
-        }
-
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-            this.gravity = 0;
-        }
-
-        public LayoutParams(int i, int i2, int i3) {
-            this(i, i2);
-            this.gravity = i3;
-        }
-
-        public LayoutParams(@NonNull LayoutParams layoutParams) {
-            super(layoutParams);
-            this.gravity = 0;
-            this.gravity = layoutParams.gravity;
-        }
-
-        public LayoutParams(@NonNull android.view.ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
-            this.gravity = 0;
-        }
-
-        public LayoutParams(@NonNull MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
-            this.gravity = 0;
-        }
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    private @interface LockMode {
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    private @interface State {
-    }
-
     class AccessibilityDelegate extends AccessibilityDelegateCompat {
         private final Rect mTmpRect = new Rect();
 
@@ -268,6 +212,58 @@ public class DrawerLayout extends ViewGroup {
         }
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface EdgeGravity {
+    }
+
+    public static class LayoutParams extends MarginLayoutParams {
+        private static final int FLAG_IS_CLOSING = 4;
+        private static final int FLAG_IS_OPENED = 1;
+        private static final int FLAG_IS_OPENING = 2;
+        public int gravity;
+        boolean isPeeking;
+        float onScreen;
+        int openState;
+
+        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+            super(context, attributeSet);
+            this.gravity = 0;
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, DrawerLayout.LAYOUT_ATTRS);
+            this.gravity = obtainStyledAttributes.getInt(0, 0);
+            obtainStyledAttributes.recycle();
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+            this.gravity = 0;
+        }
+
+        public LayoutParams(int i, int i2, int i3) {
+            this(i, i2);
+            this.gravity = i3;
+        }
+
+        public LayoutParams(@NonNull LayoutParams layoutParams) {
+            super(layoutParams);
+            this.gravity = 0;
+            this.gravity = layoutParams.gravity;
+        }
+
+        public LayoutParams(@NonNull android.view.ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+            this.gravity = 0;
+        }
+
+        public LayoutParams(@NonNull MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+            this.gravity = 0;
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface LockMode {
+    }
+
     protected static class SavedState extends AbsSavedState {
         public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
             public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
@@ -323,6 +319,10 @@ public class DrawerLayout extends ViewGroup {
 
         public void onDrawerStateChanged(int i) {
         }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface State {
     }
 
     private class ViewDragCallback extends Callback {

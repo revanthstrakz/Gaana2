@@ -472,7 +472,7 @@ public class f extends a {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:26:0x0080 A:{Splitter:B:10:0x0026, ExcHandler: all (r0_0 'th' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:26:0x0080 A:{ExcHandler: all (r0_0 'th' java.lang.Throwable), Splitter:B:10:0x0026} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:26:0x0080, code skipped:
             r0 = move-exception;
@@ -1179,7 +1179,7 @@ public class f extends a {
         d(playlist);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:10:0x003f A:{Splitter:B:3:0x000b, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:10:0x003f A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:3:0x000b} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:11:0x0040, code skipped:
             r0.endTransaction();

@@ -10,6 +10,16 @@ public final class zzt {
         private int zzbd;
         private int zzbe;
 
+        public static final class zza extends com.google.android.gms.internal.clearcut.zzcg.zza<zza, zza> implements zzdq {
+            private zza() {
+                super(zza.zzbf);
+            }
+
+            /* synthetic */ zza(zzu zzu) {
+                this();
+            }
+        }
+
         public enum zzb implements zzcj {
             ARCH_UNKNOWN(0),
             ARCH_NON_NATIVE(1),
@@ -187,16 +197,6 @@ public final class zzt {
 
             public final int zzc() {
                 return this.value;
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.clearcut.zzcg.zza<zza, zza> implements zzdq {
-            private zza() {
-                super(zza.zzbf);
-            }
-
-            /* synthetic */ zza(zzu zzu) {
-                this();
             }
         }
 

@@ -14,50 +14,6 @@ public final class zzbvd {
         private boolean zzfxk;
         private byte zzfxl = (byte) 2;
 
-        public enum zzc implements zzbrg {
-            SAFE(0),
-            DANGEROUS(1),
-            UNKNOWN(2),
-            POTENTIALLY_UNWANTED(3),
-            DANGEROUS_HOST(4);
-            
-            private static final zzbrh<zzc> zzcbx = null;
-            private final int value;
-
-            public final int zzom() {
-                return this.value;
-            }
-
-            public static zzc zzgi(int i) {
-                switch (i) {
-                    case 0:
-                        return SAFE;
-                    case 1:
-                        return DANGEROUS;
-                    case 2:
-                        return UNKNOWN;
-                    case 3:
-                        return POTENTIALLY_UNWANTED;
-                    case 4:
-                        return DANGEROUS_HOST;
-                    default:
-                        return null;
-                }
-            }
-
-            public static zzbri zzop() {
-                return zzbvg.zzccw;
-            }
-
-            private zzc(int i) {
-                this.value = i;
-            }
-
-            static {
-                zzcbx = new zzbvf();
-            }
-        }
-
         public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zza, zza> implements zzbsn {
             private zza() {
                 super(zza.zzfxm);
@@ -125,6 +81,50 @@ public final class zzbvd {
 
             static {
                 zzbrd.zza(zzb.class, zzfxr);
+            }
+        }
+
+        public enum zzc implements zzbrg {
+            SAFE(0),
+            DANGEROUS(1),
+            UNKNOWN(2),
+            POTENTIALLY_UNWANTED(3),
+            DANGEROUS_HOST(4);
+            
+            private static final zzbrh<zzc> zzcbx = null;
+            private final int value;
+
+            public final int zzom() {
+                return this.value;
+            }
+
+            public static zzc zzgi(int i) {
+                switch (i) {
+                    case 0:
+                        return SAFE;
+                    case 1:
+                        return DANGEROUS;
+                    case 2:
+                        return UNKNOWN;
+                    case 3:
+                        return POTENTIALLY_UNWANTED;
+                    case 4:
+                        return DANGEROUS_HOST;
+                    default:
+                        return null;
+                }
+            }
+
+            public static zzbri zzop() {
+                return zzbvg.zzccw;
+            }
+
+            private zzc(int i) {
+                this.value = i;
+            }
+
+            static {
+                zzcbx = new zzbvf();
             }
         }
 
@@ -197,65 +197,6 @@ public final class zzbvd {
         private zzi zzfyk;
         private zzbrk<String> zzfyl = zzbrd.zzams();
         private zzbrk<String> zzfym = zzbrd.zzams();
-
-        public enum zzg implements zzbrg {
-            UNKNOWN(0),
-            URL_PHISHING(1),
-            URL_MALWARE(2),
-            URL_UNWANTED(3),
-            CLIENT_SIDE_PHISHING_URL(4),
-            CLIENT_SIDE_MALWARE_URL(5),
-            DANGEROUS_DOWNLOAD_RECOVERY(6),
-            DANGEROUS_DOWNLOAD_WARNING(7),
-            OCTAGON_AD(8),
-            OCTAGON_AD_SB_MATCH(9);
-            
-            private static final zzbrh<zzg> zzcbx = null;
-            private final int value;
-
-            public final int zzom() {
-                return this.value;
-            }
-
-            public static zzg zzgk(int i) {
-                switch (i) {
-                    case 0:
-                        return UNKNOWN;
-                    case 1:
-                        return URL_PHISHING;
-                    case 2:
-                        return URL_MALWARE;
-                    case 3:
-                        return URL_UNWANTED;
-                    case 4:
-                        return CLIENT_SIDE_PHISHING_URL;
-                    case 5:
-                        return CLIENT_SIDE_MALWARE_URL;
-                    case 6:
-                        return DANGEROUS_DOWNLOAD_RECOVERY;
-                    case 7:
-                        return DANGEROUS_DOWNLOAD_WARNING;
-                    case 8:
-                        return OCTAGON_AD;
-                    case 9:
-                        return OCTAGON_AD_SB_MATCH;
-                    default:
-                        return null;
-                }
-            }
-
-            public static zzbri zzop() {
-                return zzbvk.zzccw;
-            }
-
-            private zzg(int i) {
-                this.value = i;
-            }
-
-            static {
-                zzcbx = new zzbvj();
-            }
-        }
 
         public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzb, zza> implements zzbsn {
             private zza() {
@@ -657,6 +598,16 @@ public final class zzbvd {
             private String zzfzi = "";
             private zzbpu zzfzj = zzbpu.zzfli;
 
+            public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzf, zza> implements zzbsn {
+                private zza() {
+                    super(zzf.zzfzk);
+                }
+
+                /* synthetic */ zza(zzbve zzbve) {
+                    this();
+                }
+            }
+
             public enum zzb implements zzbrg {
                 TYPE_UNKNOWN(0),
                 TYPE_CREATIVE(1);
@@ -689,16 +640,6 @@ public final class zzbvd {
 
                 static {
                     zzcbx = new zzbvh();
-                }
-            }
-
-            public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzf, zza> implements zzbsn {
-                private zza() {
-                    super(zzf.zzfzk);
-                }
-
-                /* synthetic */ zza(zzbve zzbve) {
-                    this();
                 }
             }
 
@@ -740,6 +681,65 @@ public final class zzbvd {
 
             static {
                 zzbrd.zza(zzf.class, zzfzk);
+            }
+        }
+
+        public enum zzg implements zzbrg {
+            UNKNOWN(0),
+            URL_PHISHING(1),
+            URL_MALWARE(2),
+            URL_UNWANTED(3),
+            CLIENT_SIDE_PHISHING_URL(4),
+            CLIENT_SIDE_MALWARE_URL(5),
+            DANGEROUS_DOWNLOAD_RECOVERY(6),
+            DANGEROUS_DOWNLOAD_WARNING(7),
+            OCTAGON_AD(8),
+            OCTAGON_AD_SB_MATCH(9);
+            
+            private static final zzbrh<zzg> zzcbx = null;
+            private final int value;
+
+            public final int zzom() {
+                return this.value;
+            }
+
+            public static zzg zzgk(int i) {
+                switch (i) {
+                    case 0:
+                        return UNKNOWN;
+                    case 1:
+                        return URL_PHISHING;
+                    case 2:
+                        return URL_MALWARE;
+                    case 3:
+                        return URL_UNWANTED;
+                    case 4:
+                        return CLIENT_SIDE_PHISHING_URL;
+                    case 5:
+                        return CLIENT_SIDE_MALWARE_URL;
+                    case 6:
+                        return DANGEROUS_DOWNLOAD_RECOVERY;
+                    case 7:
+                        return DANGEROUS_DOWNLOAD_WARNING;
+                    case 8:
+                        return OCTAGON_AD;
+                    case 9:
+                        return OCTAGON_AD_SB_MATCH;
+                    default:
+                        return null;
+                }
+            }
+
+            public static zzbri zzop() {
+                return zzbvk.zzccw;
+            }
+
+            private zzg(int i) {
+                this.value = i;
+            }
+
+            static {
+                zzcbx = new zzbvj();
             }
         }
 

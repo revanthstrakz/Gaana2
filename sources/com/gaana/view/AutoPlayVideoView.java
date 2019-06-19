@@ -64,11 +64,6 @@ public class AutoPlayVideoView extends BaseItemView implements OnClickListener {
     private String shareURL = "";
     private String streamingURL = "";
 
-    public enum GAANA_VIDEO_SOURCE {
-        HOME_PAGE,
-        OCCASION_PAGE
-    }
-
     public class AutoVideoViewHolder extends ViewHolder {
         private AutoVideoImage aah_vi;
         private TextView headerText;
@@ -233,6 +228,11 @@ public class AutoPlayVideoView extends BaseItemView implements OnClickListener {
         public boolean isLooping() {
             return this.isLooping;
         }
+    }
+
+    public enum GAANA_VIDEO_SOURCE {
+        HOME_PAGE,
+        OCCASION_PAGE
     }
 
     private URLManager getURLManager() {

@@ -28,6 +28,17 @@ public class jn implements VideoStreamPlayerCallback, b, jo {
     private final String g;
     private String h;
 
+    static abstract class a {
+        a() {
+        }
+
+        public abstract String TXXX();
+
+        public static a create(String str) {
+            return new ip(str);
+        }
+    }
+
     /* renamed from: com.google.ads.interactivemedia.v3.internal.jn$1 */
     static /* synthetic */ class AnonymousClass1 {
         static final /* synthetic */ int[] a = new int[jc.b.values().length];
@@ -37,17 +48,6 @@ public class jn implements VideoStreamPlayerCallback, b, jo {
                 a[jc.b.loadStream.ordinal()] = 1;
             } catch (NoSuchFieldError unused) {
             }
-        }
-    }
-
-    static abstract class a {
-        a() {
-        }
-
-        public abstract String TXXX();
-
-        public static a create(String str) {
-            return new ip(str);
         }
     }
 

@@ -42,7 +42,7 @@ import com.utilities.g;
 import java.util.ArrayList;
 
 public class GaanaWidgetProvider extends AppWidgetProvider {
-    static boolean b = false;
+    static boolean b;
     public static Track c;
     Bitmap a = null;
     PlayerManager d = null;

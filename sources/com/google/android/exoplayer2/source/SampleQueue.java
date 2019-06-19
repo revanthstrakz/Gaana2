@@ -35,6 +35,10 @@ public class SampleQueue implements TrackOutput {
     private UpstreamFormatChangedListener upstreamFormatChangeListener;
     private AllocationNode writeAllocationNode = this.firstAllocationNode;
 
+    public interface UpstreamFormatChangedListener {
+        void onUpstreamFormatChanged(Format format);
+    }
+
     private static final class AllocationNode {
         @Nullable
         public Allocation allocation;
@@ -65,10 +69,6 @@ public class SampleQueue implements TrackOutput {
             this.next = null;
             return allocationNode;
         }
-    }
-
-    public interface UpstreamFormatChangedListener {
-        void onUpstreamFormatChanged(Format format);
     }
 
     public SampleQueue(Allocator allocator) {

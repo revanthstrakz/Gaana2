@@ -15,20 +15,6 @@ public class PayUHash extends BusinessObject {
     @SerializedName("Status")
     private String status;
 
-    public class SiEnabledBankName implements Serializable {
-        private static final long serialVersionUID = 1;
-        @SerializedName("bank_name")
-        public String bank_name;
-
-        public String getBank_name() {
-            return this.bank_name;
-        }
-
-        public void setBank_name(String str) {
-            this.bank_name = str;
-        }
-    }
-
     public static class OrderDetails extends BusinessObject {
         private static final long serialVersionUID = 1;
         @SerializedName("amount")
@@ -196,6 +182,20 @@ public class PayUHash extends BusinessObject {
 
         public String getOfferKey() {
             return this.offerKey;
+        }
+    }
+
+    public class SiEnabledBankName implements Serializable {
+        private static final long serialVersionUID = 1;
+        @SerializedName("bank_name")
+        public String bank_name;
+
+        public String getBank_name() {
+            return this.bank_name;
+        }
+
+        public void setBank_name(String str) {
+            this.bank_name = str;
         }
     }
 

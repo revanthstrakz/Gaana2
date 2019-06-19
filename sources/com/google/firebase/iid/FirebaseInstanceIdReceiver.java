@@ -14,7 +14,7 @@ import com.google.android.gms.common.internal.ShowFirstParty;
 import com.google.android.gms.common.util.PlatformVersion;
 
 public final class FirebaseInstanceIdReceiver extends WakefulBroadcastReceiver {
-    private static boolean zzbf = false;
+    private static boolean zzbf;
     private static zzh zzbg;
     private static zzh zzbh;
 

@@ -41,16 +41,16 @@ final class au implements a {
     private boolean o = false;
     private RenderView p;
 
+    interface c {
+        void a(int i, ak akVar);
+    }
+
     interface a {
         void a(View view, ak akVar);
     }
 
     interface b {
         void a(bb bbVar);
-    }
-
-    interface c {
-        void a(int i, ak akVar);
     }
 
     au(@NonNull Context context, @NonNull c cVar, @NonNull ah ahVar, @NonNull ao aoVar, @NonNull c cVar2, @NonNull a aVar, @NonNull b bVar) {

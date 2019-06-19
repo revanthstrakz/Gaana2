@@ -20,25 +20,6 @@ class d extends LayoutInflater {
     private boolean d = false;
     private Field e = null;
 
-    private static class b implements Factory {
-        private final Factory a;
-        private final d b;
-        private final c c;
-
-        public b(Factory factory, d dVar, c cVar) {
-            this.a = factory;
-            this.b = dVar;
-            this.c = cVar;
-        }
-
-        public View onCreateView(String str, Context context, AttributeSet attributeSet) {
-            if (VERSION.SDK_INT < 11) {
-                return this.c.a(this.b.a(null, this.a.onCreateView(str, context, attributeSet), str, context, attributeSet), context, attributeSet);
-            }
-            return this.c.a(this.a.onCreateView(str, context, attributeSet), context, attributeSet);
-        }
-    }
-
     @TargetApi(11)
     private static class c implements Factory2 {
         protected final Factory2 a;
@@ -69,6 +50,25 @@ class d extends LayoutInflater {
 
         public View onCreateView(View view, String str, Context context, AttributeSet attributeSet) {
             return this.b.a(this.c.a(view, this.a.onCreateView(view, str, context, attributeSet), str, context, attributeSet), context, attributeSet);
+        }
+    }
+
+    private static class b implements Factory {
+        private final Factory a;
+        private final d b;
+        private final c c;
+
+        public b(Factory factory, d dVar, c cVar) {
+            this.a = factory;
+            this.b = dVar;
+            this.c = cVar;
+        }
+
+        public View onCreateView(String str, Context context, AttributeSet attributeSet) {
+            if (VERSION.SDK_INT < 11) {
+                return this.c.a(this.b.a(null, this.a.onCreateView(str, context, attributeSet), str, context, attributeSet), context, attributeSet);
+            }
+            return this.c.a(this.a.onCreateView(str, context, attributeSet), context, attributeSet);
         }
     }
 

@@ -13,8 +13,8 @@ import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 
 public final class bt {
-    public static boolean a = false;
-    public static boolean b = false;
+    public static boolean a;
+    public static boolean b;
     private int A;
     private int B;
     private long C;
@@ -159,43 +159,6 @@ public final class bt {
         }
     }
 
-    public static final class d extends Exception {
-        public final int a;
-
-        public d(int i, int i2, int i3, int i4) {
-            StringBuilder stringBuilder = new StringBuilder(82);
-            stringBuilder.append("AudioTrack init failed: ");
-            stringBuilder.append(i);
-            stringBuilder.append(", Config(");
-            stringBuilder.append(i2);
-            stringBuilder.append(", ");
-            stringBuilder.append(i3);
-            stringBuilder.append(", ");
-            stringBuilder.append(i4);
-            stringBuilder.append(")");
-            super(stringBuilder.toString());
-            this.a = i;
-        }
-    }
-
-    public static final class e extends RuntimeException {
-        public e(String str) {
-            super(str);
-        }
-    }
-
-    public static final class f extends Exception {
-        public final int a;
-
-        public f(int i) {
-            StringBuilder stringBuilder = new StringBuilder(36);
-            stringBuilder.append("AudioTrack write failed: ");
-            stringBuilder.append(i);
-            super(stringBuilder.toString());
-            this.a = i;
-        }
-    }
-
     @TargetApi(19)
     private static class b extends a {
         private final AudioTimestamp b = new AudioTimestamp();
@@ -264,6 +227,43 @@ public final class bt {
             if (this.a != null && this.b != null) {
                 this.a.setPlaybackParams(this.b);
             }
+        }
+    }
+
+    public static final class d extends Exception {
+        public final int a;
+
+        public d(int i, int i2, int i3, int i4) {
+            StringBuilder stringBuilder = new StringBuilder(82);
+            stringBuilder.append("AudioTrack init failed: ");
+            stringBuilder.append(i);
+            stringBuilder.append(", Config(");
+            stringBuilder.append(i2);
+            stringBuilder.append(", ");
+            stringBuilder.append(i3);
+            stringBuilder.append(", ");
+            stringBuilder.append(i4);
+            stringBuilder.append(")");
+            super(stringBuilder.toString());
+            this.a = i;
+        }
+    }
+
+    public static final class e extends RuntimeException {
+        public e(String str) {
+            super(str);
+        }
+    }
+
+    public static final class f extends Exception {
+        public final int a;
+
+        public f(int i) {
+            StringBuilder stringBuilder = new StringBuilder(36);
+            stringBuilder.append("AudioTrack write failed: ");
+            stringBuilder.append(i);
+            super(stringBuilder.toString());
+            this.a = i;
         }
     }
 

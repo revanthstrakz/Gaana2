@@ -489,621 +489,6 @@ public class MediaSessionCompat {
         void setShuffleMode(int i);
     }
 
-    public interface OnActiveChangeListener {
-        void onActiveChanged();
-    }
-
-    public static final class QueueItem implements Parcelable {
-        public static final Creator<QueueItem> CREATOR = new Creator<QueueItem>() {
-            public QueueItem createFromParcel(Parcel parcel) {
-                return new QueueItem(parcel);
-            }
-
-            public QueueItem[] newArray(int i) {
-                return new QueueItem[i];
-            }
-        };
-        public static final int UNKNOWN_ID = -1;
-        private final MediaDescriptionCompat mDescription;
-        private final long mId;
-        private Object mItem;
-
-        public int describeContents() {
-            return 0;
-        }
-
-        public QueueItem(MediaDescriptionCompat mediaDescriptionCompat, long j) {
-            this(null, mediaDescriptionCompat, j);
-        }
-
-        private QueueItem(Object obj, MediaDescriptionCompat mediaDescriptionCompat, long j) {
-            if (mediaDescriptionCompat == null) {
-                throw new IllegalArgumentException("Description cannot be null.");
-            } else if (j == -1) {
-                throw new IllegalArgumentException("Id cannot be QueueItem.UNKNOWN_ID");
-            } else {
-                this.mDescription = mediaDescriptionCompat;
-                this.mId = j;
-                this.mItem = obj;
-            }
-        }
-
-        QueueItem(Parcel parcel) {
-            this.mDescription = (MediaDescriptionCompat) MediaDescriptionCompat.CREATOR.createFromParcel(parcel);
-            this.mId = parcel.readLong();
-        }
-
-        public MediaDescriptionCompat getDescription() {
-            return this.mDescription;
-        }
-
-        public long getQueueId() {
-            return this.mId;
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            this.mDescription.writeToParcel(parcel, i);
-            parcel.writeLong(this.mId);
-        }
-
-        public Object getQueueItem() {
-            if (this.mItem != null || VERSION.SDK_INT < 21) {
-                return this.mItem;
-            }
-            this.mItem = QueueItem.createItem(this.mDescription.getMediaDescription(), this.mId);
-            return this.mItem;
-        }
-
-        public static QueueItem fromQueueItem(Object obj) {
-            return (obj == null || VERSION.SDK_INT < 21) ? null : new QueueItem(obj, MediaDescriptionCompat.fromMediaDescription(QueueItem.getDescription(obj)), QueueItem.getQueueId(obj));
-        }
-
-        public static List<QueueItem> fromQueueItemList(List<?> list) {
-            if (list == null || VERSION.SDK_INT < 21) {
-                return null;
-            }
-            ArrayList arrayList = new ArrayList();
-            for (Object fromQueueItem : list) {
-                arrayList.add(fromQueueItem(fromQueueItem));
-            }
-            return arrayList;
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("MediaSession.QueueItem {Description=");
-            stringBuilder.append(this.mDescription);
-            stringBuilder.append(", Id=");
-            stringBuilder.append(this.mId);
-            stringBuilder.append(" }");
-            return stringBuilder.toString();
-        }
-    }
-
-    static final class ResultReceiverWrapper implements Parcelable {
-        public static final Creator<ResultReceiverWrapper> CREATOR = new Creator<ResultReceiverWrapper>() {
-            public ResultReceiverWrapper createFromParcel(Parcel parcel) {
-                return new ResultReceiverWrapper(parcel);
-            }
-
-            public ResultReceiverWrapper[] newArray(int i) {
-                return new ResultReceiverWrapper[i];
-            }
-        };
-        private ResultReceiver mResultReceiver;
-
-        public int describeContents() {
-            return 0;
-        }
-
-        public ResultReceiverWrapper(ResultReceiver resultReceiver) {
-            this.mResultReceiver = resultReceiver;
-        }
-
-        ResultReceiverWrapper(Parcel parcel) {
-            this.mResultReceiver = (ResultReceiver) ResultReceiver.CREATOR.createFromParcel(parcel);
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            this.mResultReceiver.writeToParcel(parcel, i);
-        }
-    }
-
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface SessionFlags {
-    }
-
-    public static final class Token implements Parcelable {
-        public static final Creator<Token> CREATOR = new Creator<Token>() {
-            public Token createFromParcel(Parcel parcel) {
-                Object readParcelable;
-                if (VERSION.SDK_INT >= 21) {
-                    readParcelable = parcel.readParcelable(null);
-                } else {
-                    readParcelable = parcel.readStrongBinder();
-                }
-                return new Token(readParcelable);
-            }
-
-            public Token[] newArray(int i) {
-                return new Token[i];
-            }
-        };
-        private final IMediaSession mExtraBinder;
-        private final Object mInner;
-
-        public int describeContents() {
-            return 0;
-        }
-
-        Token(Object obj) {
-            this(obj, null);
-        }
-
-        Token(Object obj, IMediaSession iMediaSession) {
-            this.mInner = obj;
-            this.mExtraBinder = iMediaSession;
-        }
-
-        public static Token fromToken(Object obj) {
-            return fromToken(obj, null);
-        }
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public static Token fromToken(Object obj, IMediaSession iMediaSession) {
-            return (obj == null || VERSION.SDK_INT < 21) ? null : new Token(MediaSessionCompatApi21.verifyToken(obj), iMediaSession);
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            if (VERSION.SDK_INT >= 21) {
-                parcel.writeParcelable((Parcelable) this.mInner, i);
-            } else {
-                parcel.writeStrongBinder((IBinder) this.mInner);
-            }
-        }
-
-        public int hashCode() {
-            if (this.mInner == null) {
-                return 0;
-            }
-            return this.mInner.hashCode();
-        }
-
-        public boolean equals(Object obj) {
-            boolean z = true;
-            if (this == obj) {
-                return true;
-            }
-            if (!(obj instanceof Token)) {
-                return false;
-            }
-            Token token = (Token) obj;
-            if (this.mInner == null) {
-                if (token.mInner != null) {
-                    z = false;
-                }
-                return z;
-            } else if (token.mInner == null) {
-                return false;
-            } else {
-                return this.mInner.equals(token.mInner);
-            }
-        }
-
-        public Object getToken() {
-            return this.mInner;
-        }
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public IMediaSession getExtraBinder() {
-            return this.mExtraBinder;
-        }
-    }
-
-    @RequiresApi(21)
-    static class MediaSessionImplApi21 implements MediaSessionImpl {
-        boolean mCaptioningEnabled;
-        private boolean mDestroyed = false;
-        private final RemoteCallbackList<IMediaControllerCallback> mExtraControllerCallbacks = new RemoteCallbackList();
-        private MediaMetadataCompat mMetadata;
-        private PlaybackStateCompat mPlaybackState;
-        private List<QueueItem> mQueue;
-        int mRatingType;
-        int mRepeatMode;
-        private final Object mSessionObj;
-        int mShuffleMode;
-        private final Token mToken;
-
-        class ExtraSession extends Stub {
-            public List<QueueItem> getQueue() {
-                return null;
-            }
-
-            public boolean isShuffleModeEnabledRemoved() {
-                return false;
-            }
-
-            public void setShuffleModeEnabledRemoved(boolean z) throws RemoteException {
-            }
-
-            ExtraSession() {
-            }
-
-            public void sendCommand(String str, Bundle bundle, ResultReceiverWrapper resultReceiverWrapper) {
-                throw new AssertionError();
-            }
-
-            public boolean sendMediaButton(KeyEvent keyEvent) {
-                throw new AssertionError();
-            }
-
-            public void registerCallbackListener(IMediaControllerCallback iMediaControllerCallback) {
-                if (!MediaSessionImplApi21.this.mDestroyed) {
-                    MediaSessionImplApi21.this.mExtraControllerCallbacks.register(iMediaControllerCallback);
-                }
-            }
-
-            public void unregisterCallbackListener(IMediaControllerCallback iMediaControllerCallback) {
-                MediaSessionImplApi21.this.mExtraControllerCallbacks.unregister(iMediaControllerCallback);
-            }
-
-            public String getPackageName() {
-                throw new AssertionError();
-            }
-
-            public String getTag() {
-                throw new AssertionError();
-            }
-
-            public PendingIntent getLaunchPendingIntent() {
-                throw new AssertionError();
-            }
-
-            public long getFlags() {
-                throw new AssertionError();
-            }
-
-            public ParcelableVolumeInfo getVolumeAttributes() {
-                throw new AssertionError();
-            }
-
-            public void adjustVolume(int i, int i2, String str) {
-                throw new AssertionError();
-            }
-
-            public void setVolumeTo(int i, int i2, String str) {
-                throw new AssertionError();
-            }
-
-            public void prepare() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void prepareFromMediaId(String str, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void prepareFromSearch(String str, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void prepareFromUri(Uri uri, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void play() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void playFromMediaId(String str, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void playFromSearch(String str, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void playFromUri(Uri uri, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void skipToQueueItem(long j) {
-                throw new AssertionError();
-            }
-
-            public void pause() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void stop() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void next() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void previous() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void fastForward() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void rewind() throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void seekTo(long j) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void rate(RatingCompat ratingCompat) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void rateWithExtras(RatingCompat ratingCompat, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void setCaptioningEnabled(boolean z) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void setRepeatMode(int i) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void setShuffleMode(int i) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public void sendCustomAction(String str, Bundle bundle) throws RemoteException {
-                throw new AssertionError();
-            }
-
-            public MediaMetadataCompat getMetadata() {
-                throw new AssertionError();
-            }
-
-            public PlaybackStateCompat getPlaybackState() {
-                return MediaSessionCompat.getStateWithUpdatedPosition(MediaSessionImplApi21.this.mPlaybackState, MediaSessionImplApi21.this.mMetadata);
-            }
-
-            public void addQueueItem(MediaDescriptionCompat mediaDescriptionCompat) {
-                throw new AssertionError();
-            }
-
-            public void addQueueItemAt(MediaDescriptionCompat mediaDescriptionCompat, int i) {
-                throw new AssertionError();
-            }
-
-            public void removeQueueItem(MediaDescriptionCompat mediaDescriptionCompat) {
-                throw new AssertionError();
-            }
-
-            public void removeQueueItemAt(int i) {
-                throw new AssertionError();
-            }
-
-            public CharSequence getQueueTitle() {
-                throw new AssertionError();
-            }
-
-            public Bundle getExtras() {
-                throw new AssertionError();
-            }
-
-            public int getRatingType() {
-                return MediaSessionImplApi21.this.mRatingType;
-            }
-
-            public boolean isCaptioningEnabled() {
-                return MediaSessionImplApi21.this.mCaptioningEnabled;
-            }
-
-            public int getRepeatMode() {
-                return MediaSessionImplApi21.this.mRepeatMode;
-            }
-
-            public int getShuffleMode() {
-                return MediaSessionImplApi21.this.mShuffleMode;
-            }
-
-            public boolean isTransportControlEnabled() {
-                throw new AssertionError();
-            }
-        }
-
-        public Object getRemoteControlClient() {
-            return null;
-        }
-
-        public MediaSessionImplApi21(Context context, String str) {
-            this.mSessionObj = MediaSessionCompatApi21.createSession(context, str);
-            this.mToken = new Token(MediaSessionCompatApi21.getSessionToken(this.mSessionObj), new ExtraSession());
-        }
-
-        public MediaSessionImplApi21(Object obj) {
-            this.mSessionObj = MediaSessionCompatApi21.verifySession(obj);
-            this.mToken = new Token(MediaSessionCompatApi21.getSessionToken(this.mSessionObj), new ExtraSession());
-        }
-
-        public void setCallback(Callback callback, Handler handler) {
-            MediaSessionCompatApi21.setCallback(this.mSessionObj, callback == null ? null : callback.mCallbackObj, handler);
-            if (callback != null) {
-                callback.setSessionImpl(this, handler);
-            }
-        }
-
-        public void setFlags(int i) {
-            MediaSessionCompatApi21.setFlags(this.mSessionObj, i);
-        }
-
-        public void setPlaybackToLocal(int i) {
-            MediaSessionCompatApi21.setPlaybackToLocal(this.mSessionObj, i);
-        }
-
-        public void setPlaybackToRemote(VolumeProviderCompat volumeProviderCompat) {
-            MediaSessionCompatApi21.setPlaybackToRemote(this.mSessionObj, volumeProviderCompat.getVolumeProvider());
-        }
-
-        public void setActive(boolean z) {
-            MediaSessionCompatApi21.setActive(this.mSessionObj, z);
-        }
-
-        public boolean isActive() {
-            return MediaSessionCompatApi21.isActive(this.mSessionObj);
-        }
-
-        public void sendSessionEvent(String str, Bundle bundle) {
-            if (VERSION.SDK_INT < 23) {
-                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
-                    try {
-                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onEvent(str, bundle);
-                    } catch (RemoteException unused) {
-                    }
-                }
-                this.mExtraControllerCallbacks.finishBroadcast();
-            }
-            MediaSessionCompatApi21.sendSessionEvent(this.mSessionObj, str, bundle);
-        }
-
-        public void release() {
-            this.mDestroyed = true;
-            MediaSessionCompatApi21.release(this.mSessionObj);
-        }
-
-        public Token getSessionToken() {
-            return this.mToken;
-        }
-
-        public void setPlaybackState(PlaybackStateCompat playbackStateCompat) {
-            Object obj;
-            this.mPlaybackState = playbackStateCompat;
-            for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
-                try {
-                    ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onPlaybackStateChanged(playbackStateCompat);
-                } catch (RemoteException unused) {
-                }
-            }
-            this.mExtraControllerCallbacks.finishBroadcast();
-            Object obj2 = this.mSessionObj;
-            if (playbackStateCompat == null) {
-                obj = null;
-            } else {
-                obj = playbackStateCompat.getPlaybackState();
-            }
-            MediaSessionCompatApi21.setPlaybackState(obj2, obj);
-        }
-
-        public PlaybackStateCompat getPlaybackState() {
-            return this.mPlaybackState;
-        }
-
-        public void setMetadata(MediaMetadataCompat mediaMetadataCompat) {
-            Object obj;
-            this.mMetadata = mediaMetadataCompat;
-            Object obj2 = this.mSessionObj;
-            if (mediaMetadataCompat == null) {
-                obj = null;
-            } else {
-                obj = mediaMetadataCompat.getMediaMetadata();
-            }
-            MediaSessionCompatApi21.setMetadata(obj2, obj);
-        }
-
-        public void setSessionActivity(PendingIntent pendingIntent) {
-            MediaSessionCompatApi21.setSessionActivity(this.mSessionObj, pendingIntent);
-        }
-
-        public void setMediaButtonReceiver(PendingIntent pendingIntent) {
-            MediaSessionCompatApi21.setMediaButtonReceiver(this.mSessionObj, pendingIntent);
-        }
-
-        public void setQueue(List<QueueItem> list) {
-            List arrayList;
-            this.mQueue = list;
-            if (list != null) {
-                arrayList = new ArrayList();
-                for (QueueItem queueItem : list) {
-                    arrayList.add(queueItem.getQueueItem());
-                }
-            } else {
-                arrayList = null;
-            }
-            MediaSessionCompatApi21.setQueue(this.mSessionObj, arrayList);
-        }
-
-        public void setQueueTitle(CharSequence charSequence) {
-            MediaSessionCompatApi21.setQueueTitle(this.mSessionObj, charSequence);
-        }
-
-        public void setRatingType(int i) {
-            if (VERSION.SDK_INT < 22) {
-                this.mRatingType = i;
-            } else {
-                MediaSessionCompatApi22.setRatingType(this.mSessionObj, i);
-            }
-        }
-
-        public void setCaptioningEnabled(boolean z) {
-            if (this.mCaptioningEnabled != z) {
-                this.mCaptioningEnabled = z;
-                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
-                    try {
-                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onCaptioningEnabledChanged(z);
-                    } catch (RemoteException unused) {
-                    }
-                }
-                this.mExtraControllerCallbacks.finishBroadcast();
-            }
-        }
-
-        public void setRepeatMode(int i) {
-            if (this.mRepeatMode != i) {
-                this.mRepeatMode = i;
-                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
-                    try {
-                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onRepeatModeChanged(i);
-                    } catch (RemoteException unused) {
-                    }
-                }
-                this.mExtraControllerCallbacks.finishBroadcast();
-            }
-        }
-
-        public void setShuffleMode(int i) {
-            if (this.mShuffleMode != i) {
-                this.mShuffleMode = i;
-                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
-                    try {
-                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onShuffleModeChanged(i);
-                    } catch (RemoteException unused) {
-                    }
-                }
-                this.mExtraControllerCallbacks.finishBroadcast();
-            }
-        }
-
-        public void setExtras(Bundle bundle) {
-            MediaSessionCompatApi21.setExtras(this.mSessionObj, bundle);
-        }
-
-        public Object getMediaSession() {
-            return this.mSessionObj;
-        }
-
-        public String getCallingPackage() {
-            if (VERSION.SDK_INT < 24) {
-                return null;
-            }
-            return MediaSessionCompatApi24.getCallingPackage(this.mSessionObj);
-        }
-    }
-
     static class MediaSessionImplBase implements MediaSessionImpl {
         static final int RCC_PLAYSTATE_NONE = 0;
         final AudioManager mAudioManager;
@@ -1154,234 +539,6 @@ public class MediaSessionCompat {
                 this.command = str;
                 this.extras = bundle;
                 this.stub = resultReceiver;
-            }
-        }
-
-        class MessageHandler extends Handler {
-            private static final int KEYCODE_MEDIA_PAUSE = 127;
-            private static final int KEYCODE_MEDIA_PLAY = 126;
-            private static final int MSG_ADD_QUEUE_ITEM = 25;
-            private static final int MSG_ADD_QUEUE_ITEM_AT = 26;
-            private static final int MSG_ADJUST_VOLUME = 2;
-            private static final int MSG_COMMAND = 1;
-            private static final int MSG_CUSTOM_ACTION = 20;
-            private static final int MSG_FAST_FORWARD = 16;
-            private static final int MSG_MEDIA_BUTTON = 21;
-            private static final int MSG_NEXT = 14;
-            private static final int MSG_PAUSE = 12;
-            private static final int MSG_PLAY = 7;
-            private static final int MSG_PLAY_MEDIA_ID = 8;
-            private static final int MSG_PLAY_SEARCH = 9;
-            private static final int MSG_PLAY_URI = 10;
-            private static final int MSG_PREPARE = 3;
-            private static final int MSG_PREPARE_MEDIA_ID = 4;
-            private static final int MSG_PREPARE_SEARCH = 5;
-            private static final int MSG_PREPARE_URI = 6;
-            private static final int MSG_PREVIOUS = 15;
-            private static final int MSG_RATE = 19;
-            private static final int MSG_RATE_EXTRA = 31;
-            private static final int MSG_REMOVE_QUEUE_ITEM = 27;
-            private static final int MSG_REMOVE_QUEUE_ITEM_AT = 28;
-            private static final int MSG_REWIND = 17;
-            private static final int MSG_SEEK_TO = 18;
-            private static final int MSG_SET_CAPTIONING_ENABLED = 29;
-            private static final int MSG_SET_REPEAT_MODE = 23;
-            private static final int MSG_SET_SHUFFLE_MODE = 30;
-            private static final int MSG_SET_VOLUME = 22;
-            private static final int MSG_SKIP_TO_ITEM = 11;
-            private static final int MSG_STOP = 13;
-
-            public MessageHandler(Looper looper) {
-                super(looper);
-            }
-
-            public void post(int i, Object obj, Bundle bundle) {
-                Message obtainMessage = obtainMessage(i, obj);
-                obtainMessage.setData(bundle);
-                obtainMessage.sendToTarget();
-            }
-
-            public void post(int i, Object obj) {
-                obtainMessage(i, obj).sendToTarget();
-            }
-
-            public void post(int i) {
-                post(i, null);
-            }
-
-            public void post(int i, Object obj, int i2) {
-                obtainMessage(i, i2, 0, obj).sendToTarget();
-            }
-
-            public void handleMessage(Message message) {
-                Callback callback = MediaSessionImplBase.this.mCallback;
-                if (callback != null) {
-                    switch (message.what) {
-                        case 1:
-                            Command command = (Command) message.obj;
-                            callback.onCommand(command.command, command.extras, command.stub);
-                            break;
-                        case 2:
-                            MediaSessionImplBase.this.adjustVolume(message.arg1, 0);
-                            break;
-                        case 3:
-                            callback.onPrepare();
-                            break;
-                        case 4:
-                            callback.onPrepareFromMediaId((String) message.obj, message.getData());
-                            break;
-                        case 5:
-                            callback.onPrepareFromSearch((String) message.obj, message.getData());
-                            break;
-                        case 6:
-                            callback.onPrepareFromUri((Uri) message.obj, message.getData());
-                            break;
-                        case 7:
-                            callback.onPlay();
-                            break;
-                        case 8:
-                            callback.onPlayFromMediaId((String) message.obj, message.getData());
-                            break;
-                        case 9:
-                            callback.onPlayFromSearch((String) message.obj, message.getData());
-                            break;
-                        case 10:
-                            callback.onPlayFromUri((Uri) message.obj, message.getData());
-                            break;
-                        case 11:
-                            callback.onSkipToQueueItem(((Long) message.obj).longValue());
-                            break;
-                        case 12:
-                            callback.onPause();
-                            break;
-                        case 13:
-                            callback.onStop();
-                            break;
-                        case 14:
-                            callback.onSkipToNext();
-                            break;
-                        case 15:
-                            callback.onSkipToPrevious();
-                            break;
-                        case 16:
-                            callback.onFastForward();
-                            break;
-                        case 17:
-                            callback.onRewind();
-                            break;
-                        case 18:
-                            callback.onSeekTo(((Long) message.obj).longValue());
-                            break;
-                        case 19:
-                            callback.onSetRating((RatingCompat) message.obj);
-                            break;
-                        case 20:
-                            callback.onCustomAction((String) message.obj, message.getData());
-                            break;
-                        case 21:
-                            KeyEvent keyEvent = (KeyEvent) message.obj;
-                            Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
-                            intent.putExtra("android.intent.extra.KEY_EVENT", keyEvent);
-                            if (!callback.onMediaButtonEvent(intent)) {
-                                onMediaButtonEvent(keyEvent, callback);
-                                break;
-                            }
-                            break;
-                        case 22:
-                            MediaSessionImplBase.this.setVolumeTo(message.arg1, 0);
-                            break;
-                        case 23:
-                            callback.onSetRepeatMode(message.arg1);
-                            break;
-                        case 25:
-                            callback.onAddQueueItem((MediaDescriptionCompat) message.obj);
-                            break;
-                        case 26:
-                            callback.onAddQueueItem((MediaDescriptionCompat) message.obj, message.arg1);
-                            break;
-                        case 27:
-                            callback.onRemoveQueueItem((MediaDescriptionCompat) message.obj);
-                            break;
-                        case 28:
-                            if (MediaSessionImplBase.this.mQueue != null) {
-                                QueueItem queueItem = (message.arg1 < 0 || message.arg1 >= MediaSessionImplBase.this.mQueue.size()) ? null : (QueueItem) MediaSessionImplBase.this.mQueue.get(message.arg1);
-                                if (queueItem != null) {
-                                    callback.onRemoveQueueItem(queueItem.getDescription());
-                                    break;
-                                }
-                            }
-                            break;
-                        case 29:
-                            callback.onSetCaptioningEnabled(((Boolean) message.obj).booleanValue());
-                            break;
-                        case 30:
-                            callback.onSetShuffleMode(message.arg1);
-                            break;
-                        case 31:
-                            callback.onSetRating((RatingCompat) message.obj, message.getData());
-                            break;
-                    }
-                }
-            }
-
-            private void onMediaButtonEvent(KeyEvent keyEvent, Callback callback) {
-                if (keyEvent != null && keyEvent.getAction() == 0) {
-                    long actions = MediaSessionImplBase.this.mState == null ? 0 : MediaSessionImplBase.this.mState.getActions();
-                    int keyCode = keyEvent.getKeyCode();
-                    if (keyCode != 79) {
-                        switch (keyCode) {
-                            case 85:
-                                break;
-                            case 86:
-                                if ((actions & 1) != 0) {
-                                    callback.onStop();
-                                    break;
-                                }
-                                break;
-                            case 87:
-                                if ((actions & 32) != 0) {
-                                    callback.onSkipToNext();
-                                    break;
-                                }
-                                break;
-                            case 88:
-                                if ((actions & 16) != 0) {
-                                    callback.onSkipToPrevious();
-                                    break;
-                                }
-                                break;
-                            case 89:
-                                if ((actions & 8) != 0) {
-                                    callback.onRewind();
-                                    break;
-                                }
-                                break;
-                            case 90:
-                                if ((actions & 64) != 0) {
-                                    callback.onFastForward();
-                                    break;
-                                }
-                                break;
-                            default:
-                                switch (keyCode) {
-                                    case KEYCODE_MEDIA_PLAY /*126*/:
-                                        if ((actions & 4) != 0) {
-                                            callback.onPlay();
-                                            break;
-                                        }
-                                        break;
-                                    case KEYCODE_MEDIA_PAUSE /*127*/:
-                                        if ((actions & 2) != 0) {
-                                            callback.onPause();
-                                            break;
-                                        }
-                                        break;
-                                }
-                                break;
-                        }
-                    }
-                    Log.w(MediaSessionCompat.TAG, "KEYCODE_MEDIA_PLAY_PAUSE and KEYCODE_HEADSETHOOK are handled already");
-                }
             }
         }
 
@@ -1639,6 +796,234 @@ public class MediaSessionCompat {
 
             public boolean isTransportControlEnabled() {
                 return (MediaSessionImplBase.this.mFlags & 2) != 0;
+            }
+        }
+
+        class MessageHandler extends Handler {
+            private static final int KEYCODE_MEDIA_PAUSE = 127;
+            private static final int KEYCODE_MEDIA_PLAY = 126;
+            private static final int MSG_ADD_QUEUE_ITEM = 25;
+            private static final int MSG_ADD_QUEUE_ITEM_AT = 26;
+            private static final int MSG_ADJUST_VOLUME = 2;
+            private static final int MSG_COMMAND = 1;
+            private static final int MSG_CUSTOM_ACTION = 20;
+            private static final int MSG_FAST_FORWARD = 16;
+            private static final int MSG_MEDIA_BUTTON = 21;
+            private static final int MSG_NEXT = 14;
+            private static final int MSG_PAUSE = 12;
+            private static final int MSG_PLAY = 7;
+            private static final int MSG_PLAY_MEDIA_ID = 8;
+            private static final int MSG_PLAY_SEARCH = 9;
+            private static final int MSG_PLAY_URI = 10;
+            private static final int MSG_PREPARE = 3;
+            private static final int MSG_PREPARE_MEDIA_ID = 4;
+            private static final int MSG_PREPARE_SEARCH = 5;
+            private static final int MSG_PREPARE_URI = 6;
+            private static final int MSG_PREVIOUS = 15;
+            private static final int MSG_RATE = 19;
+            private static final int MSG_RATE_EXTRA = 31;
+            private static final int MSG_REMOVE_QUEUE_ITEM = 27;
+            private static final int MSG_REMOVE_QUEUE_ITEM_AT = 28;
+            private static final int MSG_REWIND = 17;
+            private static final int MSG_SEEK_TO = 18;
+            private static final int MSG_SET_CAPTIONING_ENABLED = 29;
+            private static final int MSG_SET_REPEAT_MODE = 23;
+            private static final int MSG_SET_SHUFFLE_MODE = 30;
+            private static final int MSG_SET_VOLUME = 22;
+            private static final int MSG_SKIP_TO_ITEM = 11;
+            private static final int MSG_STOP = 13;
+
+            public MessageHandler(Looper looper) {
+                super(looper);
+            }
+
+            public void post(int i, Object obj, Bundle bundle) {
+                Message obtainMessage = obtainMessage(i, obj);
+                obtainMessage.setData(bundle);
+                obtainMessage.sendToTarget();
+            }
+
+            public void post(int i, Object obj) {
+                obtainMessage(i, obj).sendToTarget();
+            }
+
+            public void post(int i) {
+                post(i, null);
+            }
+
+            public void post(int i, Object obj, int i2) {
+                obtainMessage(i, i2, 0, obj).sendToTarget();
+            }
+
+            public void handleMessage(Message message) {
+                Callback callback = MediaSessionImplBase.this.mCallback;
+                if (callback != null) {
+                    switch (message.what) {
+                        case 1:
+                            Command command = (Command) message.obj;
+                            callback.onCommand(command.command, command.extras, command.stub);
+                            break;
+                        case 2:
+                            MediaSessionImplBase.this.adjustVolume(message.arg1, 0);
+                            break;
+                        case 3:
+                            callback.onPrepare();
+                            break;
+                        case 4:
+                            callback.onPrepareFromMediaId((String) message.obj, message.getData());
+                            break;
+                        case 5:
+                            callback.onPrepareFromSearch((String) message.obj, message.getData());
+                            break;
+                        case 6:
+                            callback.onPrepareFromUri((Uri) message.obj, message.getData());
+                            break;
+                        case 7:
+                            callback.onPlay();
+                            break;
+                        case 8:
+                            callback.onPlayFromMediaId((String) message.obj, message.getData());
+                            break;
+                        case 9:
+                            callback.onPlayFromSearch((String) message.obj, message.getData());
+                            break;
+                        case 10:
+                            callback.onPlayFromUri((Uri) message.obj, message.getData());
+                            break;
+                        case 11:
+                            callback.onSkipToQueueItem(((Long) message.obj).longValue());
+                            break;
+                        case 12:
+                            callback.onPause();
+                            break;
+                        case 13:
+                            callback.onStop();
+                            break;
+                        case 14:
+                            callback.onSkipToNext();
+                            break;
+                        case 15:
+                            callback.onSkipToPrevious();
+                            break;
+                        case 16:
+                            callback.onFastForward();
+                            break;
+                        case 17:
+                            callback.onRewind();
+                            break;
+                        case 18:
+                            callback.onSeekTo(((Long) message.obj).longValue());
+                            break;
+                        case 19:
+                            callback.onSetRating((RatingCompat) message.obj);
+                            break;
+                        case 20:
+                            callback.onCustomAction((String) message.obj, message.getData());
+                            break;
+                        case 21:
+                            KeyEvent keyEvent = (KeyEvent) message.obj;
+                            Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
+                            intent.putExtra("android.intent.extra.KEY_EVENT", keyEvent);
+                            if (!callback.onMediaButtonEvent(intent)) {
+                                onMediaButtonEvent(keyEvent, callback);
+                                break;
+                            }
+                            break;
+                        case 22:
+                            MediaSessionImplBase.this.setVolumeTo(message.arg1, 0);
+                            break;
+                        case 23:
+                            callback.onSetRepeatMode(message.arg1);
+                            break;
+                        case 25:
+                            callback.onAddQueueItem((MediaDescriptionCompat) message.obj);
+                            break;
+                        case 26:
+                            callback.onAddQueueItem((MediaDescriptionCompat) message.obj, message.arg1);
+                            break;
+                        case 27:
+                            callback.onRemoveQueueItem((MediaDescriptionCompat) message.obj);
+                            break;
+                        case 28:
+                            if (MediaSessionImplBase.this.mQueue != null) {
+                                QueueItem queueItem = (message.arg1 < 0 || message.arg1 >= MediaSessionImplBase.this.mQueue.size()) ? null : (QueueItem) MediaSessionImplBase.this.mQueue.get(message.arg1);
+                                if (queueItem != null) {
+                                    callback.onRemoveQueueItem(queueItem.getDescription());
+                                    break;
+                                }
+                            }
+                            break;
+                        case 29:
+                            callback.onSetCaptioningEnabled(((Boolean) message.obj).booleanValue());
+                            break;
+                        case 30:
+                            callback.onSetShuffleMode(message.arg1);
+                            break;
+                        case 31:
+                            callback.onSetRating((RatingCompat) message.obj, message.getData());
+                            break;
+                    }
+                }
+            }
+
+            private void onMediaButtonEvent(KeyEvent keyEvent, Callback callback) {
+                if (keyEvent != null && keyEvent.getAction() == 0) {
+                    long actions = MediaSessionImplBase.this.mState == null ? 0 : MediaSessionImplBase.this.mState.getActions();
+                    int keyCode = keyEvent.getKeyCode();
+                    if (keyCode != 79) {
+                        switch (keyCode) {
+                            case 85:
+                                break;
+                            case 86:
+                                if ((actions & 1) != 0) {
+                                    callback.onStop();
+                                    break;
+                                }
+                                break;
+                            case 87:
+                                if ((actions & 32) != 0) {
+                                    callback.onSkipToNext();
+                                    break;
+                                }
+                                break;
+                            case 88:
+                                if ((actions & 16) != 0) {
+                                    callback.onSkipToPrevious();
+                                    break;
+                                }
+                                break;
+                            case 89:
+                                if ((actions & 8) != 0) {
+                                    callback.onRewind();
+                                    break;
+                                }
+                                break;
+                            case 90:
+                                if ((actions & 64) != 0) {
+                                    callback.onFastForward();
+                                    break;
+                                }
+                                break;
+                            default:
+                                switch (keyCode) {
+                                    case KEYCODE_MEDIA_PLAY /*126*/:
+                                        if ((actions & 4) != 0) {
+                                            callback.onPlay();
+                                            break;
+                                        }
+                                        break;
+                                    case KEYCODE_MEDIA_PAUSE /*127*/:
+                                        if ((actions & 2) != 0) {
+                                            callback.onPause();
+                                            break;
+                                        }
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+                    Log.w(MediaSessionCompat.TAG, "KEYCODE_MEDIA_PLAY_PAUSE and KEYCODE_HEADSETHOOK are handled already");
+                }
             }
         }
 
@@ -2284,6 +1669,621 @@ public class MediaSessionCompat {
                 buildRccMetadata.putObject(268435457, bundle.getParcelable(MediaMetadataCompat.METADATA_KEY_USER_RATING));
             }
             return buildRccMetadata;
+        }
+    }
+
+    @RequiresApi(21)
+    static class MediaSessionImplApi21 implements MediaSessionImpl {
+        boolean mCaptioningEnabled;
+        private boolean mDestroyed = false;
+        private final RemoteCallbackList<IMediaControllerCallback> mExtraControllerCallbacks = new RemoteCallbackList();
+        private MediaMetadataCompat mMetadata;
+        private PlaybackStateCompat mPlaybackState;
+        private List<QueueItem> mQueue;
+        int mRatingType;
+        int mRepeatMode;
+        private final Object mSessionObj;
+        int mShuffleMode;
+        private final Token mToken;
+
+        class ExtraSession extends Stub {
+            public List<QueueItem> getQueue() {
+                return null;
+            }
+
+            public boolean isShuffleModeEnabledRemoved() {
+                return false;
+            }
+
+            public void setShuffleModeEnabledRemoved(boolean z) throws RemoteException {
+            }
+
+            ExtraSession() {
+            }
+
+            public void sendCommand(String str, Bundle bundle, ResultReceiverWrapper resultReceiverWrapper) {
+                throw new AssertionError();
+            }
+
+            public boolean sendMediaButton(KeyEvent keyEvent) {
+                throw new AssertionError();
+            }
+
+            public void registerCallbackListener(IMediaControllerCallback iMediaControllerCallback) {
+                if (!MediaSessionImplApi21.this.mDestroyed) {
+                    MediaSessionImplApi21.this.mExtraControllerCallbacks.register(iMediaControllerCallback);
+                }
+            }
+
+            public void unregisterCallbackListener(IMediaControllerCallback iMediaControllerCallback) {
+                MediaSessionImplApi21.this.mExtraControllerCallbacks.unregister(iMediaControllerCallback);
+            }
+
+            public String getPackageName() {
+                throw new AssertionError();
+            }
+
+            public String getTag() {
+                throw new AssertionError();
+            }
+
+            public PendingIntent getLaunchPendingIntent() {
+                throw new AssertionError();
+            }
+
+            public long getFlags() {
+                throw new AssertionError();
+            }
+
+            public ParcelableVolumeInfo getVolumeAttributes() {
+                throw new AssertionError();
+            }
+
+            public void adjustVolume(int i, int i2, String str) {
+                throw new AssertionError();
+            }
+
+            public void setVolumeTo(int i, int i2, String str) {
+                throw new AssertionError();
+            }
+
+            public void prepare() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void prepareFromMediaId(String str, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void prepareFromSearch(String str, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void prepareFromUri(Uri uri, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void play() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void playFromMediaId(String str, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void playFromSearch(String str, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void playFromUri(Uri uri, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void skipToQueueItem(long j) {
+                throw new AssertionError();
+            }
+
+            public void pause() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void stop() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void next() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void previous() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void fastForward() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void rewind() throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void seekTo(long j) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void rate(RatingCompat ratingCompat) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void rateWithExtras(RatingCompat ratingCompat, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void setCaptioningEnabled(boolean z) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void setRepeatMode(int i) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void setShuffleMode(int i) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public void sendCustomAction(String str, Bundle bundle) throws RemoteException {
+                throw new AssertionError();
+            }
+
+            public MediaMetadataCompat getMetadata() {
+                throw new AssertionError();
+            }
+
+            public PlaybackStateCompat getPlaybackState() {
+                return MediaSessionCompat.getStateWithUpdatedPosition(MediaSessionImplApi21.this.mPlaybackState, MediaSessionImplApi21.this.mMetadata);
+            }
+
+            public void addQueueItem(MediaDescriptionCompat mediaDescriptionCompat) {
+                throw new AssertionError();
+            }
+
+            public void addQueueItemAt(MediaDescriptionCompat mediaDescriptionCompat, int i) {
+                throw new AssertionError();
+            }
+
+            public void removeQueueItem(MediaDescriptionCompat mediaDescriptionCompat) {
+                throw new AssertionError();
+            }
+
+            public void removeQueueItemAt(int i) {
+                throw new AssertionError();
+            }
+
+            public CharSequence getQueueTitle() {
+                throw new AssertionError();
+            }
+
+            public Bundle getExtras() {
+                throw new AssertionError();
+            }
+
+            public int getRatingType() {
+                return MediaSessionImplApi21.this.mRatingType;
+            }
+
+            public boolean isCaptioningEnabled() {
+                return MediaSessionImplApi21.this.mCaptioningEnabled;
+            }
+
+            public int getRepeatMode() {
+                return MediaSessionImplApi21.this.mRepeatMode;
+            }
+
+            public int getShuffleMode() {
+                return MediaSessionImplApi21.this.mShuffleMode;
+            }
+
+            public boolean isTransportControlEnabled() {
+                throw new AssertionError();
+            }
+        }
+
+        public Object getRemoteControlClient() {
+            return null;
+        }
+
+        public MediaSessionImplApi21(Context context, String str) {
+            this.mSessionObj = MediaSessionCompatApi21.createSession(context, str);
+            this.mToken = new Token(MediaSessionCompatApi21.getSessionToken(this.mSessionObj), new ExtraSession());
+        }
+
+        public MediaSessionImplApi21(Object obj) {
+            this.mSessionObj = MediaSessionCompatApi21.verifySession(obj);
+            this.mToken = new Token(MediaSessionCompatApi21.getSessionToken(this.mSessionObj), new ExtraSession());
+        }
+
+        public void setCallback(Callback callback, Handler handler) {
+            MediaSessionCompatApi21.setCallback(this.mSessionObj, callback == null ? null : callback.mCallbackObj, handler);
+            if (callback != null) {
+                callback.setSessionImpl(this, handler);
+            }
+        }
+
+        public void setFlags(int i) {
+            MediaSessionCompatApi21.setFlags(this.mSessionObj, i);
+        }
+
+        public void setPlaybackToLocal(int i) {
+            MediaSessionCompatApi21.setPlaybackToLocal(this.mSessionObj, i);
+        }
+
+        public void setPlaybackToRemote(VolumeProviderCompat volumeProviderCompat) {
+            MediaSessionCompatApi21.setPlaybackToRemote(this.mSessionObj, volumeProviderCompat.getVolumeProvider());
+        }
+
+        public void setActive(boolean z) {
+            MediaSessionCompatApi21.setActive(this.mSessionObj, z);
+        }
+
+        public boolean isActive() {
+            return MediaSessionCompatApi21.isActive(this.mSessionObj);
+        }
+
+        public void sendSessionEvent(String str, Bundle bundle) {
+            if (VERSION.SDK_INT < 23) {
+                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                    try {
+                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onEvent(str, bundle);
+                    } catch (RemoteException unused) {
+                    }
+                }
+                this.mExtraControllerCallbacks.finishBroadcast();
+            }
+            MediaSessionCompatApi21.sendSessionEvent(this.mSessionObj, str, bundle);
+        }
+
+        public void release() {
+            this.mDestroyed = true;
+            MediaSessionCompatApi21.release(this.mSessionObj);
+        }
+
+        public Token getSessionToken() {
+            return this.mToken;
+        }
+
+        public void setPlaybackState(PlaybackStateCompat playbackStateCompat) {
+            Object obj;
+            this.mPlaybackState = playbackStateCompat;
+            for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                try {
+                    ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onPlaybackStateChanged(playbackStateCompat);
+                } catch (RemoteException unused) {
+                }
+            }
+            this.mExtraControllerCallbacks.finishBroadcast();
+            Object obj2 = this.mSessionObj;
+            if (playbackStateCompat == null) {
+                obj = null;
+            } else {
+                obj = playbackStateCompat.getPlaybackState();
+            }
+            MediaSessionCompatApi21.setPlaybackState(obj2, obj);
+        }
+
+        public PlaybackStateCompat getPlaybackState() {
+            return this.mPlaybackState;
+        }
+
+        public void setMetadata(MediaMetadataCompat mediaMetadataCompat) {
+            Object obj;
+            this.mMetadata = mediaMetadataCompat;
+            Object obj2 = this.mSessionObj;
+            if (mediaMetadataCompat == null) {
+                obj = null;
+            } else {
+                obj = mediaMetadataCompat.getMediaMetadata();
+            }
+            MediaSessionCompatApi21.setMetadata(obj2, obj);
+        }
+
+        public void setSessionActivity(PendingIntent pendingIntent) {
+            MediaSessionCompatApi21.setSessionActivity(this.mSessionObj, pendingIntent);
+        }
+
+        public void setMediaButtonReceiver(PendingIntent pendingIntent) {
+            MediaSessionCompatApi21.setMediaButtonReceiver(this.mSessionObj, pendingIntent);
+        }
+
+        public void setQueue(List<QueueItem> list) {
+            List arrayList;
+            this.mQueue = list;
+            if (list != null) {
+                arrayList = new ArrayList();
+                for (QueueItem queueItem : list) {
+                    arrayList.add(queueItem.getQueueItem());
+                }
+            } else {
+                arrayList = null;
+            }
+            MediaSessionCompatApi21.setQueue(this.mSessionObj, arrayList);
+        }
+
+        public void setQueueTitle(CharSequence charSequence) {
+            MediaSessionCompatApi21.setQueueTitle(this.mSessionObj, charSequence);
+        }
+
+        public void setRatingType(int i) {
+            if (VERSION.SDK_INT < 22) {
+                this.mRatingType = i;
+            } else {
+                MediaSessionCompatApi22.setRatingType(this.mSessionObj, i);
+            }
+        }
+
+        public void setCaptioningEnabled(boolean z) {
+            if (this.mCaptioningEnabled != z) {
+                this.mCaptioningEnabled = z;
+                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                    try {
+                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onCaptioningEnabledChanged(z);
+                    } catch (RemoteException unused) {
+                    }
+                }
+                this.mExtraControllerCallbacks.finishBroadcast();
+            }
+        }
+
+        public void setRepeatMode(int i) {
+            if (this.mRepeatMode != i) {
+                this.mRepeatMode = i;
+                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                    try {
+                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onRepeatModeChanged(i);
+                    } catch (RemoteException unused) {
+                    }
+                }
+                this.mExtraControllerCallbacks.finishBroadcast();
+            }
+        }
+
+        public void setShuffleMode(int i) {
+            if (this.mShuffleMode != i) {
+                this.mShuffleMode = i;
+                for (int beginBroadcast = this.mExtraControllerCallbacks.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                    try {
+                        ((IMediaControllerCallback) this.mExtraControllerCallbacks.getBroadcastItem(beginBroadcast)).onShuffleModeChanged(i);
+                    } catch (RemoteException unused) {
+                    }
+                }
+                this.mExtraControllerCallbacks.finishBroadcast();
+            }
+        }
+
+        public void setExtras(Bundle bundle) {
+            MediaSessionCompatApi21.setExtras(this.mSessionObj, bundle);
+        }
+
+        public Object getMediaSession() {
+            return this.mSessionObj;
+        }
+
+        public String getCallingPackage() {
+            if (VERSION.SDK_INT < 24) {
+                return null;
+            }
+            return MediaSessionCompatApi24.getCallingPackage(this.mSessionObj);
+        }
+    }
+
+    public interface OnActiveChangeListener {
+        void onActiveChanged();
+    }
+
+    public static final class QueueItem implements Parcelable {
+        public static final Creator<QueueItem> CREATOR = new Creator<QueueItem>() {
+            public QueueItem createFromParcel(Parcel parcel) {
+                return new QueueItem(parcel);
+            }
+
+            public QueueItem[] newArray(int i) {
+                return new QueueItem[i];
+            }
+        };
+        public static final int UNKNOWN_ID = -1;
+        private final MediaDescriptionCompat mDescription;
+        private final long mId;
+        private Object mItem;
+
+        public int describeContents() {
+            return 0;
+        }
+
+        public QueueItem(MediaDescriptionCompat mediaDescriptionCompat, long j) {
+            this(null, mediaDescriptionCompat, j);
+        }
+
+        private QueueItem(Object obj, MediaDescriptionCompat mediaDescriptionCompat, long j) {
+            if (mediaDescriptionCompat == null) {
+                throw new IllegalArgumentException("Description cannot be null.");
+            } else if (j == -1) {
+                throw new IllegalArgumentException("Id cannot be QueueItem.UNKNOWN_ID");
+            } else {
+                this.mDescription = mediaDescriptionCompat;
+                this.mId = j;
+                this.mItem = obj;
+            }
+        }
+
+        QueueItem(Parcel parcel) {
+            this.mDescription = (MediaDescriptionCompat) MediaDescriptionCompat.CREATOR.createFromParcel(parcel);
+            this.mId = parcel.readLong();
+        }
+
+        public MediaDescriptionCompat getDescription() {
+            return this.mDescription;
+        }
+
+        public long getQueueId() {
+            return this.mId;
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            this.mDescription.writeToParcel(parcel, i);
+            parcel.writeLong(this.mId);
+        }
+
+        public Object getQueueItem() {
+            if (this.mItem != null || VERSION.SDK_INT < 21) {
+                return this.mItem;
+            }
+            this.mItem = QueueItem.createItem(this.mDescription.getMediaDescription(), this.mId);
+            return this.mItem;
+        }
+
+        public static QueueItem fromQueueItem(Object obj) {
+            return (obj == null || VERSION.SDK_INT < 21) ? null : new QueueItem(obj, MediaDescriptionCompat.fromMediaDescription(QueueItem.getDescription(obj)), QueueItem.getQueueId(obj));
+        }
+
+        public static List<QueueItem> fromQueueItemList(List<?> list) {
+            if (list == null || VERSION.SDK_INT < 21) {
+                return null;
+            }
+            ArrayList arrayList = new ArrayList();
+            for (Object fromQueueItem : list) {
+                arrayList.add(fromQueueItem(fromQueueItem));
+            }
+            return arrayList;
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("MediaSession.QueueItem {Description=");
+            stringBuilder.append(this.mDescription);
+            stringBuilder.append(", Id=");
+            stringBuilder.append(this.mId);
+            stringBuilder.append(" }");
+            return stringBuilder.toString();
+        }
+    }
+
+    static final class ResultReceiverWrapper implements Parcelable {
+        public static final Creator<ResultReceiverWrapper> CREATOR = new Creator<ResultReceiverWrapper>() {
+            public ResultReceiverWrapper createFromParcel(Parcel parcel) {
+                return new ResultReceiverWrapper(parcel);
+            }
+
+            public ResultReceiverWrapper[] newArray(int i) {
+                return new ResultReceiverWrapper[i];
+            }
+        };
+        private ResultReceiver mResultReceiver;
+
+        public int describeContents() {
+            return 0;
+        }
+
+        public ResultReceiverWrapper(ResultReceiver resultReceiver) {
+            this.mResultReceiver = resultReceiver;
+        }
+
+        ResultReceiverWrapper(Parcel parcel) {
+            this.mResultReceiver = (ResultReceiver) ResultReceiver.CREATOR.createFromParcel(parcel);
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            this.mResultReceiver.writeToParcel(parcel, i);
+        }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface SessionFlags {
+    }
+
+    public static final class Token implements Parcelable {
+        public static final Creator<Token> CREATOR = new Creator<Token>() {
+            public Token createFromParcel(Parcel parcel) {
+                Object readParcelable;
+                if (VERSION.SDK_INT >= 21) {
+                    readParcelable = parcel.readParcelable(null);
+                } else {
+                    readParcelable = parcel.readStrongBinder();
+                }
+                return new Token(readParcelable);
+            }
+
+            public Token[] newArray(int i) {
+                return new Token[i];
+            }
+        };
+        private final IMediaSession mExtraBinder;
+        private final Object mInner;
+
+        public int describeContents() {
+            return 0;
+        }
+
+        Token(Object obj) {
+            this(obj, null);
+        }
+
+        Token(Object obj, IMediaSession iMediaSession) {
+            this.mInner = obj;
+            this.mExtraBinder = iMediaSession;
+        }
+
+        public static Token fromToken(Object obj) {
+            return fromToken(obj, null);
+        }
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public static Token fromToken(Object obj, IMediaSession iMediaSession) {
+            return (obj == null || VERSION.SDK_INT < 21) ? null : new Token(MediaSessionCompatApi21.verifyToken(obj), iMediaSession);
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            if (VERSION.SDK_INT >= 21) {
+                parcel.writeParcelable((Parcelable) this.mInner, i);
+            } else {
+                parcel.writeStrongBinder((IBinder) this.mInner);
+            }
+        }
+
+        public int hashCode() {
+            if (this.mInner == null) {
+                return 0;
+            }
+            return this.mInner.hashCode();
+        }
+
+        public boolean equals(Object obj) {
+            boolean z = true;
+            if (this == obj) {
+                return true;
+            }
+            if (!(obj instanceof Token)) {
+                return false;
+            }
+            Token token = (Token) obj;
+            if (this.mInner == null) {
+                if (token.mInner != null) {
+                    z = false;
+                }
+                return z;
+            } else if (token.mInner == null) {
+                return false;
+            } else {
+                return this.mInner.equals(token.mInner);
+            }
+        }
+
+        public Object getToken() {
+            return this.mInner;
+        }
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public IMediaSession getExtraBinder() {
+            return this.mExtraBinder;
         }
     }
 

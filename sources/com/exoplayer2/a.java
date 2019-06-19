@@ -25,6 +25,7 @@ import com.gaana.R;
 import com.gaana.application.GaanaApplication;
 import com.gaana.models.Tracks.Track;
 import com.google.ads.interactivemedia.v3.api.AdEvent;
+import com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType;
 import com.google.ads.interactivemedia.v3.api.CompanionAdSlot;
 import com.google.ads.interactivemedia.v3.api.CompanionAdSlot.ClickListener;
 import com.google.ads.interactivemedia.v3.api.ImaSdkFactory;
@@ -103,8 +104,8 @@ public class a implements EventListener, AudioListener {
         }
 
         public void a(AdEvent adEvent) {
-            switch (adEvent.getType()) {
-                case STARTED:
+            switch (AnonymousClass6.a[adEvent.getType().ordinal()]) {
+                case 3:
                     if (!a.this.a()) {
                         f.v().g(false);
                         a.this.c(true);
@@ -117,15 +118,15 @@ public class a implements EventListener, AudioListener {
                         break;
                     }
                     break;
-                case MIDPOINT:
+                case 4:
                     f.v().g(adEvent.getAd().isSkippable());
                     break;
-                case CLICKED:
+                case 5:
                     a.this.c(false);
                     a.this.c();
                     break;
-                case SKIPPED:
-                case CONTENT_RESUME_REQUESTED:
+                case 6:
+                case 7:
                     a.this.c(false);
                     f.v().f(false);
                     f.v().g(false);
@@ -172,6 +173,76 @@ public class a implements EventListener, AudioListener {
         void a(Exception exception);
 
         void a(boolean z, int i);
+    }
+
+    /* renamed from: com.exoplayer2.a$6 */
+    static /* synthetic */ class AnonymousClass6 {
+        static final /* synthetic */ int[] a = new int[AdEventType.values().length];
+
+        /* JADX WARNING: Missing exception handler attribute for start block: B:5:0x001f */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:11:0x0040 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:7:0x002a */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:13:0x004b */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:3:0x0014 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:9:0x0035 */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Can't wrap try/catch for region: R(16:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|16) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(16:0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|16) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(14:0|1|2|3|4|5|6|7|8|9|10|11|12|(3:13|14|16)) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(14:0|1|2|3|4|5|6|7|8|9|10|11|12|(3:13|14|16)) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(14:0|1|2|3|4|5|6|7|8|9|10|11|12|(3:13|14|16)) */
+        static {
+            /*
+            r0 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.values();
+            r0 = r0.length;
+            r0 = new int[r0];
+            a = r0;
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.LOADED;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = 1;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0014 }
+        L_0x0014:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.CONTENT_PAUSE_REQUESTED;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x001f }
+            r2 = 2;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x001f }
+        L_0x001f:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.STARTED;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x002a }
+            r2 = 3;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x002a }
+        L_0x002a:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.MIDPOINT;	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0035 }
+            r2 = 4;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0035 }
+        L_0x0035:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.CLICKED;	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0040 }
+            r2 = 5;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0040 }
+        L_0x0040:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x004b }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.SKIPPED;	 Catch:{ NoSuchFieldError -> 0x004b }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x004b }
+            r2 = 6;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x004b }
+        L_0x004b:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r1 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.CONTENT_RESUME_REQUESTED;	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0056 }
+            r2 = 7;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0056 }
+        L_0x0056:
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.exoplayer2.a$AnonymousClass6.<clinit>():void");
+        }
     }
 
     public void onAudioAttributesChanged(AudioAttributes audioAttributes) {

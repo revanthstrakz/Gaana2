@@ -517,21 +517,21 @@ public class a implements e, Observer {
                     if (jVar3.a()) {
                         jVar3.a(a.this.t, a.this.s);
                         jVar3.v = a.this.i;
-                        switch (jVar3.x) {
-                            case ADMIN_IMAGE_ATTACHMENT:
+                        switch (AnonymousClass8.b[jVar3.x.ordinal()]) {
+                            case 1:
                                 jVar3.m = a.this.a;
                                 jVar3.addObserver(a.this);
                                 a.this.g.add(jVar3);
                                 ((AdminImageAttachmentMessageDM) jVar3).a(a.this.s);
                                 break;
-                            case ADMIN_ATTACHMENT:
-                            case REQUESTED_SCREENSHOT:
-                            case REQUESTED_APP_REVIEW:
+                            case 2:
+                            case 4:
+                            case 5:
                                 jVar3.m = a.this.a;
                                 jVar3.addObserver(a.this);
                                 a.this.g.add(jVar3);
                                 break;
-                            case ADMIN_TEXT:
+                            case 3:
                                 com.helpshift.conversation.activeconversation.message.b bVar = (com.helpshift.conversation.activeconversation.message.b) jVar3;
                                 bVar.m = a.this.a;
                                 jVar3.addObserver(a.this);

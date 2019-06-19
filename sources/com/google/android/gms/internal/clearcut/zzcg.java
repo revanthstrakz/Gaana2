@@ -11,101 +11,6 @@ public abstract class zzcg<MessageType extends zzcg<MessageType, BuilderType>, B
     protected zzey zzjp = zzey.zzea();
     private int zzjq = -1;
 
-    public enum zzg {
-        public static final int zzkd = 1;
-        public static final int zzke = 2;
-        public static final int zzkf = 3;
-        public static final int zzkg = 4;
-        public static final int zzkh = 5;
-        public static final int zzki = 6;
-        public static final int zzkj = 7;
-        private static final /* synthetic */ int[] zzkk = new int[]{zzkd, zzke, zzkf, zzkg, zzkh, zzki, zzkj};
-        public static final int zzkl = 1;
-        public static final int zzkm = 2;
-        private static final /* synthetic */ int[] zzkn = new int[]{zzkl, zzkm};
-        public static final int zzko = 1;
-        public static final int zzkp = 2;
-        private static final /* synthetic */ int[] zzkq = new int[]{zzko, zzkp};
-
-        public static int[] values$50KLMJ33DTMIUPRFDTJMOP9FE1P6UT3FC9QMCBQ7CLN6ASJ1EHIM8JB5EDPM2PR59HKN8P949LIN8Q3FCHA6UIBEEPNMMP9R0() {
-            return (int[]) zzkk.clone();
-        }
-    }
-
-    public static class zzb<T extends zzcg<T, ?>> extends zzau<T> {
-        private T zzjs;
-
-        public zzb(T t) {
-            this.zzjs = t;
-        }
-    }
-
-    static final class zze implements zzca<zze> {
-        final int number = 66321687;
-        private final zzck<?> zzjw = null;
-        final zzfl zzjx;
-        final boolean zzjy;
-        final boolean zzjz;
-
-        zze(zzck<?> zzck, int i, zzfl zzfl, boolean z, boolean z2) {
-            this.zzjx = zzfl;
-            this.zzjy = false;
-            this.zzjz = false;
-        }
-
-        public final /* synthetic */ int compareTo(Object obj) {
-            return this.number - ((zze) obj).number;
-        }
-
-        public final zzdp zza(zzdp zzdp, zzdo zzdo) {
-            return ((zza) zzdp).zza((zzcg) zzdo);
-        }
-
-        public final zzdv zza(zzdv zzdv, zzdv zzdv2) {
-            throw new UnsupportedOperationException();
-        }
-
-        public final zzfl zzau() {
-            return this.zzjx;
-        }
-
-        public final zzfq zzav() {
-            return this.zzjx.zzek();
-        }
-
-        public final boolean zzaw() {
-            return false;
-        }
-
-        public final boolean zzax() {
-            return false;
-        }
-
-        public final int zzc() {
-            return this.number;
-        }
-    }
-
-    public static class zzf<ContainingType extends zzdo, Type> extends zzbr<ContainingType, Type> {
-        private final Type zzdu;
-        private final ContainingType zzka;
-        private final zzdo zzkb;
-        private final zze zzkc;
-
-        zzf(ContainingType containingType, Type type, zzdo zzdo, zze zze, Class cls) {
-            if (containingType == null) {
-                throw new IllegalArgumentException("Null containingTypeDefaultInstance");
-            } else if (zze.zzjx == zzfl.MESSAGE && zzdo == null) {
-                throw new IllegalArgumentException("Null messageDefaultInstance");
-            } else {
-                this.zzka = containingType;
-                this.zzdu = type;
-                this.zzkb = zzdo;
-                this.zzkc = zze;
-            }
-        }
-    }
-
     public static abstract class zza<MessageType extends zzcg<MessageType, BuilderType>, BuilderType extends zza<MessageType, BuilderType>> extends zzat<MessageType, BuilderType> {
         private final MessageType zzjs;
         protected MessageType zzjt;
@@ -208,6 +113,14 @@ public abstract class zzcg<MessageType extends zzcg<MessageType, BuilderType>, B
         }
     }
 
+    public static class zzb<T extends zzcg<T, ?>> extends zzau<T> {
+        private T zzjs;
+
+        public zzb(T t) {
+            this.zzjs = t;
+        }
+    }
+
     public static abstract class zzc<MessageType extends zzd<MessageType, BuilderType>, BuilderType extends zzc<MessageType, BuilderType>> extends zza<MessageType, BuilderType> implements zzdq {
         protected zzc(MessageType messageType) {
             super(messageType);
@@ -239,6 +152,93 @@ public abstract class zzcg<MessageType extends zzcg<MessageType, BuilderType>, B
 
     public static abstract class zzd<MessageType extends zzd<MessageType, BuilderType>, BuilderType extends zzc<MessageType, BuilderType>> extends zzcg<MessageType, BuilderType> implements zzdq {
         protected zzby<zze> zzjv = zzby.zzar();
+    }
+
+    static final class zze implements zzca<zze> {
+        final int number = 66321687;
+        private final zzck<?> zzjw = null;
+        final zzfl zzjx;
+        final boolean zzjy;
+        final boolean zzjz;
+
+        zze(zzck<?> zzck, int i, zzfl zzfl, boolean z, boolean z2) {
+            this.zzjx = zzfl;
+            this.zzjy = false;
+            this.zzjz = false;
+        }
+
+        public final /* synthetic */ int compareTo(Object obj) {
+            return this.number - ((zze) obj).number;
+        }
+
+        public final zzdp zza(zzdp zzdp, zzdo zzdo) {
+            return ((zza) zzdp).zza((zzcg) zzdo);
+        }
+
+        public final zzdv zza(zzdv zzdv, zzdv zzdv2) {
+            throw new UnsupportedOperationException();
+        }
+
+        public final zzfl zzau() {
+            return this.zzjx;
+        }
+
+        public final zzfq zzav() {
+            return this.zzjx.zzek();
+        }
+
+        public final boolean zzaw() {
+            return false;
+        }
+
+        public final boolean zzax() {
+            return false;
+        }
+
+        public final int zzc() {
+            return this.number;
+        }
+    }
+
+    public static class zzf<ContainingType extends zzdo, Type> extends zzbr<ContainingType, Type> {
+        private final Type zzdu;
+        private final ContainingType zzka;
+        private final zzdo zzkb;
+        private final zze zzkc;
+
+        zzf(ContainingType containingType, Type type, zzdo zzdo, zze zze, Class cls) {
+            if (containingType == null) {
+                throw new IllegalArgumentException("Null containingTypeDefaultInstance");
+            } else if (zze.zzjx == zzfl.MESSAGE && zzdo == null) {
+                throw new IllegalArgumentException("Null messageDefaultInstance");
+            } else {
+                this.zzka = containingType;
+                this.zzdu = type;
+                this.zzkb = zzdo;
+                this.zzkc = zze;
+            }
+        }
+    }
+
+    public enum zzg {
+        public static final int zzkd = 1;
+        public static final int zzke = 2;
+        public static final int zzkf = 3;
+        public static final int zzkg = 4;
+        public static final int zzkh = 5;
+        public static final int zzki = 6;
+        public static final int zzkj = 7;
+        private static final /* synthetic */ int[] zzkk = new int[]{zzkd, zzke, zzkf, zzkg, zzkh, zzki, zzkj};
+        public static final int zzkl = 1;
+        public static final int zzkm = 2;
+        private static final /* synthetic */ int[] zzkn = new int[]{zzkl, zzkm};
+        public static final int zzko = 1;
+        public static final int zzkp = 2;
+        private static final /* synthetic */ int[] zzkq = new int[]{zzko, zzkp};
+
+        public static int[] values$50KLMJ33DTMIUPRFDTJMOP9FE1P6UT3FC9QMCBQ7CLN6ASJ1EHIM8JB5EDPM2PR59HKN8P949LIN8Q3FCHA6UIBEEPNMMP9R0() {
+            return (int[]) zzkk.clone();
+        }
     }
 
     public static <ContainingType extends zzdo, Type> zzf<ContainingType, Type> zza(ContainingType containingType, Type type, zzdo zzdo, zzck<?> zzck, int i, zzfl zzfl, Class cls) {

@@ -12,28 +12,6 @@ public abstract class zzbqk extends zzbpt {
     private static final boolean zzfme = zzbua.zzapc();
     zzbqm zzfmf = this;
 
-    public static class zzc extends IOException {
-        zzc() {
-            super("CodedOutputStream was writing to a flat byte array and ran out of space.");
-        }
-
-        zzc(String str) {
-            String valueOf = String.valueOf("CodedOutputStream was writing to a flat byte array and ran out of space.: ");
-            str = String.valueOf(str);
-            super(str.length() != 0 ? valueOf.concat(str) : new String(valueOf));
-        }
-
-        zzc(Throwable th) {
-            super("CodedOutputStream was writing to a flat byte array and ran out of space.", th);
-        }
-
-        zzc(String str, Throwable th) {
-            String valueOf = String.valueOf("CodedOutputStream was writing to a flat byte array and ran out of space.: ");
-            str = String.valueOf(str);
-            super(str.length() != 0 ? valueOf.concat(str) : new String(valueOf), th);
-        }
-    }
-
     static class zza extends zzbqk {
         private final byte[] buffer;
         private final int limit;
@@ -353,6 +331,43 @@ public abstract class zzbqk extends zzbpt {
 
         public final int zzalx() {
             return this.position - this.offset;
+        }
+    }
+
+    static final class zzb extends zza {
+        private final ByteBuffer zzfmg;
+        private int zzfmh;
+
+        zzb(ByteBuffer byteBuffer) {
+            super(byteBuffer.array(), byteBuffer.arrayOffset() + byteBuffer.position(), byteBuffer.remaining());
+            this.zzfmg = byteBuffer;
+            this.zzfmh = byteBuffer.position();
+        }
+
+        public final void flush() {
+            this.zzfmg.position(this.zzfmh + zzalx());
+        }
+    }
+
+    public static class zzc extends IOException {
+        zzc() {
+            super("CodedOutputStream was writing to a flat byte array and ran out of space.");
+        }
+
+        zzc(String str) {
+            String valueOf = String.valueOf("CodedOutputStream was writing to a flat byte array and ran out of space.: ");
+            str = String.valueOf(str);
+            super(str.length() != 0 ? valueOf.concat(str) : new String(valueOf));
+        }
+
+        zzc(Throwable th) {
+            super("CodedOutputStream was writing to a flat byte array and ran out of space.", th);
+        }
+
+        zzc(String str, Throwable th) {
+            String valueOf = String.valueOf("CodedOutputStream was writing to a flat byte array and ran out of space.: ");
+            str = String.valueOf(str);
+            super(str.length() != 0 ? valueOf.concat(str) : new String(valueOf), th);
         }
     }
 
@@ -835,21 +850,6 @@ public abstract class zzbqk extends zzbpt {
 
         private final void zzbh(long j) {
             this.zzaep.position((int) (j - this.zzfmj));
-        }
-    }
-
-    static final class zzb extends zza {
-        private final ByteBuffer zzfmg;
-        private int zzfmh;
-
-        zzb(ByteBuffer byteBuffer) {
-            super(byteBuffer.array(), byteBuffer.arrayOffset() + byteBuffer.position(), byteBuffer.remaining());
-            this.zzfmg = byteBuffer;
-            this.zzfmh = byteBuffer.position();
-        }
-
-        public final void flush() {
-            this.zzfmg.position(this.zzfmh + zzalx());
         }
     }
 

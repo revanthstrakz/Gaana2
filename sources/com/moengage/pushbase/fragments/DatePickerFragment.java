@@ -13,7 +13,7 @@ import com.moengage.core.Logger;
 import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment implements OnDateSetListener {
-    private static boolean dateDialogShown = false;
+    private static boolean dateDialogShown;
     private final String DAY = "day";
     private final String MONTH = "month";
     private final String YEAR = "year";

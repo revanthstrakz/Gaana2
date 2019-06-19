@@ -10,6 +10,10 @@ import java.io.IOException;
 
 public interface MediaSource {
 
+    public interface SourceInfoRefreshListener {
+        void onSourceInfoRefreshed(MediaSource mediaSource, Timeline timeline, @Nullable Object obj);
+    }
+
     public static final class MediaPeriodId {
         public final int adGroupIndex;
         public final int adIndexInAdGroup;
@@ -70,10 +74,6 @@ public interface MediaSource {
         public int hashCode() {
             return (31 * (((((((527 + this.periodUid.hashCode()) * 31) + this.adGroupIndex) * 31) + this.adIndexInAdGroup) * 31) + ((int) this.windowSequenceNumber))) + ((int) this.endPositionUs);
         }
-    }
-
-    public interface SourceInfoRefreshListener {
-        void onSourceInfoRefreshed(MediaSource mediaSource, Timeline timeline, @Nullable Object obj);
     }
 
     void addEventListener(Handler handler, MediaSourceEventListener mediaSourceEventListener);

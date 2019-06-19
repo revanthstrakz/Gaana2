@@ -9,55 +9,6 @@ import java.util.List;
 public interface Person extends Freezable<Person> {
 
     @Deprecated
-    public static final class Gender {
-        @Deprecated
-        public static final int FEMALE = 1;
-        @Deprecated
-        public static final int MALE = 0;
-        @Deprecated
-        public static final int OTHER = 2;
-
-        private Gender() {
-        }
-    }
-
-    @Deprecated
-    public static final class ObjectType {
-        @Deprecated
-        public static final int PAGE = 1;
-        @Deprecated
-        public static final int PERSON = 0;
-
-        private ObjectType() {
-        }
-    }
-
-    @Deprecated
-    public static final class RelationshipStatus {
-        @Deprecated
-        public static final int ENGAGED = 2;
-        @Deprecated
-        public static final int IN_A_RELATIONSHIP = 1;
-        @Deprecated
-        public static final int IN_CIVIL_UNION = 8;
-        @Deprecated
-        public static final int IN_DOMESTIC_PARTNERSHIP = 7;
-        @Deprecated
-        public static final int ITS_COMPLICATED = 4;
-        @Deprecated
-        public static final int MARRIED = 3;
-        @Deprecated
-        public static final int OPEN_RELATIONSHIP = 5;
-        @Deprecated
-        public static final int SINGLE = 0;
-        @Deprecated
-        public static final int WIDOWED = 6;
-
-        private RelationshipStatus() {
-        }
-    }
-
-    @Deprecated
     @VisibleForTesting
     public interface AgeRange extends Freezable<AgeRange> {
         @Deprecated
@@ -76,15 +27,6 @@ public interface Person extends Freezable<Person> {
     @Deprecated
     @VisibleForTesting
     public interface Cover extends Freezable<Cover> {
-
-        @Deprecated
-        public static final class Layout {
-            @Deprecated
-            public static final int BANNER = 0;
-
-            private Layout() {
-            }
-        }
 
         @Deprecated
         @VisibleForTesting
@@ -122,6 +64,15 @@ public interface Person extends Freezable<Person> {
 
             @Deprecated
             boolean hasWidth();
+        }
+
+        @Deprecated
+        public static final class Layout {
+            @Deprecated
+            public static final int BANNER = 0;
+
+            private Layout() {
+            }
         }
 
         @Deprecated
@@ -314,6 +265,55 @@ public interface Person extends Freezable<Person> {
 
         @Deprecated
         boolean hasValue();
+    }
+
+    @Deprecated
+    public static final class Gender {
+        @Deprecated
+        public static final int FEMALE = 1;
+        @Deprecated
+        public static final int MALE = 0;
+        @Deprecated
+        public static final int OTHER = 2;
+
+        private Gender() {
+        }
+    }
+
+    @Deprecated
+    public static final class ObjectType {
+        @Deprecated
+        public static final int PAGE = 1;
+        @Deprecated
+        public static final int PERSON = 0;
+
+        private ObjectType() {
+        }
+    }
+
+    @Deprecated
+    public static final class RelationshipStatus {
+        @Deprecated
+        public static final int ENGAGED = 2;
+        @Deprecated
+        public static final int IN_A_RELATIONSHIP = 1;
+        @Deprecated
+        public static final int IN_CIVIL_UNION = 8;
+        @Deprecated
+        public static final int IN_DOMESTIC_PARTNERSHIP = 7;
+        @Deprecated
+        public static final int ITS_COMPLICATED = 4;
+        @Deprecated
+        public static final int MARRIED = 3;
+        @Deprecated
+        public static final int OPEN_RELATIONSHIP = 5;
+        @Deprecated
+        public static final int SINGLE = 0;
+        @Deprecated
+        public static final int WIDOWED = 6;
+
+        private RelationshipStatus() {
+        }
     }
 
     @Deprecated

@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class UserSubscriptionData implements Serializable {
     private static final long serialVersionUID = 1;
-    private int accountType = 0;
+    private int accountType = 3;
     @SerializedName("app_notified")
     private String appNotified;
     @SerializedName("app_notify_text")
@@ -173,19 +173,19 @@ public class UserSubscriptionData implements Serializable {
         }
 
         public boolean isAdEnabled() {
-            return TextUtils.isEmpty(this.displayAds) || this.displayAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.displayAds) || this.displayAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? false : false;
         }
 
         public boolean isHighQualityStreamingEnabled() {
-            return TextUtils.isEmpty(this.high_quality_stream) || this.high_quality_stream.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.high_quality_stream) || this.high_quality_stream.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? true : true;
         }
 
         public boolean isInterstitialAdEnabled() {
-            return TextUtils.isEmpty(this.interstitialsAds) || this.interstitialsAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.interstitialsAds) || this.interstitialsAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? false : false;
         }
 
         public boolean isAudioAdEnabled() {
-            return TextUtils.isEmpty(this.audioAds) || this.audioAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.audioAds) || this.audioAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? false : false;
         }
 
         public int getDeviceLimit() {
@@ -196,7 +196,7 @@ public class UserSubscriptionData implements Serializable {
         }
 
         public boolean isDownloadEnabled() {
-            return !TextUtils.isEmpty(this.downloadEnable) && this.downloadEnable.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.downloadEnable) || !this.downloadEnable.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? true : true;
         }
 
         public String getProduct_type_name() {
@@ -224,6 +224,10 @@ public class UserSubscriptionData implements Serializable {
         }
     }
 
+    public int getAccountType() {
+        return 3;
+    }
+
     public ArrayList<GaanaMiniSubDetails> getGaanaMiniSubDetails() {
         return this.gaanaMiniSubDetails;
     }
@@ -245,7 +249,7 @@ public class UserSubscriptionData implements Serializable {
     }
 
     public void setServerAccountType(String str) {
-        this.serverAccountType = str;
+        this.serverAccountType = "paid";
     }
 
     public String getMessage() {
@@ -333,11 +337,12 @@ public class UserSubscriptionData implements Serializable {
     }
 
     public Date getExpiryDate() {
+        this.expiryDate = null;
         return this.expiryDate;
     }
 
     public void setExpiryDate(Date date) {
-        this.expiryDate = date;
+        this.expiryDate = null;
     }
 
     public void updateExpiryDateAsPerServer() {
@@ -366,32 +371,18 @@ public class UserSubscriptionData implements Serializable {
 
     public void updateAccountType() {
         if (this.serverAccountType == null) {
-            this.accountType = 1;
+            this.accountType = 3;
         } else if (this.serverAccountType.equalsIgnoreCase("free")) {
-            this.accountType = 1;
+            this.accountType = 3;
         } else if (this.serverAccountType.equalsIgnoreCase("paid")) {
             this.accountType = 3;
         } else if (this.serverAccountType.equalsIgnoreCase("trial")) {
-            this.accountType = 2;
+            this.accountType = 3;
         }
-    }
-
-    public int getAccountType() {
-        if (this.accountType == 2 || this.accountType == 3) {
-            Date date = new Date();
-            if (this.expiryDate != null && this.expiryDate.before(date)) {
-                if (this.accountType != 3 || this.expiryDateWithGrace == null || this.expiryDateWithGrace.before(date)) {
-                    this.accountType = 1;
-                } else {
-                    this.accountType = 3;
-                }
-            }
-        }
-        return this.accountType;
     }
 
     public void setAccountType(int i) {
-        this.accountType = i;
+        this.accountType = 3;
     }
 
     public String getMiniPacks() {

@@ -51,13 +51,6 @@ public final class ShareDialog extends FacebookDialogBase<ShareContent, Result> 
     private boolean isAutomaticMode;
     private boolean shouldFailOnDataError;
 
-    public enum Mode {
-        AUTOMATIC,
-        NATIVE,
-        WEB,
-        FEED
-    }
-
     private class FeedHandler extends ModeHandler {
         private FeedHandler() {
             super();
@@ -85,6 +78,13 @@ public final class ShareDialog extends FacebookDialogBase<ShareContent, Result> 
             DialogPresenter.setupAppCallForWebDialog(createBaseAppCall, "feed", createForFeed);
             return createBaseAppCall;
         }
+    }
+
+    public enum Mode {
+        AUTOMATIC,
+        NATIVE,
+        WEB,
+        FEED
     }
 
     private class NativeHandler extends ModeHandler {

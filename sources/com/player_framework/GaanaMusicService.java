@@ -3037,7 +3037,7 @@ public class GaanaMusicService extends Service implements com.managers.ColombiaM
         b(str, null, -1, false);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:37:? A:{SYNTHETIC, Splitter:B:10:0x0020, ExcHandler: IllegalStateException (unused java.lang.IllegalStateException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:37:? A:{SYNTHETIC, ExcHandler: IllegalStateException (unused java.lang.IllegalStateException), Splitter:B:10:0x0020} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:34:0x00b9, code skipped:
             r2 = move-exception;

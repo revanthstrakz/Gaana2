@@ -27,12 +27,6 @@ final class StateStackManager implements OnBackStackChangedListener, AdvancedUIM
     private final List<OnPushListener> onPushListeners = new ArrayList();
     private final UIManager uiManager;
 
-    private enum FragmentType {
-        BODY,
-        FOOTER,
-        HEADER
-    }
-
     interface OnPopListener {
         void onContentPopped();
     }
@@ -41,6 +35,12 @@ final class StateStackManager implements OnBackStackChangedListener, AdvancedUIM
         void onContentControllerReady(ContentController contentController);
 
         void onContentPushed();
+    }
+
+    private enum FragmentType {
+        BODY,
+        FOOTER,
+        HEADER
     }
 
     StateStackManager(AccountKitActivity accountKitActivity, AccountKitConfiguration accountKitConfiguration) {

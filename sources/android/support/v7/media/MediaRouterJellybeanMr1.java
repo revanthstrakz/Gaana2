@@ -65,6 +65,20 @@ final class MediaRouterJellybeanMr1 {
         }
     }
 
+    public interface Callback extends android.support.v7.media.MediaRouterJellybean.Callback {
+        void onRoutePresentationDisplayChanged(Object obj);
+    }
+
+    static class CallbackProxy<T extends Callback> extends CallbackProxy<T> {
+        public CallbackProxy(T t) {
+            super(t);
+        }
+
+        public void onRoutePresentationDisplayChanged(MediaRouter mediaRouter, android.media.MediaRouter.RouteInfo routeInfo) {
+            ((Callback) this.mCallback).onRoutePresentationDisplayChanged(routeInfo);
+        }
+    }
+
     public static final class IsConnectingWorkaround {
         private Method mGetStatusCodeMethod;
         private int mStatusConnecting;
@@ -108,20 +122,6 @@ final class MediaRouterJellybeanMr1 {
                 Log.w(MediaRouterJellybeanMr1.TAG, "Cannot get presentation display for the route.", e);
                 return null;
             }
-        }
-    }
-
-    public interface Callback extends android.support.v7.media.MediaRouterJellybean.Callback {
-        void onRoutePresentationDisplayChanged(Object obj);
-    }
-
-    static class CallbackProxy<T extends Callback> extends CallbackProxy<T> {
-        public CallbackProxy(T t) {
-            super(t);
-        }
-
-        public void onRoutePresentationDisplayChanged(MediaRouter mediaRouter, android.media.MediaRouter.RouteInfo routeInfo) {
-            ((Callback) this.mCallback).onRoutePresentationDisplayChanged(routeInfo);
         }
     }
 

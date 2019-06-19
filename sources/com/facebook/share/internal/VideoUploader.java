@@ -65,67 +65,6 @@ public class VideoUploader {
     private static Set<UploadContext> pendingUploads = new HashSet();
     private static WorkQueue uploadQueue = new WorkQueue(8);
 
-    private static class UploadContext {
-        public final AccessToken accessToken;
-        public final FacebookCallback<Result> callback;
-        public String chunkStart;
-        public final String description;
-        public final String graphNode;
-        public boolean isCanceled;
-        public Bundle params;
-        public final String ref;
-        public String sessionId;
-        public final String title;
-        public String videoId;
-        public long videoSize;
-        public InputStream videoStream;
-        public final Uri videoUri;
-        public WorkItem workItem;
-
-        /* synthetic */ UploadContext(ShareVideoContent shareVideoContent, String str, FacebookCallback facebookCallback, AnonymousClass1 anonymousClass1) {
-            this(shareVideoContent, str, facebookCallback);
-        }
-
-        private UploadContext(ShareVideoContent shareVideoContent, String str, FacebookCallback<Result> facebookCallback) {
-            this.chunkStart = "0";
-            this.accessToken = AccessToken.getCurrentAccessToken();
-            this.videoUri = shareVideoContent.getVideo().getLocalUrl();
-            this.title = shareVideoContent.getContentTitle();
-            this.description = shareVideoContent.getContentDescription();
-            this.ref = shareVideoContent.getRef();
-            this.graphNode = str;
-            this.callback = facebookCallback;
-            this.params = shareVideoContent.getVideo().getParameters();
-            if (!Utility.isNullOrEmpty(shareVideoContent.getPeopleIds())) {
-                this.params.putString("tags", TextUtils.join(", ", shareVideoContent.getPeopleIds()));
-            }
-            if (!Utility.isNullOrEmpty(shareVideoContent.getPlaceId())) {
-                this.params.putString("place", shareVideoContent.getPlaceId());
-            }
-            if (!Utility.isNullOrEmpty(shareVideoContent.getRef())) {
-                this.params.putString(VideoUploader.PARAM_REF, shareVideoContent.getRef());
-            }
-        }
-
-        private void initialize() throws FileNotFoundException {
-            try {
-                if (Utility.isFileUri(this.videoUri)) {
-                    ParcelFileDescriptor open = ParcelFileDescriptor.open(new File(this.videoUri.getPath()), C.ENCODING_PCM_MU_LAW);
-                    this.videoSize = open.getStatSize();
-                    this.videoStream = new AutoCloseInputStream(open);
-                } else if (Utility.isContentUri(this.videoUri)) {
-                    this.videoSize = Utility.getContentSize(this.videoUri);
-                    this.videoStream = FacebookSdk.getApplicationContext().getContentResolver().openInputStream(this.videoUri);
-                } else {
-                    throw new FacebookException("Uri must be a content:// or file:// uri");
-                }
-            } catch (FileNotFoundException e) {
-                Utility.closeQuietly(this.videoStream);
-                throw e;
-            }
-        }
-    }
-
     private static abstract class UploadWorkItemBase implements Runnable {
         protected int completedRetries;
         protected UploadContext uploadContext;
@@ -364,6 +303,67 @@ public class VideoUploader {
         /* Access modifiers changed, original: protected */
         public void enqueueRetry(int i) {
             VideoUploader.enqueueUploadChunk(this.uploadContext, this.chunkStart, this.chunkEnd, i);
+        }
+    }
+
+    private static class UploadContext {
+        public final AccessToken accessToken;
+        public final FacebookCallback<Result> callback;
+        public String chunkStart;
+        public final String description;
+        public final String graphNode;
+        public boolean isCanceled;
+        public Bundle params;
+        public final String ref;
+        public String sessionId;
+        public final String title;
+        public String videoId;
+        public long videoSize;
+        public InputStream videoStream;
+        public final Uri videoUri;
+        public WorkItem workItem;
+
+        /* synthetic */ UploadContext(ShareVideoContent shareVideoContent, String str, FacebookCallback facebookCallback, AnonymousClass1 anonymousClass1) {
+            this(shareVideoContent, str, facebookCallback);
+        }
+
+        private UploadContext(ShareVideoContent shareVideoContent, String str, FacebookCallback<Result> facebookCallback) {
+            this.chunkStart = "0";
+            this.accessToken = AccessToken.getCurrentAccessToken();
+            this.videoUri = shareVideoContent.getVideo().getLocalUrl();
+            this.title = shareVideoContent.getContentTitle();
+            this.description = shareVideoContent.getContentDescription();
+            this.ref = shareVideoContent.getRef();
+            this.graphNode = str;
+            this.callback = facebookCallback;
+            this.params = shareVideoContent.getVideo().getParameters();
+            if (!Utility.isNullOrEmpty(shareVideoContent.getPeopleIds())) {
+                this.params.putString("tags", TextUtils.join(", ", shareVideoContent.getPeopleIds()));
+            }
+            if (!Utility.isNullOrEmpty(shareVideoContent.getPlaceId())) {
+                this.params.putString("place", shareVideoContent.getPlaceId());
+            }
+            if (!Utility.isNullOrEmpty(shareVideoContent.getRef())) {
+                this.params.putString(VideoUploader.PARAM_REF, shareVideoContent.getRef());
+            }
+        }
+
+        private void initialize() throws FileNotFoundException {
+            try {
+                if (Utility.isFileUri(this.videoUri)) {
+                    ParcelFileDescriptor open = ParcelFileDescriptor.open(new File(this.videoUri.getPath()), C.ENCODING_PCM_MU_LAW);
+                    this.videoSize = open.getStatSize();
+                    this.videoStream = new AutoCloseInputStream(open);
+                } else if (Utility.isContentUri(this.videoUri)) {
+                    this.videoSize = Utility.getContentSize(this.videoUri);
+                    this.videoStream = FacebookSdk.getApplicationContext().getContentResolver().openInputStream(this.videoUri);
+                } else {
+                    throw new FacebookException("Uri must be a content:// or file:// uri");
+                }
+            } catch (FileNotFoundException e) {
+                Utility.closeQuietly(this.videoStream);
+                throw e;
+            }
         }
     }
 

@@ -32,6 +32,18 @@ public class AccountTransferClient extends GoogleApi<zzn> {
     private static final AbstractClientBuilder<zzu, zzn> zzak = new zzc();
     private static final Api<zzn> zzal = new Api("AccountTransfer.ACCOUNT_TRANSFER_API", zzak, zzaj);
 
+    private static class zza<T> extends zzs {
+        private zzb<T> zzav;
+
+        public zza(zzb<T> zzb) {
+            this.zzav = zzb;
+        }
+
+        public final void onFailure(Status status) {
+            this.zzav.zza(status);
+        }
+    }
+
     private static abstract class zzb<T> extends TaskApiCall<zzu, T> {
         private TaskCompletionSource<T> zzaw;
 
@@ -72,18 +84,6 @@ public class AccountTransferClient extends GoogleApi<zzn> {
 
         /* synthetic */ zzc(zzc zzc) {
             this();
-        }
-    }
-
-    private static class zza<T> extends zzs {
-        private zzb<T> zzav;
-
-        public zza(zzb<T> zzb) {
-            this.zzav = zzb;
-        }
-
-        public final void onFailure(Status status) {
-            this.zzav.zza(status);
         }
     }
 

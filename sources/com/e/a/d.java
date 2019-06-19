@@ -276,8 +276,8 @@ public class d extends a {
     }
 
     /* JADX WARNING: Missing exception handler attribute for start block: B:5:0x0012 */
-    /* JADX WARNING: Removed duplicated region for block: B:17:0x003e A:{Splitter:B:1:0x0006, ExcHandler: all (th java.lang.Throwable)} */
-    /* JADX WARNING: Removed duplicated region for block: B:17:0x003e A:{Splitter:B:1:0x0006, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x003e A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:1:0x0006} */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x003e A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:1:0x0006} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:17:0x003e, code skipped:
             r5 = th;

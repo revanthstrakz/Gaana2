@@ -30,57 +30,6 @@ public class SupportMapFragment extends Fragment {
     private final zzb zzcg = new zzb(this);
 
     @VisibleForTesting
-    static class zzb extends DeferredLifecycleHelper<zza> {
-        private final Fragment fragment;
-        private OnDelegateCreatedListener<zza> zzbc;
-        private Activity zzbd;
-        private final List<OnMapReadyCallback> zzbe = new ArrayList();
-
-        @VisibleForTesting
-        zzb(Fragment fragment) {
-            this.fragment = fragment;
-        }
-
-        private final void setActivity(Activity activity) {
-            this.zzbd = activity;
-            zzc();
-        }
-
-        private final void zzc() {
-            if (!(this.zzbd == null || this.zzbc == null || getDelegate() != null)) {
-                try {
-                    MapsInitializer.initialize(this.zzbd);
-                    IMapFragmentDelegate zzc = zzbz.zza(this.zzbd).zzc(ObjectWrapper.wrap(this.zzbd));
-                    if (zzc != null) {
-                        this.zzbc.onDelegateCreated(new zza(this.fragment, zzc));
-                        for (OnMapReadyCallback mapAsync : this.zzbe) {
-                            ((zza) getDelegate()).getMapAsync(mapAsync);
-                        }
-                        this.zzbe.clear();
-                    }
-                } catch (RemoteException e) {
-                    throw new RuntimeRemoteException(e);
-                } catch (GooglePlayServicesNotAvailableException unused) {
-                }
-            }
-        }
-
-        /* Access modifiers changed, original: protected|final */
-        public final void createDelegate(OnDelegateCreatedListener<zza> onDelegateCreatedListener) {
-            this.zzbc = onDelegateCreatedListener;
-            zzc();
-        }
-
-        public final void getMapAsync(OnMapReadyCallback onMapReadyCallback) {
-            if (getDelegate() != null) {
-                ((zza) getDelegate()).getMapAsync(onMapReadyCallback);
-            } else {
-                this.zzbe.add(onMapReadyCallback);
-            }
-        }
-    }
-
-    @VisibleForTesting
     static class zza implements MapLifecycleDelegate {
         private final Fragment fragment;
         private final IMapFragmentDelegate zzba;
@@ -220,6 +169,57 @@ public class SupportMapFragment extends Fragment {
                 this.zzba.onStop();
             } catch (RemoteException e) {
                 throw new RuntimeRemoteException(e);
+            }
+        }
+    }
+
+    @VisibleForTesting
+    static class zzb extends DeferredLifecycleHelper<zza> {
+        private final Fragment fragment;
+        private OnDelegateCreatedListener<zza> zzbc;
+        private Activity zzbd;
+        private final List<OnMapReadyCallback> zzbe = new ArrayList();
+
+        @VisibleForTesting
+        zzb(Fragment fragment) {
+            this.fragment = fragment;
+        }
+
+        private final void setActivity(Activity activity) {
+            this.zzbd = activity;
+            zzc();
+        }
+
+        private final void zzc() {
+            if (!(this.zzbd == null || this.zzbc == null || getDelegate() != null)) {
+                try {
+                    MapsInitializer.initialize(this.zzbd);
+                    IMapFragmentDelegate zzc = zzbz.zza(this.zzbd).zzc(ObjectWrapper.wrap(this.zzbd));
+                    if (zzc != null) {
+                        this.zzbc.onDelegateCreated(new zza(this.fragment, zzc));
+                        for (OnMapReadyCallback mapAsync : this.zzbe) {
+                            ((zza) getDelegate()).getMapAsync(mapAsync);
+                        }
+                        this.zzbe.clear();
+                    }
+                } catch (RemoteException e) {
+                    throw new RuntimeRemoteException(e);
+                } catch (GooglePlayServicesNotAvailableException unused) {
+                }
+            }
+        }
+
+        /* Access modifiers changed, original: protected|final */
+        public final void createDelegate(OnDelegateCreatedListener<zza> onDelegateCreatedListener) {
+            this.zzbc = onDelegateCreatedListener;
+            zzc();
+        }
+
+        public final void getMapAsync(OnMapReadyCallback onMapReadyCallback) {
+            if (getDelegate() != null) {
+                ((zza) getDelegate()).getMapAsync(onMapReadyCallback);
+            } else {
+                this.zzbe.add(onMapReadyCallback);
             }
         }
     }

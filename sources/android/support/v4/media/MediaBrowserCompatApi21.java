@@ -20,6 +20,12 @@ class MediaBrowserCompatApi21 {
         void onConnectionSuspended();
     }
 
+    interface SubscriptionCallback {
+        void onChildrenLoaded(@NonNull String str, List<?> list);
+
+        void onError(@NonNull String str);
+    }
+
     static class ConnectionCallbackProxy<T extends ConnectionCallback> extends android.media.browse.MediaBrowser.ConnectionCallback {
         protected final T mConnectionCallback;
 
@@ -51,12 +57,6 @@ class MediaBrowserCompatApi21 {
         public static Object getDescription(Object obj) {
             return ((android.media.browse.MediaBrowser.MediaItem) obj).getDescription();
         }
-    }
-
-    interface SubscriptionCallback {
-        void onChildrenLoaded(@NonNull String str, List<?> list);
-
-        void onError(@NonNull String str);
     }
 
     static class SubscriptionCallbackProxy<T extends SubscriptionCallback> extends android.media.browse.MediaBrowser.SubscriptionCallback {

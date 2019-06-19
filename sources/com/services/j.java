@@ -329,8 +329,8 @@ public class j {
         return stringBuilder.toString();
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:18:? A:{SYNTHETIC, Splitter:B:1:0x0001, ExcHandler: UnsupportedEncodingException (unused java.io.UnsupportedEncodingException)} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0069 A:{Splitter:B:1:0x0001, ExcHandler: ProtocolException (r6_4 'e' java.net.ProtocolException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:? A:{SYNTHETIC, ExcHandler: UnsupportedEncodingException (unused java.io.UnsupportedEncodingException), Splitter:B:1:0x0001} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0069 A:{ExcHandler: ProtocolException (r6_4 'e' java.net.ProtocolException), Splitter:B:1:0x0001} */
     /* JADX WARNING: Removed duplicated region for block: B:14:0x0065  */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:10:0x0062, code skipped:

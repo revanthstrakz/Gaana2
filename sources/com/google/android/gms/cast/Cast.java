@@ -33,6 +33,16 @@ public final class Cast {
     @VisibleForTesting
     private static final AbstractClientBuilder<zzdd, CastOptions> zzad = new zze();
 
+    public interface ApplicationConnectionResult extends Result {
+        ApplicationMetadata getApplicationMetadata();
+
+        String getApplicationStatus();
+
+        String getSessionId();
+
+        boolean getWasLaunched();
+    }
+
     @Deprecated
     public interface CastApi {
 
@@ -192,40 +202,6 @@ public final class Cast {
         PendingResult<Status> stopApplication(GoogleApiClient googleApiClient, String str);
     }
 
-    public static class Listener {
-        public void onActiveInputStateChanged(int i) {
-        }
-
-        public void onApplicationDisconnected(int i) {
-        }
-
-        public void onApplicationMetadataChanged(ApplicationMetadata applicationMetadata) {
-        }
-
-        public void onApplicationStatusChanged() {
-        }
-
-        public void onStandbyStateChanged(int i) {
-        }
-
-        public void onVolumeChanged() {
-        }
-    }
-
-    public interface MessageReceivedCallback {
-        void onMessageReceived(CastDevice castDevice, String str, String str2);
-    }
-
-    public interface ApplicationConnectionResult extends Result {
-        ApplicationMetadata getApplicationMetadata();
-
-        String getApplicationStatus();
-
-        String getSessionId();
-
-        boolean getWasLaunched();
-    }
-
     public static final class CastOptions implements HasOptions {
         final Bundle extras;
         final CastDevice zzaj;
@@ -279,6 +255,30 @@ public final class Cast {
         /* synthetic */ CastOptions(Builder builder, zze zze) {
             this(builder);
         }
+    }
+
+    public static class Listener {
+        public void onActiveInputStateChanged(int i) {
+        }
+
+        public void onApplicationDisconnected(int i) {
+        }
+
+        public void onApplicationMetadataChanged(ApplicationMetadata applicationMetadata) {
+        }
+
+        public void onApplicationStatusChanged() {
+        }
+
+        public void onStandbyStateChanged(int i) {
+        }
+
+        public void onVolumeChanged() {
+        }
+    }
+
+    public interface MessageReceivedCallback {
+        void onMessageReceived(CastDevice castDevice, String str, String str2);
     }
 
     @VisibleForTesting

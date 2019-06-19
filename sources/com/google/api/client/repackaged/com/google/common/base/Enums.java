@@ -18,39 +18,6 @@ public final class Enums {
     @GwtIncompatible("java.lang.ref.WeakReference")
     private static final Map<Class<? extends Enum<?>>, Map<String, WeakReference<? extends Enum<?>>>> enumConstantCache = new WeakHashMap();
 
-    private static final class ValueOfFunction<T extends Enum<T>> implements Function<String, T>, Serializable {
-        private static final long serialVersionUID = 0;
-        private final Class<T> enumClass;
-
-        private ValueOfFunction(Class<T> cls) {
-            this.enumClass = (Class) Preconditions.checkNotNull(cls);
-        }
-
-        public T apply(String str) {
-            try {
-                return Enum.valueOf(this.enumClass, str);
-            } catch (IllegalArgumentException unused) {
-                return null;
-            }
-        }
-
-        public boolean equals(Object obj) {
-            return (obj instanceof ValueOfFunction) && this.enumClass.equals(((ValueOfFunction) obj).enumClass);
-        }
-
-        public int hashCode() {
-            return this.enumClass.hashCode();
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Enums.valueOf(");
-            stringBuilder.append(this.enumClass);
-            stringBuilder.append(")");
-            return stringBuilder.toString();
-        }
-    }
-
     private static final class StringConverter<T extends Enum<T>> extends Converter<String, T> implements Serializable {
         private static final long serialVersionUID = 0;
         private final Class<T> enumClass;
@@ -85,6 +52,39 @@ public final class Enums {
             stringBuilder.append("Enums.stringConverter(");
             stringBuilder.append(this.enumClass.getName());
             stringBuilder.append(".class)");
+            return stringBuilder.toString();
+        }
+    }
+
+    private static final class ValueOfFunction<T extends Enum<T>> implements Function<String, T>, Serializable {
+        private static final long serialVersionUID = 0;
+        private final Class<T> enumClass;
+
+        private ValueOfFunction(Class<T> cls) {
+            this.enumClass = (Class) Preconditions.checkNotNull(cls);
+        }
+
+        public T apply(String str) {
+            try {
+                return Enum.valueOf(this.enumClass, str);
+            } catch (IllegalArgumentException unused) {
+                return null;
+            }
+        }
+
+        public boolean equals(Object obj) {
+            return (obj instanceof ValueOfFunction) && this.enumClass.equals(((ValueOfFunction) obj).enumClass);
+        }
+
+        public int hashCode() {
+            return this.enumClass.hashCode();
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Enums.valueOf(");
+            stringBuilder.append(this.enumClass);
+            stringBuilder.append(")");
             return stringBuilder.toString();
         }
     }

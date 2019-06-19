@@ -31,7 +31,7 @@ final class MoERestClient {
     private static final String URL_PARAM_ASSIGNER = "=";
     private static final String URL_PARAM_SEPARATOR = "&";
     private static final String URL_QUERY_PARAM_SEPARATOR = "?";
-    private static boolean androidIDRetrieved = false;
+    private static boolean androidIDRetrieved;
     private String errorResponse;
     private byte[] mByteArray = null;
     private String mStringBody = null;

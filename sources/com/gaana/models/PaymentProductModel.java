@@ -16,6 +16,44 @@ public class PaymentProductModel extends BusinessObject {
     @SerializedName("purchase")
     private Purchase purchase;
 
+    public static class LayoutConfig extends BusinessObject {
+        private static final long serialVersionUID = 1;
+        @SerializedName("default_option")
+        private int defaultOption;
+        @SerializedName("seperate_tabs")
+        private int seperateTabs;
+        @SerializedName("tab_names_1")
+        private String tabNames1;
+        @SerializedName("tab_names_2")
+        private String tabNames2;
+
+        public boolean isSeperateTabs() {
+            return this.seperateTabs == 1;
+        }
+
+        public String getTabNames1() {
+            return this.tabNames1;
+        }
+
+        public String getTabNames2() {
+            return this.tabNames2;
+        }
+
+        public int getDefaultOption() {
+            return this.defaultOption;
+        }
+    }
+
+    public class PageHeader extends BusinessObject {
+        private static final long serialVersionUID = 1;
+        @SerializedName("page_header_config")
+        private PageHeaderConfig pageHeaderConfig;
+
+        public PageHeaderConfig getPageHeaderConfig() {
+            return this.pageHeaderConfig;
+        }
+    }
+
     public class PageHeaderConfig {
         @SerializedName("carousel_ad_img_url")
         private String carouselAdImgUrl;
@@ -156,44 +194,6 @@ public class PaymentProductModel extends BusinessObject {
 
         public String getDowngrade_msg() {
             return this.downgrade_msg;
-        }
-    }
-
-    public static class LayoutConfig extends BusinessObject {
-        private static final long serialVersionUID = 1;
-        @SerializedName("default_option")
-        private int defaultOption;
-        @SerializedName("seperate_tabs")
-        private int seperateTabs;
-        @SerializedName("tab_names_1")
-        private String tabNames1;
-        @SerializedName("tab_names_2")
-        private String tabNames2;
-
-        public boolean isSeperateTabs() {
-            return this.seperateTabs == 1;
-        }
-
-        public String getTabNames1() {
-            return this.tabNames1;
-        }
-
-        public String getTabNames2() {
-            return this.tabNames2;
-        }
-
-        public int getDefaultOption() {
-            return this.defaultOption;
-        }
-    }
-
-    public class PageHeader extends BusinessObject {
-        private static final long serialVersionUID = 1;
-        @SerializedName("page_header_config")
-        private PageHeaderConfig pageHeaderConfig;
-
-        public PageHeaderConfig getPageHeaderConfig() {
-            return this.pageHeaderConfig;
         }
     }
 

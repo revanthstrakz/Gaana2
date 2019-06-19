@@ -32,39 +32,6 @@ public final class ClippingMediaSource extends CompositeMediaSource<Void> {
     private final long startUs;
     private final Window window;
 
-    public static final class IllegalClippingException extends IOException {
-        public static final int REASON_INVALID_PERIOD_COUNT = 0;
-        public static final int REASON_NOT_SEEKABLE_TO_START = 1;
-        public static final int REASON_START_EXCEEDS_END = 2;
-        public final int reason;
-
-        @Documented
-        @Retention(RetentionPolicy.SOURCE)
-        public @interface Reason {
-        }
-
-        private static String getReasonDescription(int i) {
-            switch (i) {
-                case 0:
-                    return "invalid period count";
-                case 1:
-                    return "not seekable to start";
-                case 2:
-                    return "start exceeds end";
-                default:
-                    return "unknown";
-            }
-        }
-
-        public IllegalClippingException(int i) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Illegal clipping: ");
-            stringBuilder.append(getReasonDescription(i));
-            super(stringBuilder.toString());
-            this.reason = i;
-        }
-    }
-
     private static final class ClippingTimeline extends ForwardingTimeline {
         private final long durationUs;
         private final long endUs;
@@ -134,6 +101,39 @@ public final class ClippingMediaSource extends CompositeMediaSource<Void> {
                 j2 = this.durationUs - positionInWindowUs;
             }
             return period.set(period.id, period.uid, 0, j2, positionInWindowUs);
+        }
+    }
+
+    public static final class IllegalClippingException extends IOException {
+        public static final int REASON_INVALID_PERIOD_COUNT = 0;
+        public static final int REASON_NOT_SEEKABLE_TO_START = 1;
+        public static final int REASON_START_EXCEEDS_END = 2;
+        public final int reason;
+
+        @Documented
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface Reason {
+        }
+
+        private static String getReasonDescription(int i) {
+            switch (i) {
+                case 0:
+                    return "invalid period count";
+                case 1:
+                    return "not seekable to start";
+                case 2:
+                    return "start exceeds end";
+                default:
+                    return "unknown";
+            }
+        }
+
+        public IllegalClippingException(int i) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Illegal clipping: ");
+            stringBuilder.append(getReasonDescription(i));
+            super(stringBuilder.toString());
+            this.reason = i;
         }
     }
 

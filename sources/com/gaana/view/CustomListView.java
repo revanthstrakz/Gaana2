@@ -385,14 +385,6 @@ public class CustomListView implements OnNotificationsCleared, l, u {
     ArrayList<?> trendingArray = null;
     private TextView txtDownloadAll;
 
-    public interface OnDataLoadedListener {
-        void onDataLoaded(BusinessObject businessObject, BusinessObjectType businessObjectType);
-    }
-
-    public interface OnDataRefreshListener {
-        void onEmptyDataRefresh();
-    }
-
     public class Header extends BusinessObject {
         private String name;
 
@@ -403,6 +395,14 @@ public class CustomListView implements OnNotificationsCleared, l, u {
         public String getName() {
             return this.name;
         }
+    }
+
+    public interface OnDataLoadedListener {
+        void onDataLoaded(BusinessObject businessObject, BusinessObjectType businessObjectType);
+    }
+
+    public interface OnDataRefreshListener {
+        void onEmptyDataRefresh();
     }
 
     public void loadMoreData(int i) {

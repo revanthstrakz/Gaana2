@@ -42,6 +42,42 @@ public class l extends t {
     private v m;
     private WebView n;
 
+    private static class a implements com.facebook.ads.internal.f.a {
+        final WeakReference<WebView> a;
+        final WeakReference<l> b;
+        final WeakReference<u> c;
+        final boolean d;
+        final j e;
+
+        private a(WebView webView, l lVar, u uVar, j jVar, boolean z) {
+            this.a = new WeakReference(webView);
+            this.b = new WeakReference(lVar);
+            this.c = new WeakReference(uVar);
+            this.e = jVar;
+            this.d = z;
+        }
+
+        /* synthetic */ a(WebView webView, l lVar, u uVar, j jVar, boolean z, AnonymousClass1 anonymousClass1) {
+            this(webView, lVar, uVar, jVar, z);
+        }
+
+        public void a() {
+            if (this.a.get() != null) {
+                ((WebView) this.a.get()).loadUrl(this.e.a());
+            }
+        }
+
+        public void b() {
+            if (this.c.get() != null && this.b.get() != null) {
+                if (this.d) {
+                    ((u) this.c.get()).a((t) this.b.get(), AdError.CACHE_ERROR);
+                } else {
+                    a();
+                }
+            }
+        }
+    }
+
     private static class b extends WebViewClient {
         boolean a = false;
         final WeakReference<l> b;
@@ -104,42 +140,6 @@ public class l extends t {
         public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
             this.a = true;
             a(webResourceError);
-        }
-    }
-
-    private static class a implements com.facebook.ads.internal.f.a {
-        final WeakReference<WebView> a;
-        final WeakReference<l> b;
-        final WeakReference<u> c;
-        final boolean d;
-        final j e;
-
-        private a(WebView webView, l lVar, u uVar, j jVar, boolean z) {
-            this.a = new WeakReference(webView);
-            this.b = new WeakReference(lVar);
-            this.c = new WeakReference(uVar);
-            this.e = jVar;
-            this.d = z;
-        }
-
-        /* synthetic */ a(WebView webView, l lVar, u uVar, j jVar, boolean z, AnonymousClass1 anonymousClass1) {
-            this(webView, lVar, uVar, jVar, z);
-        }
-
-        public void a() {
-            if (this.a.get() != null) {
-                ((WebView) this.a.get()).loadUrl(this.e.a());
-            }
-        }
-
-        public void b() {
-            if (this.c.get() != null && this.b.get() != null) {
-                if (this.d) {
-                    ((u) this.c.get()).a((t) this.b.get(), AdError.CACHE_ERROR);
-                } else {
-                    a();
-                }
-            }
         }
     }
 

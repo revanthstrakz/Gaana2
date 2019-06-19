@@ -47,6 +47,27 @@ public class MediaRouteChooserDialog extends AppCompatDialog {
     private MediaRouteSelector mSelector;
     private TextView mTitleView;
 
+    private final class MediaRouterCallback extends Callback {
+        MediaRouterCallback() {
+        }
+
+        public void onRouteAdded(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            MediaRouteChooserDialog.this.refreshRoutes();
+        }
+
+        public void onRouteRemoved(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            MediaRouteChooserDialog.this.refreshRoutes();
+        }
+
+        public void onRouteChanged(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            MediaRouteChooserDialog.this.refreshRoutes();
+        }
+
+        public void onRouteSelected(MediaRouter mediaRouter, RouteInfo routeInfo) {
+            MediaRouteChooserDialog.this.dismiss();
+        }
+    }
+
     private final class RouteAdapter extends ArrayAdapter<RouteInfo> implements OnItemClickListener {
         private final Drawable mDefaultIcon;
         private final LayoutInflater mInflater;
@@ -153,27 +174,6 @@ public class MediaRouteChooserDialog extends AppCompatDialog {
 
         public int compare(RouteInfo routeInfo, RouteInfo routeInfo2) {
             return routeInfo.getName().compareToIgnoreCase(routeInfo2.getName());
-        }
-    }
-
-    private final class MediaRouterCallback extends Callback {
-        MediaRouterCallback() {
-        }
-
-        public void onRouteAdded(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            MediaRouteChooserDialog.this.refreshRoutes();
-        }
-
-        public void onRouteRemoved(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            MediaRouteChooserDialog.this.refreshRoutes();
-        }
-
-        public void onRouteChanged(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            MediaRouteChooserDialog.this.refreshRoutes();
-        }
-
-        public void onRouteSelected(MediaRouter mediaRouter, RouteInfo routeInfo) {
-            MediaRouteChooserDialog.this.dismiss();
         }
     }
 

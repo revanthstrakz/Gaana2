@@ -63,6 +63,83 @@ public final class NotificationManagerCompat {
     private final Context mContext;
     private final NotificationManager mNotificationManager = ((NotificationManager) this.mContext.getSystemService(MoEHelperConstants.NAVIGATION_SOURCE_NOTIFICATION));
 
+    private interface Task {
+        void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException;
+    }
+
+    private static class CancelTask implements Task {
+        final boolean all;
+        final int id;
+        final String packageName;
+        final String tag;
+
+        CancelTask(String str) {
+            this.packageName = str;
+            this.id = 0;
+            this.tag = null;
+            this.all = true;
+        }
+
+        CancelTask(String str, int i, String str2) {
+            this.packageName = str;
+            this.id = i;
+            this.tag = str2;
+            this.all = false;
+        }
+
+        public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
+            if (this.all) {
+                iNotificationSideChannel.cancelAll(this.packageName);
+            } else {
+                iNotificationSideChannel.cancel(this.packageName, this.id, this.tag);
+            }
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder("CancelTask[");
+            stringBuilder.append("packageName:");
+            stringBuilder.append(this.packageName);
+            stringBuilder.append(", id:");
+            stringBuilder.append(this.id);
+            stringBuilder.append(", tag:");
+            stringBuilder.append(this.tag);
+            stringBuilder.append(", all:");
+            stringBuilder.append(this.all);
+            stringBuilder.append("]");
+            return stringBuilder.toString();
+        }
+    }
+
+    private static class NotifyTask implements Task {
+        final int id;
+        final Notification notif;
+        final String packageName;
+        final String tag;
+
+        NotifyTask(String str, int i, String str2, Notification notification) {
+            this.packageName = str;
+            this.id = i;
+            this.tag = str2;
+            this.notif = notification;
+        }
+
+        public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
+            iNotificationSideChannel.notify(this.packageName, this.id, this.tag, this.notif);
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder("NotifyTask[");
+            stringBuilder.append("packageName:");
+            stringBuilder.append(this.packageName);
+            stringBuilder.append(", id:");
+            stringBuilder.append(this.id);
+            stringBuilder.append(", tag:");
+            stringBuilder.append(this.tag);
+            stringBuilder.append("]");
+            return stringBuilder.toString();
+        }
+    }
+
     private static class ServiceConnectedEvent {
         final ComponentName componentName;
         final IBinder iBinder;
@@ -342,83 +419,6 @@ public final class NotificationManagerCompat {
                     scheduleListenerRetry(listenerRecord);
                 }
             }
-        }
-    }
-
-    private interface Task {
-        void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException;
-    }
-
-    private static class CancelTask implements Task {
-        final boolean all;
-        final int id;
-        final String packageName;
-        final String tag;
-
-        CancelTask(String str) {
-            this.packageName = str;
-            this.id = 0;
-            this.tag = null;
-            this.all = true;
-        }
-
-        CancelTask(String str, int i, String str2) {
-            this.packageName = str;
-            this.id = i;
-            this.tag = str2;
-            this.all = false;
-        }
-
-        public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
-            if (this.all) {
-                iNotificationSideChannel.cancelAll(this.packageName);
-            } else {
-                iNotificationSideChannel.cancel(this.packageName, this.id, this.tag);
-            }
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder("CancelTask[");
-            stringBuilder.append("packageName:");
-            stringBuilder.append(this.packageName);
-            stringBuilder.append(", id:");
-            stringBuilder.append(this.id);
-            stringBuilder.append(", tag:");
-            stringBuilder.append(this.tag);
-            stringBuilder.append(", all:");
-            stringBuilder.append(this.all);
-            stringBuilder.append("]");
-            return stringBuilder.toString();
-        }
-    }
-
-    private static class NotifyTask implements Task {
-        final int id;
-        final Notification notif;
-        final String packageName;
-        final String tag;
-
-        NotifyTask(String str, int i, String str2, Notification notification) {
-            this.packageName = str;
-            this.id = i;
-            this.tag = str2;
-            this.notif = notification;
-        }
-
-        public void send(INotificationSideChannel iNotificationSideChannel) throws RemoteException {
-            iNotificationSideChannel.notify(this.packageName, this.id, this.tag, this.notif);
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder("NotifyTask[");
-            stringBuilder.append("packageName:");
-            stringBuilder.append(this.packageName);
-            stringBuilder.append(", id:");
-            stringBuilder.append(this.id);
-            stringBuilder.append(", tag:");
-            stringBuilder.append(this.tag);
-            stringBuilder.append("]");
-            return stringBuilder.toString();
         }
     }
 

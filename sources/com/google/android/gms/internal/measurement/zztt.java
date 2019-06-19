@@ -1054,41 +1054,41 @@ final class zztt implements zzwk {
     }
 
     private final Object zza(zzxs zzxs, Class<?> cls, zzub zzub) throws IOException {
-        switch (zzxs) {
-            case BOOL:
+        switch (zztu.zzbul[zzxs.ordinal()]) {
+            case 1:
                 return Boolean.valueOf(zzup());
-            case BYTES:
+            case 2:
                 return zzur();
-            case DOUBLE:
+            case 3:
                 return Double.valueOf(readDouble());
-            case ENUM:
+            case 4:
                 return Integer.valueOf(zzut());
-            case FIXED32:
+            case 5:
                 return Integer.valueOf(zzuo());
-            case FIXED64:
+            case 6:
                 return Long.valueOf(zzun());
-            case FLOAT:
+            case 7:
                 return Float.valueOf(readFloat());
-            case INT32:
+            case 8:
                 return Integer.valueOf(zzum());
-            case INT64:
+            case 9:
                 return Long.valueOf(zzul());
-            case MESSAGE:
+            case 10:
                 zzav(2);
                 return zzc(zzwh.zzxt().zzi(cls), zzub);
-            case SFIXED32:
+            case 11:
                 return Integer.valueOf(zzuu());
-            case SFIXED64:
+            case 12:
                 return Long.valueOf(zzuv());
-            case SINT32:
+            case 13:
                 return Integer.valueOf(zzuw());
-            case SINT64:
+            case 14:
                 return Long.valueOf(zzux());
-            case STRING:
+            case 15:
                 return zzuq();
-            case UINT32:
+            case 16:
                 return Integer.valueOf(zzus());
-            case UINT64:
+            case 17:
                 return Long.valueOf(zzuk());
             default:
                 throw new RuntimeException("unsupported field type.");

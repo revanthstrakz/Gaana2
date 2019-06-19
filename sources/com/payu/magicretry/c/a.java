@@ -130,31 +130,31 @@ public class a {
         }
         this.f = new Timer();
         this.f.schedule(new TimerTask() {
-            /* JADX WARNING: Removed duplicated region for block: B:73:0x025b A:{Splitter:B:15:0x0078, ExcHandler: MalformedURLException (r0_79 'e' java.net.MalformedURLException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:71:0x0255 A:{Splitter:B:15:0x0078, ExcHandler: ProtocolException (r0_78 'e' java.net.ProtocolException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:69:0x024f A:{Splitter:B:15:0x0078, ExcHandler: UnsupportedEncodingException (r0_77 'e' java.io.UnsupportedEncodingException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:67:0x0249 A:{Splitter:B:15:0x0078, ExcHandler: IOException (r0_76 'e' java.io.IOException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:65:0x0243 A:{Splitter:B:15:0x0078, ExcHandler: JSONException (r0_75 'e' org.json.JSONException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:73:0x025b A:{Splitter:B:15:0x0078, ExcHandler: MalformedURLException (r0_79 'e' java.net.MalformedURLException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:71:0x0255 A:{Splitter:B:15:0x0078, ExcHandler: ProtocolException (r0_78 'e' java.net.ProtocolException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:69:0x024f A:{Splitter:B:15:0x0078, ExcHandler: UnsupportedEncodingException (r0_77 'e' java.io.UnsupportedEncodingException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:67:0x0249 A:{Splitter:B:15:0x0078, ExcHandler: IOException (r0_76 'e' java.io.IOException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:65:0x0243 A:{Splitter:B:15:0x0078, ExcHandler: JSONException (r0_75 'e' org.json.JSONException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:107:0x0357 A:{Splitter:B:75:0x0261, ExcHandler: MalformedURLException (r0_53 'e' java.net.MalformedURLException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:105:0x0352 A:{Splitter:B:75:0x0261, ExcHandler: ProtocolException (r0_52 'e' java.net.ProtocolException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:103:0x034d A:{Splitter:B:75:0x0261, ExcHandler: UnsupportedEncodingException (r0_51 'e' java.io.UnsupportedEncodingException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:101:0x0348 A:{Splitter:B:75:0x0261, ExcHandler: IOException (r0_50 'e' java.io.IOException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:99:0x0343 A:{Splitter:B:75:0x0261, ExcHandler: JSONException (r0_49 'e' org.json.JSONException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:65:0x0243 A:{Splitter:B:15:0x0078, ExcHandler: JSONException (r0_75 'e' org.json.JSONException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:99:0x0343 A:{Splitter:B:75:0x0261, ExcHandler: JSONException (r0_49 'e' org.json.JSONException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:101:0x0348 A:{Splitter:B:75:0x0261, ExcHandler: IOException (r0_50 'e' java.io.IOException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:67:0x0249 A:{Splitter:B:15:0x0078, ExcHandler: IOException (r0_76 'e' java.io.IOException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:103:0x034d A:{Splitter:B:75:0x0261, ExcHandler: UnsupportedEncodingException (r0_51 'e' java.io.UnsupportedEncodingException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:69:0x024f A:{Splitter:B:15:0x0078, ExcHandler: UnsupportedEncodingException (r0_77 'e' java.io.UnsupportedEncodingException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:105:0x0352 A:{Splitter:B:75:0x0261, ExcHandler: ProtocolException (r0_52 'e' java.net.ProtocolException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:71:0x0255 A:{Splitter:B:15:0x0078, ExcHandler: ProtocolException (r0_78 'e' java.net.ProtocolException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:107:0x0357 A:{Splitter:B:75:0x0261, ExcHandler: MalformedURLException (r0_53 'e' java.net.MalformedURLException)} */
-            /* JADX WARNING: Removed duplicated region for block: B:73:0x025b A:{Splitter:B:15:0x0078, ExcHandler: MalformedURLException (r0_79 'e' java.net.MalformedURLException)} */
+            /* JADX WARNING: Removed duplicated region for block: B:73:0x025b A:{ExcHandler: MalformedURLException (r0_79 'e' java.net.MalformedURLException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:71:0x0255 A:{ExcHandler: ProtocolException (r0_78 'e' java.net.ProtocolException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:69:0x024f A:{ExcHandler: UnsupportedEncodingException (r0_77 'e' java.io.UnsupportedEncodingException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:67:0x0249 A:{ExcHandler: IOException (r0_76 'e' java.io.IOException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:65:0x0243 A:{ExcHandler: JSONException (r0_75 'e' org.json.JSONException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:73:0x025b A:{ExcHandler: MalformedURLException (r0_79 'e' java.net.MalformedURLException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:71:0x0255 A:{ExcHandler: ProtocolException (r0_78 'e' java.net.ProtocolException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:69:0x024f A:{ExcHandler: UnsupportedEncodingException (r0_77 'e' java.io.UnsupportedEncodingException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:67:0x0249 A:{ExcHandler: IOException (r0_76 'e' java.io.IOException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:65:0x0243 A:{ExcHandler: JSONException (r0_75 'e' org.json.JSONException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:107:0x0357 A:{ExcHandler: MalformedURLException (r0_53 'e' java.net.MalformedURLException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:105:0x0352 A:{ExcHandler: ProtocolException (r0_52 'e' java.net.ProtocolException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:103:0x034d A:{ExcHandler: UnsupportedEncodingException (r0_51 'e' java.io.UnsupportedEncodingException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:101:0x0348 A:{ExcHandler: IOException (r0_50 'e' java.io.IOException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:99:0x0343 A:{ExcHandler: JSONException (r0_49 'e' org.json.JSONException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:65:0x0243 A:{ExcHandler: JSONException (r0_75 'e' org.json.JSONException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:99:0x0343 A:{ExcHandler: JSONException (r0_49 'e' org.json.JSONException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:101:0x0348 A:{ExcHandler: IOException (r0_50 'e' java.io.IOException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:67:0x0249 A:{ExcHandler: IOException (r0_76 'e' java.io.IOException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:103:0x034d A:{ExcHandler: UnsupportedEncodingException (r0_51 'e' java.io.UnsupportedEncodingException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:69:0x024f A:{ExcHandler: UnsupportedEncodingException (r0_77 'e' java.io.UnsupportedEncodingException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:105:0x0352 A:{ExcHandler: ProtocolException (r0_52 'e' java.net.ProtocolException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:71:0x0255 A:{ExcHandler: ProtocolException (r0_78 'e' java.net.ProtocolException), Splitter:B:15:0x0078} */
+            /* JADX WARNING: Removed duplicated region for block: B:107:0x0357 A:{ExcHandler: MalformedURLException (r0_53 'e' java.net.MalformedURLException), Splitter:B:75:0x0261} */
+            /* JADX WARNING: Removed duplicated region for block: B:73:0x025b A:{ExcHandler: MalformedURLException (r0_79 'e' java.net.MalformedURLException), Splitter:B:15:0x0078} */
             /* JADX WARNING: Exception block dominator not found, dom blocks: [B:15:0x0078, B:56:0x020b] */
             /* JADX WARNING: Failed to process nested try/catch */
             /* JADX WARNING: Failed to process nested try/catch */

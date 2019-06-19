@@ -115,6 +115,17 @@ public class BaseLaunchActivity extends AppCompatActivity implements c {
     protected boolean shouldDisplayAd = false;
     private boolean showUpgradeCoachMark = false;
 
+    static class AppLinkCompletionHandler implements CompletionHandler {
+        AppLinkCompletionHandler() {
+        }
+
+        public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+            if (appLinkData != null) {
+                GaanaApplication.targetUri = appLinkData.getTargetUri().toString();
+            }
+        }
+    }
+
     private static final class InitAsyncRunnable implements Runnable {
         private InitAsyncRunnable() {
         }
@@ -197,17 +208,6 @@ public class BaseLaunchActivity extends AppCompatActivity implements c {
                 Util.L();
             }
             Util.E();
-        }
-    }
-
-    static class AppLinkCompletionHandler implements CompletionHandler {
-        AppLinkCompletionHandler() {
-        }
-
-        public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
-            if (appLinkData != null) {
-                GaanaApplication.targetUri = appLinkData.getTargetUri().toString();
-            }
         }
     }
 

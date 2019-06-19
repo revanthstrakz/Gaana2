@@ -99,27 +99,6 @@ public class SearchFeedAdapter extends Adapter<ParentItemViewholder> implements 
         }
     }
 
-    public class NestedSearchItemViewHolder extends ParentItemViewholder {
-        private final View divider;
-        private final ImageView more;
-        private final TextView recentSearches_text;
-        private final TextView recent_searches_title;
-        private final RecyclerView recycler_search_recent_view;
-        private final View searchBarLayout;
-        private final TextView searchText;
-
-        public NestedSearchItemViewHolder(View view) {
-            super(view);
-            this.recycler_search_recent_view = (RecyclerView) view.findViewById(R.id.recycler_search_recent_view);
-            this.searchBarLayout = view.findViewById(R.id.searchBarLayout);
-            this.searchText = (TextView) view.findViewById(R.id.searchText);
-            this.recentSearches_text = (TextView) view.findViewById(R.id.recentSearches_text);
-            this.recent_searches_title = (TextView) view.findViewById(R.id.recent_searches_title);
-            this.divider = view.findViewById(R.id.divider);
-            this.more = (ImageView) view.findViewById(R.id.more);
-        }
-    }
-
     public class SearchFeedItemViewHolder extends ParentItemViewholder {
         private VideoPlayerAutoPlayView autoPlayerView;
         private ViewGroup finalVideoView;
@@ -251,6 +230,27 @@ public class SearchFeedAdapter extends Adapter<ParentItemViewholder> implements 
         public FeedItemViewHolderTypeTwo(View view) {
             super(view);
             this.videoViewVertical = (ViewGroup) view.findViewById(R.id.videoView2);
+        }
+    }
+
+    public class NestedSearchItemViewHolder extends ParentItemViewholder {
+        private final View divider;
+        private final ImageView more;
+        private final TextView recentSearches_text;
+        private final TextView recent_searches_title;
+        private final RecyclerView recycler_search_recent_view;
+        private final View searchBarLayout;
+        private final TextView searchText;
+
+        public NestedSearchItemViewHolder(View view) {
+            super(view);
+            this.recycler_search_recent_view = (RecyclerView) view.findViewById(R.id.recycler_search_recent_view);
+            this.searchBarLayout = view.findViewById(R.id.searchBarLayout);
+            this.searchText = (TextView) view.findViewById(R.id.searchText);
+            this.recentSearches_text = (TextView) view.findViewById(R.id.recentSearches_text);
+            this.recent_searches_title = (TextView) view.findViewById(R.id.recent_searches_title);
+            this.divider = view.findViewById(R.id.divider);
+            this.more = (ImageView) view.findViewById(R.id.more);
         }
     }
 

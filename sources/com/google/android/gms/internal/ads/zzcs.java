@@ -20,10 +20,10 @@ import java.util.concurrent.TimeUnit;
 
 public class zzcs extends zzcr {
     private static final String TAG = "zzcs";
-    private static long startTime = 0;
+    private static long startTime;
     private static final Object zzrn = new Object();
     @VisibleForTesting
-    private static boolean zzro = false;
+    private static boolean zzro;
     protected boolean zzrp = false;
     private String zzrq;
     private boolean zzrr = false;

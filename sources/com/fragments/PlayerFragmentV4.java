@@ -103,6 +103,7 @@ import com.gaana.view.item.SimilarItemHorizontalScroll;
 import com.gaana.view.item.TrackItemView;
 import com.gaanavideo.VideoCoachmarkActivity;
 import com.google.ads.interactivemedia.v3.api.AdEvent;
+import com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
 import com.integralads.avid.library.inmobi.AvidBridge;
@@ -293,11 +294,11 @@ public class PlayerFragmentV4 extends BaseFragment implements OnClickListener, I
         }
 
         public void onAdEventUpdate(f fVar, AdEvent adEvent) {
-            switch (adEvent.getType()) {
-                case CONTENT_PAUSE_REQUESTED:
+            switch (AnonymousClass48.a[adEvent.getType().ordinal()]) {
+                case 1:
                     PlayerFragmentV4.this.aP = true;
                     return;
-                case CONTENT_RESUME_REQUESTED:
+                case 2:
                     PlayerFragmentV4.this.ac();
                     if (PlayerFragmentV4.this.ap != null) {
                         int g = PlayerFragmentV4.this.g();
@@ -455,6 +456,74 @@ public class PlayerFragmentV4 extends BaseFragment implements OnClickListener, I
     private Drawable x;
     private Drawable y;
     private Drawable z;
+
+    /* renamed from: com.fragments.PlayerFragmentV4$48 */
+    static /* synthetic */ class AnonymousClass48 {
+        static final /* synthetic */ int[] a = new int[AdEventType.values().length];
+
+        /* JADX WARNING: Missing exception handler attribute for start block: B:19:0x005a */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:13:0x003c */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:11:0x0032 */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Can't wrap try/catch for region: R(17:0|1|2|3|5|6|7|9|10|11|12|13|14|15|17|18|(3:19|20|22)) */
+        static {
+            /*
+            r0 = com.player_framework.PlayerConstants.PlayerCommands.values();
+            r0 = r0.length;
+            r0 = new int[r0];
+            c = r0;
+            r0 = 1;
+            r1 = c;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = com.player_framework.PlayerConstants.PlayerCommands.PLAY_PREVIOUS;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = r2.ordinal();	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1[r2] = r0;	 Catch:{ NoSuchFieldError -> 0x0014 }
+        L_0x0014:
+            r1 = 2;
+            r2 = c;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r3 = com.player_framework.PlayerConstants.PlayerCommands.PLAY_NEXT;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x001f }
+            r2[r3] = r1;	 Catch:{ NoSuchFieldError -> 0x001f }
+        L_0x001f:
+            r2 = com.player_framework.PlayerConstants.RepeatModes.values();
+            r2 = r2.length;
+            r2 = new int[r2];
+            b = r2;
+            r2 = b;	 Catch:{ NoSuchFieldError -> 0x0032 }
+            r3 = com.player_framework.PlayerConstants.RepeatModes.SINGLE;	 Catch:{ NoSuchFieldError -> 0x0032 }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x0032 }
+            r2[r3] = r0;	 Catch:{ NoSuchFieldError -> 0x0032 }
+        L_0x0032:
+            r2 = b;	 Catch:{ NoSuchFieldError -> 0x003c }
+            r3 = com.player_framework.PlayerConstants.RepeatModes.ALL;	 Catch:{ NoSuchFieldError -> 0x003c }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x003c }
+            r2[r3] = r1;	 Catch:{ NoSuchFieldError -> 0x003c }
+        L_0x003c:
+            r2 = b;	 Catch:{ NoSuchFieldError -> 0x0047 }
+            r3 = com.player_framework.PlayerConstants.RepeatModes.NO_REPEAT;	 Catch:{ NoSuchFieldError -> 0x0047 }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x0047 }
+            r4 = 3;
+            r2[r3] = r4;	 Catch:{ NoSuchFieldError -> 0x0047 }
+        L_0x0047:
+            r2 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.values();
+            r2 = r2.length;
+            r2 = new int[r2];
+            a = r2;
+            r2 = a;	 Catch:{ NoSuchFieldError -> 0x005a }
+            r3 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.CONTENT_PAUSE_REQUESTED;	 Catch:{ NoSuchFieldError -> 0x005a }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x005a }
+            r2[r3] = r0;	 Catch:{ NoSuchFieldError -> 0x005a }
+        L_0x005a:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0064 }
+            r2 = com.google.ads.interactivemedia.v3.api.AdEvent.AdEventType.CONTENT_RESUME_REQUESTED;	 Catch:{ NoSuchFieldError -> 0x0064 }
+            r2 = r2.ordinal();	 Catch:{ NoSuchFieldError -> 0x0064 }
+            r0[r2] = r1;	 Catch:{ NoSuchFieldError -> 0x0064 }
+        L_0x0064:
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.fragments.PlayerFragmentV4$AnonymousClass48.<clinit>():void");
+        }
+    }
 
     private void U() {
     }

@@ -14,9 +14,9 @@ import java.util.List;
 @KeepForSdk
 public class WakeLockTracker {
     private static WakeLockTracker zzgb = new WakeLockTracker();
-    private static Boolean zzgc = null;
+    private static Boolean zzgc;
     @VisibleForTesting
-    private static boolean zzgd = false;
+    private static boolean zzgd;
 
     @KeepForSdk
     public static WakeLockTracker getInstance() {

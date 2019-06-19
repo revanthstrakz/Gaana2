@@ -13,8 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @TargetApi(14)
 public class b implements ActivityLifecycleCallbacks {
-    private static boolean d = false;
-    private static boolean e = false;
+    private static boolean d;
+    private static boolean e;
     final LinkedBlockingDeque<a> a = new LinkedBlockingDeque();
     AtomicInteger b = new AtomicInteger(0);
     AtomicInteger c = new AtomicInteger(0);

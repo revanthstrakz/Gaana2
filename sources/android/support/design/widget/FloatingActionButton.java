@@ -53,19 +53,6 @@ public class FloatingActionButton extends VisibilityAwareImageButton {
     private int mSize;
     private final Rect mTouchArea;
 
-    public static abstract class OnVisibilityChangedListener {
-        public void onHidden(FloatingActionButton floatingActionButton) {
-        }
-
-        public void onShown(FloatingActionButton floatingActionButton) {
-        }
-    }
-
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Size {
-    }
-
     public static class Behavior extends android.support.design.widget.CoordinatorLayout.Behavior<FloatingActionButton> {
         private static final boolean AUTO_HIDE_DEFAULT = true;
         private boolean mAutoHideEnabled;
@@ -199,6 +186,14 @@ public class FloatingActionButton extends VisibilityAwareImageButton {
         }
     }
 
+    public static abstract class OnVisibilityChangedListener {
+        public void onHidden(FloatingActionButton floatingActionButton) {
+        }
+
+        public void onShown(FloatingActionButton floatingActionButton) {
+        }
+    }
+
     private class ShadowDelegateImpl implements ShadowViewDelegate {
         ShadowDelegateImpl() {
         }
@@ -219,6 +214,11 @@ public class FloatingActionButton extends VisibilityAwareImageButton {
         public boolean isCompatPaddingEnabled() {
             return FloatingActionButton.this.mCompatPadding;
         }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Size {
     }
 
     public /* bridge */ /* synthetic */ void setVisibility(int i) {

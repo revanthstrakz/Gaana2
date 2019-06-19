@@ -16,6 +16,12 @@ import java.util.List;
 @RequiresApi(21)
 class MediaBrowserServiceCompatApi21 {
 
+    public interface ServiceCompatProxy {
+        BrowserRoot onGetRoot(String str, int i, Bundle bundle);
+
+        void onLoadChildren(String str, ResultWrapper<List<Parcel>> resultWrapper);
+    }
+
     static class BrowserRoot {
         final Bundle mExtras;
         final String mRootId;
@@ -84,12 +90,6 @@ class MediaBrowserServiceCompatApi21 {
             }
             return arrayList;
         }
-    }
-
-    public interface ServiceCompatProxy {
-        BrowserRoot onGetRoot(String str, int i, Bundle bundle);
-
-        void onLoadChildren(String str, ResultWrapper<List<Parcel>> resultWrapper);
     }
 
     MediaBrowserServiceCompatApi21() {

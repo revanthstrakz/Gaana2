@@ -52,6 +52,10 @@ public final class SphericalSurfaceView extends GLSurfaceView {
     @Nullable
     private VideoComponent videoComponent;
 
+    public interface SurfaceListener {
+        void surfaceChanged(@Nullable Surface surface);
+    }
+
     private static class PhoneOrientationListener implements SensorEventListener {
         private final float[] angles = new float[3];
         private final Display display;
@@ -99,10 +103,6 @@ public final class SphericalSurfaceView extends GLSurfaceView {
             Matrix.rotateM(this.phoneInWorldSpaceMatrix, 0, 90.0f, 1.0f, 0.0f, 0.0f);
             this.renderer.setDeviceOrientation(this.phoneInWorldSpaceMatrix, f);
         }
-    }
-
-    public interface SurfaceListener {
-        void surfaceChanged(@Nullable Surface surface);
     }
 
     class Renderer implements android.opengl.GLSurfaceView.Renderer, Listener {

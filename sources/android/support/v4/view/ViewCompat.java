@@ -147,7 +147,7 @@ public class ViewCompat {
     }
 
     static class ViewCompatBaseImpl {
-        static boolean sAccessibilityDelegateCheckFailed = false;
+        static boolean sAccessibilityDelegateCheckFailed;
         static Field sAccessibilityDelegateField;
         private static Method sChildrenDrawingOrderMethod;
         private static Field sMinHeightField;

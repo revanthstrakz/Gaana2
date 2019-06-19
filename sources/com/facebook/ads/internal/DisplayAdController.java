@@ -51,7 +51,7 @@ import java.util.Map;
 public class DisplayAdController implements com.facebook.ads.internal.q.c.a {
     private static final String b = "DisplayAdController";
     private static final Handler h = new Handler(Looper.getMainLooper());
-    private static boolean i = false;
+    private static boolean i;
     private final com.facebook.ads.internal.o.c A;
     private final EnumSet<CacheFlag> B;
     private String C;
@@ -80,26 +80,6 @@ public class DisplayAdController implements com.facebook.ads.internal.q.c.a {
     private final c y;
     private boolean z;
 
-    private class c extends BroadcastReceiver {
-        private c() {
-        }
-
-        /* synthetic */ c(DisplayAdController displayAdController, AnonymousClass1 anonymousClass1) {
-            this();
-        }
-
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if ("android.intent.action.SCREEN_OFF".equals(action)) {
-                DisplayAdController.this.o();
-                return;
-            }
-            if ("android.intent.action.SCREEN_ON".equals(action)) {
-                DisplayAdController.this.n();
-            }
-        }
-    }
-
     private static final class a extends z<DisplayAdController> {
         public a(DisplayAdController displayAdController) {
             super(displayAdController);
@@ -123,6 +103,26 @@ public class DisplayAdController implements com.facebook.ads.internal.q.c.a {
             DisplayAdController displayAdController = (DisplayAdController) a();
             if (displayAdController != null) {
                 displayAdController.n();
+            }
+        }
+    }
+
+    private class c extends BroadcastReceiver {
+        private c() {
+        }
+
+        /* synthetic */ c(DisplayAdController displayAdController, AnonymousClass1 anonymousClass1) {
+            this();
+        }
+
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if ("android.intent.action.SCREEN_OFF".equals(action)) {
+                DisplayAdController.this.o();
+                return;
+            }
+            if ("android.intent.action.SCREEN_ON".equals(action)) {
+                DisplayAdController.this.n();
             }
         }
     }

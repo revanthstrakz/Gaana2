@@ -76,7 +76,7 @@ public abstract class zzbqf {
     public abstract void zzet(int i) throws IOException;
 
     static zzbqf zzb(byte[] bArr, int i, int i2, boolean z) {
-        zzbqh zzbqh = new zzbqh(bArr, i, i2, z);
+        zzbqh zzbqh = new zzbqh(bArr, i, i2, z, null);
         try {
             zzbqh.zzer(i2);
             return zzbqh;

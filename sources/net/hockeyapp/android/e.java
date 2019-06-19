@@ -4,8 +4,8 @@ import android.content.BroadcastReceiver;
 import net.hockeyapp.android.objects.FeedbackUserDataElement;
 
 public class e {
-    private static BroadcastReceiver a = null;
-    private static boolean b = false;
+    private static BroadcastReceiver a;
+    private static boolean b;
     private static String c;
     private static String d;
     private static FeedbackUserDataElement e;

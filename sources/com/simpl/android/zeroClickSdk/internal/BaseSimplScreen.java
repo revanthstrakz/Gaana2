@@ -14,10 +14,6 @@ public class BaseSimplScreen extends FragmentActivity {
     private String c;
     private a d;
 
-    public interface a {
-        void a(boolean z, String str);
-    }
-
     /* renamed from: com.simpl.android.zeroClickSdk.internal.BaseSimplScreen$3 */
     class AnonymousClass3 implements a<Void> {
         final /* synthetic */ a a;
@@ -30,6 +26,10 @@ public class BaseSimplScreen extends FragmentActivity {
             BaseSimplScreen.this.d = this.a;
             return null;
         }
+    }
+
+    public interface a {
+        void a(boolean z, String str);
     }
 
     static /* synthetic */ void b(BaseSimplScreen baseSimplScreen, String str) {

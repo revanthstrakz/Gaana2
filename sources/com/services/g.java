@@ -45,7 +45,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class g {
-    public static boolean a = false;
+    public static boolean a;
     public static int b;
     private static final List<String> c = Arrays.asList(new String[]{"publish_actions"});
     private static g d;

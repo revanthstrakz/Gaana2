@@ -9,7 +9,7 @@ public final class zzct extends zzau {
     private SharedPreferences zzabr;
     private long zzabs;
     private long zzabt = -1;
-    private final zzcv zzabu = new zzcv(this, "monitoring", ((Long) zzcf.zzaak.get()).longValue());
+    private final zzcv zzabu = new zzcv(this, "monitoring", ((Long) zzcf.zzaak.get()).longValue(), null);
 
     protected zzct(zzaw zzaw) {
         super(zzaw);

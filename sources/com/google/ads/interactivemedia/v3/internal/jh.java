@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 public class jh implements AdErrorListener, AdEventListener, com.google.ads.interactivemedia.v3.internal.iq.a {
-    private static boolean g = false;
+    private static boolean g;
     private static jh i;
     private final jd a;
     private final a b;

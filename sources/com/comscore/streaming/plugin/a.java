@@ -11,7 +11,7 @@ class a implements Runnable {
             if (r4 != false) goto L_0x02ae;
      */
     /* JADX WARNING: Missing block: B:82:0x02ae, code skipped:
-            com.comscore.streaming.plugin.StreamSensePlugin.b(r10.a, true);
+            r10.a.n = true;
      */
     public void run() {
         /*

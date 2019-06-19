@@ -59,6 +59,32 @@ class ActionMenuPresenter extends BaseMenuPresenter implements SubUiVisibilityLi
     private int mWidthLimit;
     private boolean mWidthLimitSet;
 
+    private class ActionButtonSubmenu extends MenuPopupHelper {
+        public ActionButtonSubmenu(Context context, SubMenuBuilder subMenuBuilder, View view) {
+            super(context, subMenuBuilder, view, false, R.attr.actionOverflowMenuStyle);
+            if (!((MenuItemImpl) subMenuBuilder.getItem()).isActionButton()) {
+                setAnchorView(ActionMenuPresenter.this.mOverflowButton == null ? (View) ActionMenuPresenter.this.mMenuView : ActionMenuPresenter.this.mOverflowButton);
+            }
+            setPresenterCallback(ActionMenuPresenter.this.mPopupPresenterCallback);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void onDismiss() {
+            ActionMenuPresenter.this.mActionButtonPopup = null;
+            ActionMenuPresenter.this.mOpenSubMenuId = 0;
+            super.onDismiss();
+        }
+    }
+
+    private class ActionMenuPopupCallback extends PopupCallback {
+        ActionMenuPopupCallback() {
+        }
+
+        public ShowableListMenu getPopup() {
+            return ActionMenuPresenter.this.mActionButtonPopup != null ? ActionMenuPresenter.this.mActionButtonPopup.getPopup() : null;
+        }
+    }
+
     private class OpenOverflowRunnable implements Runnable {
         private OverflowPopup mPopup;
 
@@ -75,88 +101,6 @@ class ActionMenuPresenter extends BaseMenuPresenter implements SubUiVisibilityLi
                 ActionMenuPresenter.this.mOverflowPopup = this.mPopup;
             }
             ActionMenuPresenter.this.mPostedOpenRunnable = null;
-        }
-    }
-
-    private static class SavedState implements Parcelable {
-        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel parcel) {
-                return new SavedState(parcel);
-            }
-
-            public SavedState[] newArray(int i) {
-                return new SavedState[i];
-            }
-        };
-        public int openSubMenuId;
-
-        public int describeContents() {
-            return 0;
-        }
-
-        SavedState() {
-        }
-
-        SavedState(Parcel parcel) {
-            this.openSubMenuId = parcel.readInt();
-        }
-
-        public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeInt(this.openSubMenuId);
-        }
-    }
-
-    private class ActionMenuPopupCallback extends PopupCallback {
-        ActionMenuPopupCallback() {
-        }
-
-        public ShowableListMenu getPopup() {
-            return ActionMenuPresenter.this.mActionButtonPopup != null ? ActionMenuPresenter.this.mActionButtonPopup.getPopup() : null;
-        }
-    }
-
-    private class PopupPresenterCallback implements Callback {
-        PopupPresenterCallback() {
-        }
-
-        public boolean onOpenSubMenu(MenuBuilder menuBuilder) {
-            boolean z = false;
-            if (menuBuilder == null) {
-                return false;
-            }
-            ActionMenuPresenter.this.mOpenSubMenuId = ((SubMenuBuilder) menuBuilder).getItem().getItemId();
-            Callback callback = ActionMenuPresenter.this.getCallback();
-            if (callback != null) {
-                z = callback.onOpenSubMenu(menuBuilder);
-            }
-            return z;
-        }
-
-        public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
-            if (menuBuilder instanceof SubMenuBuilder) {
-                menuBuilder.getRootMenu().close(false);
-            }
-            Callback callback = ActionMenuPresenter.this.getCallback();
-            if (callback != null) {
-                callback.onCloseMenu(menuBuilder, z);
-            }
-        }
-    }
-
-    private class ActionButtonSubmenu extends MenuPopupHelper {
-        public ActionButtonSubmenu(Context context, SubMenuBuilder subMenuBuilder, View view) {
-            super(context, subMenuBuilder, view, false, R.attr.actionOverflowMenuStyle);
-            if (!((MenuItemImpl) subMenuBuilder.getItem()).isActionButton()) {
-                setAnchorView(ActionMenuPresenter.this.mOverflowButton == null ? (View) ActionMenuPresenter.this.mMenuView : ActionMenuPresenter.this.mOverflowButton);
-            }
-            setPresenterCallback(ActionMenuPresenter.this.mPopupPresenterCallback);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void onDismiss() {
-            ActionMenuPresenter.this.mActionButtonPopup = null;
-            ActionMenuPresenter.this.mOpenSubMenuId = 0;
-            super.onDismiss();
         }
     }
 
@@ -241,6 +185,62 @@ class ActionMenuPresenter extends BaseMenuPresenter implements SubUiVisibilityLi
             }
             ActionMenuPresenter.this.mOverflowPopup = null;
             super.onDismiss();
+        }
+    }
+
+    private class PopupPresenterCallback implements Callback {
+        PopupPresenterCallback() {
+        }
+
+        public boolean onOpenSubMenu(MenuBuilder menuBuilder) {
+            boolean z = false;
+            if (menuBuilder == null) {
+                return false;
+            }
+            ActionMenuPresenter.this.mOpenSubMenuId = ((SubMenuBuilder) menuBuilder).getItem().getItemId();
+            Callback callback = ActionMenuPresenter.this.getCallback();
+            if (callback != null) {
+                z = callback.onOpenSubMenu(menuBuilder);
+            }
+            return z;
+        }
+
+        public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
+            if (menuBuilder instanceof SubMenuBuilder) {
+                menuBuilder.getRootMenu().close(false);
+            }
+            Callback callback = ActionMenuPresenter.this.getCallback();
+            if (callback != null) {
+                callback.onCloseMenu(menuBuilder, z);
+            }
+        }
+    }
+
+    private static class SavedState implements Parcelable {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+        public int openSubMenuId;
+
+        public int describeContents() {
+            return 0;
+        }
+
+        SavedState() {
+        }
+
+        SavedState(Parcel parcel) {
+            this.openSubMenuId = parcel.readInt();
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeInt(this.openSubMenuId);
         }
     }
 

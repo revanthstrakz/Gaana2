@@ -89,6 +89,22 @@ public abstract class Transition implements Cloneable {
     private ArrayList<Class> mTargetTypes = null;
     ArrayList<View> mTargets = new ArrayList();
 
+    public interface TransitionListener {
+        void onTransitionCancel(@NonNull Transition transition);
+
+        void onTransitionEnd(@NonNull Transition transition);
+
+        void onTransitionPause(@NonNull Transition transition);
+
+        void onTransitionResume(@NonNull Transition transition);
+
+        void onTransitionStart(@NonNull Transition transition);
+    }
+
+    public static abstract class EpicenterCallback {
+        public abstract Rect onGetEpicenter(@NonNull Transition transition);
+    }
+
     private static class AnimationInfo {
         String mName;
         Transition mTransition;
@@ -129,25 +145,9 @@ public abstract class Transition implements Cloneable {
         }
     }
 
-    public static abstract class EpicenterCallback {
-        public abstract Rect onGetEpicenter(@NonNull Transition transition);
-    }
-
     @RestrictTo({Scope.LIBRARY_GROUP})
     @Retention(RetentionPolicy.SOURCE)
     public @interface MatchOrder {
-    }
-
-    public interface TransitionListener {
-        void onTransitionCancel(@NonNull Transition transition);
-
-        void onTransitionEnd(@NonNull Transition transition);
-
-        void onTransitionPause(@NonNull Transition transition);
-
-        void onTransitionResume(@NonNull Transition transition);
-
-        void onTransitionStart(@NonNull Transition transition);
     }
 
     private static boolean isValidMatch(int i) {

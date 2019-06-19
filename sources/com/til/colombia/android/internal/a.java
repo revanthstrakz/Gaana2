@@ -44,11 +44,11 @@ public final class a {
     private static final String g = "clientId";
     private static final String h = "personaUrl";
     private static Map<String, com.til.colombia.android.adapters.a> i = new ConcurrentHashMap();
-    private static b j = null;
-    private static boolean k = false;
-    private static boolean l = false;
-    private static boolean m = false;
-    private static boolean n = false;
+    private static b j;
+    private static boolean k;
+    private static boolean l;
+    private static boolean m;
+    private static boolean n;
 
     @TargetApi(17)
     static class a {

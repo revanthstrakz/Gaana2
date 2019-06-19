@@ -13,16 +13,12 @@ public final class a {
         }
     };
 
-    public interface a<T> {
-        T b();
-    }
-
-    public interface c {
-        b a_();
-    }
-
     public interface d<T> {
         void a(T t);
+    }
+
+    public interface a<T> {
+        T b();
     }
 
     private static final class b<T> implements Pool<T> {
@@ -60,6 +56,10 @@ public final class a {
             this.b.a(t);
             return this.c.release(t);
         }
+    }
+
+    public interface c {
+        b a_();
     }
 
     public static <T extends c> Pool<T> a(int i, a<T> aVar) {

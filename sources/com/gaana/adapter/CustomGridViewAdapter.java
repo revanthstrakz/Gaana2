@@ -65,12 +65,6 @@ public class CustomGridViewAdapter extends Adapter<ViewHolder> implements c {
     private l mOnLoadMoreCalled;
     private String sectionType;
 
-    public interface OnGetViewCalledListner {
-        void onBindVideoAd(ViewHolder viewHolder, View view, int i, ViewGroup viewGroup);
-
-        View onGetViewCalled(ViewHolder viewHolder, View view, int i, ViewGroup viewGroup);
-    }
-
     public class AdViewHolder extends ViewHolder {
         public View view;
 
@@ -78,6 +72,12 @@ public class CustomGridViewAdapter extends Adapter<ViewHolder> implements c {
             super(view);
             this.view = view;
         }
+    }
+
+    public interface OnGetViewCalledListner {
+        void onBindVideoAd(ViewHolder viewHolder, View view, int i, ViewGroup viewGroup);
+
+        View onGetViewCalled(ViewHolder viewHolder, View view, int i, ViewGroup viewGroup);
     }
 
     public CustomGridViewAdapter(int i, int i2, OnGetViewCalledListner onGetViewCalledListner, Context context, BaseGaanaFragment baseGaanaFragment, boolean z, RecyclerView recyclerView) {

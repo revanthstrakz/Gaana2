@@ -26,8 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PushActionManager extends ActionManagerBase {
-    private static PushActionManager _INSTANCE = null;
-    public static boolean dialogShown = false;
+    private static PushActionManager _INSTANCE;
+    public static boolean dialogShown;
     private IActionHandler actionHandlers;
     Context context;
 

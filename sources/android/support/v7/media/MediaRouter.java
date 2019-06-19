@@ -100,6 +100,14 @@ public final class MediaRouter {
         }
     }
 
+    public static abstract class ControlRequestCallback {
+        public void onError(String str, Bundle bundle) {
+        }
+
+        public void onResult(Bundle bundle) {
+        }
+    }
+
     @Retention(RetentionPolicy.SOURCE)
     private @interface CallbackFlags {
     }
@@ -117,506 +125,6 @@ public final class MediaRouter {
 
         public boolean filterRouteEvent(RouteInfo routeInfo) {
             return (this.mFlags & 2) != 0 || routeInfo.matchesSelector(this.mSelector);
-        }
-    }
-
-    public static abstract class ControlRequestCallback {
-        public void onError(String str, Bundle bundle) {
-        }
-
-        public void onResult(Bundle bundle) {
-        }
-    }
-
-    public static final class ProviderInfo {
-        private MediaRouteProviderDescriptor mDescriptor;
-        private final ProviderMetadata mMetadata;
-        private final MediaRouteProvider mProviderInstance;
-        private Resources mResources;
-        private boolean mResourcesNotAvailable;
-        private final List<RouteInfo> mRoutes = new ArrayList();
-
-        ProviderInfo(MediaRouteProvider mediaRouteProvider) {
-            this.mProviderInstance = mediaRouteProvider;
-            this.mMetadata = mediaRouteProvider.getMetadata();
-        }
-
-        public MediaRouteProvider getProviderInstance() {
-            MediaRouter.checkCallingThread();
-            return this.mProviderInstance;
-        }
-
-        public String getPackageName() {
-            return this.mMetadata.getPackageName();
-        }
-
-        public ComponentName getComponentName() {
-            return this.mMetadata.getComponentName();
-        }
-
-        public List<RouteInfo> getRoutes() {
-            MediaRouter.checkCallingThread();
-            return this.mRoutes;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public Resources getResources() {
-            if (this.mResources == null && !this.mResourcesNotAvailable) {
-                String packageName = getPackageName();
-                Context providerContext = MediaRouter.sGlobal.getProviderContext(packageName);
-                if (providerContext != null) {
-                    this.mResources = providerContext.getResources();
-                } else {
-                    String str = MediaRouter.TAG;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("Unable to obtain resources for route provider package: ");
-                    stringBuilder.append(packageName);
-                    Log.w(str, stringBuilder.toString());
-                    this.mResourcesNotAvailable = true;
-                }
-            }
-            return this.mResources;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean updateDescriptor(MediaRouteProviderDescriptor mediaRouteProviderDescriptor) {
-            if (this.mDescriptor == mediaRouteProviderDescriptor) {
-                return false;
-            }
-            this.mDescriptor = mediaRouteProviderDescriptor;
-            return true;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int findRouteByDescriptorId(String str) {
-            int size = this.mRoutes.size();
-            for (int i = 0; i < size; i++) {
-                if (((RouteInfo) this.mRoutes.get(i)).mDescriptorId.equals(str)) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("MediaRouter.RouteProviderInfo{ packageName=");
-            stringBuilder.append(getPackageName());
-            stringBuilder.append(" }");
-            return stringBuilder.toString();
-        }
-    }
-
-    public static class RouteInfo {
-        static final int CHANGE_GENERAL = 1;
-        static final int CHANGE_PRESENTATION_DISPLAY = 4;
-        static final int CHANGE_VOLUME = 2;
-        public static final int CONNECTION_STATE_CONNECTED = 2;
-        public static final int CONNECTION_STATE_CONNECTING = 1;
-        public static final int CONNECTION_STATE_DISCONNECTED = 0;
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public static final int DEVICE_TYPE_BLUETOOTH = 3;
-        public static final int DEVICE_TYPE_SPEAKER = 2;
-        public static final int DEVICE_TYPE_TV = 1;
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public static final int DEVICE_TYPE_UNKNOWN = 0;
-        public static final int PLAYBACK_TYPE_LOCAL = 0;
-        public static final int PLAYBACK_TYPE_REMOTE = 1;
-        public static final int PLAYBACK_VOLUME_FIXED = 0;
-        public static final int PLAYBACK_VOLUME_VARIABLE = 1;
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public static final int PRESENTATION_DISPLAY_ID_NONE = -1;
-        static final String SYSTEM_MEDIA_ROUTE_PROVIDER_PACKAGE_NAME = "android";
-        private boolean mCanDisconnect;
-        private boolean mConnecting;
-        private int mConnectionState;
-        private final ArrayList<IntentFilter> mControlFilters = new ArrayList();
-        private String mDescription;
-        MediaRouteDescriptor mDescriptor;
-        private final String mDescriptorId;
-        private int mDeviceType;
-        private boolean mEnabled;
-        private Bundle mExtras;
-        private Uri mIconUri;
-        private String mName;
-        private int mPlaybackStream;
-        private int mPlaybackType;
-        private Display mPresentationDisplay;
-        private int mPresentationDisplayId = -1;
-        private final ProviderInfo mProvider;
-        private IntentSender mSettingsIntent;
-        private final String mUniqueId;
-        private int mVolume;
-        private int mVolumeHandling;
-        private int mVolumeMax;
-
-        @Retention(RetentionPolicy.SOURCE)
-        private @interface ConnectionState {
-        }
-
-        @Retention(RetentionPolicy.SOURCE)
-        private @interface DeviceType {
-        }
-
-        @Retention(RetentionPolicy.SOURCE)
-        private @interface PlaybackType {
-        }
-
-        @Retention(RetentionPolicy.SOURCE)
-        private @interface PlaybackVolume {
-        }
-
-        RouteInfo(ProviderInfo providerInfo, String str, String str2) {
-            this.mProvider = providerInfo;
-            this.mDescriptorId = str;
-            this.mUniqueId = str2;
-        }
-
-        public ProviderInfo getProvider() {
-            return this.mProvider;
-        }
-
-        @NonNull
-        public String getId() {
-            return this.mUniqueId;
-        }
-
-        public String getName() {
-            return this.mName;
-        }
-
-        @Nullable
-        public String getDescription() {
-            return this.mDescription;
-        }
-
-        public Uri getIconUri() {
-            return this.mIconUri;
-        }
-
-        public boolean isEnabled() {
-            return this.mEnabled;
-        }
-
-        public boolean isConnecting() {
-            return this.mConnecting;
-        }
-
-        public int getConnectionState() {
-            return this.mConnectionState;
-        }
-
-        public boolean isSelected() {
-            MediaRouter.checkCallingThread();
-            return MediaRouter.sGlobal.getSelectedRoute() == this;
-        }
-
-        public boolean isDefault() {
-            MediaRouter.checkCallingThread();
-            return MediaRouter.sGlobal.getDefaultRoute() == this;
-        }
-
-        public boolean isBluetooth() {
-            MediaRouter.checkCallingThread();
-            return MediaRouter.sGlobal.getBluetoothRoute() == this;
-        }
-
-        public boolean isDeviceSpeaker() {
-            return isDefault() && Resources.getSystem().getText(Resources.getSystem().getIdentifier("default_audio_route_name", "string", "android")).equals(this.mName);
-        }
-
-        public List<IntentFilter> getControlFilters() {
-            return this.mControlFilters;
-        }
-
-        public boolean matchesSelector(@NonNull MediaRouteSelector mediaRouteSelector) {
-            if (mediaRouteSelector == null) {
-                throw new IllegalArgumentException("selector must not be null");
-            }
-            MediaRouter.checkCallingThread();
-            return mediaRouteSelector.matchesControlFilters(this.mControlFilters);
-        }
-
-        public boolean supportsControlCategory(@NonNull String str) {
-            if (str == null) {
-                throw new IllegalArgumentException("category must not be null");
-            }
-            MediaRouter.checkCallingThread();
-            int size = this.mControlFilters.size();
-            for (int i = 0; i < size; i++) {
-                if (((IntentFilter) this.mControlFilters.get(i)).hasCategory(str)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public boolean supportsControlAction(@NonNull String str, @NonNull String str2) {
-            if (str == null) {
-                throw new IllegalArgumentException("category must not be null");
-            } else if (str2 == null) {
-                throw new IllegalArgumentException("action must not be null");
-            } else {
-                MediaRouter.checkCallingThread();
-                int size = this.mControlFilters.size();
-                for (int i = 0; i < size; i++) {
-                    IntentFilter intentFilter = (IntentFilter) this.mControlFilters.get(i);
-                    if (intentFilter.hasCategory(str) && intentFilter.hasAction(str2)) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        }
-
-        public boolean supportsControlRequest(@NonNull Intent intent) {
-            if (intent == null) {
-                throw new IllegalArgumentException("intent must not be null");
-            }
-            MediaRouter.checkCallingThread();
-            ContentResolver contentResolver = MediaRouter.sGlobal.getContentResolver();
-            int size = this.mControlFilters.size();
-            for (int i = 0; i < size; i++) {
-                if (((IntentFilter) this.mControlFilters.get(i)).match(contentResolver, intent, true, MediaRouter.TAG) >= 0) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public void sendControlRequest(@NonNull Intent intent, @Nullable ControlRequestCallback controlRequestCallback) {
-            if (intent == null) {
-                throw new IllegalArgumentException("intent must not be null");
-            }
-            MediaRouter.checkCallingThread();
-            MediaRouter.sGlobal.sendControlRequest(this, intent, controlRequestCallback);
-        }
-
-        public int getPlaybackType() {
-            return this.mPlaybackType;
-        }
-
-        public int getPlaybackStream() {
-            return this.mPlaybackStream;
-        }
-
-        public int getDeviceType() {
-            return this.mDeviceType;
-        }
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public boolean isDefaultOrBluetooth() {
-            boolean z = true;
-            if (isDefault() || this.mDeviceType == 3) {
-                return true;
-            }
-            if (!(isSystemMediaRouteProvider(this) && supportsControlCategory(MediaControlIntent.CATEGORY_LIVE_AUDIO) && !supportsControlCategory(MediaControlIntent.CATEGORY_LIVE_VIDEO))) {
-                z = false;
-            }
-            return z;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isSelectable() {
-            return this.mDescriptor != null && this.mEnabled;
-        }
-
-        private static boolean isSystemMediaRouteProvider(RouteInfo routeInfo) {
-            return TextUtils.equals(routeInfo.getProviderInstance().getMetadata().getPackageName(), "android");
-        }
-
-        public int getVolumeHandling() {
-            return this.mVolumeHandling;
-        }
-
-        public int getVolume() {
-            return this.mVolume;
-        }
-
-        public int getVolumeMax() {
-            return this.mVolumeMax;
-        }
-
-        public boolean canDisconnect() {
-            return this.mCanDisconnect;
-        }
-
-        public void requestSetVolume(int i) {
-            MediaRouter.checkCallingThread();
-            MediaRouter.sGlobal.requestSetVolume(this, Math.min(this.mVolumeMax, Math.max(0, i)));
-        }
-
-        public void requestUpdateVolume(int i) {
-            MediaRouter.checkCallingThread();
-            if (i != 0) {
-                MediaRouter.sGlobal.requestUpdateVolume(this, i);
-            }
-        }
-
-        @Nullable
-        public Display getPresentationDisplay() {
-            MediaRouter.checkCallingThread();
-            if (this.mPresentationDisplayId >= 0 && this.mPresentationDisplay == null) {
-                this.mPresentationDisplay = MediaRouter.sGlobal.getDisplay(this.mPresentationDisplayId);
-            }
-            return this.mPresentationDisplay;
-        }
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public int getPresentationDisplayId() {
-            return this.mPresentationDisplayId;
-        }
-
-        @Nullable
-        public Bundle getExtras() {
-            return this.mExtras;
-        }
-
-        @Nullable
-        public IntentSender getSettingsIntent() {
-            return this.mSettingsIntent;
-        }
-
-        public void select() {
-            MediaRouter.checkCallingThread();
-            MediaRouter.sGlobal.selectRoute(this);
-        }
-
-        public String toString() {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("MediaRouter.RouteInfo{ uniqueId=");
-            stringBuilder.append(this.mUniqueId);
-            stringBuilder.append(", name=");
-            stringBuilder.append(this.mName);
-            stringBuilder.append(", description=");
-            stringBuilder.append(this.mDescription);
-            stringBuilder.append(", iconUri=");
-            stringBuilder.append(this.mIconUri);
-            stringBuilder.append(", enabled=");
-            stringBuilder.append(this.mEnabled);
-            stringBuilder.append(", connecting=");
-            stringBuilder.append(this.mConnecting);
-            stringBuilder.append(", connectionState=");
-            stringBuilder.append(this.mConnectionState);
-            stringBuilder.append(", canDisconnect=");
-            stringBuilder.append(this.mCanDisconnect);
-            stringBuilder.append(", playbackType=");
-            stringBuilder.append(this.mPlaybackType);
-            stringBuilder.append(", playbackStream=");
-            stringBuilder.append(this.mPlaybackStream);
-            stringBuilder.append(", deviceType=");
-            stringBuilder.append(this.mDeviceType);
-            stringBuilder.append(", volumeHandling=");
-            stringBuilder.append(this.mVolumeHandling);
-            stringBuilder.append(", volume=");
-            stringBuilder.append(this.mVolume);
-            stringBuilder.append(", volumeMax=");
-            stringBuilder.append(this.mVolumeMax);
-            stringBuilder.append(", presentationDisplayId=");
-            stringBuilder.append(this.mPresentationDisplayId);
-            stringBuilder.append(", extras=");
-            stringBuilder.append(this.mExtras);
-            stringBuilder.append(", settingsIntent=");
-            stringBuilder.append(this.mSettingsIntent);
-            stringBuilder.append(", providerPackageName=");
-            stringBuilder.append(this.mProvider.getPackageName());
-            stringBuilder.append(" }");
-            return stringBuilder.toString();
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int maybeUpdateDescriptor(MediaRouteDescriptor mediaRouteDescriptor) {
-            return this.mDescriptor != mediaRouteDescriptor ? updateDescriptor(mediaRouteDescriptor) : 0;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int updateDescriptor(MediaRouteDescriptor mediaRouteDescriptor) {
-            this.mDescriptor = mediaRouteDescriptor;
-            int i = 0;
-            if (mediaRouteDescriptor == null) {
-                return 0;
-            }
-            if (!MediaRouter.equal(this.mName, mediaRouteDescriptor.getName())) {
-                this.mName = mediaRouteDescriptor.getName();
-                i = 1;
-            }
-            if (!MediaRouter.equal(this.mDescription, mediaRouteDescriptor.getDescription())) {
-                this.mDescription = mediaRouteDescriptor.getDescription();
-                i |= 1;
-            }
-            if (!MediaRouter.equal(this.mIconUri, mediaRouteDescriptor.getIconUri())) {
-                this.mIconUri = mediaRouteDescriptor.getIconUri();
-                i |= 1;
-            }
-            if (this.mEnabled != mediaRouteDescriptor.isEnabled()) {
-                this.mEnabled = mediaRouteDescriptor.isEnabled();
-                i |= 1;
-            }
-            if (this.mConnecting != mediaRouteDescriptor.isConnecting()) {
-                this.mConnecting = mediaRouteDescriptor.isConnecting();
-                i |= 1;
-            }
-            if (this.mConnectionState != mediaRouteDescriptor.getConnectionState()) {
-                this.mConnectionState = mediaRouteDescriptor.getConnectionState();
-                i |= 1;
-            }
-            if (!this.mControlFilters.equals(mediaRouteDescriptor.getControlFilters())) {
-                this.mControlFilters.clear();
-                this.mControlFilters.addAll(mediaRouteDescriptor.getControlFilters());
-                i |= 1;
-            }
-            if (this.mPlaybackType != mediaRouteDescriptor.getPlaybackType()) {
-                this.mPlaybackType = mediaRouteDescriptor.getPlaybackType();
-                i |= 1;
-            }
-            if (this.mPlaybackStream != mediaRouteDescriptor.getPlaybackStream()) {
-                this.mPlaybackStream = mediaRouteDescriptor.getPlaybackStream();
-                i |= 1;
-            }
-            if (this.mDeviceType != mediaRouteDescriptor.getDeviceType()) {
-                this.mDeviceType = mediaRouteDescriptor.getDeviceType();
-                i |= 1;
-            }
-            if (this.mVolumeHandling != mediaRouteDescriptor.getVolumeHandling()) {
-                this.mVolumeHandling = mediaRouteDescriptor.getVolumeHandling();
-                i |= 3;
-            }
-            if (this.mVolume != mediaRouteDescriptor.getVolume()) {
-                this.mVolume = mediaRouteDescriptor.getVolume();
-                i |= 3;
-            }
-            if (this.mVolumeMax != mediaRouteDescriptor.getVolumeMax()) {
-                this.mVolumeMax = mediaRouteDescriptor.getVolumeMax();
-                i |= 3;
-            }
-            if (this.mPresentationDisplayId != mediaRouteDescriptor.getPresentationDisplayId()) {
-                this.mPresentationDisplayId = mediaRouteDescriptor.getPresentationDisplayId();
-                this.mPresentationDisplay = null;
-                i |= 5;
-            }
-            if (!MediaRouter.equal(this.mExtras, mediaRouteDescriptor.getExtras())) {
-                this.mExtras = mediaRouteDescriptor.getExtras();
-                i |= 1;
-            }
-            if (!MediaRouter.equal(this.mSettingsIntent, mediaRouteDescriptor.getSettingsActivity())) {
-                this.mSettingsIntent = mediaRouteDescriptor.getSettingsActivity();
-                i |= 1;
-            }
-            if (this.mCanDisconnect == mediaRouteDescriptor.canDisconnectAndKeepPlaying()) {
-                return i;
-            }
-            this.mCanDisconnect = mediaRouteDescriptor.canDisconnectAndKeepPlaying();
-            return i | 5;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public String getDescriptorId() {
-            return this.mDescriptorId;
-        }
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        public MediaRouteProvider getProviderInstance() {
-            return this.mProvider.getProviderInstance();
         }
     }
 
@@ -1790,6 +1298,498 @@ public final class MediaRouter {
             } else if (this.mMediaSession != null) {
                 this.mMediaSession.clearVolumeHandling();
             }
+        }
+    }
+
+    public static final class ProviderInfo {
+        private MediaRouteProviderDescriptor mDescriptor;
+        private final ProviderMetadata mMetadata;
+        private final MediaRouteProvider mProviderInstance;
+        private Resources mResources;
+        private boolean mResourcesNotAvailable;
+        private final List<RouteInfo> mRoutes = new ArrayList();
+
+        ProviderInfo(MediaRouteProvider mediaRouteProvider) {
+            this.mProviderInstance = mediaRouteProvider;
+            this.mMetadata = mediaRouteProvider.getMetadata();
+        }
+
+        public MediaRouteProvider getProviderInstance() {
+            MediaRouter.checkCallingThread();
+            return this.mProviderInstance;
+        }
+
+        public String getPackageName() {
+            return this.mMetadata.getPackageName();
+        }
+
+        public ComponentName getComponentName() {
+            return this.mMetadata.getComponentName();
+        }
+
+        public List<RouteInfo> getRoutes() {
+            MediaRouter.checkCallingThread();
+            return this.mRoutes;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public Resources getResources() {
+            if (this.mResources == null && !this.mResourcesNotAvailable) {
+                String packageName = getPackageName();
+                Context providerContext = MediaRouter.sGlobal.getProviderContext(packageName);
+                if (providerContext != null) {
+                    this.mResources = providerContext.getResources();
+                } else {
+                    String str = MediaRouter.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Unable to obtain resources for route provider package: ");
+                    stringBuilder.append(packageName);
+                    Log.w(str, stringBuilder.toString());
+                    this.mResourcesNotAvailable = true;
+                }
+            }
+            return this.mResources;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean updateDescriptor(MediaRouteProviderDescriptor mediaRouteProviderDescriptor) {
+            if (this.mDescriptor == mediaRouteProviderDescriptor) {
+                return false;
+            }
+            this.mDescriptor = mediaRouteProviderDescriptor;
+            return true;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int findRouteByDescriptorId(String str) {
+            int size = this.mRoutes.size();
+            for (int i = 0; i < size; i++) {
+                if (((RouteInfo) this.mRoutes.get(i)).mDescriptorId.equals(str)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("MediaRouter.RouteProviderInfo{ packageName=");
+            stringBuilder.append(getPackageName());
+            stringBuilder.append(" }");
+            return stringBuilder.toString();
+        }
+    }
+
+    public static class RouteInfo {
+        static final int CHANGE_GENERAL = 1;
+        static final int CHANGE_PRESENTATION_DISPLAY = 4;
+        static final int CHANGE_VOLUME = 2;
+        public static final int CONNECTION_STATE_CONNECTED = 2;
+        public static final int CONNECTION_STATE_CONNECTING = 1;
+        public static final int CONNECTION_STATE_DISCONNECTED = 0;
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public static final int DEVICE_TYPE_BLUETOOTH = 3;
+        public static final int DEVICE_TYPE_SPEAKER = 2;
+        public static final int DEVICE_TYPE_TV = 1;
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public static final int DEVICE_TYPE_UNKNOWN = 0;
+        public static final int PLAYBACK_TYPE_LOCAL = 0;
+        public static final int PLAYBACK_TYPE_REMOTE = 1;
+        public static final int PLAYBACK_VOLUME_FIXED = 0;
+        public static final int PLAYBACK_VOLUME_VARIABLE = 1;
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public static final int PRESENTATION_DISPLAY_ID_NONE = -1;
+        static final String SYSTEM_MEDIA_ROUTE_PROVIDER_PACKAGE_NAME = "android";
+        private boolean mCanDisconnect;
+        private boolean mConnecting;
+        private int mConnectionState;
+        private final ArrayList<IntentFilter> mControlFilters = new ArrayList();
+        private String mDescription;
+        MediaRouteDescriptor mDescriptor;
+        private final String mDescriptorId;
+        private int mDeviceType;
+        private boolean mEnabled;
+        private Bundle mExtras;
+        private Uri mIconUri;
+        private String mName;
+        private int mPlaybackStream;
+        private int mPlaybackType;
+        private Display mPresentationDisplay;
+        private int mPresentationDisplayId = -1;
+        private final ProviderInfo mProvider;
+        private IntentSender mSettingsIntent;
+        private final String mUniqueId;
+        private int mVolume;
+        private int mVolumeHandling;
+        private int mVolumeMax;
+
+        @Retention(RetentionPolicy.SOURCE)
+        private @interface ConnectionState {
+        }
+
+        @Retention(RetentionPolicy.SOURCE)
+        private @interface DeviceType {
+        }
+
+        @Retention(RetentionPolicy.SOURCE)
+        private @interface PlaybackType {
+        }
+
+        @Retention(RetentionPolicy.SOURCE)
+        private @interface PlaybackVolume {
+        }
+
+        RouteInfo(ProviderInfo providerInfo, String str, String str2) {
+            this.mProvider = providerInfo;
+            this.mDescriptorId = str;
+            this.mUniqueId = str2;
+        }
+
+        public ProviderInfo getProvider() {
+            return this.mProvider;
+        }
+
+        @NonNull
+        public String getId() {
+            return this.mUniqueId;
+        }
+
+        public String getName() {
+            return this.mName;
+        }
+
+        @Nullable
+        public String getDescription() {
+            return this.mDescription;
+        }
+
+        public Uri getIconUri() {
+            return this.mIconUri;
+        }
+
+        public boolean isEnabled() {
+            return this.mEnabled;
+        }
+
+        public boolean isConnecting() {
+            return this.mConnecting;
+        }
+
+        public int getConnectionState() {
+            return this.mConnectionState;
+        }
+
+        public boolean isSelected() {
+            MediaRouter.checkCallingThread();
+            return MediaRouter.sGlobal.getSelectedRoute() == this;
+        }
+
+        public boolean isDefault() {
+            MediaRouter.checkCallingThread();
+            return MediaRouter.sGlobal.getDefaultRoute() == this;
+        }
+
+        public boolean isBluetooth() {
+            MediaRouter.checkCallingThread();
+            return MediaRouter.sGlobal.getBluetoothRoute() == this;
+        }
+
+        public boolean isDeviceSpeaker() {
+            return isDefault() && Resources.getSystem().getText(Resources.getSystem().getIdentifier("default_audio_route_name", "string", "android")).equals(this.mName);
+        }
+
+        public List<IntentFilter> getControlFilters() {
+            return this.mControlFilters;
+        }
+
+        public boolean matchesSelector(@NonNull MediaRouteSelector mediaRouteSelector) {
+            if (mediaRouteSelector == null) {
+                throw new IllegalArgumentException("selector must not be null");
+            }
+            MediaRouter.checkCallingThread();
+            return mediaRouteSelector.matchesControlFilters(this.mControlFilters);
+        }
+
+        public boolean supportsControlCategory(@NonNull String str) {
+            if (str == null) {
+                throw new IllegalArgumentException("category must not be null");
+            }
+            MediaRouter.checkCallingThread();
+            int size = this.mControlFilters.size();
+            for (int i = 0; i < size; i++) {
+                if (((IntentFilter) this.mControlFilters.get(i)).hasCategory(str)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean supportsControlAction(@NonNull String str, @NonNull String str2) {
+            if (str == null) {
+                throw new IllegalArgumentException("category must not be null");
+            } else if (str2 == null) {
+                throw new IllegalArgumentException("action must not be null");
+            } else {
+                MediaRouter.checkCallingThread();
+                int size = this.mControlFilters.size();
+                for (int i = 0; i < size; i++) {
+                    IntentFilter intentFilter = (IntentFilter) this.mControlFilters.get(i);
+                    if (intentFilter.hasCategory(str) && intentFilter.hasAction(str2)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        public boolean supportsControlRequest(@NonNull Intent intent) {
+            if (intent == null) {
+                throw new IllegalArgumentException("intent must not be null");
+            }
+            MediaRouter.checkCallingThread();
+            ContentResolver contentResolver = MediaRouter.sGlobal.getContentResolver();
+            int size = this.mControlFilters.size();
+            for (int i = 0; i < size; i++) {
+                if (((IntentFilter) this.mControlFilters.get(i)).match(contentResolver, intent, true, MediaRouter.TAG) >= 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void sendControlRequest(@NonNull Intent intent, @Nullable ControlRequestCallback controlRequestCallback) {
+            if (intent == null) {
+                throw new IllegalArgumentException("intent must not be null");
+            }
+            MediaRouter.checkCallingThread();
+            MediaRouter.sGlobal.sendControlRequest(this, intent, controlRequestCallback);
+        }
+
+        public int getPlaybackType() {
+            return this.mPlaybackType;
+        }
+
+        public int getPlaybackStream() {
+            return this.mPlaybackStream;
+        }
+
+        public int getDeviceType() {
+            return this.mDeviceType;
+        }
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public boolean isDefaultOrBluetooth() {
+            boolean z = true;
+            if (isDefault() || this.mDeviceType == 3) {
+                return true;
+            }
+            if (!(isSystemMediaRouteProvider(this) && supportsControlCategory(MediaControlIntent.CATEGORY_LIVE_AUDIO) && !supportsControlCategory(MediaControlIntent.CATEGORY_LIVE_VIDEO))) {
+                z = false;
+            }
+            return z;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isSelectable() {
+            return this.mDescriptor != null && this.mEnabled;
+        }
+
+        private static boolean isSystemMediaRouteProvider(RouteInfo routeInfo) {
+            return TextUtils.equals(routeInfo.getProviderInstance().getMetadata().getPackageName(), "android");
+        }
+
+        public int getVolumeHandling() {
+            return this.mVolumeHandling;
+        }
+
+        public int getVolume() {
+            return this.mVolume;
+        }
+
+        public int getVolumeMax() {
+            return this.mVolumeMax;
+        }
+
+        public boolean canDisconnect() {
+            return this.mCanDisconnect;
+        }
+
+        public void requestSetVolume(int i) {
+            MediaRouter.checkCallingThread();
+            MediaRouter.sGlobal.requestSetVolume(this, Math.min(this.mVolumeMax, Math.max(0, i)));
+        }
+
+        public void requestUpdateVolume(int i) {
+            MediaRouter.checkCallingThread();
+            if (i != 0) {
+                MediaRouter.sGlobal.requestUpdateVolume(this, i);
+            }
+        }
+
+        @Nullable
+        public Display getPresentationDisplay() {
+            MediaRouter.checkCallingThread();
+            if (this.mPresentationDisplayId >= 0 && this.mPresentationDisplay == null) {
+                this.mPresentationDisplay = MediaRouter.sGlobal.getDisplay(this.mPresentationDisplayId);
+            }
+            return this.mPresentationDisplay;
+        }
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public int getPresentationDisplayId() {
+            return this.mPresentationDisplayId;
+        }
+
+        @Nullable
+        public Bundle getExtras() {
+            return this.mExtras;
+        }
+
+        @Nullable
+        public IntentSender getSettingsIntent() {
+            return this.mSettingsIntent;
+        }
+
+        public void select() {
+            MediaRouter.checkCallingThread();
+            MediaRouter.sGlobal.selectRoute(this);
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("MediaRouter.RouteInfo{ uniqueId=");
+            stringBuilder.append(this.mUniqueId);
+            stringBuilder.append(", name=");
+            stringBuilder.append(this.mName);
+            stringBuilder.append(", description=");
+            stringBuilder.append(this.mDescription);
+            stringBuilder.append(", iconUri=");
+            stringBuilder.append(this.mIconUri);
+            stringBuilder.append(", enabled=");
+            stringBuilder.append(this.mEnabled);
+            stringBuilder.append(", connecting=");
+            stringBuilder.append(this.mConnecting);
+            stringBuilder.append(", connectionState=");
+            stringBuilder.append(this.mConnectionState);
+            stringBuilder.append(", canDisconnect=");
+            stringBuilder.append(this.mCanDisconnect);
+            stringBuilder.append(", playbackType=");
+            stringBuilder.append(this.mPlaybackType);
+            stringBuilder.append(", playbackStream=");
+            stringBuilder.append(this.mPlaybackStream);
+            stringBuilder.append(", deviceType=");
+            stringBuilder.append(this.mDeviceType);
+            stringBuilder.append(", volumeHandling=");
+            stringBuilder.append(this.mVolumeHandling);
+            stringBuilder.append(", volume=");
+            stringBuilder.append(this.mVolume);
+            stringBuilder.append(", volumeMax=");
+            stringBuilder.append(this.mVolumeMax);
+            stringBuilder.append(", presentationDisplayId=");
+            stringBuilder.append(this.mPresentationDisplayId);
+            stringBuilder.append(", extras=");
+            stringBuilder.append(this.mExtras);
+            stringBuilder.append(", settingsIntent=");
+            stringBuilder.append(this.mSettingsIntent);
+            stringBuilder.append(", providerPackageName=");
+            stringBuilder.append(this.mProvider.getPackageName());
+            stringBuilder.append(" }");
+            return stringBuilder.toString();
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int maybeUpdateDescriptor(MediaRouteDescriptor mediaRouteDescriptor) {
+            return this.mDescriptor != mediaRouteDescriptor ? updateDescriptor(mediaRouteDescriptor) : 0;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int updateDescriptor(MediaRouteDescriptor mediaRouteDescriptor) {
+            this.mDescriptor = mediaRouteDescriptor;
+            int i = 0;
+            if (mediaRouteDescriptor == null) {
+                return 0;
+            }
+            if (!MediaRouter.equal(this.mName, mediaRouteDescriptor.getName())) {
+                this.mName = mediaRouteDescriptor.getName();
+                i = 1;
+            }
+            if (!MediaRouter.equal(this.mDescription, mediaRouteDescriptor.getDescription())) {
+                this.mDescription = mediaRouteDescriptor.getDescription();
+                i |= 1;
+            }
+            if (!MediaRouter.equal(this.mIconUri, mediaRouteDescriptor.getIconUri())) {
+                this.mIconUri = mediaRouteDescriptor.getIconUri();
+                i |= 1;
+            }
+            if (this.mEnabled != mediaRouteDescriptor.isEnabled()) {
+                this.mEnabled = mediaRouteDescriptor.isEnabled();
+                i |= 1;
+            }
+            if (this.mConnecting != mediaRouteDescriptor.isConnecting()) {
+                this.mConnecting = mediaRouteDescriptor.isConnecting();
+                i |= 1;
+            }
+            if (this.mConnectionState != mediaRouteDescriptor.getConnectionState()) {
+                this.mConnectionState = mediaRouteDescriptor.getConnectionState();
+                i |= 1;
+            }
+            if (!this.mControlFilters.equals(mediaRouteDescriptor.getControlFilters())) {
+                this.mControlFilters.clear();
+                this.mControlFilters.addAll(mediaRouteDescriptor.getControlFilters());
+                i |= 1;
+            }
+            if (this.mPlaybackType != mediaRouteDescriptor.getPlaybackType()) {
+                this.mPlaybackType = mediaRouteDescriptor.getPlaybackType();
+                i |= 1;
+            }
+            if (this.mPlaybackStream != mediaRouteDescriptor.getPlaybackStream()) {
+                this.mPlaybackStream = mediaRouteDescriptor.getPlaybackStream();
+                i |= 1;
+            }
+            if (this.mDeviceType != mediaRouteDescriptor.getDeviceType()) {
+                this.mDeviceType = mediaRouteDescriptor.getDeviceType();
+                i |= 1;
+            }
+            if (this.mVolumeHandling != mediaRouteDescriptor.getVolumeHandling()) {
+                this.mVolumeHandling = mediaRouteDescriptor.getVolumeHandling();
+                i |= 3;
+            }
+            if (this.mVolume != mediaRouteDescriptor.getVolume()) {
+                this.mVolume = mediaRouteDescriptor.getVolume();
+                i |= 3;
+            }
+            if (this.mVolumeMax != mediaRouteDescriptor.getVolumeMax()) {
+                this.mVolumeMax = mediaRouteDescriptor.getVolumeMax();
+                i |= 3;
+            }
+            if (this.mPresentationDisplayId != mediaRouteDescriptor.getPresentationDisplayId()) {
+                this.mPresentationDisplayId = mediaRouteDescriptor.getPresentationDisplayId();
+                this.mPresentationDisplay = null;
+                i |= 5;
+            }
+            if (!MediaRouter.equal(this.mExtras, mediaRouteDescriptor.getExtras())) {
+                this.mExtras = mediaRouteDescriptor.getExtras();
+                i |= 1;
+            }
+            if (!MediaRouter.equal(this.mSettingsIntent, mediaRouteDescriptor.getSettingsActivity())) {
+                this.mSettingsIntent = mediaRouteDescriptor.getSettingsActivity();
+                i |= 1;
+            }
+            if (this.mCanDisconnect == mediaRouteDescriptor.canDisconnectAndKeepPlaying()) {
+                return i;
+            }
+            this.mCanDisconnect = mediaRouteDescriptor.canDisconnectAndKeepPlaying();
+            return i | 5;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public String getDescriptorId() {
+            return this.mDescriptorId;
+        }
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public MediaRouteProvider getProviderInstance() {
+            return this.mProvider.getProviderInstance();
         }
     }
 

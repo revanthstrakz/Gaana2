@@ -18,12 +18,12 @@ import java.util.List;
 
 @TargetApi(14)
 final class f implements ActivityLifecycleCallbacks {
-    static d a = null;
-    static g b = null;
-    static int c = 0;
-    static int d = 0;
-    static boolean e = false;
-    static boolean f = false;
+    static d a;
+    static g b;
+    static int c;
+    static int d;
+    static boolean e;
+    static boolean f;
     private static f g;
 
     public void onActivityCreated(Activity activity, Bundle bundle) {

@@ -257,7 +257,7 @@ public final class LinkifyCompat {
         spannable.setSpan(new URLSpan(str), i, i2, 33);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:1:0x0005 A:{LOOP_START, SYNTHETIC, Splitter:B:1:0x0005, PHI: r0 r6 , LOOP:0: B:1:0x0005->B:16:0x0005} */
+    /* JADX WARNING: Removed duplicated region for block: B:1:0x0005 A:{LOOP_START, SYNTHETIC, LOOP:0: B:1:0x0005->B:16:0x0005, Splitter:B:1:0x0005, PHI: r0 r6 } */
     /* JADX WARNING: Missing exception handler attribute for start block: B:1:0x0005 */
     /* JADX WARNING: Failed to process nested try/catch */
     private static void gatherMapLinks(java.util.ArrayList<android.support.v4.text.util.LinkifyCompat.LinkSpec> r5, android.text.Spannable r6) {

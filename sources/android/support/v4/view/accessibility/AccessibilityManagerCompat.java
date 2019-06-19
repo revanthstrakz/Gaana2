@@ -15,6 +15,10 @@ public final class AccessibilityManagerCompat {
         void onAccessibilityStateChanged(boolean z);
     }
 
+    @Deprecated
+    public static abstract class AccessibilityStateChangeListenerCompat implements AccessibilityStateChangeListener {
+    }
+
     private static class AccessibilityStateChangeListenerWrapper implements android.view.accessibility.AccessibilityManager.AccessibilityStateChangeListener {
         AccessibilityStateChangeListener mListener;
 
@@ -70,10 +74,6 @@ public final class AccessibilityManagerCompat {
         public void onTouchExplorationStateChanged(boolean z) {
             this.mListener.onTouchExplorationStateChanged(z);
         }
-    }
-
-    @Deprecated
-    public static abstract class AccessibilityStateChangeListenerCompat implements AccessibilityStateChangeListener {
     }
 
     @Deprecated

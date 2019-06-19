@@ -19,8 +19,8 @@ import com.google.android.gms.internal.phenotype.zzh;
 public abstract class PhenotypeFlag<T> {
     private static final Object zzak = new Object();
     @SuppressLint({"StaticFieldLeak"})
-    private static Context zzal = null;
-    private static boolean zzam = false;
+    private static Context zzal;
+    private static boolean zzam;
     private static Boolean zzan;
     private final Factory zzao;
     final String zzap;

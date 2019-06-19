@@ -44,6 +44,31 @@ public abstract class DownloadService extends Service {
     private boolean startedInForeground;
     private boolean taskRemoved;
 
+    private final class DownloadManagerListener implements Listener {
+        private DownloadManagerListener() {
+        }
+
+        public void onInitialized(DownloadManager downloadManager) {
+            DownloadService.this.maybeStartWatchingRequirements(DownloadService.this.getRequirements());
+        }
+
+        public void onTaskStateChanged(DownloadManager downloadManager, TaskState taskState) {
+            DownloadService.this.onTaskStateChanged(taskState);
+            if (DownloadService.this.foregroundNotificationUpdater == null) {
+                return;
+            }
+            if (taskState.state == 1) {
+                DownloadService.this.foregroundNotificationUpdater.startPeriodicUpdates();
+            } else {
+                DownloadService.this.foregroundNotificationUpdater.update();
+            }
+        }
+
+        public final void onIdle(DownloadManager downloadManager) {
+            DownloadService.this.stop();
+        }
+    }
+
     private final class ForegroundNotificationUpdater implements Runnable {
         private final Handler handler = new Handler(Looper.getMainLooper());
         private boolean notificationDisplayed;
@@ -83,31 +108,6 @@ public abstract class DownloadService extends Service {
 
         public void run() {
             update();
-        }
-    }
-
-    private final class DownloadManagerListener implements Listener {
-        private DownloadManagerListener() {
-        }
-
-        public void onInitialized(DownloadManager downloadManager) {
-            DownloadService.this.maybeStartWatchingRequirements(DownloadService.this.getRequirements());
-        }
-
-        public void onTaskStateChanged(DownloadManager downloadManager, TaskState taskState) {
-            DownloadService.this.onTaskStateChanged(taskState);
-            if (DownloadService.this.foregroundNotificationUpdater == null) {
-                return;
-            }
-            if (taskState.state == 1) {
-                DownloadService.this.foregroundNotificationUpdater.startPeriodicUpdates();
-            } else {
-                DownloadService.this.foregroundNotificationUpdater.update();
-            }
-        }
-
-        public final void onIdle(DownloadManager downloadManager) {
-            DownloadService.this.stop();
         }
     }
 

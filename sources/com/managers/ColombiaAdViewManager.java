@@ -38,12 +38,22 @@ import com.til.colombia.android.service.Item;
 import com.utilities.Util;
 
 public class ColombiaAdViewManager {
-    static boolean a = false;
+    static boolean a;
     private static ColombiaAdViewManager b;
     private String c = null;
     private String d = null;
     private String e = null;
     private c f;
+
+    public interface b {
+        void a(ADSTATUS adstatus);
+
+        void b(ADSTATUS adstatus);
+
+        void c(ADSTATUS adstatus);
+
+        void d(ADSTATUS adstatus);
+    }
 
     public enum ADSTATUS {
         LOADING,
@@ -56,16 +66,6 @@ public class ColombiaAdViewManager {
         void DFPAdFailed();
 
         void DFPAdLoaded(UnifiedNativeAd unifiedNativeAd);
-    }
-
-    public interface b {
-        void a(ADSTATUS adstatus);
-
-        void b(ADSTATUS adstatus);
-
-        void c(ADSTATUS adstatus);
-
-        void d(ADSTATUS adstatus);
     }
 
     public interface c {

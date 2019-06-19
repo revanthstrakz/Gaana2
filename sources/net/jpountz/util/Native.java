@@ -3,7 +3,7 @@ package net.jpountz.util;
 public enum Native {
     ;
     
-    private static boolean loaded = false;
+    private static boolean loaded;
 
     private enum OS {
         private static final /* synthetic */ OS[] $VALUES = null;

@@ -30,12 +30,12 @@ public class w {
     private GaanaApplication b;
     private d c = null;
 
-    public interface a {
-        void onLanguagesFetched(Languages languages);
-    }
-
     public interface b {
         void onLanguageSavedOnServer(String str, boolean z);
+    }
+
+    public interface a {
+        void onLanguagesFetched(Languages languages);
     }
 
     public static w a(GaanaApplication gaanaApplication) {

@@ -7,6 +7,12 @@ public abstract class Detector<T> {
     private final Object zzad = new Object();
     private Processor<T> zzae;
 
+    public interface Processor<T> {
+        void receiveDetections(Detections<T> detections);
+
+        void release();
+    }
+
     public static class Detections<T> {
         private final SparseArray<T> zzaf;
         private final Metadata zzag;
@@ -29,12 +35,6 @@ public abstract class Detector<T> {
         public boolean detectorIsOperational() {
             return this.zzah;
         }
-    }
-
-    public interface Processor<T> {
-        void receiveDetections(Detections<T> detections);
-
-        void release();
     }
 
     public abstract SparseArray<T> detect(Frame frame);

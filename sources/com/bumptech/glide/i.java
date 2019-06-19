@@ -36,6 +36,15 @@ public class i implements com.bumptech.glide.manager.i {
     private final n targetTracker;
     private final l treeNode;
 
+    private static class a extends j<View, Object> {
+        public void onResourceReady(Object obj, d<? super Object> dVar) {
+        }
+
+        public a(View view) {
+            super(view);
+        }
+    }
+
     private static class b implements com.bumptech.glide.manager.c.a {
         private final m a;
 
@@ -47,15 +56,6 @@ public class i implements com.bumptech.glide.manager.i {
             if (z) {
                 this.a.e();
             }
-        }
-    }
-
-    private static class a extends j<View, Object> {
-        public void onResourceReady(Object obj, d<? super Object> dVar) {
-        }
-
-        public a(View view) {
-            super(view);
         }
     }
 

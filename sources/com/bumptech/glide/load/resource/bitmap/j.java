@@ -17,38 +17,6 @@ public final class j implements ImageHeaderParser {
     static final byte[] a = "Exif\u0000\u0000".getBytes(Charset.forName("UTF-8"));
     private static final int[] b = new int[]{0, 1, 1, 2, 4, 8, 1, 1, 2, 4, 8, 4, 8};
 
-    private static final class b {
-        private final ByteBuffer a;
-
-        b(byte[] bArr, int i) {
-            this.a = (ByteBuffer) ByteBuffer.wrap(bArr).order(ByteOrder.BIG_ENDIAN).limit(i);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void a(ByteOrder byteOrder) {
-            this.a.order(byteOrder);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int a() {
-            return this.a.remaining();
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int a(int i) {
-            return a(i, 4) ? this.a.getInt(i) : -1;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public short b(int i) {
-            return a(i, 2) ? this.a.getShort(i) : (short) -1;
-        }
-
-        private boolean a(int i, int i2) {
-            return this.a.remaining() - i >= i2;
-        }
-    }
-
     private interface c {
         int a() throws IOException;
 
@@ -97,6 +65,38 @@ public final class j implements ImageHeaderParser {
                 return -1;
             }
             return this.a.get();
+        }
+    }
+
+    private static final class b {
+        private final ByteBuffer a;
+
+        b(byte[] bArr, int i) {
+            this.a = (ByteBuffer) ByteBuffer.wrap(bArr).order(ByteOrder.BIG_ENDIAN).limit(i);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void a(ByteOrder byteOrder) {
+            this.a.order(byteOrder);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int a() {
+            return this.a.remaining();
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int a(int i) {
+            return a(i, 4) ? this.a.getInt(i) : -1;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public short b(int i) {
+            return a(i, 2) ? this.a.getShort(i) : (short) -1;
+        }
+
+        private boolean a(int i, int i2) {
+            return this.a.remaining() - i >= i2;
         }
     }
 

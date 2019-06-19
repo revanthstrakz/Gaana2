@@ -31,6 +31,10 @@ public class e implements androidx.work.impl.a {
     @Nullable
     private b j;
 
+    interface b {
+        void a();
+    }
+
     static class a implements Runnable {
         private final e a;
         private final Intent b;
@@ -45,10 +49,6 @@ public class e implements androidx.work.impl.a {
         public void run() {
             this.a.a(this.b, this.c);
         }
-    }
-
-    interface b {
-        void a();
     }
 
     static class c implements Runnable {

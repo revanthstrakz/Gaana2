@@ -22,18 +22,6 @@ public class LikeDialog extends FacebookDialogBase<LikeContent, Result> {
     private static final int DEFAULT_REQUEST_CODE = RequestCodeOffset.Like.toRequestCode();
     private static final String TAG = "LikeDialog";
 
-    public static final class Result {
-        private final Bundle bundle;
-
-        public Result(Bundle bundle) {
-            this.bundle = bundle;
-        }
-
-        public Bundle getData() {
-            return this.bundle;
-        }
-    }
-
     private class NativeHandler extends ModeHandler {
         private NativeHandler() {
             super();
@@ -60,6 +48,18 @@ public class LikeDialog extends FacebookDialogBase<LikeContent, Result> {
                 }
             }, LikeDialog.getFeature());
             return createBaseAppCall;
+        }
+    }
+
+    public static final class Result {
+        private final Bundle bundle;
+
+        public Result(Bundle bundle) {
+            this.bundle = bundle;
+        }
+
+        public Bundle getData() {
+            return this.bundle;
         }
     }
 

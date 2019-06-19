@@ -85,7 +85,7 @@ public final class HintRequest extends AbstractSafeParcelable implements Reflect
                 this.zzaa = new String[0];
             }
             if (this.zzai || this.zzaj || this.zzaa.length != 0) {
-                return new HintRequest(this);
+                return new HintRequest(this, null);
             }
             throw new IllegalStateException("At least one authentication method must be specified");
         }
@@ -152,5 +152,9 @@ public final class HintRequest extends AbstractSafeParcelable implements Reflect
         SafeParcelWriter.writeString(parcel, 7, getIdTokenNonce(), false);
         SafeParcelWriter.writeInt(parcel, 1000, this.zzu);
         SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
+    }
+
+    /* synthetic */ HintRequest(Builder builder, zzi zzi) {
+        this(builder);
     }
 }

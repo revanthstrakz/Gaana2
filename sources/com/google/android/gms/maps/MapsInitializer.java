@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.RuntimeRemoteException;
 
 public final class MapsInitializer {
-    private static boolean zzbl = false;
+    private static boolean zzbl;
 
     private MapsInitializer() {
     }

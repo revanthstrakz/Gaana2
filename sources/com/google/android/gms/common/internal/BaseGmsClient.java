@@ -87,6 +87,18 @@ public abstract class BaseGmsClient<T extends IInterface> {
     protected AtomicInteger zzcr;
 
     @KeepForSdk
+    public interface ConnectionProgressReportCallbacks {
+        @KeepForSdk
+        void onReportServiceBinding(@NonNull ConnectionResult connectionResult);
+    }
+
+    @KeepForSdk
+    public interface SignOutCallbacks {
+        @KeepForSdk
+        void onSignOutComplete();
+    }
+
+    @KeepForSdk
     public interface BaseConnectionCallbacks {
         @KeepForSdk
         void onConnected(@Nullable Bundle bundle);
@@ -100,16 +112,16 @@ public abstract class BaseGmsClient<T extends IInterface> {
         void onConnectionFailed(@NonNull ConnectionResult connectionResult);
     }
 
-    @KeepForSdk
-    public interface ConnectionProgressReportCallbacks {
-        @KeepForSdk
-        void onReportServiceBinding(@NonNull ConnectionResult connectionResult);
-    }
-
-    @KeepForSdk
-    public interface SignOutCallbacks {
-        @KeepForSdk
-        void onSignOutComplete();
+    protected class LegacyClientCallbackAdapter implements ConnectionProgressReportCallbacks {
+        public void onReportServiceBinding(@NonNull ConnectionResult connectionResult) {
+            if (connectionResult.isSuccess()) {
+                BaseGmsClient.this.getRemoteService(null, BaseGmsClient.this.getScopes());
+                return;
+            }
+            if (BaseGmsClient.this.zzcl != null) {
+                BaseGmsClient.this.zzcl.onConnectionFailed(connectionResult);
+            }
+        }
     }
 
     protected abstract class zzc<TListener> {
@@ -162,57 +174,6 @@ public abstract class BaseGmsClient<T extends IInterface> {
         public final void removeListener() {
             synchronized (this) {
                 this.zzcu = null;
-            }
-        }
-    }
-
-    @VisibleForTesting
-    public final class zze implements ServiceConnection {
-        private final int zzcx;
-
-        public zze(int i) {
-            this.zzcx = i;
-        }
-
-        public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            if (iBinder == null) {
-                BaseGmsClient.this.zzb(16);
-                return;
-            }
-            synchronized (BaseGmsClient.this.zzcd) {
-                IGmsServiceBroker iGmsServiceBroker;
-                BaseGmsClient baseGmsClient = BaseGmsClient.this;
-                if (iBinder == null) {
-                    iGmsServiceBroker = null;
-                } else {
-                    IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IGmsServiceBroker");
-                    if (queryLocalInterface == null || !(queryLocalInterface instanceof IGmsServiceBroker)) {
-                        iGmsServiceBroker = new zza(iBinder);
-                    } else {
-                        iGmsServiceBroker = (IGmsServiceBroker) queryLocalInterface;
-                    }
-                }
-                baseGmsClient.zzce = iGmsServiceBroker;
-            }
-            BaseGmsClient.this.zza(0, null, this.zzcx);
-        }
-
-        public final void onServiceDisconnected(ComponentName componentName) {
-            synchronized (BaseGmsClient.this.zzcd) {
-                BaseGmsClient.this.zzce = null;
-            }
-            BaseGmsClient.this.mHandler.sendMessage(BaseGmsClient.this.mHandler.obtainMessage(6, this.zzcx, 1));
-        }
-    }
-
-    protected class LegacyClientCallbackAdapter implements ConnectionProgressReportCallbacks {
-        public void onReportServiceBinding(@NonNull ConnectionResult connectionResult) {
-            if (connectionResult.isSuccess()) {
-                BaseGmsClient.this.getRemoteService(null, BaseGmsClient.this.getScopes());
-                return;
-            }
-            if (BaseGmsClient.this.zzcl != null) {
-                BaseGmsClient.this.zzcl.onConnectionFailed(connectionResult);
             }
         }
     }
@@ -340,6 +301,45 @@ public abstract class BaseGmsClient<T extends IInterface> {
             Preconditions.checkNotNull(zzb);
             this.zzcw.zza(zzb);
             onPostInitComplete(i, iBinder, zzb.zzda);
+        }
+    }
+
+    @VisibleForTesting
+    public final class zze implements ServiceConnection {
+        private final int zzcx;
+
+        public zze(int i) {
+            this.zzcx = i;
+        }
+
+        public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            if (iBinder == null) {
+                BaseGmsClient.this.zzb(16);
+                return;
+            }
+            synchronized (BaseGmsClient.this.zzcd) {
+                IGmsServiceBroker iGmsServiceBroker;
+                BaseGmsClient baseGmsClient = BaseGmsClient.this;
+                if (iBinder == null) {
+                    iGmsServiceBroker = null;
+                } else {
+                    IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IGmsServiceBroker");
+                    if (queryLocalInterface == null || !(queryLocalInterface instanceof IGmsServiceBroker)) {
+                        iGmsServiceBroker = new zza(iBinder);
+                    } else {
+                        iGmsServiceBroker = (IGmsServiceBroker) queryLocalInterface;
+                    }
+                }
+                baseGmsClient.zzce = iGmsServiceBroker;
+            }
+            BaseGmsClient.this.zza(0, null, this.zzcx);
+        }
+
+        public final void onServiceDisconnected(ComponentName componentName) {
+            synchronized (BaseGmsClient.this.zzcd) {
+                BaseGmsClient.this.zzce = null;
+            }
+            BaseGmsClient.this.mHandler.sendMessage(BaseGmsClient.this.mHandler.obtainMessage(6, this.zzcx, 1));
         }
     }
 

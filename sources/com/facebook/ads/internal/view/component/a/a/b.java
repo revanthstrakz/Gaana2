@@ -72,22 +72,6 @@ public abstract class b extends com.facebook.ads.internal.view.component.a.b {
         void a();
     }
 
-    public interface c {
-        void a(int i);
-    }
-
-    public interface d {
-        void a(View view);
-
-        void b(View view);
-    }
-
-    public interface e {
-        float a();
-
-        void a(float f);
-    }
-
     private static class b implements com.facebook.ads.internal.view.c.e {
         final WeakReference<b> a;
 
@@ -106,6 +90,22 @@ public abstract class b extends com.facebook.ads.internal.view.component.a.b {
                 bVar.k();
             }
         }
+    }
+
+    public interface c {
+        void a(int i);
+    }
+
+    public interface d {
+        void a(View view);
+
+        void b(View view);
+    }
+
+    public interface e {
+        float a();
+
+        void a(float f);
     }
 
     b(com.facebook.ads.internal.view.component.a.d dVar, com.facebook.ads.internal.adapters.a.d dVar2, boolean z, String str, com.facebook.ads.internal.view.d.a.a aVar) {

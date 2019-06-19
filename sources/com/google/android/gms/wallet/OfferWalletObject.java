@@ -177,10 +177,14 @@ public final class OfferWalletObject extends AbstractSafeParcelable {
             OfferWalletObject.this.zzbk = this.zzbr.zzf();
             return OfferWalletObject.this;
         }
+
+        /* synthetic */ Builder(OfferWalletObject offerWalletObject, zzaa zzaa) {
+            this();
+        }
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new OfferWalletObject(), null);
     }
 
     public final int getVersionCode() {

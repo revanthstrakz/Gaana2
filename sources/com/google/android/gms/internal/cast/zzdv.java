@@ -13,7 +13,7 @@ public final class zzdv {
     private static final ClientKey<Object> zzzj = new ClientKey();
     private static final Charset zzzk;
     private static final String zzzl = zzdk.zzq("com.google.cast.multizone");
-    private static boolean zzzm = false;
+    private static boolean zzzm;
 
     static {
         Charset forName;

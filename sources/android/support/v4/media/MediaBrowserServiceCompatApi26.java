@@ -17,6 +17,20 @@ class MediaBrowserServiceCompatApi26 {
     private static final String TAG = "MBSCompatApi26";
     private static Field sResultFlags;
 
+    public interface ServiceCompatProxy extends android.support.v4.media.MediaBrowserServiceCompatApi23.ServiceCompatProxy {
+        void onLoadChildren(String str, ResultWrapper resultWrapper, Bundle bundle);
+    }
+
+    static class MediaBrowserServiceAdaptor extends MediaBrowserServiceAdaptor {
+        MediaBrowserServiceAdaptor(Context context, ServiceCompatProxy serviceCompatProxy) {
+            super(context, serviceCompatProxy);
+        }
+
+        public void onLoadChildren(String str, Result<List<MediaItem>> result, Bundle bundle) {
+            ((ServiceCompatProxy) this.mServiceProxy).onLoadChildren(str, new ResultWrapper(result), bundle);
+        }
+    }
+
     static class ResultWrapper {
         Result mResultObj;
 
@@ -50,20 +64,6 @@ class MediaBrowserServiceCompatApi26 {
             }
             return arrayList;
         }
-    }
-
-    static class MediaBrowserServiceAdaptor extends MediaBrowserServiceAdaptor {
-        MediaBrowserServiceAdaptor(Context context, ServiceCompatProxy serviceCompatProxy) {
-            super(context, serviceCompatProxy);
-        }
-
-        public void onLoadChildren(String str, Result<List<MediaItem>> result, Bundle bundle) {
-            ((ServiceCompatProxy) this.mServiceProxy).onLoadChildren(str, new ResultWrapper(result), bundle);
-        }
-    }
-
-    public interface ServiceCompatProxy extends android.support.v4.media.MediaBrowserServiceCompatApi23.ServiceCompatProxy {
-        void onLoadChildren(String str, ResultWrapper resultWrapper, Bundle bundle);
     }
 
     MediaBrowserServiceCompatApi26() {

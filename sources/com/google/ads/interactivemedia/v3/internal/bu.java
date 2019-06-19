@@ -7,6 +7,34 @@ import java.util.UUID;
 
 public interface bu {
 
+    public static final class a implements bu {
+        private final Map<UUID, b> a = new HashMap();
+
+        public void a(UUID uuid, b bVar) {
+            this.a.put(uuid, bVar);
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            }
+            a aVar = (a) obj;
+            if (this.a.size() != aVar.a.size()) {
+                return false;
+            }
+            for (UUID uuid : this.a.keySet()) {
+                if (!ft.a(this.a.get(uuid), aVar.a.get(uuid))) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public int hashCode() {
+            return this.a.hashCode();
+        }
+    }
+
     public static final class b {
         public final String a;
         public final byte[] b;
@@ -33,34 +61,6 @@ public interface bu {
 
         public int hashCode() {
             return this.a.hashCode() + (31 * Arrays.hashCode(this.b));
-        }
-    }
-
-    public static final class a implements bu {
-        private final Map<UUID, b> a = new HashMap();
-
-        public void a(UUID uuid, b bVar) {
-            this.a.put(uuid, bVar);
-        }
-
-        public boolean equals(Object obj) {
-            if (obj == null || getClass() != obj.getClass()) {
-                return false;
-            }
-            a aVar = (a) obj;
-            if (this.a.size() != aVar.a.size()) {
-                return false;
-            }
-            for (UUID uuid : this.a.keySet()) {
-                if (!ft.a(this.a.get(uuid), aVar.a.get(uuid))) {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public int hashCode() {
-            return this.a.hashCode();
         }
     }
 

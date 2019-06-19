@@ -79,80 +79,6 @@ public class GoogleApiManager implements Callback {
     private final Set<zai<?>> zaij = new ArraySet();
     private final Set<zai<?>> zaik = new ArraySet();
 
-    private static class zab {
-        private final zai<?> zaja;
-        private final Feature zajb;
-
-        private zab(zai<?> zai, Feature feature) {
-            this.zaja = zai;
-            this.zajb = feature;
-        }
-
-        public final boolean equals(Object obj) {
-            if (obj == null || !(obj instanceof zab)) {
-                return false;
-            }
-            zab zab = (zab) obj;
-            if (Objects.equal(this.zaja, zab.zaja) && Objects.equal(this.zajb, zab.zajb)) {
-                return true;
-            }
-            return false;
-        }
-
-        public final int hashCode() {
-            return Objects.hashCode(this.zaja, this.zajb);
-        }
-
-        public final String toString() {
-            return Objects.toStringHelper(this).add(CBConstant.KEY, this.zaja).add("feature", this.zajb).toString();
-        }
-
-        /* synthetic */ zab(zai zai, Feature feature, zabi zabi) {
-            this(zai, feature);
-        }
-    }
-
-    private class zac implements zach, ConnectionProgressReportCallbacks {
-        private final zai<?> zafp;
-        private final Client zain;
-        private IAccountAccessor zajc = null;
-        private Set<Scope> zajd = null;
-        private boolean zaje = false;
-
-        public zac(Client client, zai<?> zai) {
-            this.zain = client;
-            this.zafp = zai;
-        }
-
-        public final void onReportServiceBinding(@NonNull ConnectionResult connectionResult) {
-            GoogleApiManager.this.handler.post(new zabo(this, connectionResult));
-        }
-
-        @WorkerThread
-        public final void zag(ConnectionResult connectionResult) {
-            ((zaa) GoogleApiManager.this.zaih.get(this.zafp)).zag(connectionResult);
-        }
-
-        @WorkerThread
-        public final void zaa(IAccountAccessor iAccountAccessor, Set<Scope> set) {
-            if (iAccountAccessor == null || set == null) {
-                Log.wtf("GoogleApiManager", "Received null response from onSignInSuccess", new Exception());
-                zag(new ConnectionResult(4));
-                return;
-            }
-            this.zajc = iAccountAccessor;
-            this.zajd = set;
-            zabr();
-        }
-
-        @WorkerThread
-        private final void zabr() {
-            if (this.zaje && this.zajc != null) {
-                this.zain.getRemoteService(this.zajc, this.zajd);
-            }
-        }
-    }
-
     public class zaa<O extends ApiOptions> implements ConnectionCallbacks, OnConnectionFailedListener, zar {
         private final zai<O> zafp;
         private final Queue<zab> zaim = new LinkedList();
@@ -591,6 +517,80 @@ public class GoogleApiManager implements Callback {
                     this.zaim.remove(zab4);
                     zab4.zaa(new UnsupportedApiCallException(zad));
                 }
+            }
+        }
+    }
+
+    private static class zab {
+        private final zai<?> zaja;
+        private final Feature zajb;
+
+        private zab(zai<?> zai, Feature feature) {
+            this.zaja = zai;
+            this.zajb = feature;
+        }
+
+        public final boolean equals(Object obj) {
+            if (obj == null || !(obj instanceof zab)) {
+                return false;
+            }
+            zab zab = (zab) obj;
+            if (Objects.equal(this.zaja, zab.zaja) && Objects.equal(this.zajb, zab.zajb)) {
+                return true;
+            }
+            return false;
+        }
+
+        public final int hashCode() {
+            return Objects.hashCode(this.zaja, this.zajb);
+        }
+
+        public final String toString() {
+            return Objects.toStringHelper(this).add(CBConstant.KEY, this.zaja).add("feature", this.zajb).toString();
+        }
+
+        /* synthetic */ zab(zai zai, Feature feature, zabi zabi) {
+            this(zai, feature);
+        }
+    }
+
+    private class zac implements zach, ConnectionProgressReportCallbacks {
+        private final zai<?> zafp;
+        private final Client zain;
+        private IAccountAccessor zajc = null;
+        private Set<Scope> zajd = null;
+        private boolean zaje = false;
+
+        public zac(Client client, zai<?> zai) {
+            this.zain = client;
+            this.zafp = zai;
+        }
+
+        public final void onReportServiceBinding(@NonNull ConnectionResult connectionResult) {
+            GoogleApiManager.this.handler.post(new zabo(this, connectionResult));
+        }
+
+        @WorkerThread
+        public final void zag(ConnectionResult connectionResult) {
+            ((zaa) GoogleApiManager.this.zaih.get(this.zafp)).zag(connectionResult);
+        }
+
+        @WorkerThread
+        public final void zaa(IAccountAccessor iAccountAccessor, Set<Scope> set) {
+            if (iAccountAccessor == null || set == null) {
+                Log.wtf("GoogleApiManager", "Received null response from onSignInSuccess", new Exception());
+                zag(new ConnectionResult(4));
+                return;
+            }
+            this.zajc = iAccountAccessor;
+            this.zajd = set;
+            zabr();
+        }
+
+        @WorkerThread
+        private final void zabr() {
+            if (this.zaje && this.zajc != null) {
+                this.zain.getRemoteService(this.zajc, this.zajd);
             }
         }
     }

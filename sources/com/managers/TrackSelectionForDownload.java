@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class TrackSelectionForDownload {
-    public static boolean a = false;
+    public static boolean a;
     private static TrackSelectionForDownload b;
     private HashMap<DownloadSelectionType, ArrayList<BusinessObject>> c;
     private HashMap<DownloadSelectionType, ArrayList<BusinessObject>> d;

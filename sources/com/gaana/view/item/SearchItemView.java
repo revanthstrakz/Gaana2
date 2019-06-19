@@ -80,17 +80,6 @@ public class SearchItemView extends BaseItemView implements DownloadPopupListene
     private TextView tvTitle;
     public TextView tvTopHeading;
 
-    public enum SearchCategory {
-        Track,
-        Album,
-        Artist,
-        Playlist,
-        Radio,
-        OfflineTrack,
-        Occasion,
-        video
-    }
-
     public static class RecentSearchItemHolder extends ViewHolder {
         public CrossFadeImageView crossFadeImageView;
         public View mView;
@@ -108,6 +97,17 @@ public class SearchItemView extends BaseItemView implements DownloadPopupListene
             this.tvTopHeading = (TextView) view.findViewById(R.id.tvTopHeading);
             this.tvBottomHeading = (TextView) view.findViewById(R.id.tvBottomHeading);
         }
+    }
+
+    public enum SearchCategory {
+        Track,
+        Album,
+        Artist,
+        Playlist,
+        Radio,
+        OfflineTrack,
+        Occasion,
+        video
     }
 
     public static class SearchItemHolder extends ViewHolder {

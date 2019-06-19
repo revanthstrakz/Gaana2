@@ -68,6 +68,304 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
     private final Matrix mTmpMatrix;
     private VectorDrawableCompatState mVectorState;
 
+    private static class VPath {
+        int mChangingConfigurations;
+        protected PathDataNode[] mNodes = null;
+        String mPathName;
+
+        public void applyTheme(Theme theme) {
+        }
+
+        public boolean canApplyTheme() {
+            return false;
+        }
+
+        public boolean isClipPath() {
+            return false;
+        }
+
+        public void printVPath(int i) {
+            String str = "";
+            for (int i2 = 0; i2 < i; i2++) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(str);
+                stringBuilder.append("    ");
+                str = stringBuilder.toString();
+            }
+            String str2 = VectorDrawableCompat.LOGTAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append(str);
+            stringBuilder2.append("current path is :");
+            stringBuilder2.append(this.mPathName);
+            stringBuilder2.append(" pathData is ");
+            stringBuilder2.append(nodesToString(this.mNodes));
+            Log.v(str2, stringBuilder2.toString());
+        }
+
+        public String nodesToString(PathDataNode[] pathDataNodeArr) {
+            String str = " ";
+            int i = 0;
+            while (i < pathDataNodeArr.length) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(str);
+                stringBuilder.append(pathDataNodeArr[i].mType);
+                stringBuilder.append(":");
+                str = stringBuilder.toString();
+                float[] fArr = pathDataNodeArr[i].mParams;
+                String str2 = str;
+                for (float append : fArr) {
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append(str2);
+                    stringBuilder2.append(append);
+                    stringBuilder2.append(",");
+                    str2 = stringBuilder2.toString();
+                }
+                i++;
+                str = str2;
+            }
+            return str;
+        }
+
+        public VPath(VPath vPath) {
+            this.mPathName = vPath.mPathName;
+            this.mChangingConfigurations = vPath.mChangingConfigurations;
+            this.mNodes = PathParser.deepCopyNodes(vPath.mNodes);
+        }
+
+        public void toPath(Path path) {
+            path.reset();
+            if (this.mNodes != null) {
+                PathDataNode.nodesToPath(this.mNodes, path);
+            }
+        }
+
+        public String getPathName() {
+            return this.mPathName;
+        }
+
+        public PathDataNode[] getPathData() {
+            return this.mNodes;
+        }
+
+        public void setPathData(PathDataNode[] pathDataNodeArr) {
+            if (PathParser.canMorph(this.mNodes, pathDataNodeArr)) {
+                PathParser.updateNodes(this.mNodes, pathDataNodeArr);
+            } else {
+                this.mNodes = PathParser.deepCopyNodes(pathDataNodeArr);
+            }
+        }
+    }
+
+    private static class VClipPath extends VPath {
+        public boolean isClipPath() {
+            return true;
+        }
+
+        public VClipPath(VClipPath vClipPath) {
+            super(vClipPath);
+        }
+
+        public void inflate(Resources resources, AttributeSet attributeSet, Theme theme, XmlPullParser xmlPullParser) {
+            if (TypedArrayUtils.hasAttribute(xmlPullParser, "pathData")) {
+                TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_VECTOR_DRAWABLE_CLIP_PATH);
+                updateStateFromTypedArray(obtainAttributes);
+                obtainAttributes.recycle();
+            }
+        }
+
+        private void updateStateFromTypedArray(TypedArray typedArray) {
+            String string = typedArray.getString(0);
+            if (string != null) {
+                this.mPathName = string;
+            }
+            String string2 = typedArray.getString(1);
+            if (string2 != null) {
+                this.mNodes = PathParser.createNodesFromPathData(string2);
+            }
+        }
+    }
+
+    private static class VFullPath extends VPath {
+        private static final int FILL_TYPE_WINDING = 0;
+        float mFillAlpha = 1.0f;
+        int mFillColor = 0;
+        int mFillRule = 0;
+        float mStrokeAlpha = 1.0f;
+        int mStrokeColor = 0;
+        Cap mStrokeLineCap = Cap.BUTT;
+        Join mStrokeLineJoin = Join.MITER;
+        float mStrokeMiterlimit = 4.0f;
+        float mStrokeWidth = 0.0f;
+        private int[] mThemeAttrs;
+        float mTrimPathEnd = 1.0f;
+        float mTrimPathOffset = 0.0f;
+        float mTrimPathStart = 0.0f;
+
+        public VFullPath(VFullPath vFullPath) {
+            super(vFullPath);
+            this.mThemeAttrs = vFullPath.mThemeAttrs;
+            this.mStrokeColor = vFullPath.mStrokeColor;
+            this.mStrokeWidth = vFullPath.mStrokeWidth;
+            this.mStrokeAlpha = vFullPath.mStrokeAlpha;
+            this.mFillColor = vFullPath.mFillColor;
+            this.mFillRule = vFullPath.mFillRule;
+            this.mFillAlpha = vFullPath.mFillAlpha;
+            this.mTrimPathStart = vFullPath.mTrimPathStart;
+            this.mTrimPathEnd = vFullPath.mTrimPathEnd;
+            this.mTrimPathOffset = vFullPath.mTrimPathOffset;
+            this.mStrokeLineCap = vFullPath.mStrokeLineCap;
+            this.mStrokeLineJoin = vFullPath.mStrokeLineJoin;
+            this.mStrokeMiterlimit = vFullPath.mStrokeMiterlimit;
+        }
+
+        private Cap getStrokeLineCap(int i, Cap cap) {
+            switch (i) {
+                case 0:
+                    return Cap.BUTT;
+                case 1:
+                    return Cap.ROUND;
+                case 2:
+                    return Cap.SQUARE;
+                default:
+                    return cap;
+            }
+        }
+
+        private Join getStrokeLineJoin(int i, Join join) {
+            switch (i) {
+                case 0:
+                    return Join.MITER;
+                case 1:
+                    return Join.ROUND;
+                case 2:
+                    return Join.BEVEL;
+                default:
+                    return join;
+            }
+        }
+
+        public boolean canApplyTheme() {
+            return this.mThemeAttrs != null;
+        }
+
+        public void inflate(Resources resources, AttributeSet attributeSet, Theme theme, XmlPullParser xmlPullParser) {
+            TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_VECTOR_DRAWABLE_PATH);
+            updateStateFromTypedArray(obtainAttributes, xmlPullParser);
+            obtainAttributes.recycle();
+        }
+
+        private void updateStateFromTypedArray(TypedArray typedArray, XmlPullParser xmlPullParser) {
+            this.mThemeAttrs = null;
+            if (TypedArrayUtils.hasAttribute(xmlPullParser, "pathData")) {
+                String string = typedArray.getString(0);
+                if (string != null) {
+                    this.mPathName = string;
+                }
+                string = typedArray.getString(2);
+                if (string != null) {
+                    this.mNodes = PathParser.createNodesFromPathData(string);
+                }
+                this.mFillColor = TypedArrayUtils.getNamedColor(typedArray, xmlPullParser, "fillColor", 1, this.mFillColor);
+                this.mFillAlpha = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "fillAlpha", 12, this.mFillAlpha);
+                this.mStrokeLineCap = getStrokeLineCap(TypedArrayUtils.getNamedInt(typedArray, xmlPullParser, "strokeLineCap", 8, -1), this.mStrokeLineCap);
+                this.mStrokeLineJoin = getStrokeLineJoin(TypedArrayUtils.getNamedInt(typedArray, xmlPullParser, "strokeLineJoin", 9, -1), this.mStrokeLineJoin);
+                this.mStrokeMiterlimit = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "strokeMiterLimit", 10, this.mStrokeMiterlimit);
+                this.mStrokeColor = TypedArrayUtils.getNamedColor(typedArray, xmlPullParser, "strokeColor", 3, this.mStrokeColor);
+                this.mStrokeAlpha = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "strokeAlpha", 11, this.mStrokeAlpha);
+                this.mStrokeWidth = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "strokeWidth", 4, this.mStrokeWidth);
+                this.mTrimPathEnd = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "trimPathEnd", 6, this.mTrimPathEnd);
+                this.mTrimPathOffset = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "trimPathOffset", 7, this.mTrimPathOffset);
+                this.mTrimPathStart = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "trimPathStart", 5, this.mTrimPathStart);
+                this.mFillRule = TypedArrayUtils.getNamedInt(typedArray, xmlPullParser, "fillType", 13, this.mFillRule);
+            }
+        }
+
+        public void applyTheme(Theme theme) {
+            if (this.mThemeAttrs != null) {
+            }
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int getStrokeColor() {
+            return this.mStrokeColor;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setStrokeColor(int i) {
+            this.mStrokeColor = i;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public float getStrokeWidth() {
+            return this.mStrokeWidth;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setStrokeWidth(float f) {
+            this.mStrokeWidth = f;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public float getStrokeAlpha() {
+            return this.mStrokeAlpha;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setStrokeAlpha(float f) {
+            this.mStrokeAlpha = f;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public int getFillColor() {
+            return this.mFillColor;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setFillColor(int i) {
+            this.mFillColor = i;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public float getFillAlpha() {
+            return this.mFillAlpha;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setFillAlpha(float f) {
+            this.mFillAlpha = f;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public float getTrimPathStart() {
+            return this.mTrimPathStart;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setTrimPathStart(float f) {
+            this.mTrimPathStart = f;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public float getTrimPathEnd() {
+            return this.mTrimPathEnd;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setTrimPathEnd(float f) {
+            this.mTrimPathEnd = f;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public float getTrimPathOffset() {
+            return this.mTrimPathOffset;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setTrimPathOffset(float f) {
+            this.mTrimPathOffset = f;
+        }
+    }
+
     private static class VGroup {
         int mChangingConfigurations;
         final ArrayList<Object> mChildren = new ArrayList();
@@ -232,94 +530,6 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
             if (f != this.mTranslateY) {
                 this.mTranslateY = f;
                 updateLocalMatrix();
-            }
-        }
-    }
-
-    private static class VPath {
-        int mChangingConfigurations;
-        protected PathDataNode[] mNodes = null;
-        String mPathName;
-
-        public void applyTheme(Theme theme) {
-        }
-
-        public boolean canApplyTheme() {
-            return false;
-        }
-
-        public boolean isClipPath() {
-            return false;
-        }
-
-        public void printVPath(int i) {
-            String str = "";
-            for (int i2 = 0; i2 < i; i2++) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(str);
-                stringBuilder.append("    ");
-                str = stringBuilder.toString();
-            }
-            String str2 = VectorDrawableCompat.LOGTAG;
-            StringBuilder stringBuilder2 = new StringBuilder();
-            stringBuilder2.append(str);
-            stringBuilder2.append("current path is :");
-            stringBuilder2.append(this.mPathName);
-            stringBuilder2.append(" pathData is ");
-            stringBuilder2.append(nodesToString(this.mNodes));
-            Log.v(str2, stringBuilder2.toString());
-        }
-
-        public String nodesToString(PathDataNode[] pathDataNodeArr) {
-            String str = " ";
-            int i = 0;
-            while (i < pathDataNodeArr.length) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append(str);
-                stringBuilder.append(pathDataNodeArr[i].mType);
-                stringBuilder.append(":");
-                str = stringBuilder.toString();
-                float[] fArr = pathDataNodeArr[i].mParams;
-                String str2 = str;
-                for (float append : fArr) {
-                    StringBuilder stringBuilder2 = new StringBuilder();
-                    stringBuilder2.append(str2);
-                    stringBuilder2.append(append);
-                    stringBuilder2.append(",");
-                    str2 = stringBuilder2.toString();
-                }
-                i++;
-                str = str2;
-            }
-            return str;
-        }
-
-        public VPath(VPath vPath) {
-            this.mPathName = vPath.mPathName;
-            this.mChangingConfigurations = vPath.mChangingConfigurations;
-            this.mNodes = PathParser.deepCopyNodes(vPath.mNodes);
-        }
-
-        public void toPath(Path path) {
-            path.reset();
-            if (this.mNodes != null) {
-                PathDataNode.nodesToPath(this.mNodes, path);
-            }
-        }
-
-        public String getPathName() {
-            return this.mPathName;
-        }
-
-        public PathDataNode[] getPathData() {
-            return this.mNodes;
-        }
-
-        public void setPathData(PathDataNode[] pathDataNodeArr) {
-            if (PathParser.canMorph(this.mNodes, pathDataNodeArr)) {
-                PathParser.updateNodes(this.mNodes, pathDataNodeArr);
-            } else {
-                this.mNodes = PathParser.deepCopyNodes(pathDataNodeArr);
             }
         }
     }
@@ -639,216 +849,6 @@ public class VectorDrawableCompat extends VectorDrawableCommon {
 
         public int getChangingConfigurations() {
             return this.mDelegateState.getChangingConfigurations();
-        }
-    }
-
-    private static class VClipPath extends VPath {
-        public boolean isClipPath() {
-            return true;
-        }
-
-        public VClipPath(VClipPath vClipPath) {
-            super(vClipPath);
-        }
-
-        public void inflate(Resources resources, AttributeSet attributeSet, Theme theme, XmlPullParser xmlPullParser) {
-            if (TypedArrayUtils.hasAttribute(xmlPullParser, "pathData")) {
-                TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_VECTOR_DRAWABLE_CLIP_PATH);
-                updateStateFromTypedArray(obtainAttributes);
-                obtainAttributes.recycle();
-            }
-        }
-
-        private void updateStateFromTypedArray(TypedArray typedArray) {
-            String string = typedArray.getString(0);
-            if (string != null) {
-                this.mPathName = string;
-            }
-            String string2 = typedArray.getString(1);
-            if (string2 != null) {
-                this.mNodes = PathParser.createNodesFromPathData(string2);
-            }
-        }
-    }
-
-    private static class VFullPath extends VPath {
-        private static final int FILL_TYPE_WINDING = 0;
-        float mFillAlpha = 1.0f;
-        int mFillColor = 0;
-        int mFillRule = 0;
-        float mStrokeAlpha = 1.0f;
-        int mStrokeColor = 0;
-        Cap mStrokeLineCap = Cap.BUTT;
-        Join mStrokeLineJoin = Join.MITER;
-        float mStrokeMiterlimit = 4.0f;
-        float mStrokeWidth = 0.0f;
-        private int[] mThemeAttrs;
-        float mTrimPathEnd = 1.0f;
-        float mTrimPathOffset = 0.0f;
-        float mTrimPathStart = 0.0f;
-
-        public VFullPath(VFullPath vFullPath) {
-            super(vFullPath);
-            this.mThemeAttrs = vFullPath.mThemeAttrs;
-            this.mStrokeColor = vFullPath.mStrokeColor;
-            this.mStrokeWidth = vFullPath.mStrokeWidth;
-            this.mStrokeAlpha = vFullPath.mStrokeAlpha;
-            this.mFillColor = vFullPath.mFillColor;
-            this.mFillRule = vFullPath.mFillRule;
-            this.mFillAlpha = vFullPath.mFillAlpha;
-            this.mTrimPathStart = vFullPath.mTrimPathStart;
-            this.mTrimPathEnd = vFullPath.mTrimPathEnd;
-            this.mTrimPathOffset = vFullPath.mTrimPathOffset;
-            this.mStrokeLineCap = vFullPath.mStrokeLineCap;
-            this.mStrokeLineJoin = vFullPath.mStrokeLineJoin;
-            this.mStrokeMiterlimit = vFullPath.mStrokeMiterlimit;
-        }
-
-        private Cap getStrokeLineCap(int i, Cap cap) {
-            switch (i) {
-                case 0:
-                    return Cap.BUTT;
-                case 1:
-                    return Cap.ROUND;
-                case 2:
-                    return Cap.SQUARE;
-                default:
-                    return cap;
-            }
-        }
-
-        private Join getStrokeLineJoin(int i, Join join) {
-            switch (i) {
-                case 0:
-                    return Join.MITER;
-                case 1:
-                    return Join.ROUND;
-                case 2:
-                    return Join.BEVEL;
-                default:
-                    return join;
-            }
-        }
-
-        public boolean canApplyTheme() {
-            return this.mThemeAttrs != null;
-        }
-
-        public void inflate(Resources resources, AttributeSet attributeSet, Theme theme, XmlPullParser xmlPullParser) {
-            TypedArray obtainAttributes = TypedArrayUtils.obtainAttributes(resources, theme, attributeSet, AndroidResources.STYLEABLE_VECTOR_DRAWABLE_PATH);
-            updateStateFromTypedArray(obtainAttributes, xmlPullParser);
-            obtainAttributes.recycle();
-        }
-
-        private void updateStateFromTypedArray(TypedArray typedArray, XmlPullParser xmlPullParser) {
-            this.mThemeAttrs = null;
-            if (TypedArrayUtils.hasAttribute(xmlPullParser, "pathData")) {
-                String string = typedArray.getString(0);
-                if (string != null) {
-                    this.mPathName = string;
-                }
-                string = typedArray.getString(2);
-                if (string != null) {
-                    this.mNodes = PathParser.createNodesFromPathData(string);
-                }
-                this.mFillColor = TypedArrayUtils.getNamedColor(typedArray, xmlPullParser, "fillColor", 1, this.mFillColor);
-                this.mFillAlpha = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "fillAlpha", 12, this.mFillAlpha);
-                this.mStrokeLineCap = getStrokeLineCap(TypedArrayUtils.getNamedInt(typedArray, xmlPullParser, "strokeLineCap", 8, -1), this.mStrokeLineCap);
-                this.mStrokeLineJoin = getStrokeLineJoin(TypedArrayUtils.getNamedInt(typedArray, xmlPullParser, "strokeLineJoin", 9, -1), this.mStrokeLineJoin);
-                this.mStrokeMiterlimit = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "strokeMiterLimit", 10, this.mStrokeMiterlimit);
-                this.mStrokeColor = TypedArrayUtils.getNamedColor(typedArray, xmlPullParser, "strokeColor", 3, this.mStrokeColor);
-                this.mStrokeAlpha = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "strokeAlpha", 11, this.mStrokeAlpha);
-                this.mStrokeWidth = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "strokeWidth", 4, this.mStrokeWidth);
-                this.mTrimPathEnd = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "trimPathEnd", 6, this.mTrimPathEnd);
-                this.mTrimPathOffset = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "trimPathOffset", 7, this.mTrimPathOffset);
-                this.mTrimPathStart = TypedArrayUtils.getNamedFloat(typedArray, xmlPullParser, "trimPathStart", 5, this.mTrimPathStart);
-                this.mFillRule = TypedArrayUtils.getNamedInt(typedArray, xmlPullParser, "fillType", 13, this.mFillRule);
-            }
-        }
-
-        public void applyTheme(Theme theme) {
-            if (this.mThemeAttrs != null) {
-            }
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int getStrokeColor() {
-            return this.mStrokeColor;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setStrokeColor(int i) {
-            this.mStrokeColor = i;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public float getStrokeWidth() {
-            return this.mStrokeWidth;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setStrokeWidth(float f) {
-            this.mStrokeWidth = f;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public float getStrokeAlpha() {
-            return this.mStrokeAlpha;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setStrokeAlpha(float f) {
-            this.mStrokeAlpha = f;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public int getFillColor() {
-            return this.mFillColor;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setFillColor(int i) {
-            this.mFillColor = i;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public float getFillAlpha() {
-            return this.mFillAlpha;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setFillAlpha(float f) {
-            this.mFillAlpha = f;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public float getTrimPathStart() {
-            return this.mTrimPathStart;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setTrimPathStart(float f) {
-            this.mTrimPathStart = f;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public float getTrimPathEnd() {
-            return this.mTrimPathEnd;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setTrimPathEnd(float f) {
-            this.mTrimPathEnd = f;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public float getTrimPathOffset() {
-            return this.mTrimPathOffset;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setTrimPathOffset(float f) {
-            this.mTrimPathOffset = f;
         }
     }
 

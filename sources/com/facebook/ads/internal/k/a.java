@@ -6,8 +6,8 @@ import com.facebook.ads.internal.h.c;
 
 public class a {
     private static final String a = "com.facebook.ads.internal.k.a";
-    private static a b = null;
-    private static boolean c = false;
+    private static a b;
+    private static boolean c;
     private Context d;
 
     private a(Context context) {

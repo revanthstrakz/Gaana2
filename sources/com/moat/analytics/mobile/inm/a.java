@@ -7,11 +7,11 @@ import android.os.Bundle;
 import java.lang.ref.WeakReference;
 
 class a {
-    static WeakReference<Activity> a = null;
-    private static boolean b = false;
-    private static Application c = null;
-    private static int d = 0;
-    private static boolean e = false;
+    static WeakReference<Activity> a;
+    private static boolean b;
+    private static Application c;
+    private static int d;
+    private static boolean e;
 
     private static class a implements ActivityLifecycleCallbacks {
         a() {

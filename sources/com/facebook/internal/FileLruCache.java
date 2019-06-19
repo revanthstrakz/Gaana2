@@ -32,6 +32,10 @@ public final class FileLruCache {
     private final Object lock;
     private final String tag;
 
+    private interface StreamCloseCallback {
+        void onClose();
+    }
+
     private static class BufferFile {
         private static final String FILE_NAME_PREFIX = "buffer";
         private static final FilenameFilter filterExcludeBufferFiles = new FilenameFilter() {
@@ -247,10 +251,6 @@ public final class FileLruCache {
         public int hashCode() {
             return ((1073 + this.file.hashCode()) * 37) + ((int) (this.modified % 2147483647L));
         }
-    }
-
-    private interface StreamCloseCallback {
-        void onClose();
     }
 
     private static final class StreamHeader {

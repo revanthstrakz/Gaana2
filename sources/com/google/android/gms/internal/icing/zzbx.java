@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class zzbx<MessageType extends zzbx<MessageType, BuilderType>, BuilderType extends zzby<MessageType, BuilderType>> implements zzeq {
-    private static boolean zzfq = false;
+    private static boolean zzfq;
     protected int zzfp = 0;
 
     public final zzce zzaf() {

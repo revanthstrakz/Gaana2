@@ -51,6 +51,10 @@ public final class Palette {
     private final List<Target> mTargets;
     private final SparseBooleanArray mUsedColors = new SparseBooleanArray();
 
+    public interface Filter {
+        boolean isAllowed(@ColorInt int i, @NonNull float[] fArr);
+    }
+
     public static final class Builder {
         private final Bitmap mBitmap;
         private final List<Filter> mFilters = new ArrayList();
@@ -241,10 +245,6 @@ public final class Palette {
             }
             return Bitmap.createScaledBitmap(bitmap, (int) Math.ceil(((double) bitmap.getWidth()) * d), (int) Math.ceil(((double) bitmap.getHeight()) * d), false);
         }
-    }
-
-    public interface Filter {
-        boolean isAllowed(@ColorInt int i, @NonNull float[] fArr);
     }
 
     public interface PaletteAsyncListener {

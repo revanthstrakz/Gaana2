@@ -153,52 +153,10 @@ public abstract class i implements com.inmobi.ads.bl.a, com.inmobi.ads.h.a, com.
     String x;
     private WeakReference<Context> z;
 
-    static final class a extends Handler {
-        private WeakReference<i> a;
+    public interface d {
+        void a(@NonNull i iVar);
 
-        a(i iVar) {
-            super(Looper.getMainLooper());
-            this.a = new WeakReference(iVar);
-        }
-
-        public final void handleMessage(Message message) {
-            i iVar = this.a == null ? null : (i) this.a.get();
-            if (iVar != null) {
-                Bundle data = message.getData();
-                long j = data.getLong(AudienceNetworkActivity.PLACEMENT_ID);
-                int i = message.what;
-                switch (i) {
-                    case 1:
-                        iVar.a(j, data.getBoolean("adAvailable"), (a) message.obj);
-                        return;
-                    case 2:
-                        iVar.c(j, (a) message.obj);
-                        return;
-                    case 3:
-                        return;
-                    case 4:
-                        iVar.b(j, data.getBoolean("assetAvailable"));
-                        return;
-                    default:
-                        switch (i) {
-                            case 11:
-                                iVar.x();
-                                return;
-                            case 12:
-                                iVar.z();
-                                return;
-                            case 13:
-                                iVar.b((InMobiAdRequestStatus) message.obj);
-                                return;
-                            case 14:
-                                iVar.H();
-                                return;
-                            default:
-                                return;
-                        }
-                }
-            }
-        }
+        void a(@NonNull i iVar, @NonNull InMobiAdRequestStatus inMobiAdRequestStatus);
     }
 
     public static abstract class b {
@@ -269,6 +227,54 @@ public abstract class i implements com.inmobi.ads.bl.a, com.inmobi.ads.h.a, com.
 
         /* Access modifiers changed, original: 0000 */
         public void j() {
+        }
+    }
+
+    static final class a extends Handler {
+        private WeakReference<i> a;
+
+        a(i iVar) {
+            super(Looper.getMainLooper());
+            this.a = new WeakReference(iVar);
+        }
+
+        public final void handleMessage(Message message) {
+            i iVar = this.a == null ? null : (i) this.a.get();
+            if (iVar != null) {
+                Bundle data = message.getData();
+                long j = data.getLong(AudienceNetworkActivity.PLACEMENT_ID);
+                int i = message.what;
+                switch (i) {
+                    case 1:
+                        iVar.a(j, data.getBoolean("adAvailable"), (a) message.obj);
+                        return;
+                    case 2:
+                        iVar.c(j, (a) message.obj);
+                        return;
+                    case 3:
+                        return;
+                    case 4:
+                        iVar.b(j, data.getBoolean("assetAvailable"));
+                        return;
+                    default:
+                        switch (i) {
+                            case 11:
+                                iVar.x();
+                                return;
+                            case 12:
+                                iVar.z();
+                                return;
+                            case 13:
+                                iVar.b((InMobiAdRequestStatus) message.obj);
+                                return;
+                            case 14:
+                                iVar.H();
+                                return;
+                            default:
+                                return;
+                        }
+                }
+            }
         }
     }
 
@@ -348,12 +354,6 @@ public abstract class i implements com.inmobi.ads.bl.a, com.inmobi.ads.h.a, com.
                 return null;
             }
         }
-    }
-
-    public interface d {
-        void a(@NonNull i iVar);
-
-        void a(@NonNull i iVar, @NonNull InMobiAdRequestStatus inMobiAdRequestStatus);
     }
 
     public final void G() {

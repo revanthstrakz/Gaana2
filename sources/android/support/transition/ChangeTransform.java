@@ -49,6 +49,31 @@ public class ChangeTransform extends Transition {
     private Matrix mTempMatrix = new Matrix();
     private boolean mUseOverlay = true;
 
+    private static class GhostListener extends TransitionListenerAdapter {
+        private GhostViewImpl mGhostView;
+        private View mView;
+
+        GhostListener(View view, GhostViewImpl ghostViewImpl) {
+            this.mView = view;
+            this.mGhostView = ghostViewImpl;
+        }
+
+        public void onTransitionEnd(@NonNull Transition transition) {
+            transition.removeListener(this);
+            GhostViewUtils.removeGhost(this.mView);
+            this.mView.setTag(R.id.transition_transform, null);
+            this.mView.setTag(R.id.parent_matrix, null);
+        }
+
+        public void onTransitionPause(@NonNull Transition transition) {
+            this.mGhostView.setVisibility(4);
+        }
+
+        public void onTransitionResume(@NonNull Transition transition) {
+            this.mGhostView.setVisibility(0);
+        }
+    }
+
     private static class PathAnimatorMatrix {
         private final Matrix mMatrix = new Matrix();
         private float mTranslationX;
@@ -134,31 +159,6 @@ public class ChangeTransform extends Transition {
                 i = Float.floatToIntBits(this.mRotationZ);
             }
             return floatToIntBits + i;
-        }
-    }
-
-    private static class GhostListener extends TransitionListenerAdapter {
-        private GhostViewImpl mGhostView;
-        private View mView;
-
-        GhostListener(View view, GhostViewImpl ghostViewImpl) {
-            this.mView = view;
-            this.mGhostView = ghostViewImpl;
-        }
-
-        public void onTransitionEnd(@NonNull Transition transition) {
-            transition.removeListener(this);
-            GhostViewUtils.removeGhost(this.mView);
-            this.mView.setTag(R.id.transition_transform, null);
-            this.mView.setTag(R.id.parent_matrix, null);
-        }
-
-        public void onTransitionPause(@NonNull Transition transition) {
-            this.mGhostView.setVisibility(4);
-        }
-
-        public void onTransitionResume(@NonNull Transition transition) {
-            this.mGhostView.setVisibility(0);
         }
     }
 

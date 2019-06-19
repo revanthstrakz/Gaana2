@@ -128,6 +128,47 @@ public class StaggeredGridLayoutManager extends LayoutManager implements ScrollV
         }
     }
 
+    public static class LayoutParams extends android.support.v7.widget.RecyclerView.LayoutParams {
+        public static final int INVALID_SPAN_ID = -1;
+        boolean mFullSpan;
+        Span mSpan;
+
+        public LayoutParams(Context context, AttributeSet attributeSet) {
+            super(context, attributeSet);
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+        }
+
+        public LayoutParams(MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+        }
+
+        public LayoutParams(android.view.ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        public LayoutParams(android.support.v7.widget.RecyclerView.LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        public void setFullSpan(boolean z) {
+            this.mFullSpan = z;
+        }
+
+        public boolean isFullSpan() {
+            return this.mFullSpan;
+        }
+
+        public final int getSpanIndex() {
+            if (this.mSpan == null) {
+                return -1;
+            }
+            return this.mSpan.mIndex;
+        }
+    }
+
     static class LazySpanLookup {
         private static final int MIN_SIZE = 10;
         int[] mData;
@@ -797,47 +838,6 @@ public class StaggeredGridLayoutManager extends LayoutManager implements ScrollV
                 }
             }
             return view;
-        }
-    }
-
-    public static class LayoutParams extends android.support.v7.widget.RecyclerView.LayoutParams {
-        public static final int INVALID_SPAN_ID = -1;
-        boolean mFullSpan;
-        Span mSpan;
-
-        public LayoutParams(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
-        }
-
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-        }
-
-        public LayoutParams(MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
-        }
-
-        public LayoutParams(android.view.ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
-        }
-
-        public LayoutParams(android.support.v7.widget.RecyclerView.LayoutParams layoutParams) {
-            super(layoutParams);
-        }
-
-        public void setFullSpan(boolean z) {
-            this.mFullSpan = z;
-        }
-
-        public boolean isFullSpan() {
-            return this.mFullSpan;
-        }
-
-        public final int getSpanIndex() {
-            if (this.mSpan == null) {
-                return -1;
-            }
-            return this.mSpan.mIndex;
         }
     }
 

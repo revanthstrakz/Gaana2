@@ -70,6 +70,10 @@ public class e {
     private boolean y;
     private boolean z;
 
+    public interface c {
+        boolean a(View view);
+    }
+
     private class a implements OnClickListener, OnLongClickListener, OnTouchListener {
         private a() {
         }
@@ -183,10 +187,6 @@ public class e {
             e.this.t.a(motionEvent, e.this.n, view);
             return e.this.p != null && e.this.p.onTouch(view, motionEvent);
         }
-    }
-
-    public interface c {
-        boolean a(View view);
     }
 
     private class b extends com.facebook.ads.internal.adapters.c {

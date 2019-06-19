@@ -191,6 +191,93 @@ public class ItemTouchHelper extends ItemDecoration implements OnChildAttachStat
     private Rect mTmpRect;
     VelocityTracker mVelocityTracker;
 
+    public interface ViewDropHandler {
+        void prepareForDrop(View view, View view2, int i, int i2);
+    }
+
+    private static class RecoverAnimation implements AnimatorListener {
+        final int mActionState;
+        final int mAnimationType;
+        boolean mEnded = false;
+        private float mFraction;
+        public boolean mIsPendingCleanup;
+        boolean mOverridden = false;
+        final float mStartDx;
+        final float mStartDy;
+        final float mTargetX;
+        final float mTargetY;
+        private final ValueAnimator mValueAnimator;
+        final ViewHolder mViewHolder;
+        float mX;
+        float mY;
+
+        public void onAnimationRepeat(Animator animator) {
+        }
+
+        public void onAnimationStart(Animator animator) {
+        }
+
+        RecoverAnimation(ViewHolder viewHolder, int i, int i2, float f, float f2, float f3, float f4) {
+            this.mActionState = i2;
+            this.mAnimationType = i;
+            this.mViewHolder = viewHolder;
+            this.mStartDx = f;
+            this.mStartDy = f2;
+            this.mTargetX = f3;
+            this.mTargetY = f4;
+            this.mValueAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+            this.mValueAnimator.addUpdateListener(new AnimatorUpdateListener() {
+                public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    RecoverAnimation.this.setFraction(valueAnimator.getAnimatedFraction());
+                }
+            });
+            this.mValueAnimator.setTarget(viewHolder.itemView);
+            this.mValueAnimator.addListener(this);
+            setFraction(0.0f);
+        }
+
+        public void setDuration(long j) {
+            this.mValueAnimator.setDuration(j);
+        }
+
+        public void start() {
+            this.mViewHolder.setIsRecyclable(false);
+            this.mValueAnimator.start();
+        }
+
+        public void cancel() {
+            this.mValueAnimator.cancel();
+        }
+
+        public void setFraction(float f) {
+            this.mFraction = f;
+        }
+
+        public void update() {
+            if (this.mStartDx == this.mTargetX) {
+                this.mX = this.mViewHolder.itemView.getTranslationX();
+            } else {
+                this.mX = this.mStartDx + (this.mFraction * (this.mTargetX - this.mStartDx));
+            }
+            if (this.mStartDy == this.mTargetY) {
+                this.mY = this.mViewHolder.itemView.getTranslationY();
+            } else {
+                this.mY = this.mStartDy + (this.mFraction * (this.mTargetY - this.mStartDy));
+            }
+        }
+
+        public void onAnimationEnd(Animator animator) {
+            if (!this.mEnded) {
+                this.mViewHolder.setIsRecyclable(true);
+            }
+            this.mEnded = true;
+        }
+
+        public void onAnimationCancel(Animator animator) {
+            setFraction(1.0f);
+        }
+    }
+
     public static abstract class Callback {
         private static final int ABS_HORIZONTAL_DIR_FLAGS = 789516;
         public static final int DEFAULT_DRAG_ANIMATION_DURATION = 200;
@@ -528,93 +615,6 @@ public class ItemTouchHelper extends ItemDecoration implements OnChildAttachStat
                 }
             }
         }
-    }
-
-    private static class RecoverAnimation implements AnimatorListener {
-        final int mActionState;
-        final int mAnimationType;
-        boolean mEnded = false;
-        private float mFraction;
-        public boolean mIsPendingCleanup;
-        boolean mOverridden = false;
-        final float mStartDx;
-        final float mStartDy;
-        final float mTargetX;
-        final float mTargetY;
-        private final ValueAnimator mValueAnimator;
-        final ViewHolder mViewHolder;
-        float mX;
-        float mY;
-
-        public void onAnimationRepeat(Animator animator) {
-        }
-
-        public void onAnimationStart(Animator animator) {
-        }
-
-        RecoverAnimation(ViewHolder viewHolder, int i, int i2, float f, float f2, float f3, float f4) {
-            this.mActionState = i2;
-            this.mAnimationType = i;
-            this.mViewHolder = viewHolder;
-            this.mStartDx = f;
-            this.mStartDy = f2;
-            this.mTargetX = f3;
-            this.mTargetY = f4;
-            this.mValueAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
-            this.mValueAnimator.addUpdateListener(new AnimatorUpdateListener() {
-                public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    RecoverAnimation.this.setFraction(valueAnimator.getAnimatedFraction());
-                }
-            });
-            this.mValueAnimator.setTarget(viewHolder.itemView);
-            this.mValueAnimator.addListener(this);
-            setFraction(0.0f);
-        }
-
-        public void setDuration(long j) {
-            this.mValueAnimator.setDuration(j);
-        }
-
-        public void start() {
-            this.mViewHolder.setIsRecyclable(false);
-            this.mValueAnimator.start();
-        }
-
-        public void cancel() {
-            this.mValueAnimator.cancel();
-        }
-
-        public void setFraction(float f) {
-            this.mFraction = f;
-        }
-
-        public void update() {
-            if (this.mStartDx == this.mTargetX) {
-                this.mX = this.mViewHolder.itemView.getTranslationX();
-            } else {
-                this.mX = this.mStartDx + (this.mFraction * (this.mTargetX - this.mStartDx));
-            }
-            if (this.mStartDy == this.mTargetY) {
-                this.mY = this.mViewHolder.itemView.getTranslationY();
-            } else {
-                this.mY = this.mStartDy + (this.mFraction * (this.mTargetY - this.mStartDy));
-            }
-        }
-
-        public void onAnimationEnd(Animator animator) {
-            if (!this.mEnded) {
-                this.mViewHolder.setIsRecyclable(true);
-            }
-            this.mEnded = true;
-        }
-
-        public void onAnimationCancel(Animator animator) {
-            setFraction(1.0f);
-        }
-    }
-
-    public interface ViewDropHandler {
-        void prepareForDrop(View view, View view2, int i, int i2);
     }
 
     public static abstract class SimpleCallback extends Callback {

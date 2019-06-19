@@ -12,7 +12,7 @@ import java.util.Map;
 public final class ga {
     private gz a = gz.a;
     private go b = go.DEFAULT;
-    private fy c = fx.a;
+    private fy c = fx.IDENTITY;
     private final Map<Type, gb<?>> d = new HashMap();
     private final List<gq> e = new ArrayList();
     private final List<gq> f = new ArrayList();

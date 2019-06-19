@@ -226,7 +226,7 @@ public class ImageDownloader {
     /* JADX WARNING: Removed duplicated region for block: B:53:0x00c8  */
     /* JADX WARNING: Removed duplicated region for block: B:53:0x00c8  */
     /* JADX WARNING: Removed duplicated region for block: B:56:? A:{SYNTHETIC, RETURN} */
-    /* JADX WARNING: Removed duplicated region for block: B:42:0x00af A:{Splitter:B:3:0x0014, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:42:0x00af A:{ExcHandler: all (th java.lang.Throwable), Splitter:B:3:0x0014} */
     /* JADX WARNING: Removed duplicated region for block: B:56:? A:{SYNTHETIC, RETURN} */
     /* JADX WARNING: Removed duplicated region for block: B:53:0x00c8  */
     /* JADX WARNING: Failed to process nested try/catch */

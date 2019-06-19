@@ -66,10 +66,10 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 public class f {
-    public static boolean a = false;
-    public static String b = null;
-    public static long c = 0;
-    public static boolean d = false;
+    public static boolean a;
+    public static String b;
+    public static long c;
+    public static boolean d;
     private static f i;
     private static com.managers.ColombiaManager.b m;
     private static long t;

@@ -107,7 +107,7 @@ public final class FaceDetector extends Detector<Face> {
             zze.trackingEnabled = this.trackingEnabled;
             zze.proportionalMinFaceSize = this.proportionalMinFaceSize;
             if (FaceDetector.zza(zze)) {
-                return new FaceDetector(new com.google.android.gms.vision.face.internal.client.zzc(this.zze, zze));
+                return new FaceDetector(new com.google.android.gms.vision.face.internal.client.zzc(this.zze, zze), null);
             }
             throw new IllegalArgumentException("Invalid build options");
         }
@@ -246,5 +246,9 @@ public final class FaceDetector extends Detector<Face> {
         }
         Log.e("FaceDetector", "Classification is not supported with contour.");
         return false;
+    }
+
+    /* synthetic */ FaceDetector(com.google.android.gms.vision.face.internal.client.zzc zzc, zza zza) {
+        this(zzc);
     }
 }

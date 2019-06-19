@@ -489,4 +489,8 @@ final class zzbqh extends zzbqf {
             throw zzbrl.zzanc();
         }
     }
+
+    /* synthetic */ zzbqh(byte[] bArr, int i, int i2, boolean z, zzbqg zzbqg) {
+        this(bArr, i, i2, z);
+    }
 }

@@ -73,6 +73,43 @@ public final class en implements cc {
     private boolean y;
     private int z;
 
+    private final class a implements ek {
+        private a() {
+        }
+
+        public int a(int i) {
+            return en.this.a(i);
+        }
+
+        public boolean b(int i) {
+            return en.this.b(i);
+        }
+
+        public void a(int i, long j, long j2) throws bl {
+            en.this.a(i, j, j2);
+        }
+
+        public void c(int i) throws bl {
+            en.this.c(i);
+        }
+
+        public void a(int i, long j) throws bl {
+            en.this.a(i, j);
+        }
+
+        public void a(int i, double d) throws bl {
+            en.this.a(i, d);
+        }
+
+        public void a(int i, String str) throws bl {
+            en.this.a(i, str);
+        }
+
+        public void a(int i, int i2, cd cdVar) throws IOException, InterruptedException {
+            en.this.a(i, i2, cdVar);
+        }
+    }
+
     private static final class b {
         public float A;
         public float B;
@@ -1013,43 +1050,6 @@ public final class en implements cc {
             } catch (ArrayIndexOutOfBoundsException unused) {
                 throw new bl("Error parsing MS/ACM codec private");
             }
-        }
-    }
-
-    private final class a implements ek {
-        private a() {
-        }
-
-        public int a(int i) {
-            return en.this.a(i);
-        }
-
-        public boolean b(int i) {
-            return en.this.b(i);
-        }
-
-        public void a(int i, long j, long j2) throws bl {
-            en.this.a(i, j, j2);
-        }
-
-        public void c(int i) throws bl {
-            en.this.c(i);
-        }
-
-        public void a(int i, long j) throws bl {
-            en.this.a(i, j);
-        }
-
-        public void a(int i, double d) throws bl {
-            en.this.a(i, d);
-        }
-
-        public void a(int i, String str) throws bl {
-            en.this.a(i, str);
-        }
-
-        public void a(int i, int i2, cd cdVar) throws IOException, InterruptedException {
-            en.this.a(i, i2, cdVar);
         }
     }
 

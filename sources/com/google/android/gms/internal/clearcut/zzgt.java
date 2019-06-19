@@ -6,6 +6,16 @@ public final class zzgt {
         private static volatile zzdz<zza> zzbg;
         private static final zza zzbil = new zza();
 
+        public static final class zza extends com.google.android.gms.internal.clearcut.zzcg.zza<zza, zza> implements zzdq {
+            private zza() {
+                super(zza.zzbil);
+            }
+
+            /* synthetic */ zza(zzgu zzgu) {
+                this();
+            }
+        }
+
         public enum zzb implements zzcj {
             NO_RESTRICTION(0),
             SIDEWINDER_DEVICE(1),
@@ -41,16 +51,6 @@ public final class zzgt {
 
             public final int zzc() {
                 return this.value;
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.clearcut.zzcg.zza<zza, zza> implements zzdq {
-            private zza() {
-                super(zza.zzbil);
-            }
-
-            /* synthetic */ zza(zzgu zzgu) {
-                this();
             }
         }
 

@@ -48,21 +48,6 @@ public abstract class BasePendingResult<R extends Result> extends PendingResult<
     private volatile zacm<R> zady;
     private boolean zadz;
 
-    private final class zaa {
-        private zaa() {
-        }
-
-        /* Access modifiers changed, original: protected|final */
-        public final void finalize() throws Throwable {
-            BasePendingResult.zab(BasePendingResult.this.zaci);
-            super.finalize();
-        }
-
-        /* synthetic */ zaa(BasePendingResult basePendingResult, zap zap) {
-            this();
-        }
-    }
-
     @VisibleForTesting
     public static class CallbackHandler<R extends Result> extends zal {
         public CallbackHandler() {
@@ -101,6 +86,21 @@ public abstract class BasePendingResult<R extends Result> extends PendingResult<
                     Log.wtf("BasePendingResult", stringBuilder.toString(), new Exception());
                     return;
             }
+        }
+    }
+
+    private final class zaa {
+        private zaa() {
+        }
+
+        /* Access modifiers changed, original: protected|final */
+        public final void finalize() throws Throwable {
+            BasePendingResult.zab(BasePendingResult.this.zaci);
+            super.finalize();
+        }
+
+        /* synthetic */ zaa(BasePendingResult basePendingResult, zap zap) {
+            this();
         }
     }
 

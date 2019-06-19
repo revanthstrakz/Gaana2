@@ -24,15 +24,6 @@ public class MockGoogleCredential extends GoogleCredential {
     private static final String TOKEN_TYPE = "Bearer";
 
     @Beta
-    private static class MockClientAuthentication implements HttpExecuteInterceptor {
-        public void intercept(HttpRequest httpRequest) throws IOException {
-        }
-
-        private MockClientAuthentication() {
-        }
-    }
-
-    @Beta
     public static class Builder extends com.google.api.client.googleapis.auth.oauth2.GoogleCredential.Builder {
         public Builder setTransport(HttpTransport httpTransport) {
             return (Builder) super.setTransport(httpTransport);
@@ -61,6 +52,15 @@ public class MockGoogleCredential extends GoogleCredential {
                 setJsonFactory(new JacksonFactory());
             }
             return new MockGoogleCredential(this);
+        }
+    }
+
+    @Beta
+    private static class MockClientAuthentication implements HttpExecuteInterceptor {
+        public void intercept(HttpRequest httpRequest) throws IOException {
+        }
+
+        private MockClientAuthentication() {
         }
     }
 

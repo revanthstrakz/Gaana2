@@ -14,6 +14,10 @@ public final class NotifyingEditText extends AppCompatEditText {
     private OnKeyListener onSoftKeyListener;
     private PasteListener pasteListener;
 
+    public interface PasteListener {
+        void onTextPaste();
+    }
+
     private class NotifyingInputConnection extends InputConnectionWrapper {
         public NotifyingInputConnection(InputConnection inputConnection, boolean z) {
             super(inputConnection, z);
@@ -36,10 +40,6 @@ public final class NotifyingEditText extends AppCompatEditText {
         public boolean sendKeyEvent(KeyEvent keyEvent) {
             return (NotifyingEditText.this.onSoftKeyListener != null && NotifyingEditText.this.onSoftKeyListener.onKey(NotifyingEditText.this, keyEvent.getKeyCode(), keyEvent)) || super.sendKeyEvent(keyEvent);
         }
-    }
-
-    public interface PasteListener {
-        void onTextPaste();
     }
 
     public NotifyingEditText(Context context) {

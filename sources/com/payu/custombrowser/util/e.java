@@ -92,269 +92,6 @@ public abstract class e {
         }
     }
 
-    public interface i {
-        void a(Map<String, String> map) throws IOException, l;
-
-        Map<String, String> b();
-
-        String c();
-
-        Map<String, String> d();
-
-        String e();
-
-        j f();
-    }
-
-    public enum j {
-        GET,
-        PUT,
-        POST,
-        DELETE,
-        HEAD,
-        OPTIONS;
-
-        static j lookup(String str) {
-            for (j jVar : values()) {
-                if (jVar.toString().equalsIgnoreCase(str)) {
-                    return jVar;
-                }
-            }
-            return null;
-        }
-    }
-
-    public static class k {
-        private a a;
-        private String b;
-        private InputStream c;
-        private Map<String, String> d;
-        private j e;
-        private boolean f;
-
-        public interface a {
-            String getDescription();
-        }
-
-        public enum b implements a {
-            SWITCH_PROTOCOL(101, "Switching Protocols"),
-            OK(200, Constants.RESPONSE_MASK),
-            CREATED(HttpStatusCodes.STATUS_CODE_CREATED, "Created"),
-            ACCEPTED(202, "Accepted"),
-            NO_CONTENT(HttpStatusCodes.STATUS_CODE_NO_CONTENT, "No Content"),
-            PARTIAL_CONTENT(206, "Partial Content"),
-            REDIRECT(HttpStatusCodes.STATUS_CODE_MOVED_PERMANENTLY, "Moved Permanently"),
-            NOT_MODIFIED(HttpStatusCodes.STATUS_CODE_NOT_MODIFIED, "Not Modified"),
-            BAD_REQUEST(400, "Bad Request"),
-            UNAUTHORIZED(401, "Unauthorized"),
-            FORBIDDEN(403, "Forbidden"),
-            NOT_FOUND(404, "Not Found"),
-            METHOD_NOT_ALLOWED(405, "Method Not Allowed"),
-            RANGE_NOT_SATISFIABLE(SsoErrorCodes.LIMIT_EXCEEDED, "Requested Range Not Satisfiable"),
-            INTERNAL_ERROR(500, "Internal Server Error");
-            
-            private final String description;
-            private final int requestStatus;
-
-            private b(int i, String str) {
-                this.requestStatus = i;
-                this.description = str;
-            }
-
-            public int getRequestStatus() {
-                return this.requestStatus;
-            }
-
-            public String getDescription() {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("");
-                stringBuilder.append(this.requestStatus);
-                stringBuilder.append(" ");
-                stringBuilder.append(this.description);
-                return stringBuilder.toString();
-            }
-        }
-
-        public k(String str) {
-            this(b.OK, "text/html", str);
-        }
-
-        public k(a aVar, String str, String str2) {
-            InputStream byteArrayInputStream;
-            this.d = new HashMap();
-            this.a = aVar;
-            this.b = str;
-            if (str2 != null) {
-                try {
-                    byteArrayInputStream = new ByteArrayInputStream(str2.getBytes("UTF-8"));
-                } catch (UnsupportedEncodingException e) {
-                    ThrowableExtension.printStackTrace(e);
-                    return;
-                }
-            }
-            byteArrayInputStream = null;
-            this.c = byteArrayInputStream;
-        }
-
-        public void a(String str, String str2) {
-            this.d.put(str, str2);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void a(OutputStream outputStream) {
-            String str = this.b;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss 'GMT'", Locale.US);
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-            try {
-                if (this.a == null) {
-                    throw new Error("sendResponse(): Status can't be null.");
-                }
-                PrintWriter printWriter = new PrintWriter(outputStream);
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("HTTP/1.1 ");
-                stringBuilder.append(this.a.getDescription());
-                stringBuilder.append(" \r\n");
-                printWriter.print(stringBuilder.toString());
-                if (str != null) {
-                    stringBuilder = new StringBuilder();
-                    stringBuilder.append("Content-Type: ");
-                    stringBuilder.append(str);
-                    stringBuilder.append("\r\n");
-                    printWriter.print(stringBuilder.toString());
-                }
-                if (this.d == null || this.d.get("Date") == null) {
-                    StringBuilder stringBuilder2 = new StringBuilder();
-                    stringBuilder2.append("Date: ");
-                    stringBuilder2.append(simpleDateFormat.format(new Date()));
-                    stringBuilder2.append("\r\n");
-                    printWriter.print(stringBuilder2.toString());
-                }
-                if (this.d != null) {
-                    for (String str2 : this.d.keySet()) {
-                        String str3 = (String) this.d.get(str2);
-                        StringBuilder stringBuilder3 = new StringBuilder();
-                        stringBuilder3.append(str2);
-                        stringBuilder3.append(": ");
-                        stringBuilder3.append(str3);
-                        stringBuilder3.append("\r\n");
-                        printWriter.print(stringBuilder3.toString());
-                    }
-                }
-                a(printWriter, this.d);
-                if (this.e == j.HEAD || !this.f) {
-                    int available = this.c != null ? this.c.available() : 0;
-                    a(printWriter, this.d, available);
-                    printWriter.print("\r\n");
-                    printWriter.flush();
-                    a(outputStream, available);
-                } else {
-                    a(outputStream, printWriter);
-                }
-                outputStream.flush();
-                e.b(this.c);
-            } catch (IOException unused) {
-            }
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void a(PrintWriter printWriter, Map<String, String> map, int i) {
-            if (!a((Map) map, "content-length")) {
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("Content-Length: ");
-                stringBuilder.append(i);
-                stringBuilder.append("\r\n");
-                printWriter.print(stringBuilder.toString());
-            }
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void a(PrintWriter printWriter, Map<String, String> map) {
-            if (!a((Map) map, "connection")) {
-                printWriter.print("Connection: keep-alive\r\n");
-            }
-        }
-
-        private boolean a(Map<String, String> map, String str) {
-            int i = 0;
-            for (String equalsIgnoreCase : map.keySet()) {
-                i |= equalsIgnoreCase.equalsIgnoreCase(str);
-            }
-            return i;
-        }
-
-        private void a(OutputStream outputStream, PrintWriter printWriter) throws IOException {
-            printWriter.print("Transfer-Encoding: chunked\r\n");
-            printWriter.print("\r\n");
-            printWriter.flush();
-            byte[] bytes = "\r\n".getBytes();
-            byte[] bArr = new byte[16384];
-            while (true) {
-                int read = this.c.read(bArr);
-                if (read > 0) {
-                    outputStream.write(String.format("%x\r\n", new Object[]{Integer.valueOf(read)}).getBytes());
-                    outputStream.write(bArr, 0, read);
-                    outputStream.write(bytes);
-                } else {
-                    outputStream.write(String.format("0\r\n\r\n", new Object[0]).getBytes());
-                    return;
-                }
-            }
-        }
-
-        private void a(OutputStream outputStream, int i) throws IOException {
-            if (this.e != j.HEAD && this.c != null) {
-                byte[] bArr = new byte[16384];
-                while (i > 0) {
-                    int read = this.c.read(bArr, 0, i > 16384 ? 16384 : i);
-                    if (read > 0) {
-                        outputStream.write(bArr, 0, read);
-                        i -= read;
-                    } else {
-                        return;
-                    }
-                }
-            }
-        }
-
-        public void a(j jVar) {
-            this.e = jVar;
-        }
-    }
-
-    public static final class l extends Exception {
-        private final b a;
-
-        public l(b bVar, String str) {
-            super(str);
-            this.a = bVar;
-        }
-
-        public l(b bVar, String str, Exception exception) {
-            super(str, exception);
-            this.a = bVar;
-        }
-
-        public b a() {
-            return this.a;
-        }
-    }
-
-    public interface m {
-        void a() throws Exception;
-
-        String b();
-    }
-
-    public interface n {
-        m a() throws Exception;
-
-        void b();
-    }
-
-    public interface o {
-        n a();
-    }
-
     public static class d implements a {
         private long a;
 
@@ -369,6 +106,12 @@ public abstract class e {
             thread.setName(stringBuilder.toString());
             thread.start();
         }
+    }
+
+    public interface m {
+        void a() throws Exception;
+
+        String b();
     }
 
     public static class e implements m {
@@ -387,6 +130,12 @@ public abstract class e {
         public String b() {
             return this.a.getAbsolutePath();
         }
+    }
+
+    public interface n {
+        m a() throws Exception;
+
+        void b();
     }
 
     public static class f implements n {
@@ -410,6 +159,10 @@ public abstract class e {
         }
     }
 
+    public interface o {
+        n a();
+    }
+
     private class g implements o {
         private g() {
         }
@@ -421,6 +174,20 @@ public abstract class e {
         public n a() {
             return new f();
         }
+    }
+
+    public interface i {
+        void a(Map<String, String> map) throws IOException, l;
+
+        Map<String, String> b();
+
+        String c();
+
+        Map<String, String> d();
+
+        String e();
+
+        j f();
     }
 
     protected class h implements i {
@@ -1000,6 +767,239 @@ public abstract class e {
 
         public final j f() {
             return this.h;
+        }
+    }
+
+    public enum j {
+        GET,
+        PUT,
+        POST,
+        DELETE,
+        HEAD,
+        OPTIONS;
+
+        static j lookup(String str) {
+            for (j jVar : values()) {
+                if (jVar.toString().equalsIgnoreCase(str)) {
+                    return jVar;
+                }
+            }
+            return null;
+        }
+    }
+
+    public static class k {
+        private a a;
+        private String b;
+        private InputStream c;
+        private Map<String, String> d;
+        private j e;
+        private boolean f;
+
+        public interface a {
+            String getDescription();
+        }
+
+        public enum b implements a {
+            SWITCH_PROTOCOL(101, "Switching Protocols"),
+            OK(200, Constants.RESPONSE_MASK),
+            CREATED(HttpStatusCodes.STATUS_CODE_CREATED, "Created"),
+            ACCEPTED(202, "Accepted"),
+            NO_CONTENT(HttpStatusCodes.STATUS_CODE_NO_CONTENT, "No Content"),
+            PARTIAL_CONTENT(206, "Partial Content"),
+            REDIRECT(HttpStatusCodes.STATUS_CODE_MOVED_PERMANENTLY, "Moved Permanently"),
+            NOT_MODIFIED(HttpStatusCodes.STATUS_CODE_NOT_MODIFIED, "Not Modified"),
+            BAD_REQUEST(400, "Bad Request"),
+            UNAUTHORIZED(401, "Unauthorized"),
+            FORBIDDEN(403, "Forbidden"),
+            NOT_FOUND(404, "Not Found"),
+            METHOD_NOT_ALLOWED(405, "Method Not Allowed"),
+            RANGE_NOT_SATISFIABLE(SsoErrorCodes.LIMIT_EXCEEDED, "Requested Range Not Satisfiable"),
+            INTERNAL_ERROR(500, "Internal Server Error");
+            
+            private final String description;
+            private final int requestStatus;
+
+            private b(int i, String str) {
+                this.requestStatus = i;
+                this.description = str;
+            }
+
+            public int getRequestStatus() {
+                return this.requestStatus;
+            }
+
+            public String getDescription() {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("");
+                stringBuilder.append(this.requestStatus);
+                stringBuilder.append(" ");
+                stringBuilder.append(this.description);
+                return stringBuilder.toString();
+            }
+        }
+
+        public k(String str) {
+            this(b.OK, "text/html", str);
+        }
+
+        public k(a aVar, String str, String str2) {
+            InputStream byteArrayInputStream;
+            this.d = new HashMap();
+            this.a = aVar;
+            this.b = str;
+            if (str2 != null) {
+                try {
+                    byteArrayInputStream = new ByteArrayInputStream(str2.getBytes("UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    ThrowableExtension.printStackTrace(e);
+                    return;
+                }
+            }
+            byteArrayInputStream = null;
+            this.c = byteArrayInputStream;
+        }
+
+        public void a(String str, String str2) {
+            this.d.put(str, str2);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void a(OutputStream outputStream) {
+            String str = this.b;
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss 'GMT'", Locale.US);
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            try {
+                if (this.a == null) {
+                    throw new Error("sendResponse(): Status can't be null.");
+                }
+                PrintWriter printWriter = new PrintWriter(outputStream);
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("HTTP/1.1 ");
+                stringBuilder.append(this.a.getDescription());
+                stringBuilder.append(" \r\n");
+                printWriter.print(stringBuilder.toString());
+                if (str != null) {
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Content-Type: ");
+                    stringBuilder.append(str);
+                    stringBuilder.append("\r\n");
+                    printWriter.print(stringBuilder.toString());
+                }
+                if (this.d == null || this.d.get("Date") == null) {
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("Date: ");
+                    stringBuilder2.append(simpleDateFormat.format(new Date()));
+                    stringBuilder2.append("\r\n");
+                    printWriter.print(stringBuilder2.toString());
+                }
+                if (this.d != null) {
+                    for (String str2 : this.d.keySet()) {
+                        String str3 = (String) this.d.get(str2);
+                        StringBuilder stringBuilder3 = new StringBuilder();
+                        stringBuilder3.append(str2);
+                        stringBuilder3.append(": ");
+                        stringBuilder3.append(str3);
+                        stringBuilder3.append("\r\n");
+                        printWriter.print(stringBuilder3.toString());
+                    }
+                }
+                a(printWriter, this.d);
+                if (this.e == j.HEAD || !this.f) {
+                    int available = this.c != null ? this.c.available() : 0;
+                    a(printWriter, this.d, available);
+                    printWriter.print("\r\n");
+                    printWriter.flush();
+                    a(outputStream, available);
+                } else {
+                    a(outputStream, printWriter);
+                }
+                outputStream.flush();
+                e.b(this.c);
+            } catch (IOException unused) {
+            }
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void a(PrintWriter printWriter, Map<String, String> map, int i) {
+            if (!a((Map) map, "content-length")) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Content-Length: ");
+                stringBuilder.append(i);
+                stringBuilder.append("\r\n");
+                printWriter.print(stringBuilder.toString());
+            }
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void a(PrintWriter printWriter, Map<String, String> map) {
+            if (!a((Map) map, "connection")) {
+                printWriter.print("Connection: keep-alive\r\n");
+            }
+        }
+
+        private boolean a(Map<String, String> map, String str) {
+            int i = 0;
+            for (String equalsIgnoreCase : map.keySet()) {
+                i |= equalsIgnoreCase.equalsIgnoreCase(str);
+            }
+            return i;
+        }
+
+        private void a(OutputStream outputStream, PrintWriter printWriter) throws IOException {
+            printWriter.print("Transfer-Encoding: chunked\r\n");
+            printWriter.print("\r\n");
+            printWriter.flush();
+            byte[] bytes = "\r\n".getBytes();
+            byte[] bArr = new byte[16384];
+            while (true) {
+                int read = this.c.read(bArr);
+                if (read > 0) {
+                    outputStream.write(String.format("%x\r\n", new Object[]{Integer.valueOf(read)}).getBytes());
+                    outputStream.write(bArr, 0, read);
+                    outputStream.write(bytes);
+                } else {
+                    outputStream.write(String.format("0\r\n\r\n", new Object[0]).getBytes());
+                    return;
+                }
+            }
+        }
+
+        private void a(OutputStream outputStream, int i) throws IOException {
+            if (this.e != j.HEAD && this.c != null) {
+                byte[] bArr = new byte[16384];
+                while (i > 0) {
+                    int read = this.c.read(bArr, 0, i > 16384 ? 16384 : i);
+                    if (read > 0) {
+                        outputStream.write(bArr, 0, read);
+                        i -= read;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+
+        public void a(j jVar) {
+            this.e = jVar;
+        }
+    }
+
+    public static final class l extends Exception {
+        private final b a;
+
+        public l(b bVar, String str) {
+            super(str);
+            this.a = bVar;
+        }
+
+        public l(b bVar, String str, Exception exception) {
+            super(str, exception);
+            this.a = bVar;
+        }
+
+        public b a() {
+            return this.a;
         }
     }
 

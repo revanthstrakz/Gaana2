@@ -26,27 +26,6 @@ public abstract class Visibility extends Transition {
     private static final String[] sTransitionProperties = new String[]{PROPNAME_VISIBILITY, PROPNAME_PARENT};
     private int mMode = 3;
 
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Mode {
-    }
-
-    private static class VisibilityInfo {
-        ViewGroup mEndParent;
-        int mEndVisibility;
-        boolean mFadeIn;
-        ViewGroup mStartParent;
-        int mStartVisibility;
-        boolean mVisibilityChange;
-
-        private VisibilityInfo() {
-        }
-
-        /* synthetic */ VisibilityInfo(AnonymousClass1 anonymousClass1) {
-            this();
-        }
-    }
-
     private static class DisappearListener extends AnimatorListenerAdapter implements AnimatorPauseListenerCompat, TransitionListener {
         boolean mCanceled = false;
         private final int mFinalVisibility;
@@ -123,6 +102,27 @@ public abstract class Visibility extends Transition {
                 this.mLayoutSuppressed = z;
                 ViewGroupUtils.suppressLayout(this.mParent, z);
             }
+        }
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Mode {
+    }
+
+    private static class VisibilityInfo {
+        ViewGroup mEndParent;
+        int mEndVisibility;
+        boolean mFadeIn;
+        ViewGroup mStartParent;
+        int mStartVisibility;
+        boolean mVisibilityChange;
+
+        private VisibilityInfo() {
+        }
+
+        /* synthetic */ VisibilityInfo(AnonymousClass1 anonymousClass1) {
+            this();
         }
     }
 

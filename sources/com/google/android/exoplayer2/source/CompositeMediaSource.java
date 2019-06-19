@@ -25,18 +25,6 @@ public abstract class CompositeMediaSource<T> extends BaseMediaSource {
     @Nullable
     private ExoPlayer player;
 
-    private static final class MediaSourceAndListener {
-        public final MediaSourceEventListener eventListener;
-        public final SourceInfoRefreshListener listener;
-        public final MediaSource mediaSource;
-
-        public MediaSourceAndListener(MediaSource mediaSource, SourceInfoRefreshListener sourceInfoRefreshListener, MediaSourceEventListener mediaSourceEventListener) {
-            this.mediaSource = mediaSource;
-            this.listener = sourceInfoRefreshListener;
-            this.eventListener = mediaSourceEventListener;
-        }
-    }
-
     private final class ForwardingEventListener implements MediaSourceEventListener {
         private EventDispatcher eventDispatcher;
         private final T id;
@@ -123,6 +111,18 @@ public abstract class CompositeMediaSource<T> extends BaseMediaSource {
                 return mediaLoadData;
             }
             return new MediaLoadData(mediaLoadData.dataType, mediaLoadData.trackType, mediaLoadData.trackFormat, mediaLoadData.trackSelectionReason, mediaLoadData.trackSelectionData, mediaTimeForChildMediaTime, mediaTimeForChildMediaTime2);
+        }
+    }
+
+    private static final class MediaSourceAndListener {
+        public final MediaSourceEventListener eventListener;
+        public final SourceInfoRefreshListener listener;
+        public final MediaSource mediaSource;
+
+        public MediaSourceAndListener(MediaSource mediaSource, SourceInfoRefreshListener sourceInfoRefreshListener, MediaSourceEventListener mediaSourceEventListener) {
+            this.mediaSource = mediaSource;
+            this.listener = sourceInfoRefreshListener;
+            this.eventListener = mediaSourceEventListener;
         }
     }
 

@@ -72,10 +72,6 @@ public final class PrintHelper {
         void setScaleMode(int i);
     }
 
-    @Retention(RetentionPolicy.SOURCE)
-    private @interface ScaleMode {
-    }
-
     @RequiresApi(19)
     private static class PrintHelperApi19 implements PrintHelperVersionImpl {
         private static final String LOG_TAG = "PrintHelperApi19";
@@ -575,6 +571,40 @@ public final class PrintHelper {
         }
     }
 
+    @RequiresApi(20)
+    private static class PrintHelperApi20 extends PrintHelperApi19 {
+        PrintHelperApi20(Context context) {
+            super(context);
+            this.mPrintActivityRespectsOrientation = false;
+        }
+    }
+
+    @RequiresApi(23)
+    private static class PrintHelperApi23 extends PrintHelperApi20 {
+        /* Access modifiers changed, original: protected */
+        public Builder copyAttributes(PrintAttributes printAttributes) {
+            Builder copyAttributes = super.copyAttributes(printAttributes);
+            if (printAttributes.getDuplexMode() != 0) {
+                copyAttributes.setDuplexMode(printAttributes.getDuplexMode());
+            }
+            return copyAttributes;
+        }
+
+        PrintHelperApi23(Context context) {
+            super(context);
+            this.mIsMinMarginsHandlingCorrect = false;
+        }
+    }
+
+    @RequiresApi(24)
+    private static class PrintHelperApi24 extends PrintHelperApi23 {
+        PrintHelperApi24(Context context) {
+            super(context);
+            this.mIsMinMarginsHandlingCorrect = true;
+            this.mPrintActivityRespectsOrientation = true;
+        }
+    }
+
     private static final class PrintHelperStub implements PrintHelperVersionImpl {
         int mColorMode;
         int mOrientation;
@@ -617,38 +647,8 @@ public final class PrintHelper {
         }
     }
 
-    @RequiresApi(20)
-    private static class PrintHelperApi20 extends PrintHelperApi19 {
-        PrintHelperApi20(Context context) {
-            super(context);
-            this.mPrintActivityRespectsOrientation = false;
-        }
-    }
-
-    @RequiresApi(23)
-    private static class PrintHelperApi23 extends PrintHelperApi20 {
-        /* Access modifiers changed, original: protected */
-        public Builder copyAttributes(PrintAttributes printAttributes) {
-            Builder copyAttributes = super.copyAttributes(printAttributes);
-            if (printAttributes.getDuplexMode() != 0) {
-                copyAttributes.setDuplexMode(printAttributes.getDuplexMode());
-            }
-            return copyAttributes;
-        }
-
-        PrintHelperApi23(Context context) {
-            super(context);
-            this.mIsMinMarginsHandlingCorrect = false;
-        }
-    }
-
-    @RequiresApi(24)
-    private static class PrintHelperApi24 extends PrintHelperApi23 {
-        PrintHelperApi24(Context context) {
-            super(context);
-            this.mIsMinMarginsHandlingCorrect = true;
-            this.mPrintActivityRespectsOrientation = true;
-        }
+    @Retention(RetentionPolicy.SOURCE)
+    private @interface ScaleMode {
     }
 
     public static boolean systemSupportsPrint() {

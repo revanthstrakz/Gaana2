@@ -21,6 +21,10 @@ public class g {
     private final Handler f;
     private Runnable g;
 
+    public interface d extends com.android.volley.i.a {
+        void a(c cVar, boolean z);
+    }
+
     private class a {
         private final Request<?> b;
         private Bitmap c;
@@ -97,10 +101,6 @@ public class g {
         public String c() {
             return this.e;
         }
-    }
-
-    public interface d extends com.android.volley.i.a {
-        void a(c cVar, boolean z);
     }
 
     public c a(String str, d dVar, int i, int i2, ScaleType scaleType, boolean z) {

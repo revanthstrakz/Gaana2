@@ -42,10 +42,10 @@ import com.utilities.Util;
 import java.util.Calendar;
 
 public class FileDownloadService extends Service {
-    public static ae a = null;
-    public static bd b = null;
-    private static long c = 0;
-    private static boolean d = false;
+    public static ae a;
+    public static bd b;
+    private static long c;
+    private static boolean d;
     private String e = "";
     private Handler f;
     private Thread g;

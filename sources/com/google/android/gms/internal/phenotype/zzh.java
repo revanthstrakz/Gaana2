@@ -7,8 +7,8 @@ import android.os.Build.VERSION;
 public final class zzh<T> {
     private static final Object zzak = new Object();
     @SuppressLint({"StaticFieldLeak"})
-    private static Context zzal = null;
-    private static boolean zzam = false;
+    private static Context zzal;
+    private static boolean zzam;
     private static volatile Boolean zzan;
     private static volatile Boolean zzbq;
 

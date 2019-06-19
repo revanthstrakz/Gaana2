@@ -19,7 +19,7 @@ import com.moengage.pushbase.push.MoEPushWorker;
 import java.util.Calendar;
 
 public class TimePickerFragment extends DialogFragment implements OnTimeSetListener {
-    private static boolean timeDialogShown = false;
+    private static boolean timeDialogShown;
     private final String DAY = "day";
     private final String MONTH = "month";
     private final String YEAR = "year";

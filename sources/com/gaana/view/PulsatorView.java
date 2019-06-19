@@ -37,7 +37,7 @@ public class PulsatorView extends RelativeLayout {
     public static final int INTERP_ACCELERATE_DECELERATE = 3;
     public static final int INTERP_DECELERATE = 2;
     public static final int INTERP_LINEAR = 0;
-    private static boolean isCompletedCycle = false;
+    private static boolean isCompletedCycle;
     private final AnimatorListener mAnimatorListener;
     private AnimatorSet mAnimatorSet;
     private float mCenterX;

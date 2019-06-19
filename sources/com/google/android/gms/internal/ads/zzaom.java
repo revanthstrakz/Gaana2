@@ -13,9 +13,9 @@ import com.google.android.gms.dynamic.ObjectWrapper;
 public final class zzaom {
     private static final Object sLock = new Object();
     @VisibleForTesting
-    private static boolean zzdqn = false;
+    private static boolean zzdqn;
     @VisibleForTesting
-    private static boolean zztd = false;
+    private static boolean zztd;
     @VisibleForTesting
     private zzbiz zzdqo;
 

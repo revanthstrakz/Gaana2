@@ -20,4 +20,8 @@ final class zzaib extends zzbie {
     public final boolean zzc(zzbif zzbif) {
         return this.zzdih.zzf(zzbif.uri);
     }
+
+    /* synthetic */ zzaib(zzahv zzahv, zzahz zzahz) {
+        this(zzahv);
+    }
 }

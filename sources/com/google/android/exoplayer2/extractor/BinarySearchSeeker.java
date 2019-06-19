@@ -16,6 +16,52 @@ public abstract class BinarySearchSeeker {
     protected SeekOperationParams seekOperationParams;
     protected final TimestampSeeker timestampSeeker;
 
+    public static class BinarySearchSeekMap implements SeekMap {
+        private final long approxBytesPerFrame;
+        private final long ceilingBytePosition;
+        private final long ceilingTimePosition;
+        private final long durationUs;
+        private final long floorBytePosition;
+        private final long floorTimePosition;
+        private final SeekTimestampConverter seekTimestampConverter;
+
+        public boolean isSeekable() {
+            return true;
+        }
+
+        public BinarySearchSeekMap(SeekTimestampConverter seekTimestampConverter, long j, long j2, long j3, long j4, long j5, long j6) {
+            this.seekTimestampConverter = seekTimestampConverter;
+            this.durationUs = j;
+            this.floorTimePosition = j2;
+            this.ceilingTimePosition = j3;
+            this.floorBytePosition = j4;
+            this.ceilingBytePosition = j5;
+            this.approxBytesPerFrame = j6;
+        }
+
+        public SeekPoints getSeekPoints(long j) {
+            return new SeekPoints(new SeekPoint(j, SeekOperationParams.calculateNextSearchBytePosition(this.seekTimestampConverter.timeUsToTargetTime(j), this.floorTimePosition, this.ceilingTimePosition, this.floorBytePosition, this.ceilingBytePosition, this.approxBytesPerFrame)));
+        }
+
+        public long getDurationUs() {
+            return this.durationUs;
+        }
+
+        public long timeUsToTargetTime(long j) {
+            return this.seekTimestampConverter.timeUsToTargetTime(j);
+        }
+    }
+
+    protected interface SeekTimestampConverter {
+        long timeUsToTargetTime(long j);
+    }
+
+    public static final class DefaultSeekTimestampConverter implements SeekTimestampConverter {
+        public long timeUsToTargetTime(long j) {
+            return j;
+        }
+    }
+
     public static final class OutputFrameHolder {
         public ByteBuffer byteBuffer;
         public long timeUs = 0;
@@ -91,10 +137,6 @@ public abstract class BinarySearchSeeker {
         }
     }
 
-    protected interface SeekTimestampConverter {
-        long timeUsToTargetTime(long j);
-    }
-
     public static final class TimestampSearchResult {
         public static final TimestampSearchResult NO_TIMESTAMP_IN_RANGE_RESULT = new TimestampSearchResult(-3, C.TIME_UNSET, -1);
         public static final int TYPE_NO_TIMESTAMP = -3;
@@ -128,48 +170,6 @@ public abstract class BinarySearchSeeker {
         void onSeekFinished();
 
         TimestampSearchResult searchForTimestamp(ExtractorInput extractorInput, long j, OutputFrameHolder outputFrameHolder) throws IOException, InterruptedException;
-    }
-
-    public static class BinarySearchSeekMap implements SeekMap {
-        private final long approxBytesPerFrame;
-        private final long ceilingBytePosition;
-        private final long ceilingTimePosition;
-        private final long durationUs;
-        private final long floorBytePosition;
-        private final long floorTimePosition;
-        private final SeekTimestampConverter seekTimestampConverter;
-
-        public boolean isSeekable() {
-            return true;
-        }
-
-        public BinarySearchSeekMap(SeekTimestampConverter seekTimestampConverter, long j, long j2, long j3, long j4, long j5, long j6) {
-            this.seekTimestampConverter = seekTimestampConverter;
-            this.durationUs = j;
-            this.floorTimePosition = j2;
-            this.ceilingTimePosition = j3;
-            this.floorBytePosition = j4;
-            this.ceilingBytePosition = j5;
-            this.approxBytesPerFrame = j6;
-        }
-
-        public SeekPoints getSeekPoints(long j) {
-            return new SeekPoints(new SeekPoint(j, SeekOperationParams.calculateNextSearchBytePosition(this.seekTimestampConverter.timeUsToTargetTime(j), this.floorTimePosition, this.ceilingTimePosition, this.floorBytePosition, this.ceilingBytePosition, this.approxBytesPerFrame)));
-        }
-
-        public long getDurationUs() {
-            return this.durationUs;
-        }
-
-        public long timeUsToTargetTime(long j) {
-            return this.seekTimestampConverter.timeUsToTargetTime(j);
-        }
-    }
-
-    public static final class DefaultSeekTimestampConverter implements SeekTimestampConverter {
-        public long timeUsToTargetTime(long j) {
-            return j;
-        }
     }
 
     /* Access modifiers changed, original: protected */

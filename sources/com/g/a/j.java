@@ -7,7 +7,7 @@ import com.google.devtools.build.android.desugar.runtime.ThrowableExtension;
 
 public class j {
     public static String a = "";
-    static boolean b = false;
+    static boolean b;
 
     public static void a(String str) {
         try {

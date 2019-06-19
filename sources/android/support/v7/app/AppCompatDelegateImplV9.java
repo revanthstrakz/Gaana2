@@ -109,6 +109,97 @@ class AppCompatDelegateImplV9 extends AppCompatDelegateImplBase implements Callb
     private Rect mTempRect2;
     private TextView mTitleView;
 
+    private final class ActionMenuPresenterCallback implements MenuPresenter.Callback {
+        ActionMenuPresenterCallback() {
+        }
+
+        public boolean onOpenSubMenu(MenuBuilder menuBuilder) {
+            Window.Callback windowCallback = AppCompatDelegateImplV9.this.getWindowCallback();
+            if (windowCallback != null) {
+                windowCallback.onMenuOpened(108, menuBuilder);
+            }
+            return true;
+        }
+
+        public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
+            AppCompatDelegateImplV9.this.checkCloseActionMenu(menuBuilder);
+        }
+    }
+
+    class ActionModeCallbackWrapperV9 implements ActionMode.Callback {
+        private ActionMode.Callback mWrapped;
+
+        public ActionModeCallbackWrapperV9(ActionMode.Callback callback) {
+            this.mWrapped = callback;
+        }
+
+        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+            return this.mWrapped.onCreateActionMode(actionMode, menu);
+        }
+
+        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+            return this.mWrapped.onPrepareActionMode(actionMode, menu);
+        }
+
+        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+            return this.mWrapped.onActionItemClicked(actionMode, menuItem);
+        }
+
+        public void onDestroyActionMode(ActionMode actionMode) {
+            this.mWrapped.onDestroyActionMode(actionMode);
+            if (AppCompatDelegateImplV9.this.mActionModePopup != null) {
+                AppCompatDelegateImplV9.this.mWindow.getDecorView().removeCallbacks(AppCompatDelegateImplV9.this.mShowActionModePopup);
+            }
+            if (AppCompatDelegateImplV9.this.mActionModeView != null) {
+                AppCompatDelegateImplV9.this.endOnGoingFadeAnimation();
+                AppCompatDelegateImplV9.this.mFadeAnim = ViewCompat.animate(AppCompatDelegateImplV9.this.mActionModeView).alpha(0.0f);
+                AppCompatDelegateImplV9.this.mFadeAnim.setListener(new ViewPropertyAnimatorListenerAdapter() {
+                    public void onAnimationEnd(View view) {
+                        AppCompatDelegateImplV9.this.mActionModeView.setVisibility(8);
+                        if (AppCompatDelegateImplV9.this.mActionModePopup != null) {
+                            AppCompatDelegateImplV9.this.mActionModePopup.dismiss();
+                        } else if (AppCompatDelegateImplV9.this.mActionModeView.getParent() instanceof View) {
+                            ViewCompat.requestApplyInsets((View) AppCompatDelegateImplV9.this.mActionModeView.getParent());
+                        }
+                        AppCompatDelegateImplV9.this.mActionModeView.removeAllViews();
+                        AppCompatDelegateImplV9.this.mFadeAnim.setListener(null);
+                        AppCompatDelegateImplV9.this.mFadeAnim = null;
+                    }
+                });
+            }
+            if (AppCompatDelegateImplV9.this.mAppCompatCallback != null) {
+                AppCompatDelegateImplV9.this.mAppCompatCallback.onSupportActionModeFinished(AppCompatDelegateImplV9.this.mActionMode);
+            }
+            AppCompatDelegateImplV9.this.mActionMode = null;
+        }
+    }
+
+    private class ListMenuDecorView extends ContentFrameLayout {
+        public ListMenuDecorView(Context context) {
+            super(context);
+        }
+
+        public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+            return AppCompatDelegateImplV9.this.dispatchKeyEvent(keyEvent) || super.dispatchKeyEvent(keyEvent);
+        }
+
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            if (motionEvent.getAction() != 0 || !isOutOfBounds((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+            AppCompatDelegateImplV9.this.closePanel(0);
+            return true;
+        }
+
+        public void setBackgroundResource(int i) {
+            setBackgroundDrawable(AppCompatResources.getDrawable(getContext(), i));
+        }
+
+        private boolean isOutOfBounds(int i, int i2) {
+            return i < -5 || i2 < -5 || i > getWidth() + 5 || i2 > getHeight() + 5;
+        }
+    }
+
     protected static final class PanelFeatureState {
         int background;
         View createdPanelView;
@@ -283,97 +374,6 @@ class AppCompatDelegateImplV9 extends AppCompatDelegateImplBase implements Callb
                 this.menu.restorePresenterStates(this.frozenMenuState);
                 this.frozenMenuState = null;
             }
-        }
-    }
-
-    private final class ActionMenuPresenterCallback implements MenuPresenter.Callback {
-        ActionMenuPresenterCallback() {
-        }
-
-        public boolean onOpenSubMenu(MenuBuilder menuBuilder) {
-            Window.Callback windowCallback = AppCompatDelegateImplV9.this.getWindowCallback();
-            if (windowCallback != null) {
-                windowCallback.onMenuOpened(108, menuBuilder);
-            }
-            return true;
-        }
-
-        public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
-            AppCompatDelegateImplV9.this.checkCloseActionMenu(menuBuilder);
-        }
-    }
-
-    class ActionModeCallbackWrapperV9 implements ActionMode.Callback {
-        private ActionMode.Callback mWrapped;
-
-        public ActionModeCallbackWrapperV9(ActionMode.Callback callback) {
-            this.mWrapped = callback;
-        }
-
-        public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-            return this.mWrapped.onCreateActionMode(actionMode, menu);
-        }
-
-        public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-            return this.mWrapped.onPrepareActionMode(actionMode, menu);
-        }
-
-        public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-            return this.mWrapped.onActionItemClicked(actionMode, menuItem);
-        }
-
-        public void onDestroyActionMode(ActionMode actionMode) {
-            this.mWrapped.onDestroyActionMode(actionMode);
-            if (AppCompatDelegateImplV9.this.mActionModePopup != null) {
-                AppCompatDelegateImplV9.this.mWindow.getDecorView().removeCallbacks(AppCompatDelegateImplV9.this.mShowActionModePopup);
-            }
-            if (AppCompatDelegateImplV9.this.mActionModeView != null) {
-                AppCompatDelegateImplV9.this.endOnGoingFadeAnimation();
-                AppCompatDelegateImplV9.this.mFadeAnim = ViewCompat.animate(AppCompatDelegateImplV9.this.mActionModeView).alpha(0.0f);
-                AppCompatDelegateImplV9.this.mFadeAnim.setListener(new ViewPropertyAnimatorListenerAdapter() {
-                    public void onAnimationEnd(View view) {
-                        AppCompatDelegateImplV9.this.mActionModeView.setVisibility(8);
-                        if (AppCompatDelegateImplV9.this.mActionModePopup != null) {
-                            AppCompatDelegateImplV9.this.mActionModePopup.dismiss();
-                        } else if (AppCompatDelegateImplV9.this.mActionModeView.getParent() instanceof View) {
-                            ViewCompat.requestApplyInsets((View) AppCompatDelegateImplV9.this.mActionModeView.getParent());
-                        }
-                        AppCompatDelegateImplV9.this.mActionModeView.removeAllViews();
-                        AppCompatDelegateImplV9.this.mFadeAnim.setListener(null);
-                        AppCompatDelegateImplV9.this.mFadeAnim = null;
-                    }
-                });
-            }
-            if (AppCompatDelegateImplV9.this.mAppCompatCallback != null) {
-                AppCompatDelegateImplV9.this.mAppCompatCallback.onSupportActionModeFinished(AppCompatDelegateImplV9.this.mActionMode);
-            }
-            AppCompatDelegateImplV9.this.mActionMode = null;
-        }
-    }
-
-    private class ListMenuDecorView extends ContentFrameLayout {
-        public ListMenuDecorView(Context context) {
-            super(context);
-        }
-
-        public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-            return AppCompatDelegateImplV9.this.dispatchKeyEvent(keyEvent) || super.dispatchKeyEvent(keyEvent);
-        }
-
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            if (motionEvent.getAction() != 0 || !isOutOfBounds((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-            AppCompatDelegateImplV9.this.closePanel(0);
-            return true;
-        }
-
-        public void setBackgroundResource(int i) {
-            setBackgroundDrawable(AppCompatResources.getDrawable(getContext(), i));
-        }
-
-        private boolean isOutOfBounds(int i, int i2) {
-            return i < -5 || i2 < -5 || i > getWidth() + 5 || i2 > getHeight() + 5;
         }
     }
 

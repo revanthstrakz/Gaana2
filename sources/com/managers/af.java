@@ -339,6 +339,99 @@ public class af {
     private ad v;
     private String w = "";
 
+    /* renamed from: com.managers.af$26 */
+    static /* synthetic */ class AnonymousClass26 {
+        static final /* synthetic */ int[] a = new int[LOGIN_STATUS.values().length];
+
+        /* JADX WARNING: Missing exception handler attribute for start block: B:19:0x0051 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:21:0x005c */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:15:0x003d */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:17:0x0047 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:23:0x0067 */
+        /* JADX WARNING: Missing exception handler attribute for start block: B:25:0x0072 */
+        /* JADX WARNING: Failed to process nested try/catch */
+        /* JADX WARNING: Can't wrap try/catch for region: R(24:0|1|2|3|5|6|7|(2:9|10)|11|13|14|15|16|17|18|19|20|21|22|23|24|25|26|28) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(24:0|1|2|3|5|6|7|(2:9|10)|11|13|14|15|16|17|18|19|20|21|22|23|24|25|26|28) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(23:0|1|2|3|(2:5|6)|7|(2:9|10)|11|13|14|15|16|17|18|19|20|21|22|23|24|25|26|28) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(23:0|1|2|3|(2:5|6)|7|(2:9|10)|11|13|14|15|16|17|18|19|20|21|22|23|24|25|26|28) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|13|14|15|16|17|18|19|20|21|22|23|24|25|26|28) */
+        /* JADX WARNING: Can't wrap try/catch for region: R(22:0|(2:1|2)|3|(2:5|6)|7|(2:9|10)|11|13|14|15|16|17|18|19|20|21|22|23|24|25|26|28) */
+        /* JADX WARNING: Missing block: B:29:?, code skipped:
+            return;
+     */
+        static {
+            /*
+            r0 = com.managers.URLManager.BusinessObjectType.values();
+            r0 = r0.length;
+            r0 = new int[r0];
+            b = r0;
+            r0 = 1;
+            r1 = b;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = com.managers.URLManager.BusinessObjectType.Artists;	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r2 = r2.ordinal();	 Catch:{ NoSuchFieldError -> 0x0014 }
+            r1[r2] = r0;	 Catch:{ NoSuchFieldError -> 0x0014 }
+        L_0x0014:
+            r1 = 2;
+            r2 = b;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r3 = com.managers.URLManager.BusinessObjectType.Albums;	 Catch:{ NoSuchFieldError -> 0x001f }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x001f }
+            r2[r3] = r1;	 Catch:{ NoSuchFieldError -> 0x001f }
+        L_0x001f:
+            r2 = 3;
+            r3 = b;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r4 = com.managers.URLManager.BusinessObjectType.Tracks;	 Catch:{ NoSuchFieldError -> 0x002a }
+            r4 = r4.ordinal();	 Catch:{ NoSuchFieldError -> 0x002a }
+            r3[r4] = r2;	 Catch:{ NoSuchFieldError -> 0x002a }
+        L_0x002a:
+            r3 = com.gaana.login.LoginManager.LOGIN_STATUS.values();
+            r3 = r3.length;
+            r3 = new int[r3];
+            a = r3;
+            r3 = a;	 Catch:{ NoSuchFieldError -> 0x003d }
+            r4 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_SUCCEDED;	 Catch:{ NoSuchFieldError -> 0x003d }
+            r4 = r4.ordinal();	 Catch:{ NoSuchFieldError -> 0x003d }
+            r3[r4] = r0;	 Catch:{ NoSuchFieldError -> 0x003d }
+        L_0x003d:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0047 }
+            r3 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_ERROR_AUTHENTICATION_FAILED;	 Catch:{ NoSuchFieldError -> 0x0047 }
+            r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -> 0x0047 }
+            r0[r3] = r1;	 Catch:{ NoSuchFieldError -> 0x0047 }
+        L_0x0047:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0051 }
+            r1 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_FAILURE_SSO;	 Catch:{ NoSuchFieldError -> 0x0051 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0051 }
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0051 }
+        L_0x0051:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x005c }
+            r1 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_FAILURE_SDK_NOT_INITIALIZED;	 Catch:{ NoSuchFieldError -> 0x005c }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x005c }
+            r2 = 4;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x005c }
+        L_0x005c:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0067 }
+            r1 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_ERROR_LAUNCH_TRAP_PAGE;	 Catch:{ NoSuchFieldError -> 0x0067 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0067 }
+            r2 = 5;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0067 }
+        L_0x0067:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x0072 }
+            r1 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_MANDATORY_FIELD_MISSING;	 Catch:{ NoSuchFieldError -> 0x0072 }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x0072 }
+            r2 = 6;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x0072 }
+        L_0x0072:
+            r0 = a;	 Catch:{ NoSuchFieldError -> 0x007d }
+            r1 = com.gaana.login.LoginManager.LOGIN_STATUS.LOGIN_EMAIL_MISSING_FB;	 Catch:{ NoSuchFieldError -> 0x007d }
+            r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -> 0x007d }
+            r2 = 7;
+            r0[r1] = r2;	 Catch:{ NoSuchFieldError -> 0x007d }
+        L_0x007d:
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.managers.af$AnonymousClass26.<clinit>():void");
+        }
+    }
+
     public static af a(Context context, BaseGaanaFragment baseGaanaFragment) {
         af afVar = new af();
         afVar.j = context;
@@ -3791,8 +3884,8 @@ public class af {
         if (Util.j(this.j)) {
             LoginManager.getInstance().login((BaseActivity) this.j, LoginType.FB, new IOnLoginCompleted() {
                 public void onLoginCompleted(LOGIN_STATUS login_status, UserInfo userInfo, Bundle bundle) {
-                    switch (login_status) {
-                        case LOGIN_SUCCEDED:
+                    switch (AnonymousClass26.a[login_status.ordinal()]) {
+                        case 1:
                             if ((af.this.j instanceof GaanaActivity) && !((GaanaActivity) af.this.j).isFinishing()) {
                                 ((GaanaActivity) af.this.j).updateSidebarUserDetails();
                             }
@@ -3834,9 +3927,9 @@ public class af {
                             } else {
                                 return;
                             }
-                        case LOGIN_ERROR_AUTHENTICATION_FAILED:
-                        case LOGIN_FAILURE_SSO:
-                        case LOGIN_FAILURE_SDK_NOT_INITIALIZED:
+                        case 2:
+                        case 3:
+                        case 4:
                             if (userInfo == null || userInfo.getError() == null) {
                                 aj.a().a(af.this.j, af.this.j.getString(R.string.login_failed));
                                 return;
@@ -3844,16 +3937,16 @@ public class af {
                                 aj.a().a(af.this.j, userInfo.getError());
                                 return;
                             }
-                        case LOGIN_ERROR_LAUNCH_TRAP_PAGE:
+                        case 5:
                             af.this.a(userInfo);
                             return;
-                        case LOGIN_MANDATORY_FIELD_MISSING:
+                        case 6:
                             if (af.this.j != null && !((Activity) af.this.j).isFinishing()) {
                                 new f(af.this.j).a(af.this.j.getResources().getString(R.string.mandatory_field_missing));
                                 return;
                             }
                             return;
-                        case LOGIN_EMAIL_MISSING_FB:
+                        case 7:
                             if (af.this.j != null && !((Activity) af.this.j).isFinishing()) {
                                 FbLoginErrorDialog fbLoginErrorDialog = new FbLoginErrorDialog(af.this.j);
                                 fbLoginErrorDialog.setOnLoginCompletedListener(this);

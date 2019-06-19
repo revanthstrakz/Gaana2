@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="hs__csat_rating_value">
+        <item quantity="other">మీరు %d స్టార్లతో సేవను రేట్ చేశారు.</item>
+        <item quantity="one">You rated the service with 1 star.</item>
+    </plurals>
+    <plurals name="hs__notification_content_title">
+        <item quantity="other">సపోర్ట్ నుంచి %d కొత్త మెసేజ్లు</item>
+        <item quantity="one">సపోర్ట్ నుంచి కొత్త మెసేజ్</item>
+    </plurals>
+</resources>

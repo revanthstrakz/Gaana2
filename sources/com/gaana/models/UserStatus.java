@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class UserStatus implements Serializable {
     private static final long serialVersionUID = 1;
-    private int accountType = 0;
+    private int accountType = 3;
     private Date expiryDate = null;
     private long lastUpdateTime = -1;
     private ArrayList<LinkedDevice> linkedDevices = null;
@@ -131,19 +131,19 @@ public class UserStatus implements Serializable {
         }
 
         public boolean isAdEnabled() {
-            return TextUtils.isEmpty(this.displayAds) || this.displayAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.displayAds) || this.displayAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? false : false;
         }
 
         public boolean isHighQualityStreamingEnabled() {
-            return TextUtils.isEmpty(this.high_quality_stream) || this.high_quality_stream.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.high_quality_stream) || this.high_quality_stream.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? true : true;
         }
 
         public boolean isInterstitialAdEnabled() {
-            return TextUtils.isEmpty(this.interstitialsAds) || this.interstitialsAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.interstitialsAds) || this.interstitialsAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? false : false;
         }
 
         public boolean isAudioAdEnabled() {
-            return TextUtils.isEmpty(this.audioAds) || this.audioAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.audioAds) || this.audioAds.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? false : false;
         }
 
         public int getDeviceLimit() {
@@ -154,7 +154,7 @@ public class UserStatus implements Serializable {
         }
 
         public boolean isDownloadEnabled() {
-            return !TextUtils.isEmpty(this.downloadEnable) && this.downloadEnable.equalsIgnoreCase(AvidJSONUtil.KEY_Y);
+            return (TextUtils.isEmpty(this.downloadEnable) || !this.downloadEnable.equalsIgnoreCase(AvidJSONUtil.KEY_Y)) ? true : true;
         }
 
         public String getProduct_type_name() {
@@ -317,22 +317,22 @@ public class UserStatus implements Serializable {
 
     public void updateAccountType() {
         if (getUserSubscriptionData() == null) {
-            this.accountType = 0;
+            this.accountType = 3;
         } else if (getUserSubscriptionData().getAccountType() == null) {
-            this.accountType = 1;
+            this.accountType = 3;
         } else if (getUserSubscriptionData().getAccountType().equalsIgnoreCase("free")) {
-            this.accountType = 1;
+            this.accountType = 3;
         } else if (getUserSubscriptionData().getAccountType().equalsIgnoreCase("paid")) {
             this.accountType = 3;
         } else if (getUserSubscriptionData().getAccountType().equalsIgnoreCase("trial")) {
-            this.accountType = 2;
+            this.accountType = 3;
         }
     }
 
     public int getAccountType() {
-        if (this.accountType == 2 || this.accountType == 3) {
+        if (this.accountType == 3 || this.accountType == 3) {
             if (this.expiryDate.before(new Date())) {
-                this.accountType = 1;
+                this.accountType = 3;
             }
         }
         return this.accountType;

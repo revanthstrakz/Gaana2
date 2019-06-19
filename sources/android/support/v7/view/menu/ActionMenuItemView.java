@@ -38,10 +38,6 @@ public class ActionMenuItemView extends AppCompatTextView implements ItemView, A
     private int mSavedPaddingLeft;
     private CharSequence mTitle;
 
-    public static abstract class PopupCallback {
-        public abstract ShowableListMenu getPopup();
-    }
-
     private class ActionMenuItemForwardingListener extends ForwardingListener {
         public ActionMenuItemForwardingListener() {
             super(ActionMenuItemView.this);
@@ -63,6 +59,10 @@ public class ActionMenuItemView extends AppCompatTextView implements ItemView, A
             }
             return z;
         }
+    }
+
+    public static abstract class PopupCallback {
+        public abstract ShowableListMenu getPopup();
     }
 
     public boolean prefersCondensedTitle() {

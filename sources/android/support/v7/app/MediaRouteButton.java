@@ -47,37 +47,6 @@ public class MediaRouteButton extends View {
     private final MediaRouter mRouter;
     private MediaRouteSelector mSelector;
 
-    private final class RemoteIndicatorLoader extends AsyncTask<Void, Void, Drawable> {
-        private final int mResId;
-
-        RemoteIndicatorLoader(int i) {
-            this.mResId = i;
-        }
-
-        /* Access modifiers changed, original: protected|varargs */
-        public Drawable doInBackground(Void... voidArr) {
-            return MediaRouteButton.this.getContext().getResources().getDrawable(this.mResId);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void onPostExecute(Drawable drawable) {
-            cacheAndReset(drawable);
-            MediaRouteButton.this.setRemoteIndicatorDrawable(drawable);
-        }
-
-        /* Access modifiers changed, original: protected */
-        public void onCancelled(Drawable drawable) {
-            cacheAndReset(drawable);
-        }
-
-        private void cacheAndReset(Drawable drawable) {
-            if (drawable != null) {
-                MediaRouteButton.sRemoteIndicatorCache.put(this.mResId, drawable.getConstantState());
-            }
-            MediaRouteButton.this.mRemoteIndicatorLoader = null;
-        }
-    }
-
     private final class MediaRouterCallback extends Callback {
         MediaRouterCallback() {
         }
@@ -112,6 +81,37 @@ public class MediaRouteButton extends View {
 
         public void onProviderChanged(MediaRouter mediaRouter, ProviderInfo providerInfo) {
             MediaRouteButton.this.refreshRoute();
+        }
+    }
+
+    private final class RemoteIndicatorLoader extends AsyncTask<Void, Void, Drawable> {
+        private final int mResId;
+
+        RemoteIndicatorLoader(int i) {
+            this.mResId = i;
+        }
+
+        /* Access modifiers changed, original: protected|varargs */
+        public Drawable doInBackground(Void... voidArr) {
+            return MediaRouteButton.this.getContext().getResources().getDrawable(this.mResId);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void onPostExecute(Drawable drawable) {
+            cacheAndReset(drawable);
+            MediaRouteButton.this.setRemoteIndicatorDrawable(drawable);
+        }
+
+        /* Access modifiers changed, original: protected */
+        public void onCancelled(Drawable drawable) {
+            cacheAndReset(drawable);
+        }
+
+        private void cacheAndReset(Drawable drawable) {
+            if (drawable != null) {
+                MediaRouteButton.sRemoteIndicatorCache.put(this.mResId, drawable.getConstantState());
+            }
+            MediaRouteButton.this.mRemoteIndicatorLoader = null;
         }
     }
 

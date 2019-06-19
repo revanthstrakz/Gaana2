@@ -15,14 +15,6 @@ import java.io.InputStream;
 public class f<Data> implements n<File, Data> {
     private final d<Data> a;
 
-    public interface d<Data> {
-        Class<Data> a();
-
-        void a(Data data) throws IOException;
-
-        Data b(File file) throws FileNotFoundException;
-    }
-
     public static class a<Data> implements o<File, Data> {
         private final d<Data> a;
 
@@ -32,6 +24,33 @@ public class f<Data> implements n<File, Data> {
 
         public final n<File, Data> a(r rVar) {
             return new f(this.a);
+        }
+    }
+
+    public interface d<Data> {
+        Class<Data> a();
+
+        void a(Data data) throws IOException;
+
+        Data b(File file) throws FileNotFoundException;
+    }
+
+    public static class b extends a<ParcelFileDescriptor> {
+        public b() {
+            super(new d<ParcelFileDescriptor>() {
+                /* renamed from: a */
+                public ParcelFileDescriptor b(File file) throws FileNotFoundException {
+                    return ParcelFileDescriptor.open(file, C.ENCODING_PCM_MU_LAW);
+                }
+
+                public void a(ParcelFileDescriptor parcelFileDescriptor) throws IOException {
+                    parcelFileDescriptor.close();
+                }
+
+                public Class<ParcelFileDescriptor> a() {
+                    return ParcelFileDescriptor.class;
+                }
+            });
         }
     }
 
@@ -77,25 +96,6 @@ public class f<Data> implements n<File, Data> {
         @NonNull
         public DataSource c() {
             return DataSource.LOCAL;
-        }
-    }
-
-    public static class b extends a<ParcelFileDescriptor> {
-        public b() {
-            super(new d<ParcelFileDescriptor>() {
-                /* renamed from: a */
-                public ParcelFileDescriptor b(File file) throws FileNotFoundException {
-                    return ParcelFileDescriptor.open(file, C.ENCODING_PCM_MU_LAW);
-                }
-
-                public void a(ParcelFileDescriptor parcelFileDescriptor) throws IOException {
-                    parcelFileDescriptor.close();
-                }
-
-                public Class<ParcelFileDescriptor> a() {
-                    return ParcelFileDescriptor.class;
-                }
-            });
         }
     }
 

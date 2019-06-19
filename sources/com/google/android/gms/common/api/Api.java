@@ -32,39 +32,6 @@ public final class Api<O extends ApiOptions> {
     private final zab<?> zaax;
 
     @KeepForSdk
-    public interface AnyClient {
-    }
-
-    @KeepForSdk
-    public static class AnyClientKey<C extends AnyClient> {
-    }
-
-    public interface ApiOptions {
-
-        public interface HasOptions extends ApiOptions {
-        }
-
-        public interface NotRequiredOptions extends ApiOptions {
-        }
-
-        public interface HasAccountOptions extends HasOptions, NotRequiredOptions {
-            Account getAccount();
-        }
-
-        public interface HasGoogleSignInAccountOptions extends HasOptions {
-            GoogleSignInAccount getGoogleSignInAccount();
-        }
-
-        public static final class NoOptions implements NotRequiredOptions {
-            private NoOptions() {
-            }
-        }
-
-        public interface Optional extends HasOptions, NotRequiredOptions {
-        }
-    }
-
-    @KeepForSdk
     @VisibleForTesting
     public static abstract class BaseClientBuilder<T extends AnyClient, O> {
         @KeepForSdk
@@ -90,6 +57,35 @@ public final class Api<O extends ApiOptions> {
     public static abstract class AbstractClientBuilder<T extends Client, O> extends BaseClientBuilder<T, O> {
         @KeepForSdk
         public abstract T buildClient(Context context, Looper looper, ClientSettings clientSettings, O o, ConnectionCallbacks connectionCallbacks, OnConnectionFailedListener onConnectionFailedListener);
+    }
+
+    public interface ApiOptions {
+
+        public interface HasOptions extends ApiOptions {
+        }
+
+        public interface NotRequiredOptions extends ApiOptions {
+        }
+
+        public interface Optional extends HasOptions, NotRequiredOptions {
+        }
+
+        public interface HasAccountOptions extends HasOptions, NotRequiredOptions {
+            Account getAccount();
+        }
+
+        public interface HasGoogleSignInAccountOptions extends HasOptions {
+            GoogleSignInAccount getGoogleSignInAccount();
+        }
+
+        public static final class NoOptions implements NotRequiredOptions {
+            private NoOptions() {
+            }
+        }
+    }
+
+    @KeepForSdk
+    public interface AnyClient {
     }
 
     @KeepForSdk
@@ -145,6 +141,10 @@ public final class Api<O extends ApiOptions> {
 
         @KeepForSdk
         boolean requiresSignIn();
+    }
+
+    @KeepForSdk
+    public static class AnyClientKey<C extends AnyClient> {
     }
 
     @KeepForSdk

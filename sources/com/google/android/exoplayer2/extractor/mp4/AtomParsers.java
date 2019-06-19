@@ -103,18 +103,6 @@ final class AtomParsers {
         }
     }
 
-    private static final class TkhdData {
-        private final long duration;
-        private final int id;
-        private final int rotationDegrees;
-
-        public TkhdData(int i, long j, int i2) {
-            this.id = i;
-            this.duration = j;
-            this.rotationDegrees = i2;
-        }
-    }
-
     static final class StszSampleSizeBox implements SampleSizeBox {
         private final ParsableByteArray data;
         private final int fixedSampleSize = this.data.readUnsignedIntToInt();
@@ -172,6 +160,18 @@ final class AtomParsers {
             }
             this.currentByte = this.data.readUnsignedByte();
             return (this.currentByte & PsExtractor.VIDEO_STREAM_MASK) >> 4;
+        }
+    }
+
+    private static final class TkhdData {
+        private final long duration;
+        private final int id;
+        private final int rotationDegrees;
+
+        public TkhdData(int i, long j, int i2) {
+            this.id = i;
+            this.duration = j;
+            this.rotationDegrees = i2;
         }
     }
 

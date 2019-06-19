@@ -136,6 +136,18 @@ public class ViewPager extends ViewGroup {
     private int mTouchSlop;
     private VelocityTracker mVelocityTracker;
 
+    public interface OnAdapterChangeListener {
+        void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter2);
+    }
+
+    public interface OnPageChangeListener {
+        void onPageScrollStateChanged(int i);
+
+        void onPageScrolled(int i, float f, int i2);
+
+        void onPageSelected(int i);
+    }
+
     @Inherited
     @Target({ElementType.TYPE})
     @Retention(RetentionPolicy.RUNTIME)
@@ -170,49 +182,6 @@ public class ViewPager extends ViewGroup {
             TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, ViewPager.LAYOUT_ATTRS);
             this.gravity = obtainStyledAttributes.getInteger(0, 48);
             obtainStyledAttributes.recycle();
-        }
-    }
-
-    public interface OnAdapterChangeListener {
-        void onAdapterChanged(@NonNull ViewPager viewPager, @Nullable PagerAdapter pagerAdapter, @Nullable PagerAdapter pagerAdapter2);
-    }
-
-    public interface OnPageChangeListener {
-        void onPageScrollStateChanged(int i);
-
-        void onPageScrolled(int i, float f, int i2);
-
-        void onPageSelected(int i);
-    }
-
-    public interface PageTransformer {
-        void transformPage(@NonNull View view, float f);
-    }
-
-    private class PagerObserver extends DataSetObserver {
-        PagerObserver() {
-        }
-
-        public void onChanged() {
-            ViewPager.this.dataSetChanged();
-        }
-
-        public void onInvalidated() {
-            ViewPager.this.dataSetChanged();
-        }
-    }
-
-    static class ViewPositionComparator implements Comparator<View> {
-        ViewPositionComparator() {
-        }
-
-        public int compare(View view, View view2) {
-            LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
-            LayoutParams layoutParams2 = (LayoutParams) view2.getLayoutParams();
-            if (layoutParams.isDecor == layoutParams2.isDecor) {
-                return layoutParams.position - layoutParams2.position;
-            }
-            return layoutParams.isDecor ? 1 : -1;
         }
     }
 
@@ -263,6 +232,23 @@ public class ViewPager extends ViewGroup {
 
         private boolean canScroll() {
             return ViewPager.this.mAdapter != null && ViewPager.this.mAdapter.getCount() > 1;
+        }
+    }
+
+    public interface PageTransformer {
+        void transformPage(@NonNull View view, float f);
+    }
+
+    private class PagerObserver extends DataSetObserver {
+        PagerObserver() {
+        }
+
+        public void onChanged() {
+            ViewPager.this.dataSetChanged();
+        }
+
+        public void onInvalidated() {
+            ViewPager.this.dataSetChanged();
         }
     }
 
@@ -323,6 +309,20 @@ public class ViewPager extends ViewGroup {
         }
 
         public void onPageSelected(int i) {
+        }
+    }
+
+    static class ViewPositionComparator implements Comparator<View> {
+        ViewPositionComparator() {
+        }
+
+        public int compare(View view, View view2) {
+            LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+            LayoutParams layoutParams2 = (LayoutParams) view2.getLayoutParams();
+            if (layoutParams.isDecor == layoutParams2.isDecor) {
+                return layoutParams.position - layoutParams2.position;
+            }
+            return layoutParams.isDecor ? 1 : -1;
         }
     }
 

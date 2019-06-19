@@ -25,6 +25,6 @@ public final class zzazr {
     }
 
     public final zzazo zzaaj() {
-        return new zzazo(this);
+        return new zzazo(this, null);
     }
 }

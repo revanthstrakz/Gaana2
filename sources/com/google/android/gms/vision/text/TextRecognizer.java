@@ -30,7 +30,7 @@ public final class TextRecognizer extends Detector<TextBlock> {
         }
 
         public TextRecognizer build() {
-            return new TextRecognizer(new zzak(this.zze, this.zzfa));
+            return new TextRecognizer(new zzak(this.zze, this.zzfa), null);
         }
     }
 
@@ -120,5 +120,9 @@ public final class TextRecognizer extends Detector<TextBlock> {
     public final void release() {
         super.release();
         this.zzez.zzp();
+    }
+
+    /* synthetic */ TextRecognizer(zzak zzak, zzb zzb) {
+        this(zzak);
     }
 }

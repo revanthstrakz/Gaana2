@@ -33,10 +33,6 @@ public class PushManager {
     private PushHandler pushHandler;
     private OnTokenReceivedListener tokenListener;
 
-    public interface OnTokenReceivedListener {
-        void onTokenReceived(String str);
-    }
-
     public interface PushHandler {
         @WorkerThread
         void deleteToken(Context context, String str);
@@ -66,6 +62,10 @@ public class PushManager {
         void setMessageListener(Object obj);
 
         void setPushRegistrationFallback(Context context);
+    }
+
+    public interface OnTokenReceivedListener {
+        void onTokenReceived(String str);
     }
 
     private PushManager() {

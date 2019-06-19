@@ -51,6 +51,25 @@ public final class WalletFragment extends Fragment {
         void onStateChanged(WalletFragment walletFragment, int i, int i2, Bundle bundle);
     }
 
+    static class zza extends zzr {
+        private OnStateChangedListener zzfw;
+        private final WalletFragment zzfx;
+
+        zza(WalletFragment walletFragment) {
+            this.zzfx = walletFragment;
+        }
+
+        public final void zza(int i, int i2, Bundle bundle) {
+            if (this.zzfw != null) {
+                this.zzfw.onStateChanged(this.zzfx, i, i2, bundle);
+            }
+        }
+
+        public final void zza(OnStateChangedListener onStateChangedListener) {
+            this.zzfw = onStateChangedListener;
+        }
+    }
+
     private static class zzb implements LifecycleDelegate {
         private final zzn zzfp;
 
@@ -243,25 +262,6 @@ public final class WalletFragment extends Fragment {
 
         /* synthetic */ zzc(WalletFragment walletFragment, zzb zzb) {
             this();
-        }
-    }
-
-    static class zza extends zzr {
-        private OnStateChangedListener zzfw;
-        private final WalletFragment zzfx;
-
-        zza(WalletFragment walletFragment) {
-            this.zzfx = walletFragment;
-        }
-
-        public final void zza(int i, int i2, Bundle bundle) {
-            if (this.zzfw != null) {
-                this.zzfw.onStateChanged(this.zzfx, i, i2, bundle);
-            }
-        }
-
-        public final void zza(OnStateChangedListener onStateChangedListener) {
-            this.zzfw = onStateChangedListener;
         }
     }
 

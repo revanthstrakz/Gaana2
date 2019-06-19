@@ -26,6 +26,12 @@ public final class RequirementsWatcher {
     private final Requirements requirements;
     private boolean requirementsWereMet;
 
+    public interface Listener {
+        void requirementsMet(RequirementsWatcher requirementsWatcher);
+
+        void requirementsNotMet(RequirementsWatcher requirementsWatcher);
+    }
+
     @RequiresApi(api = 21)
     private final class CapabilityValidatedCallback extends NetworkCallback {
         private CapabilityValidatedCallback() {
@@ -64,12 +70,6 @@ public final class RequirementsWatcher {
                 RequirementsWatcher.this.checkRequirements();
             }
         }
-    }
-
-    public interface Listener {
-        void requirementsMet(RequirementsWatcher requirementsWatcher);
-
-        void requirementsNotMet(RequirementsWatcher requirementsWatcher);
     }
 
     private static void logd(String str) {

@@ -30,18 +30,6 @@ public class AppInviteDialog extends FacebookDialogBase<AppInviteContent, Result
     private static final int DEFAULT_REQUEST_CODE = RequestCodeOffset.AppInvite.toRequestCode();
     private static final String TAG = "AppInviteDialog";
 
-    public static final class Result {
-        private final Bundle bundle;
-
-        public Result(Bundle bundle) {
-            this.bundle = bundle;
-        }
-
-        public Bundle getData() {
-            return this.bundle;
-        }
-    }
-
     private class NativeHandler extends ModeHandler {
         private NativeHandler() {
             super();
@@ -68,6 +56,18 @@ public class AppInviteDialog extends FacebookDialogBase<AppInviteContent, Result
                 }
             }, AppInviteDialog.getFeature());
             return createBaseAppCall;
+        }
+    }
+
+    public static final class Result {
+        private final Bundle bundle;
+
+        public Result(Bundle bundle) {
+            this.bundle = bundle;
+        }
+
+        public Bundle getData() {
+            return this.bundle;
         }
     }
 

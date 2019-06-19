@@ -19,6 +19,20 @@ public final class MoEDataContract {
         public static final String BATCHED_DATA = "batch_data";
     }
 
+    public static final class BatchDataEntity implements BatchDataColumns {
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.batchdata";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.batchdata";
+        public static final String[] PROJECTION = new String[]{BaseColumns._ID, BatchDataColumns.BATCHED_DATA};
+
+        public static Uri getContentUri(Context context) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("content://");
+            stringBuilder.append(MoEDataContract.getAuthority(context));
+            stringBuilder.append("/batchdata");
+            return Uri.parse(stringBuilder.toString());
+        }
+    }
+
     interface CampaignListColumns extends BaseColumns {
         public static final String CAMPAIGN_ID = "campaign_id";
         public static final String CAMPAIGN_ID_TTL = "ttl";
@@ -26,10 +40,40 @@ public final class MoEDataContract {
         public static final int COLUMN_INDEX_CAMPAIGN_ID_TTL = 2;
     }
 
+    public static final class CampaignListEntity implements CampaignListColumns {
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.campaignlist";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.campaignlist";
+        public static final String[] PROJECTION = new String[]{BaseColumns._ID, "campaign_id", "ttl"};
+
+        public static Uri getContentUri(Context context) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("content://");
+            stringBuilder.append(MoEDataContract.getAuthority(context));
+            stringBuilder.append("/campaignlist");
+            return Uri.parse(stringBuilder.toString());
+        }
+    }
+
     interface DatapointColumns extends BaseColumns {
         public static final int COLUMN_INDEX_DETAILS = 2;
         public static final String DETAILS = "details";
         public static final String[] PROJECTION = new String[]{BaseColumns._ID, BaseColumns.GTIME, DETAILS};
+    }
+
+    public static final class DatapointEntity implements DatapointColumns {
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.datapoint";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.datapoints";
+
+        public static Uri getContentUri(Context context) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("content://");
+            stringBuilder.append(MoEDataContract.getAuthority(context));
+            stringBuilder.append("/datapoints");
+            return Uri.parse(stringBuilder.toString());
+        }
+
+        private DatapointEntity() {
+        }
     }
 
     interface InAppMessageColumns extends BaseColumns {
@@ -75,70 +119,6 @@ public final class MoEDataContract {
         public static final String[] PROJECTION = new String[]{BaseColumns._ID, BaseColumns.GTIME, "campaign_id", MSG_ALIGN_TYPE, MSG_INAPP_TYPE, "ttl", MSG_MIN_DELAY, "max_times", MSG_SHOWN_COUNT, "persistent", "priority", "context", MSG_LAST_SHOWN, MSG_IS_CLICKED, MSG_HAS_ERRORS, "auto_dismiss", MSG_CANCELABLE, "content", MSG_SHOW_ONLY_IN, "status", MSG_CONTAINER_STYLE};
     }
 
-    interface MessageColumns extends BaseColumns {
-        public static final int COLUMN_INDEX_MSG_CLICKED = 3;
-        public static final int COLUMN_INDEX_MSG_DETAILS = 2;
-        public static final int COLUMN_INDEX_MSG_TAG = 5;
-        public static final int COLUMN_INDEX_MSG_TTL = 4;
-        public static final String DEFAULT_SORT_ORDER = "gtime DESC";
-        public static final String MSG_CLICKED = "msgclicked";
-        public static final String MSG_DETAILS = "msg";
-        public static final String MSG_TAG = "msg_tag";
-        public static final String MSG_TTL = "msgttl";
-        public static final String[] PROJECTION = new String[]{BaseColumns._ID, BaseColumns.GTIME, "msg", MSG_CLICKED, MSG_TTL, MSG_TAG};
-    }
-
-    interface UserAttributeColumns extends BaseColumns {
-        public static final String ATTRIBUTE_NAME = "attribute_name";
-        public static final String ATTRIBUTE_VALUE = "attribute_value";
-        public static final int COLUMN_INDEX_ATTRIBUTE_NAME = 1;
-        public static final int COLUMN_INDEX_ATTRIBUTE_VALUE = 2;
-    }
-
-    public static final class BatchDataEntity implements BatchDataColumns {
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.batchdata";
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.batchdata";
-        public static final String[] PROJECTION = new String[]{BaseColumns._ID, BatchDataColumns.BATCHED_DATA};
-
-        public static Uri getContentUri(Context context) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("content://");
-            stringBuilder.append(MoEDataContract.getAuthority(context));
-            stringBuilder.append("/batchdata");
-            return Uri.parse(stringBuilder.toString());
-        }
-    }
-
-    public static final class CampaignListEntity implements CampaignListColumns {
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.campaignlist";
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.campaignlist";
-        public static final String[] PROJECTION = new String[]{BaseColumns._ID, "campaign_id", "ttl"};
-
-        public static Uri getContentUri(Context context) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("content://");
-            stringBuilder.append(MoEDataContract.getAuthority(context));
-            stringBuilder.append("/campaignlist");
-            return Uri.parse(stringBuilder.toString());
-        }
-    }
-
-    public static final class DatapointEntity implements DatapointColumns {
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.datapoint";
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.datapoints";
-
-        public static Uri getContentUri(Context context) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("content://");
-            stringBuilder.append(MoEDataContract.getAuthority(context));
-            stringBuilder.append("/datapoints");
-            return Uri.parse(stringBuilder.toString());
-        }
-
-        private DatapointEntity() {
-        }
-    }
-
     public static final class InAppMessageEntity implements InAppMessageColumns {
         static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.moe.inapp";
         static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.moe.inapps";
@@ -153,6 +133,19 @@ public final class MoEDataContract {
 
         private InAppMessageEntity() {
         }
+    }
+
+    interface MessageColumns extends BaseColumns {
+        public static final int COLUMN_INDEX_MSG_CLICKED = 3;
+        public static final int COLUMN_INDEX_MSG_DETAILS = 2;
+        public static final int COLUMN_INDEX_MSG_TAG = 5;
+        public static final int COLUMN_INDEX_MSG_TTL = 4;
+        public static final String DEFAULT_SORT_ORDER = "gtime DESC";
+        public static final String MSG_CLICKED = "msgclicked";
+        public static final String MSG_DETAILS = "msg";
+        public static final String MSG_TAG = "msg_tag";
+        public static final String MSG_TTL = "msgttl";
+        public static final String[] PROJECTION = new String[]{BaseColumns._ID, BaseColumns.GTIME, "msg", MSG_CLICKED, MSG_TTL, MSG_TAG};
     }
 
     public static final class MessageEntity implements MessageColumns {
@@ -174,6 +167,13 @@ public final class MoEDataContract {
 
         private MessageEntity() {
         }
+    }
+
+    interface UserAttributeColumns extends BaseColumns {
+        public static final String ATTRIBUTE_NAME = "attribute_name";
+        public static final String ATTRIBUTE_VALUE = "attribute_value";
+        public static final int COLUMN_INDEX_ATTRIBUTE_NAME = 1;
+        public static final int COLUMN_INDEX_ATTRIBUTE_VALUE = 2;
     }
 
     public static final class UserAttributeEntity implements UserAttributeColumns {

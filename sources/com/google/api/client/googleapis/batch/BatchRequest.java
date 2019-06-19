@@ -24,20 +24,6 @@ public final class BatchRequest {
     List<RequestInfo<?, ?>> requestInfos = new ArrayList();
     private Sleeper sleeper = Sleeper.DEFAULT;
 
-    static class RequestInfo<T, E> {
-        final BatchCallback<T, E> callback;
-        final Class<T> dataClass;
-        final Class<E> errorClass;
-        final HttpRequest request;
-
-        RequestInfo(BatchCallback<T, E> batchCallback, Class<T> cls, Class<E> cls2, HttpRequest httpRequest) {
-            this.callback = batchCallback;
-            this.dataClass = cls;
-            this.errorClass = cls2;
-            this.request = httpRequest;
-        }
-    }
-
     class BatchInterceptor implements HttpExecuteInterceptor {
         private HttpExecuteInterceptor originalInterceptor;
 
@@ -55,6 +41,20 @@ public final class BatchRequest {
                     interceptor.intercept(requestInfo.request);
                 }
             }
+        }
+    }
+
+    static class RequestInfo<T, E> {
+        final BatchCallback<T, E> callback;
+        final Class<T> dataClass;
+        final Class<E> errorClass;
+        final HttpRequest request;
+
+        RequestInfo(BatchCallback<T, E> batchCallback, Class<T> cls, Class<E> cls2, HttpRequest httpRequest) {
+            this.callback = batchCallback;
+            this.dataClass = cls;
+            this.errorClass = cls2;
+            this.request = httpRequest;
         }
     }
 

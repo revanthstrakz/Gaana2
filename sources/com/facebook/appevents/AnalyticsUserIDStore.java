@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 class AnalyticsUserIDStore {
     private static final String ANALYTICS_USER_ID_KEY = "com.facebook.appevents.AnalyticsUserIDStore.userID";
     private static final String TAG = "AnalyticsUserIDStore";
-    private static volatile boolean initialized = false;
+    private static volatile boolean initialized;
     private static ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
     private static String userID;
 

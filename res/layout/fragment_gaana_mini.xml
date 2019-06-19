@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <android.support.v7.widget.Toolbar android:id="@id/main_toolbar" android:background="?colorPrimary" android:layout_width="fill_parent" android:layout_height="?actionBarSize" app:layout_scrollFlags="enterAlways|scroll" app:theme="@style/ActionBar" />
+    <ScrollView android:id="@id/scrollView" android:background="?gaana_mini_grey_white_bg" android:visibility="gone" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="horizontal" android:background="?gaana_mini_black_grey_bg" android:padding="@dimen/activity_horizontal_margin_large" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/activity_vertical_margin_small">
+                    <com.library.controls.CrossFadeImageView android:layout_gravity="center_horizontal" android:id="@id/gaana_mini_top_left_section_image" android:layout_width="100.0dip" android:layout_height="100.0dip" android:layout_marginTop="@dimen/activity_vertical_margin_small" android:layout_marginBottom="@dimen/activity_vertical_margin_small" android:src="@drawable/placeholder_album_artwork_large" />
+                    <TextView android:textSize="@dimen/hs__textSizeLarge" android:textColor="?save_text_color" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/gaana_mini_top_left_section_price" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="99 " />
+                    <TextView android:textColor="?gaana_mini_sub_content_color" android:gravity="center_horizontal" android:layout_gravity="center_horizontal" android:id="@id/gaana_mini_top_left_section_duaration" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="(6 months)" />
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/activity_vertical_margin_small" android:layout_marginTop="@dimen/activity_vertical_margin_small" android:layout_weight="0.7">
+                    <TextView android:id="@id/gaana_mini_top_right_section_item_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_vertical_margin_large" android:text="Bollywood top 50 " style="@style/text_medium" />
+                    <TextView android:id="@id/gaana_mini_top_right_section_item_desc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_vertical_margin_small" android:text="Download this playlist and keep up with music without worrying about a network connection." style="@style/text_regular" />
+                    <View android:background="?gaana_mini_divider1" android:layout_width="fill_parent" android:layout_height="@dimen/playerG_divider" android:layout_marginTop="@dimen/dp20" android:layout_marginBottom="@dimen/dp20" />
+                    <TextView android:textSize="@dimen/hs__textSizeSmall" android:textColor="?gaana_mini_sub_content_color" android:id="@id/gaana_mini_top_right_section_item_offers" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Additional free benefits worth ₹ 120" />
+                    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/vertical_margin">
+                            <ImageView android:id="@id/gaana_mini_top_right_section_tag1_image" android:layout_width="@dimen/settings_image_size" android:layout_height="@dimen/settings_image_size" android:layout_marginTop="@dimen/activity_vertical_margin_small" android:layout_marginBottom="@dimen/activity_vertical_margin_small" android:src="?gaana_mini_icon_hd_music" />
+                            <TextView android:textSize="@dimen/hs__textSizeSmall" android:textColor="?gaana_mini_sub_content_color" android:layout_width="70.0dip" android:layout_height="wrap_content" android:text="@string/hd_quality_music" android:layout_below="@id/gaana_mini_top_right_section_tag1_image" />
+                        </RelativeLayout>
+                        <TextView android:textSize="@dimen/hs__textSizeLarge" android:textColor="?gaana_mini_sub_content_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/activity_vertical_margin_large" android:text="+" />
+                        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/vertical_margin">
+                            <ImageView android:id="@id/gaana_mini_top_right_section_tag2_image" android:layout_width="@dimen/settings_image_size" android:layout_height="@dimen/settings_image_size" android:layout_marginTop="@dimen/activity_vertical_margin_small" android:layout_marginBottom="@dimen/activity_vertical_margin_small" android:src="?gaana_mini_block_ads" />
+                            <TextView android:textSize="@dimen/hs__textSizeSmall" android:textColor="?gaana_mini_sub_content_color" android:layout_width="70.0dip" android:layout_height="wrap_content" android:text="@string/ads_free_experience" android:layout_below="@id/gaana_mini_top_right_section_tag2_image" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView android:textSize="@dimen/hs__textSizeMedium" android:textStyle="bold" android:textColor="?gaana_mini_sub_content_color" android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="@dimen/grid_item_height" android:layout_marginLeft="@dimen/activity_vertical_margin" android:layout_marginTop="@dimen/activity_vertical_margin_small" android:text="@string/pay_via" />
+            <LinearLayout android:orientation="vertical" android:id="@id/product_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/activity_horizontal_margin" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

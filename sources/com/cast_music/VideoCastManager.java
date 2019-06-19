@@ -101,6 +101,23 @@ public class VideoCastManager extends a implements com.cast_music.exceptions.a {
         DEVICE
     }
 
+    class a extends Listener {
+        a() {
+        }
+
+        public void onApplicationDisconnected(int i) {
+            VideoCastManager.this.h(i);
+        }
+
+        public void onApplicationStatusChanged() {
+            VideoCastManager.this.X();
+        }
+
+        public void onVolumeChanged() {
+            VideoCastManager.this.Y();
+        }
+    }
+
     private class b extends TimerTask {
         private b() {
         }
@@ -120,23 +137,6 @@ public class VideoCastManager extends a implements com.cast_music.exceptions.a {
                     com.cast_music.b.b.a(VideoCastManager.t, "Failed to update the progress tracker due to network issues", e);
                 }
             }
-        }
-    }
-
-    class a extends Listener {
-        a() {
-        }
-
-        public void onApplicationDisconnected(int i) {
-            VideoCastManager.this.h(i);
-        }
-
-        public void onApplicationStatusChanged() {
-            VideoCastManager.this.X();
-        }
-
-        public void onVolumeChanged() {
-            VideoCastManager.this.Y();
         }
     }
 

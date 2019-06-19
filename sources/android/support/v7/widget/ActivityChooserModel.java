@@ -90,6 +90,35 @@ class ActivityChooserModel extends DataSetObservable {
         void sort(Intent intent, List<ActivityResolveInfo> list, List<HistoricalRecord> list2);
     }
 
+    private static final class DefaultSorter implements ActivitySorter {
+        private static final float WEIGHT_DECAY_COEFFICIENT = 0.95f;
+        private final Map<ComponentName, ActivityResolveInfo> mPackageNameToActivityMap = new HashMap();
+
+        DefaultSorter() {
+        }
+
+        public void sort(Intent intent, List<ActivityResolveInfo> list, List<HistoricalRecord> list2) {
+            Map map = this.mPackageNameToActivityMap;
+            map.clear();
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                ActivityResolveInfo activityResolveInfo = (ActivityResolveInfo) list.get(i);
+                activityResolveInfo.weight = 0.0f;
+                map.put(new ComponentName(activityResolveInfo.resolveInfo.activityInfo.packageName, activityResolveInfo.resolveInfo.activityInfo.name), activityResolveInfo);
+            }
+            float f = 1.0f;
+            for (size = list2.size() - 1; size >= 0; size--) {
+                HistoricalRecord historicalRecord = (HistoricalRecord) list2.get(size);
+                ActivityResolveInfo activityResolveInfo2 = (ActivityResolveInfo) map.get(historicalRecord.activity);
+                if (activityResolveInfo2 != null) {
+                    activityResolveInfo2.weight += historicalRecord.weight * f;
+                    f *= WEIGHT_DECAY_COEFFICIENT;
+                }
+            }
+            Collections.sort(list);
+        }
+    }
+
     public static final class HistoricalRecord {
         public final ComponentName activity;
         public final long time;
@@ -296,35 +325,6 @@ class ActivityChooserModel extends DataSetObservable {
             return r3;
             */
             throw new UnsupportedOperationException("Method not decompiled: android.support.v7.widget.ActivityChooserModel$PersistHistoryAsyncTask.doInBackground(java.lang.Object[]):java.lang.Void");
-        }
-    }
-
-    private static final class DefaultSorter implements ActivitySorter {
-        private static final float WEIGHT_DECAY_COEFFICIENT = 0.95f;
-        private final Map<ComponentName, ActivityResolveInfo> mPackageNameToActivityMap = new HashMap();
-
-        DefaultSorter() {
-        }
-
-        public void sort(Intent intent, List<ActivityResolveInfo> list, List<HistoricalRecord> list2) {
-            Map map = this.mPackageNameToActivityMap;
-            map.clear();
-            int size = list.size();
-            for (int i = 0; i < size; i++) {
-                ActivityResolveInfo activityResolveInfo = (ActivityResolveInfo) list.get(i);
-                activityResolveInfo.weight = 0.0f;
-                map.put(new ComponentName(activityResolveInfo.resolveInfo.activityInfo.packageName, activityResolveInfo.resolveInfo.activityInfo.name), activityResolveInfo);
-            }
-            float f = 1.0f;
-            for (size = list2.size() - 1; size >= 0; size--) {
-                HistoricalRecord historicalRecord = (HistoricalRecord) list2.get(size);
-                ActivityResolveInfo activityResolveInfo2 = (ActivityResolveInfo) map.get(historicalRecord.activity);
-                if (activityResolveInfo2 != null) {
-                    activityResolveInfo2.weight += historicalRecord.weight * f;
-                    f *= WEIGHT_DECAY_COEFFICIENT;
-                }
-            }
-            Collections.sort(list);
         }
     }
 

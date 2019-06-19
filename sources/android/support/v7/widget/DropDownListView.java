@@ -39,25 +39,6 @@ class DropDownListView extends ListView {
     private GateKeeperDrawable mSelector;
     private final Rect mSelectorRect = new Rect();
 
-    private class ResolveHoverRunnable implements Runnable {
-        private ResolveHoverRunnable() {
-        }
-
-        public void run() {
-            DropDownListView.this.mResolveHoverRunnable = null;
-            DropDownListView.this.drawableStateChanged();
-        }
-
-        public void cancel() {
-            DropDownListView.this.mResolveHoverRunnable = null;
-            DropDownListView.this.removeCallbacks(this);
-        }
-
-        public void post() {
-            DropDownListView.this.post(this);
-        }
-    }
-
     private static class GateKeeperDrawable extends DrawableWrapper {
         private boolean mEnabled = true;
 
@@ -94,6 +75,25 @@ class DropDownListView extends ListView {
 
         public boolean setVisible(boolean z, boolean z2) {
             return this.mEnabled ? super.setVisible(z, z2) : false;
+        }
+    }
+
+    private class ResolveHoverRunnable implements Runnable {
+        private ResolveHoverRunnable() {
+        }
+
+        public void run() {
+            DropDownListView.this.mResolveHoverRunnable = null;
+            DropDownListView.this.drawableStateChanged();
+        }
+
+        public void cancel() {
+            DropDownListView.this.mResolveHoverRunnable = null;
+            DropDownListView.this.removeCallbacks(this);
+        }
+
+        public void post() {
+            DropDownListView.this.post(this);
         }
     }
 

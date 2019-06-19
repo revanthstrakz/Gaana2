@@ -5,8 +5,8 @@ import com.constants.Constants;
 import com.gaana.application.GaanaApplication;
 
 public class g {
-    private static boolean a = false;
-    private static boolean b = false;
+    private static boolean a;
+    private static boolean b;
 
     public static boolean a() {
         Constants.o = Build.MANUFACTURER;

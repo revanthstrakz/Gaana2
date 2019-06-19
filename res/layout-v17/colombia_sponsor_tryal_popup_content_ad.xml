@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.til.colombia.android.service.ColombiaNativeGeneralAdView android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center" android:id="@id/sponsor_tryal_image_ad" android:paddingLeft="@dimen/image_padding" android:paddingRight="@dimen/image_padding" android:layout_width="@dimen/download_trial_imahe_width" android:layout_height="@dimen/download_trial_imahe_height" android:layout_centerInParent="true" android:paddingEnd="@dimen/image_padding" />
+        <TextView android:id="@id/leftdrawer_sponsor_company_text" android:paddingRight="@dimen/image_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_below="@id/sponsor_tryal_image_ad" android:layout_alignParentRight="true" style="@style/text_medium" />
+        <TextView android:id="@id/leftdrawer_sponsor_small_braught_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:layout_marginRight="2.0dip" android:maxLength="25" android:layout_toLeftOf="@id/leftdrawer_sponsor_company_text" android:layout_below="@id/sponsor_tryal_image_ad" style="@style/text_medium" />
+        <com.til.colombia.android.service.ColombiaBannerView android:id="@id/banner" android:layout_width="0.0dip" android:layout_height="0.0dip" />
+    </RelativeLayout>
+</com.til.colombia.android.service.ColombiaNativeGeneralAdView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="hs__csat_rating_value">
+        <item quantity="other">ಸೇವೆಯನ್ನು ನೀವು %d ಸ್ಟಾರ್ ಜೊತೆಗೆ ರೇಟ್ ಮಾಡಿದ್ದೀರಾ.</item>
+        <item quantity="one">You rated the service with 1 star.</item>
+    </plurals>
+    <plurals name="hs__notification_content_title">
+        <item quantity="other">ಸಹಾಯ ಕೇಂದ್ರದಿಂದ %d ಹೊಸ ಮೆಸೇಜುಗಳು ಬಂದಿವೆ</item>
+        <item quantity="one">ಸಹಾಯ ಕೇಂದ್ರದಿಂದ ಹೊಸ ಮೆಸೇಜ್ ಬಂದಿದೆ</item>
+    </plurals>
+</resources>

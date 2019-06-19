@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
 
 public final class HSSearch {
     private static a a = new a();
-    private static boolean b = false;
-    private static boolean c = false;
+    private static boolean b;
+    private static boolean c;
     private static HashMap<String, String[]> d;
     private static final Pattern e = Pattern.compile("[a-zA-Z0-9]+");
 

@@ -31,11 +31,6 @@ public final class GameRequestContent implements ShareModel {
         TURN
     }
 
-    public enum Filters {
-        APP_USERS,
-        APP_NON_USERS
-    }
-
     public static class Builder implements ShareModelBuilder<GameRequestContent, Builder> {
         private ActionType actionType;
         private String data;
@@ -108,6 +103,11 @@ public final class GameRequestContent implements ShareModel {
         public Builder readFrom(Parcel parcel) {
             return readFrom((GameRequestContent) parcel.readParcelable(GameRequestContent.class.getClassLoader()));
         }
+    }
+
+    public enum Filters {
+        APP_USERS,
+        APP_NON_USERS
     }
 
     public int describeContents() {

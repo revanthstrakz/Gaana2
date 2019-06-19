@@ -36,28 +36,6 @@ public class iy implements jj {
     private boolean n;
     private bq o;
 
-    enum f {
-        IDLE,
-        LOADED,
-        PLAYING,
-        PAUSED
-    }
-
-    public enum g {
-        TYPE_VIDEO(0),
-        TYPE_AUDIO(1);
-        
-        private final int c;
-
-        public int a() {
-            return this.c;
-        }
-
-        private g(int i) {
-            this.c = i;
-        }
-    }
-
     class a implements com.google.ads.interactivemedia.v3.internal.ba.c {
         a() {
         }
@@ -148,6 +126,28 @@ public class iy implements jj {
 
         public void a(int i, int i2, int i3, float f) {
             iy.this.c.a(i2 == 0 ? 1.0f : (((float) i) * f) / ((float) i2));
+        }
+    }
+
+    enum f {
+        IDLE,
+        LOADED,
+        PLAYING,
+        PAUSED
+    }
+
+    public enum g {
+        TYPE_VIDEO(0),
+        TYPE_AUDIO(1);
+        
+        private final int c;
+
+        public int a() {
+            return this.c;
+        }
+
+        private g(int i) {
+            this.c = i;
         }
     }
 

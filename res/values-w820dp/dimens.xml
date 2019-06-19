@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">64.0dip</dimen>
+    <dimen name="activity_horizontal_margin_half">32.0dip</dimen>
+    <dimen name="activity_horizontal_margin_login">44.0dip</dimen>
+    <dimen name="activity_horizontal_margin_login_fb">56.0dip</dimen>
+    <dimen name="activity_horizontal_margin_more">96.0dip</dimen>
+    <dimen name="activity_horizontal_padding_login">20.0dip</dimen>
+    <dimen name="activity_horizontal_padding_small">12.0dip</dimen>
+    <dimen name="download_edit_bar_height">240.0dip</dimen>
+</resources>

@@ -50,10 +50,6 @@ public class ChunkSampleStream<T extends ChunkSource> implements SampleStream, S
     @Nullable
     private ReleaseCallback<T> releaseCallback;
 
-    public interface ReleaseCallback<T extends ChunkSource> {
-        void onSampleStreamReleased(ChunkSampleStream<T> chunkSampleStream);
-    }
-
     public final class EmbeddedSampleStream implements SampleStream {
         private final int index;
         private boolean notifiedDownstreamFormat;
@@ -109,6 +105,10 @@ public class ChunkSampleStream<T extends ChunkSource> implements SampleStream, S
                 this.notifiedDownstreamFormat = true;
             }
         }
+    }
+
+    public interface ReleaseCallback<T extends ChunkSource> {
+        void onSampleStreamReleased(ChunkSampleStream<T> chunkSampleStream);
     }
 
     @Deprecated

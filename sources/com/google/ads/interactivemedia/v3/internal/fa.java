@@ -13,6 +13,14 @@ public final class fa {
     private b b;
     private boolean c;
 
+    public interface c {
+        void a();
+
+        boolean b();
+
+        void c() throws IOException, InterruptedException;
+    }
+
     public interface a {
         void a(c cVar);
 
@@ -87,14 +95,6 @@ public final class fa {
             fa.this.c = false;
             fa.this.b = null;
         }
-    }
-
-    public interface c {
-        void a();
-
-        boolean b();
-
-        void c() throws IOException, InterruptedException;
     }
 
     public static final class d extends IOException {

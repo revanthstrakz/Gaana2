@@ -9,12 +9,12 @@ public class AdInternalSettings {
     private static final String b = "AdInternalSettings";
     private static final Collection<String> c = new HashSet();
     private static final Collection<String> d = new HashSet();
-    private static boolean e = false;
-    private static boolean f = false;
-    private static String g = null;
-    private static String h = null;
-    private static String i = null;
-    private static boolean j = false;
+    private static boolean e;
+    private static boolean f;
+    private static String g;
+    private static String h;
+    private static String i;
+    private static boolean j;
     private static boolean k;
     private static boolean l;
 

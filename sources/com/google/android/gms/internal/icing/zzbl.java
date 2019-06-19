@@ -7,9 +7,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class zzbl<T> {
     @SuppressLint({"StaticFieldLeak"})
-    private static Context zzdc = null;
+    private static Context zzdc;
     private static final Object zzdf = new Object();
-    private static boolean zzdg = false;
+    private static boolean zzdg;
     private static final AtomicInteger zzdj = new AtomicInteger();
     private final String name;
     private final zzbo zzdh;

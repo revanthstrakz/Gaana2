@@ -77,6 +77,24 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
     private final ViewGroup mTargetParent;
     final SnackbarBaseLayout mView;
 
+    public interface ContentViewCallback {
+        void animateContentIn(int i, int i2);
+
+        void animateContentOut(int i, int i2);
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    interface OnAttachStateChangeListener {
+        void onViewAttachedToWindow(View view);
+
+        void onViewDetachedFromWindow(View view);
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    interface OnLayoutChangeListener {
+        void onLayoutChange(View view, int i, int i2, int i3, int i4);
+    }
+
     public static abstract class BaseCallback<B> {
         public static final int DISMISS_EVENT_ACTION = 1;
         public static final int DISMISS_EVENT_CONSECUTIVE = 4;
@@ -96,28 +114,37 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         }
     }
 
-    public interface ContentViewCallback {
-        void animateContentIn(int i, int i2);
+    final class Behavior extends SwipeDismissBehavior<SnackbarBaseLayout> {
+        Behavior() {
+        }
 
-        void animateContentOut(int i, int i2);
+        public boolean canSwipeDismissView(View view) {
+            return view instanceof SnackbarBaseLayout;
+        }
+
+        public boolean onInterceptTouchEvent(CoordinatorLayout coordinatorLayout, SnackbarBaseLayout snackbarBaseLayout, MotionEvent motionEvent) {
+            int actionMasked = motionEvent.getActionMasked();
+            if (actionMasked != 3) {
+                switch (actionMasked) {
+                    case 0:
+                        if (coordinatorLayout.isPointInChildBounds(snackbarBaseLayout, (int) motionEvent.getX(), (int) motionEvent.getY())) {
+                            SnackbarManager.getInstance().pauseTimeout(BaseTransientBottomBar.this.mManagerCallback);
+                            break;
+                        }
+                        break;
+                    case 1:
+                        break;
+                }
+            }
+            SnackbarManager.getInstance().restoreTimeoutIfPaused(BaseTransientBottomBar.this.mManagerCallback);
+            return super.onInterceptTouchEvent(coordinatorLayout, snackbarBaseLayout, motionEvent);
+        }
     }
 
     @IntRange(from = 1)
     @RestrictTo({Scope.LIBRARY_GROUP})
     @Retention(RetentionPolicy.SOURCE)
     public @interface Duration {
-    }
-
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    interface OnAttachStateChangeListener {
-        void onViewAttachedToWindow(View view);
-
-        void onViewDetachedFromWindow(View view);
-    }
-
-    @RestrictTo({Scope.LIBRARY_GROUP})
-    interface OnLayoutChangeListener {
-        void onLayoutChange(View view, int i, int i2, int i3, int i4);
     }
 
     @RestrictTo({Scope.LIBRARY_GROUP})
@@ -172,33 +199,6 @@ public abstract class BaseTransientBottomBar<B extends BaseTransientBottomBar<B>
         /* Access modifiers changed, original: 0000 */
         public void setOnAttachStateChangeListener(OnAttachStateChangeListener onAttachStateChangeListener) {
             this.mOnAttachStateChangeListener = onAttachStateChangeListener;
-        }
-    }
-
-    final class Behavior extends SwipeDismissBehavior<SnackbarBaseLayout> {
-        Behavior() {
-        }
-
-        public boolean canSwipeDismissView(View view) {
-            return view instanceof SnackbarBaseLayout;
-        }
-
-        public boolean onInterceptTouchEvent(CoordinatorLayout coordinatorLayout, SnackbarBaseLayout snackbarBaseLayout, MotionEvent motionEvent) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked != 3) {
-                switch (actionMasked) {
-                    case 0:
-                        if (coordinatorLayout.isPointInChildBounds(snackbarBaseLayout, (int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            SnackbarManager.getInstance().pauseTimeout(BaseTransientBottomBar.this.mManagerCallback);
-                            break;
-                        }
-                        break;
-                    case 1:
-                        break;
-                }
-            }
-            SnackbarManager.getInstance().restoreTimeoutIfPaused(BaseTransientBottomBar.this.mManagerCallback);
-            return super.onInterceptTouchEvent(coordinatorLayout, snackbarBaseLayout, motionEvent);
         }
     }
 

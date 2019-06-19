@@ -89,53 +89,6 @@ public abstract class a<V> implements ListenableFuture<V> {
         }
     }
 
-    private static final class f<V> implements Runnable {
-        final a<V> a;
-        final ListenableFuture<? extends V> b;
-
-        f(a<V> aVar, ListenableFuture<? extends V> listenableFuture) {
-            this.a = aVar;
-            this.b = listenableFuture;
-        }
-
-        public void run() {
-            if (this.a.c == this) {
-                if (a.b.a(this.a, (Object) this, a.b(this.b))) {
-                    a.a(this.a);
-                }
-            }
-        }
-    }
-
-    private static final class h {
-        static final h a = new h(false);
-        @Nullable
-        volatile Thread b;
-        @Nullable
-        volatile h c;
-
-        h(boolean z) {
-        }
-
-        h() {
-            a.b.a(this, Thread.currentThread());
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void a(h hVar) {
-            a.b.a(this, hVar);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void a() {
-            Thread thread = this.b;
-            if (thread != null) {
-                this.b = null;
-                LockSupport.unpark(thread);
-            }
-        }
-    }
-
     private static final class e extends a {
         final AtomicReferenceFieldUpdater<h, Thread> a;
         final AtomicReferenceFieldUpdater<h, h> b;
@@ -175,6 +128,24 @@ public abstract class a<V> implements ListenableFuture<V> {
         /* Access modifiers changed, original: 0000 */
         public boolean a(a<?> aVar, Object obj, Object obj2) {
             return this.e.compareAndSet(aVar, obj, obj2);
+        }
+    }
+
+    private static final class f<V> implements Runnable {
+        final a<V> a;
+        final ListenableFuture<? extends V> b;
+
+        f(a<V> aVar, ListenableFuture<? extends V> listenableFuture) {
+            this.a = aVar;
+            this.b = listenableFuture;
+        }
+
+        public void run() {
+            if (this.a.c == this) {
+                if (a.b.a(this.a, (Object) this, a.b(this.b))) {
+                    a.a(this.a);
+                }
+            }
         }
     }
 
@@ -223,6 +194,35 @@ public abstract class a<V> implements ListenableFuture<V> {
                     return true;
                 }
                 return false;
+            }
+        }
+    }
+
+    private static final class h {
+        static final h a = new h(false);
+        @Nullable
+        volatile Thread b;
+        @Nullable
+        volatile h c;
+
+        h(boolean z) {
+        }
+
+        h() {
+            a.b.a(this, Thread.currentThread());
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void a(h hVar) {
+            a.b.a(this, hVar);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void a() {
+            Thread thread = this.b;
+            if (thread != null) {
+                this.b = null;
+                LockSupport.unpark(thread);
             }
         }
     }

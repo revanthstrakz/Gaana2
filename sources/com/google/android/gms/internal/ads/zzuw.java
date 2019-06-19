@@ -264,6 +264,16 @@ public final class zzuw {
         private String zzcdk = "";
         private String zzcdl = "";
 
+        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzd, zza> implements zzbsn {
+            private zza() {
+                super(zzd.zzcdm);
+            }
+
+            /* synthetic */ zza(zzux zzux) {
+                this();
+            }
+        }
+
         public enum zzb implements zzbrg {
             PLATFORM_UNSPECIFIED(0),
             IOS(1),
@@ -299,16 +309,6 @@ public final class zzuw {
 
             static {
                 zzcbx = new zzva();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzd, zza> implements zzbsn {
-            private zza() {
-                super(zzd.zzcdm);
-            }
-
-            /* synthetic */ zza(zzux zzux) {
-                this();
             }
         }
 
@@ -546,6 +546,16 @@ public final class zzuw {
         private int zzcch;
         private int zzcef;
 
+        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzh, zza> implements zzbsn {
+            private zza() {
+                super(zzh.zzceg);
+            }
+
+            /* synthetic */ zza(zzux zzux) {
+                this();
+            }
+        }
+
         public enum zzb implements zzbrg {
             CELLULAR_NETWORK_TYPE_UNSPECIFIED(0),
             TWO_G(1),
@@ -623,16 +633,6 @@ public final class zzuw {
 
             static {
                 zzcbx = new zzvh();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzh, zza> implements zzbsn {
-            private zza() {
-                super(zzh.zzceg);
-            }
-
-            /* synthetic */ zza(zzux zzux) {
-                this();
             }
         }
 
@@ -1179,6 +1179,16 @@ public final class zzuw {
         private int zzccg;
         private int zzcfw;
 
+        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzq, zza> implements zzbsn {
+            private zza() {
+                super(zzq.zzcfx);
+            }
+
+            /* synthetic */ zza(zzux zzux) {
+                this();
+            }
+        }
+
         public enum zzb implements zzbrg {
             VIDEO_ERROR_CODE_UNSPECIFIED(0),
             OPENGL_RENDERING_FAILED(1),
@@ -1217,16 +1227,6 @@ public final class zzuw {
 
             static {
                 zzcbx = new zzvj();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zzq, zza> implements zzbsn {
-            private zza() {
-                super(zzq.zzcfx);
-            }
-
-            /* synthetic */ zza(zzux zzux) {
-                this();
             }
         }
 

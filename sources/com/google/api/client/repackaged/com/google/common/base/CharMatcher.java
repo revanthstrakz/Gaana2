@@ -270,6 +270,27 @@ public abstract class CharMatcher implements Predicate<Character> {
     private static final String ZEROES = "0٠۰߀०০੦૦୦௦౦೦൦๐໐༠၀႐០᠐᥆᧐᭐᮰᱀᱐꘠꣐꤀꩐０";
     final String description;
 
+    static abstract class FastMatcher extends CharMatcher {
+        public final CharMatcher precomputed() {
+            return this;
+        }
+
+        public /* bridge */ /* synthetic */ boolean apply(Object obj) {
+            return super.apply((Character) obj);
+        }
+
+        FastMatcher() {
+        }
+
+        FastMatcher(String str) {
+            super(str);
+        }
+
+        public CharMatcher negate() {
+            return new NegatedFastMatcher(this);
+        }
+    }
+
     private static class And extends CharMatcher {
         final CharMatcher first;
         final CharMatcher second;
@@ -315,24 +336,29 @@ public abstract class CharMatcher implements Predicate<Character> {
         }
     }
 
-    static abstract class FastMatcher extends CharMatcher {
-        public final CharMatcher precomputed() {
-            return this;
+    @GwtIncompatible("java.util.BitSet")
+    private static class BitSetMatcher extends FastMatcher {
+        private final BitSet table;
+
+        /* synthetic */ BitSetMatcher(BitSet bitSet, String str, AnonymousClass1 anonymousClass1) {
+            this(bitSet, str);
         }
 
-        public /* bridge */ /* synthetic */ boolean apply(Object obj) {
-            return super.apply((Character) obj);
-        }
-
-        FastMatcher() {
-        }
-
-        FastMatcher(String str) {
+        private BitSetMatcher(BitSet bitSet, String str) {
             super(str);
+            if (bitSet.length() + 64 < bitSet.size()) {
+                bitSet = (BitSet) bitSet.clone();
+            }
+            this.table = bitSet;
         }
 
-        public CharMatcher negate() {
-            return new NegatedFastMatcher(this);
+        public boolean matches(char c) {
+            return this.table.get(c);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public void setBits(BitSet bitSet) {
+            bitSet.or(this.table);
         }
     }
 
@@ -387,6 +413,25 @@ public abstract class CharMatcher implements Predicate<Character> {
         /* Access modifiers changed, original: 0000 */
         public CharMatcher withToString(String str) {
             return new NegatedMatcher(str, this.original);
+        }
+    }
+
+    static final class NegatedFastMatcher extends NegatedMatcher {
+        public final CharMatcher precomputed() {
+            return this;
+        }
+
+        NegatedFastMatcher(CharMatcher charMatcher) {
+            super(charMatcher);
+        }
+
+        NegatedFastMatcher(String str, CharMatcher charMatcher) {
+            super(str, charMatcher);
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public CharMatcher withToString(String str) {
+            return new NegatedFastMatcher(str, this.original);
         }
     }
 
@@ -466,51 +511,6 @@ public abstract class CharMatcher implements Predicate<Character> {
                 z = false;
             }
             return z;
-        }
-    }
-
-    @GwtIncompatible("java.util.BitSet")
-    private static class BitSetMatcher extends FastMatcher {
-        private final BitSet table;
-
-        /* synthetic */ BitSetMatcher(BitSet bitSet, String str, AnonymousClass1 anonymousClass1) {
-            this(bitSet, str);
-        }
-
-        private BitSetMatcher(BitSet bitSet, String str) {
-            super(str);
-            if (bitSet.length() + 64 < bitSet.size()) {
-                bitSet = (BitSet) bitSet.clone();
-            }
-            this.table = bitSet;
-        }
-
-        public boolean matches(char c) {
-            return this.table.get(c);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public void setBits(BitSet bitSet) {
-            bitSet.or(this.table);
-        }
-    }
-
-    static final class NegatedFastMatcher extends NegatedMatcher {
-        public final CharMatcher precomputed() {
-            return this;
-        }
-
-        NegatedFastMatcher(CharMatcher charMatcher) {
-            super(charMatcher);
-        }
-
-        NegatedFastMatcher(String str, CharMatcher charMatcher) {
-            super(str, charMatcher);
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public CharMatcher withToString(String str) {
-            return new NegatedFastMatcher(str, this.original);
         }
     }
 

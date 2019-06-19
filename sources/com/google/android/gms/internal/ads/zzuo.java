@@ -8,6 +8,16 @@ public final class zzuo {
         private static final zza zzcar = new zza();
         private static volatile zzbsw<zza> zzcas;
 
+        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zza, zza> implements zzbsn {
+            private zza() {
+                super(zza.zzcar);
+            }
+
+            /* synthetic */ zza(zzup zzup) {
+                this();
+            }
+        }
+
         public enum zzb implements zzbrg {
             UNKNOWN_EVENT_TYPE(0),
             AD_REQUEST(1),
@@ -53,16 +63,6 @@ public final class zzuo {
 
             static {
                 zzcbx = new zzuq();
-            }
-        }
-
-        public static final class zza extends com.google.android.gms.internal.ads.zzbrd.zza<zza, zza> implements zzbsn {
-            private zza() {
-                super(zza.zzcar);
-            }
-
-            /* synthetic */ zza(zzup zzup) {
-                this();
             }
         }
 

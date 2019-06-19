@@ -63,70 +63,6 @@ public class SlidingPaneLayout extends ViewGroup {
     private int mSliderFadeColor;
     private final Rect mTmpRect;
 
-    private class DisableLayerRunnable implements Runnable {
-        final View mChildView;
-
-        DisableLayerRunnable(View view) {
-            this.mChildView = view;
-        }
-
-        public void run() {
-            if (this.mChildView.getParent() == SlidingPaneLayout.this) {
-                this.mChildView.setLayerType(0, null);
-                SlidingPaneLayout.this.invalidateChildRegion(this.mChildView);
-            }
-            SlidingPaneLayout.this.mPostedRunnables.remove(this);
-        }
-    }
-
-    public static class LayoutParams extends MarginLayoutParams {
-        private static final int[] ATTRS = new int[]{16843137};
-        Paint dimPaint;
-        boolean dimWhenOffset;
-        boolean slideable;
-        public float weight = 0.0f;
-
-        public LayoutParams() {
-            super(-1, -1);
-        }
-
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-        }
-
-        public LayoutParams(@NonNull android.view.ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
-        }
-
-        public LayoutParams(@NonNull MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
-        }
-
-        public LayoutParams(@NonNull LayoutParams layoutParams) {
-            super(layoutParams);
-            this.weight = layoutParams.weight;
-        }
-
-        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
-            super(context, attributeSet);
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, ATTRS);
-            this.weight = obtainStyledAttributes.getFloat(0, 0.0f);
-            obtainStyledAttributes.recycle();
-        }
-    }
-
-    public interface PanelSlideListener {
-        void onPanelClosed(@NonNull View view);
-
-        void onPanelOpened(@NonNull View view);
-
-        void onPanelSlide(@NonNull View view, float f);
-    }
-
-    interface SlidingPanelLayoutImpl {
-        void invalidateChildRegion(SlidingPaneLayout slidingPaneLayout, View view);
-    }
-
     class AccessibilityDelegate extends AccessibilityDelegateCompat {
         private final Rect mTmpRect = new Rect();
 
@@ -186,6 +122,22 @@ public class SlidingPaneLayout extends ViewGroup {
             accessibilityNodeInfoCompat.setLongClickable(accessibilityNodeInfoCompat2.isLongClickable());
             accessibilityNodeInfoCompat.addAction(accessibilityNodeInfoCompat2.getActions());
             accessibilityNodeInfoCompat.setMovementGranularities(accessibilityNodeInfoCompat2.getMovementGranularities());
+        }
+    }
+
+    private class DisableLayerRunnable implements Runnable {
+        final View mChildView;
+
+        DisableLayerRunnable(View view) {
+            this.mChildView = view;
+        }
+
+        public void run() {
+            if (this.mChildView.getParent() == SlidingPaneLayout.this) {
+                this.mChildView.setLayerType(0, null);
+                SlidingPaneLayout.this.invalidateChildRegion(this.mChildView);
+            }
+            SlidingPaneLayout.this.mPostedRunnables.remove(this);
         }
     }
 
@@ -265,6 +217,50 @@ public class SlidingPaneLayout extends ViewGroup {
         }
     }
 
+    public static class LayoutParams extends MarginLayoutParams {
+        private static final int[] ATTRS = new int[]{16843137};
+        Paint dimPaint;
+        boolean dimWhenOffset;
+        boolean slideable;
+        public float weight = 0.0f;
+
+        public LayoutParams() {
+            super(-1, -1);
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+        }
+
+        public LayoutParams(@NonNull android.view.ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        public LayoutParams(@NonNull MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+        }
+
+        public LayoutParams(@NonNull LayoutParams layoutParams) {
+            super(layoutParams);
+            this.weight = layoutParams.weight;
+        }
+
+        public LayoutParams(@NonNull Context context, @Nullable AttributeSet attributeSet) {
+            super(context, attributeSet);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, ATTRS);
+            this.weight = obtainStyledAttributes.getFloat(0, 0.0f);
+            obtainStyledAttributes.recycle();
+        }
+    }
+
+    public interface PanelSlideListener {
+        void onPanelClosed(@NonNull View view);
+
+        void onPanelOpened(@NonNull View view);
+
+        void onPanelSlide(@NonNull View view, float f);
+    }
+
     static class SavedState extends AbsSavedState {
         public static final Creator<SavedState> CREATOR = new ClassLoaderCreator<SavedState>() {
             public SavedState createFromParcel(Parcel parcel, ClassLoader classLoader) {
@@ -305,6 +301,10 @@ public class SlidingPaneLayout extends ViewGroup {
 
         public void onPanelSlide(View view, float f) {
         }
+    }
+
+    interface SlidingPanelLayoutImpl {
+        void invalidateChildRegion(SlidingPaneLayout slidingPaneLayout, View view);
     }
 
     static class SlidingPanelLayoutImplBase implements SlidingPanelLayoutImpl {

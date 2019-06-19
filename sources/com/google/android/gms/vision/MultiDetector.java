@@ -72,4 +72,8 @@ public class MultiDetector extends Detector<Object> {
     private MultiDetector() {
         this.zzax = new ArrayList();
     }
+
+    /* synthetic */ MultiDetector(zzd zzd) {
+        this();
+    }
 }

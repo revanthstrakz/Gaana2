@@ -6,6 +6,18 @@ import java.util.LinkedList;
 
 public class CollectionMapper {
 
+    public interface OnErrorListener {
+        void onError(FacebookException facebookException);
+    }
+
+    public interface OnMapperCompleteListener extends OnErrorListener {
+        void onComplete();
+    }
+
+    public interface OnMapValueCompleteListener extends OnErrorListener {
+        void onComplete(Object obj);
+    }
+
     public interface Collection<T> {
         Object get(T t);
 
@@ -14,20 +26,8 @@ public class CollectionMapper {
         void set(T t, Object obj, OnErrorListener onErrorListener);
     }
 
-    public interface OnErrorListener {
-        void onError(FacebookException facebookException);
-    }
-
     public interface ValueMapper {
         void mapValue(Object obj, OnMapValueCompleteListener onMapValueCompleteListener);
-    }
-
-    public interface OnMapValueCompleteListener extends OnErrorListener {
-        void onComplete(Object obj);
-    }
-
-    public interface OnMapperCompleteListener extends OnErrorListener {
-        void onComplete();
     }
 
     public static <T> void iterate(final Collection<T> collection, ValueMapper valueMapper, final OnMapperCompleteListener onMapperCompleteListener) {

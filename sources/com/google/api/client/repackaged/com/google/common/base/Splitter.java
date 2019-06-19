@@ -19,40 +19,6 @@ public final class Splitter {
     private final Strategy strategy;
     private final CharMatcher trimmer;
 
-    @Beta
-    public static final class MapSplitter {
-        private static final String INVALID_ENTRY_MESSAGE = "Chunk [%s] is not a valid entry";
-        private final Splitter entrySplitter;
-        private final Splitter outerSplitter;
-
-        /* synthetic */ MapSplitter(Splitter splitter, Splitter splitter2, AnonymousClass1 anonymousClass1) {
-            this(splitter, splitter2);
-        }
-
-        private MapSplitter(Splitter splitter, Splitter splitter2) {
-            this.outerSplitter = splitter;
-            this.entrySplitter = (Splitter) Preconditions.checkNotNull(splitter2);
-        }
-
-        public Map<String, String> split(CharSequence charSequence) {
-            LinkedHashMap linkedHashMap = new LinkedHashMap();
-            for (String access$000 : this.outerSplitter.split(charSequence)) {
-                Iterator access$0002 = this.entrySplitter.splittingIterator(access$000);
-                Preconditions.checkArgument(access$0002.hasNext(), INVALID_ENTRY_MESSAGE, access$000);
-                String str = (String) access$0002.next();
-                Preconditions.checkArgument(linkedHashMap.containsKey(str) ^ 1, "Duplicate key [%s] found.", str);
-                Preconditions.checkArgument(access$0002.hasNext(), INVALID_ENTRY_MESSAGE, access$000);
-                linkedHashMap.put(str, (String) access$0002.next());
-                Preconditions.checkArgument(access$0002.hasNext() ^ 1, INVALID_ENTRY_MESSAGE, access$000);
-            }
-            return Collections.unmodifiableMap(linkedHashMap);
-        }
-    }
-
-    private interface Strategy {
-        Iterator<String> iterator(Splitter splitter, CharSequence charSequence);
-    }
-
     private static abstract class SplittingIterator extends AbstractIterator<String> {
         int limit;
         int offset = 0;
@@ -111,6 +77,40 @@ public final class Splitter {
                 }
             }
             return (String) endOfData();
+        }
+    }
+
+    private interface Strategy {
+        Iterator<String> iterator(Splitter splitter, CharSequence charSequence);
+    }
+
+    @Beta
+    public static final class MapSplitter {
+        private static final String INVALID_ENTRY_MESSAGE = "Chunk [%s] is not a valid entry";
+        private final Splitter entrySplitter;
+        private final Splitter outerSplitter;
+
+        /* synthetic */ MapSplitter(Splitter splitter, Splitter splitter2, AnonymousClass1 anonymousClass1) {
+            this(splitter, splitter2);
+        }
+
+        private MapSplitter(Splitter splitter, Splitter splitter2) {
+            this.outerSplitter = splitter;
+            this.entrySplitter = (Splitter) Preconditions.checkNotNull(splitter2);
+        }
+
+        public Map<String, String> split(CharSequence charSequence) {
+            LinkedHashMap linkedHashMap = new LinkedHashMap();
+            for (String access$000 : this.outerSplitter.split(charSequence)) {
+                Iterator access$0002 = this.entrySplitter.splittingIterator(access$000);
+                Preconditions.checkArgument(access$0002.hasNext(), INVALID_ENTRY_MESSAGE, access$000);
+                String str = (String) access$0002.next();
+                Preconditions.checkArgument(linkedHashMap.containsKey(str) ^ 1, "Duplicate key [%s] found.", str);
+                Preconditions.checkArgument(access$0002.hasNext(), INVALID_ENTRY_MESSAGE, access$000);
+                linkedHashMap.put(str, (String) access$0002.next());
+                Preconditions.checkArgument(access$0002.hasNext() ^ 1, INVALID_ENTRY_MESSAGE, access$000);
+            }
+            return Collections.unmodifiableMap(linkedHashMap);
         }
     }
 

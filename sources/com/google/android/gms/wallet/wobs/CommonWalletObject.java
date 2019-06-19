@@ -197,10 +197,14 @@ public class CommonWalletObject extends AbstractSafeParcelable {
         public final CommonWalletObject zzf() {
             return CommonWalletObject.this;
         }
+
+        /* synthetic */ zza(CommonWalletObject commonWalletObject, zza zza) {
+            this();
+        }
     }
 
     public static zza zze() {
-        return new zza();
+        return new zza(new CommonWalletObject(), null);
     }
 
     public void writeToParcel(Parcel parcel, int i) {

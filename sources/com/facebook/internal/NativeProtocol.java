@@ -198,36 +198,6 @@ public final class NativeProtocol {
         }
     }
 
-    public static class ProtocolVersionQueryResult {
-        private NativeAppInfo nativeAppInfo;
-        private int protocolVersion;
-
-        public static ProtocolVersionQueryResult create(NativeAppInfo nativeAppInfo, int i) {
-            ProtocolVersionQueryResult protocolVersionQueryResult = new ProtocolVersionQueryResult();
-            protocolVersionQueryResult.nativeAppInfo = nativeAppInfo;
-            protocolVersionQueryResult.protocolVersion = i;
-            return protocolVersionQueryResult;
-        }
-
-        public static ProtocolVersionQueryResult createEmpty() {
-            ProtocolVersionQueryResult protocolVersionQueryResult = new ProtocolVersionQueryResult();
-            protocolVersionQueryResult.protocolVersion = -1;
-            return protocolVersionQueryResult;
-        }
-
-        private ProtocolVersionQueryResult() {
-        }
-
-        @Nullable
-        public NativeAppInfo getAppInfo() {
-            return this.nativeAppInfo;
-        }
-
-        public int getProtocolVersion() {
-            return this.protocolVersion;
-        }
-    }
-
     private static class FBLiteAppInfo extends NativeAppInfo {
         static final String FACEBOOK_LITE_ACTIVITY = "com.facebook.lite.platform.LoginGDPDialogActivity";
         static final String FBLITE_PACKAGE = "com.facebook.lite";
@@ -292,6 +262,36 @@ public final class NativeProtocol {
 
         /* synthetic */ MessengerAppInfo(AnonymousClass1 anonymousClass1) {
             this();
+        }
+    }
+
+    public static class ProtocolVersionQueryResult {
+        private NativeAppInfo nativeAppInfo;
+        private int protocolVersion;
+
+        public static ProtocolVersionQueryResult create(NativeAppInfo nativeAppInfo, int i) {
+            ProtocolVersionQueryResult protocolVersionQueryResult = new ProtocolVersionQueryResult();
+            protocolVersionQueryResult.nativeAppInfo = nativeAppInfo;
+            protocolVersionQueryResult.protocolVersion = i;
+            return protocolVersionQueryResult;
+        }
+
+        public static ProtocolVersionQueryResult createEmpty() {
+            ProtocolVersionQueryResult protocolVersionQueryResult = new ProtocolVersionQueryResult();
+            protocolVersionQueryResult.protocolVersion = -1;
+            return protocolVersionQueryResult;
+        }
+
+        private ProtocolVersionQueryResult() {
+        }
+
+        @Nullable
+        public NativeAppInfo getAppInfo() {
+            return this.nativeAppInfo;
+        }
+
+        public int getProtocolVersion() {
+            return this.protocolVersion;
         }
     }
 

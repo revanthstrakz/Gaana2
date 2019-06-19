@@ -99,6 +99,39 @@ public class FirebaseApp {
         void onListenerCountChanged(int i);
     }
 
+    @TargetApi(14)
+    static class zza implements com.google.android.gms.common.api.internal.BackgroundDetector.BackgroundStateChangeListener {
+        private static AtomicReference<zza> zza = new AtomicReference();
+
+        private zza() {
+        }
+
+        public final void onBackgroundStateChanged(boolean z) {
+            synchronized (FirebaseApp.zzg) {
+                Iterator it = new ArrayList(FirebaseApp.zza.values()).iterator();
+                while (it.hasNext()) {
+                    FirebaseApp firebaseApp = (FirebaseApp) it.next();
+                    if (firebaseApp.zzo.get()) {
+                        firebaseApp.zza(z);
+                    }
+                }
+            }
+        }
+
+        static /* synthetic */ void zza(Context context) {
+            if (PlatformVersion.isAtLeastIceCreamSandwich() && (context.getApplicationContext() instanceof Application)) {
+                Application application = (Application) context.getApplicationContext();
+                if (zza.get() == null) {
+                    zza zza = new zza();
+                    if (zza.compareAndSet(null, zza)) {
+                        BackgroundDetector.initialize(application);
+                        BackgroundDetector.getInstance().addListener(zza);
+                    }
+                }
+            }
+        }
+    }
+
     static class zzb implements Executor {
         private static final Handler zza = new Handler(Looper.getMainLooper());
 
@@ -137,39 +170,6 @@ public class FirebaseApp {
                 zzc zzc = new zzc(context);
                 if (zza.compareAndSet(null, zzc)) {
                     context.registerReceiver(zzc, new IntentFilter("android.intent.action.USER_UNLOCKED"));
-                }
-            }
-        }
-    }
-
-    @TargetApi(14)
-    static class zza implements com.google.android.gms.common.api.internal.BackgroundDetector.BackgroundStateChangeListener {
-        private static AtomicReference<zza> zza = new AtomicReference();
-
-        private zza() {
-        }
-
-        public final void onBackgroundStateChanged(boolean z) {
-            synchronized (FirebaseApp.zzg) {
-                Iterator it = new ArrayList(FirebaseApp.zza.values()).iterator();
-                while (it.hasNext()) {
-                    FirebaseApp firebaseApp = (FirebaseApp) it.next();
-                    if (firebaseApp.zzo.get()) {
-                        firebaseApp.zza(z);
-                    }
-                }
-            }
-        }
-
-        static /* synthetic */ void zza(Context context) {
-            if (PlatformVersion.isAtLeastIceCreamSandwich() && (context.getApplicationContext() instanceof Application)) {
-                Application application = (Application) context.getApplicationContext();
-                if (zza.get() == null) {
-                    zza zza = new zza();
-                    if (zza.compareAndSet(null, zza)) {
-                        BackgroundDetector.initialize(application);
-                        BackgroundDetector.getInstance().addListener(zza);
-                    }
                 }
             }
         }

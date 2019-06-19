@@ -109,6 +109,10 @@ final class FragmentManagerImpl extends FragmentManager implements Factory2 {
     ArrayList<Boolean> mTmpIsPop;
     ArrayList<BackStackRecord> mTmpRecords;
 
+    interface OpGenerator {
+        boolean generateOps(ArrayList<BackStackRecord> arrayList, ArrayList<Boolean> arrayList2);
+    }
+
     private static class AnimationListenerWrapper implements AnimationListener {
         private final AnimationListener mWrapped;
 
@@ -139,6 +143,29 @@ final class FragmentManagerImpl extends FragmentManager implements Factory2 {
             if (this.mWrapped != null) {
                 this.mWrapped.onAnimationRepeat(animation);
             }
+        }
+    }
+
+    private static class AnimateOnHWLayerIfNeededListener extends AnimationListenerWrapper {
+        View mView;
+
+        AnimateOnHWLayerIfNeededListener(View view, AnimationListener animationListener) {
+            super(animationListener, null);
+            this.mView = view;
+        }
+
+        @CallSuper
+        public void onAnimationEnd(Animation animation) {
+            if (ViewCompat.isAttachedToWindow(this.mView) || VERSION.SDK_INT >= 24) {
+                this.mView.post(new Runnable() {
+                    public void run() {
+                        AnimateOnHWLayerIfNeededListener.this.mView.setLayerType(0, null);
+                    }
+                });
+            } else {
+                this.mView.setLayerType(0, null);
+            }
+            super.onAnimationEnd(animation);
         }
     }
 
@@ -228,33 +255,6 @@ final class FragmentManagerImpl extends FragmentManager implements Factory2 {
         public static final int Fragment_tag = 2;
 
         FragmentTag() {
-        }
-    }
-
-    interface OpGenerator {
-        boolean generateOps(ArrayList<BackStackRecord> arrayList, ArrayList<Boolean> arrayList2);
-    }
-
-    private static class AnimateOnHWLayerIfNeededListener extends AnimationListenerWrapper {
-        View mView;
-
-        AnimateOnHWLayerIfNeededListener(View view, AnimationListener animationListener) {
-            super(animationListener, null);
-            this.mView = view;
-        }
-
-        @CallSuper
-        public void onAnimationEnd(Animation animation) {
-            if (ViewCompat.isAttachedToWindow(this.mView) || VERSION.SDK_INT >= 24) {
-                this.mView.post(new Runnable() {
-                    public void run() {
-                        AnimateOnHWLayerIfNeededListener.this.mView.setLayerType(0, null);
-                    }
-                });
-            } else {
-                this.mView.setLayerType(0, null);
-            }
-            super.onAnimationEnd(animation);
         }
     }
 

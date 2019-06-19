@@ -115,8 +115,18 @@ public class RemotePlaybackClient {
         }
     }
 
+    public static abstract class ItemActionCallback extends ActionCallback {
+        public void onResult(Bundle bundle, String str, MediaSessionStatus mediaSessionStatus, String str2, MediaItemStatus mediaItemStatus) {
+        }
+    }
+
     public interface OnMessageReceivedListener {
         void onMessageReceived(String str, Bundle bundle);
+    }
+
+    public static abstract class SessionActionCallback extends ActionCallback {
+        public void onResult(Bundle bundle, String str, MediaSessionStatus mediaSessionStatus) {
+        }
     }
 
     public static abstract class StatusCallback {
@@ -127,16 +137,6 @@ public class RemotePlaybackClient {
         }
 
         public void onSessionStatusChanged(Bundle bundle, String str, MediaSessionStatus mediaSessionStatus) {
-        }
-    }
-
-    public static abstract class ItemActionCallback extends ActionCallback {
-        public void onResult(Bundle bundle, String str, MediaSessionStatus mediaSessionStatus, String str2, MediaItemStatus mediaItemStatus) {
-        }
-    }
-
-    public static abstract class SessionActionCallback extends ActionCallback {
-        public void onResult(Bundle bundle, String str, MediaSessionStatus mediaSessionStatus) {
         }
     }
 

@@ -35,6 +35,10 @@ public final class j {
     private final c k;
     private final Handler l;
 
+    interface d {
+        void a(List<View> list, List<View> list2);
+    }
+
     static class a {
         public int a;
         public int b;
@@ -139,10 +143,6 @@ public final class j {
                 Log.e(i.f, "", e);
             }
         }
-    }
-
-    interface d {
-        void a(List<View> list, List<View> list2);
     }
 
     public j(Context context) {

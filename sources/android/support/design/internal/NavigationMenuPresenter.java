@@ -65,7 +65,16 @@ public class NavigationMenuPresenter implements MenuPresenter {
     boolean mTextAppearanceSet;
     ColorStateList mTextColor;
 
-    private interface NavigationMenuItem {
+    private static abstract class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
+        public ViewHolder(View view) {
+            super(view);
+        }
+    }
+
+    private static class HeaderViewHolder extends ViewHolder {
+        public HeaderViewHolder(View view) {
+            super(view);
+        }
     }
 
     private class NavigationMenuAdapter extends Adapter<ViewHolder> {
@@ -323,6 +332,9 @@ public class NavigationMenuPresenter implements MenuPresenter {
         }
     }
 
+    private interface NavigationMenuItem {
+    }
+
     private static class NavigationMenuHeaderItem implements NavigationMenuItem {
         NavigationMenuHeaderItem() {
         }
@@ -356,18 +368,6 @@ public class NavigationMenuPresenter implements MenuPresenter {
 
         public MenuItemImpl getMenuItem() {
             return this.mMenuItem;
-        }
-    }
-
-    private static abstract class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder {
-        public ViewHolder(View view) {
-            super(view);
-        }
-    }
-
-    private static class HeaderViewHolder extends ViewHolder {
-        public HeaderViewHolder(View view) {
-            super(view);
         }
     }
 

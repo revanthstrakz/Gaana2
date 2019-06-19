@@ -94,4 +94,8 @@ public final class zzcv {
     private final String zzfq() {
         return String.valueOf(this.name).concat(":value");
     }
+
+    /* synthetic */ zzcv(zzct zzct, String str, long j, zzcu zzcu) {
+        this(zzct, str, j);
+    }
 }

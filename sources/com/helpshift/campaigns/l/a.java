@@ -165,7 +165,7 @@ public class a implements d {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:32:0x0065 A:{SYNTHETIC, Splitter:B:32:0x0065} */
-    /* JADX WARNING: Removed duplicated region for block: B:22:0x004d A:{Splitter:B:7:0x0024, ExcHandler: all (r1_7 'th' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:22:0x004d A:{ExcHandler: all (r1_7 'th' java.lang.Throwable), Splitter:B:7:0x0024} */
     /* JADX WARNING: Removed duplicated region for block: B:32:0x0065 A:{SYNTHETIC, Splitter:B:32:0x0065} */
     /* JADX WARNING: Removed duplicated region for block: B:38:0x006d A:{Catch:{ all -> 0x0071 }} */
     /* JADX WARNING: Failed to process nested try/catch */

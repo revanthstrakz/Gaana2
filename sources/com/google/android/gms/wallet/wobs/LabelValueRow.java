@@ -55,10 +55,14 @@ public final class LabelValueRow extends AbstractSafeParcelable {
         public final LabelValueRow build() {
             return LabelValueRow.this;
         }
+
+        /* synthetic */ Builder(LabelValueRow labelValueRow, zzd zzd) {
+            this();
+        }
     }
 
     public static Builder newBuilder() {
-        return new Builder();
+        return new Builder(new LabelValueRow(), null);
     }
 
     public final void writeToParcel(Parcel parcel, int i) {

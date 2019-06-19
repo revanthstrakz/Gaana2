@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class o {
     private static final String a = "o";
-    private static volatile boolean b = false;
+    private static volatile boolean b;
     private static double c;
     private static String d;
 

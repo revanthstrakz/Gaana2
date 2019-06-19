@@ -9,6 +9,10 @@ import android.support.annotation.RequiresApi;
 @RequiresApi(23)
 class MediaBrowserServiceCompatApi23 {
 
+    public interface ServiceCompatProxy extends android.support.v4.media.MediaBrowserServiceCompatApi21.ServiceCompatProxy {
+        void onLoadItem(String str, ResultWrapper<Parcel> resultWrapper);
+    }
+
     static class MediaBrowserServiceAdaptor extends MediaBrowserServiceAdaptor {
         MediaBrowserServiceAdaptor(Context context, ServiceCompatProxy serviceCompatProxy) {
             super(context, serviceCompatProxy);
@@ -17,10 +21,6 @@ class MediaBrowserServiceCompatApi23 {
         public void onLoadItem(String str, Result<MediaItem> result) {
             ((ServiceCompatProxy) this.mServiceProxy).onLoadItem(str, new ResultWrapper(result));
         }
-    }
-
-    public interface ServiceCompatProxy extends android.support.v4.media.MediaBrowserServiceCompatApi21.ServiceCompatProxy {
-        void onLoadItem(String str, ResultWrapper<Parcel> resultWrapper);
     }
 
     MediaBrowserServiceCompatApi23() {

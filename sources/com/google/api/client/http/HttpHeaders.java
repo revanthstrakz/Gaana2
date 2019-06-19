@@ -81,6 +81,24 @@ public class HttpHeaders extends GenericData {
     @Key("User-Agent")
     private List<String> userAgent;
 
+    private static class HeaderParsingFakeLevelHttpRequest extends LowLevelHttpRequest {
+        private final ParseHeaderState state;
+        private final HttpHeaders target;
+
+        HeaderParsingFakeLevelHttpRequest(HttpHeaders httpHeaders, ParseHeaderState parseHeaderState) {
+            this.target = httpHeaders;
+            this.state = parseHeaderState;
+        }
+
+        public void addHeader(String str, String str2) {
+            this.target.parseHeader(str, str2, this.state);
+        }
+
+        public LowLevelHttpResponse execute() throws IOException {
+            throw new UnsupportedOperationException();
+        }
+    }
+
     private static final class ParseHeaderState {
         final ArrayValueMap arrayValueMap;
         final ClassInfo classInfo;
@@ -97,24 +115,6 @@ public class HttpHeaders extends GenericData {
         /* Access modifiers changed, original: 0000 */
         public void finish() {
             this.arrayValueMap.setValues();
-        }
-    }
-
-    private static class HeaderParsingFakeLevelHttpRequest extends LowLevelHttpRequest {
-        private final ParseHeaderState state;
-        private final HttpHeaders target;
-
-        HeaderParsingFakeLevelHttpRequest(HttpHeaders httpHeaders, ParseHeaderState parseHeaderState) {
-            this.target = httpHeaders;
-            this.state = parseHeaderState;
-        }
-
-        public void addHeader(String str, String str2) {
-            this.target.parseHeader(str, str2, this.state);
-        }
-
-        public LowLevelHttpResponse execute() throws IOException {
-            throw new UnsupportedOperationException();
         }
     }
 

@@ -13,14 +13,6 @@ import java.util.Collection;
 public interface People {
 
     @Deprecated
-    public interface OrderBy {
-        @Deprecated
-        public static final int ALPHABETICAL = 0;
-        @Deprecated
-        public static final int BEST = 1;
-    }
-
-    @Deprecated
     @VisibleForTesting
     public interface LoadPeopleResult extends Releasable, Result {
         @Deprecated
@@ -28,6 +20,14 @@ public interface People {
 
         @Deprecated
         PersonBuffer getPersonBuffer();
+    }
+
+    @Deprecated
+    public interface OrderBy {
+        @Deprecated
+        public static final int ALPHABETICAL = 0;
+        @Deprecated
+        public static final int BEST = 1;
     }
 
     @Deprecated

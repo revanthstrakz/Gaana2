@@ -10,5 +10,5 @@ public class DetailsButtonBar {
     public static final int SHUFFLE_ID = 3;
     public static final int SONGS_ID = 1;
     public static final int START_RADIO_ID = 8;
-    public static boolean optionStateCheckGaana = false;
+    public static boolean optionStateCheckGaana;
 }

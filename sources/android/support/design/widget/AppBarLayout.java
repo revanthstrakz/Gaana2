@@ -56,87 +56,6 @@ public class AppBarLayout extends LinearLayout {
     private int[] mTmpStatesArray;
     private int mTotalScrollRange;
 
-    public static class LayoutParams extends android.widget.LinearLayout.LayoutParams {
-        static final int COLLAPSIBLE_FLAGS = 10;
-        static final int FLAG_QUICK_RETURN = 5;
-        static final int FLAG_SNAP = 17;
-        public static final int SCROLL_FLAG_ENTER_ALWAYS = 4;
-        public static final int SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED = 8;
-        public static final int SCROLL_FLAG_EXIT_UNTIL_COLLAPSED = 2;
-        public static final int SCROLL_FLAG_SCROLL = 1;
-        public static final int SCROLL_FLAG_SNAP = 16;
-        int mScrollFlags = 1;
-        Interpolator mScrollInterpolator;
-
-        @RestrictTo({Scope.LIBRARY_GROUP})
-        @Retention(RetentionPolicy.SOURCE)
-        public @interface ScrollFlags {
-        }
-
-        public LayoutParams(Context context, AttributeSet attributeSet) {
-            super(context, attributeSet);
-            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.AppBarLayout_Layout);
-            this.mScrollFlags = obtainStyledAttributes.getInt(R.styleable.AppBarLayout_Layout_layout_scrollFlags, 0);
-            if (obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator)) {
-                this.mScrollInterpolator = AnimationUtils.loadInterpolator(context, obtainStyledAttributes.getResourceId(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator, 0));
-            }
-            obtainStyledAttributes.recycle();
-        }
-
-        public LayoutParams(int i, int i2) {
-            super(i, i2);
-        }
-
-        public LayoutParams(int i, int i2, float f) {
-            super(i, i2, f);
-        }
-
-        public LayoutParams(android.view.ViewGroup.LayoutParams layoutParams) {
-            super(layoutParams);
-        }
-
-        public LayoutParams(MarginLayoutParams marginLayoutParams) {
-            super(marginLayoutParams);
-        }
-
-        @RequiresApi(19)
-        public LayoutParams(android.widget.LinearLayout.LayoutParams layoutParams) {
-            super(layoutParams);
-        }
-
-        @RequiresApi(19)
-        public LayoutParams(LayoutParams layoutParams) {
-            super(layoutParams);
-            this.mScrollFlags = layoutParams.mScrollFlags;
-            this.mScrollInterpolator = layoutParams.mScrollInterpolator;
-        }
-
-        public void setScrollFlags(int i) {
-            this.mScrollFlags = i;
-        }
-
-        public int getScrollFlags() {
-            return this.mScrollFlags;
-        }
-
-        public void setScrollInterpolator(Interpolator interpolator) {
-            this.mScrollInterpolator = interpolator;
-        }
-
-        public Interpolator getScrollInterpolator() {
-            return this.mScrollInterpolator;
-        }
-
-        /* Access modifiers changed, original: 0000 */
-        public boolean isCollapsible() {
-            return (this.mScrollFlags & 1) == 1 && (this.mScrollFlags & 10) != 0;
-        }
-    }
-
-    public interface OnOffsetChangedListener {
-        void onOffsetChanged(AppBarLayout appBarLayout, int i);
-    }
-
     public static class Behavior extends HeaderBehavior<AppBarLayout> {
         private static final int INVALID_POSITION = -1;
         private static final int MAX_OFFSET_ANIMATION_DURATION = 600;
@@ -565,6 +484,87 @@ public class AppBarLayout extends LinearLayout {
             super.onRestoreInstanceState(coordinatorLayout, appBarLayout, parcelable);
             this.mOffsetToChildIndexOnLayout = -1;
         }
+    }
+
+    public static class LayoutParams extends android.widget.LinearLayout.LayoutParams {
+        static final int COLLAPSIBLE_FLAGS = 10;
+        static final int FLAG_QUICK_RETURN = 5;
+        static final int FLAG_SNAP = 17;
+        public static final int SCROLL_FLAG_ENTER_ALWAYS = 4;
+        public static final int SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED = 8;
+        public static final int SCROLL_FLAG_EXIT_UNTIL_COLLAPSED = 2;
+        public static final int SCROLL_FLAG_SCROLL = 1;
+        public static final int SCROLL_FLAG_SNAP = 16;
+        int mScrollFlags = 1;
+        Interpolator mScrollInterpolator;
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        @Retention(RetentionPolicy.SOURCE)
+        public @interface ScrollFlags {
+        }
+
+        public LayoutParams(Context context, AttributeSet attributeSet) {
+            super(context, attributeSet);
+            TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.AppBarLayout_Layout);
+            this.mScrollFlags = obtainStyledAttributes.getInt(R.styleable.AppBarLayout_Layout_layout_scrollFlags, 0);
+            if (obtainStyledAttributes.hasValue(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator)) {
+                this.mScrollInterpolator = AnimationUtils.loadInterpolator(context, obtainStyledAttributes.getResourceId(R.styleable.AppBarLayout_Layout_layout_scrollInterpolator, 0));
+            }
+            obtainStyledAttributes.recycle();
+        }
+
+        public LayoutParams(int i, int i2) {
+            super(i, i2);
+        }
+
+        public LayoutParams(int i, int i2, float f) {
+            super(i, i2, f);
+        }
+
+        public LayoutParams(android.view.ViewGroup.LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        public LayoutParams(MarginLayoutParams marginLayoutParams) {
+            super(marginLayoutParams);
+        }
+
+        @RequiresApi(19)
+        public LayoutParams(android.widget.LinearLayout.LayoutParams layoutParams) {
+            super(layoutParams);
+        }
+
+        @RequiresApi(19)
+        public LayoutParams(LayoutParams layoutParams) {
+            super(layoutParams);
+            this.mScrollFlags = layoutParams.mScrollFlags;
+            this.mScrollInterpolator = layoutParams.mScrollInterpolator;
+        }
+
+        public void setScrollFlags(int i) {
+            this.mScrollFlags = i;
+        }
+
+        public int getScrollFlags() {
+            return this.mScrollFlags;
+        }
+
+        public void setScrollInterpolator(Interpolator interpolator) {
+            this.mScrollInterpolator = interpolator;
+        }
+
+        public Interpolator getScrollInterpolator() {
+            return this.mScrollInterpolator;
+        }
+
+        /* Access modifiers changed, original: 0000 */
+        public boolean isCollapsible() {
+            return (this.mScrollFlags & 1) == 1 && (this.mScrollFlags & 10) != 0;
+        }
+    }
+
+    public interface OnOffsetChangedListener {
+        void onOffsetChanged(AppBarLayout appBarLayout, int i);
     }
 
     public static class ScrollingViewBehavior extends HeaderScrollingViewBehavior {

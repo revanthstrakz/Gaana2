@@ -25,6 +25,16 @@ class w {
     private final AtomicInteger m = new AtomicInteger(0);
     private final AtomicBoolean n = new AtomicBoolean(false);
 
+    interface b {
+        void c();
+
+        void d();
+    }
+
+    interface e {
+        void a(l lVar);
+    }
+
     private class a implements Runnable {
         private final Handler b;
         private final String c;
@@ -97,12 +107,6 @@ class w {
         }
     }
 
-    interface b {
-        void c();
-
-        void d();
-    }
-
     private class c {
         final Long a;
         final b b;
@@ -116,10 +120,6 @@ class w {
     enum d {
         OFF,
         ON
-    }
-
-    interface e {
-        void a(l lVar);
     }
 
     private w() {

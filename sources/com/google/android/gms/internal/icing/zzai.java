@@ -58,16 +58,6 @@ public final class zzai implements AppIndexApi {
         }
     }
 
-    public static final class zzd extends zzaf<Status> {
-        public zzd(ResultHolder<Status> resultHolder) {
-            super(resultHolder);
-        }
-
-        public final void zza(Status status) {
-            this.zzas.setResult(status);
-        }
-    }
-
     public static abstract class zzc<T extends Result> extends zzb<Status> {
         public zzc(GoogleApiClient googleApiClient) {
             super(googleApiClient);
@@ -76,6 +66,16 @@ public final class zzai implements AppIndexApi {
         /* Access modifiers changed, original: protected|synthetic */
         public /* synthetic */ Result createFailedResult(Status status) {
             return status;
+        }
+    }
+
+    public static final class zzd extends zzaf<Status> {
+        public zzd(ResultHolder<Status> resultHolder) {
+            super(resultHolder);
+        }
+
+        public final void zza(Status status) {
+            this.zzas.setResult(status);
         }
     }
 
